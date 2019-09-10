@@ -108,40 +108,40 @@ INSERT INTO `update` (`description`) VALUES
 ('The Idea will be considered to have more features');
 
 INSERT INTO `chat` (`message`,`chatMember`) VALUES 
-('11', '21'),
-('12', '22'),
-('13', '23'),
-('14', '24'),
-('15', '25'),
-('16', '26'),
-('17', '27'),
-('18', '28'),
-('19', '29'),
-('20', '30');
+('1', '1'),
+('2', '2'),
+('3', '3'),
+('4', '4'),
+('5', '5'),
+('6', '6'),
+('7', '7'),
+('8', '8'),
+('9', '9'),
+('10', '10');
 
 INSERT INTO `follower` (`ideaID`,`userID`) VALUES 
-('10', '21'), 
-('11', '23'),
-('2', '25'), 
-('4', '27'), 
-('5', '30'),
-('3', '22'), 
-('4', '24'), 
-('9', '26'), 
-('8', '28'), 
-('6', '29');
+('1', '1'), 
+('2', '2'),
+('3', '3'), 
+('4', '4'), 
+('5', '5'),
+('6', '6'), 
+('7', '7'), 
+('8', '8'), 
+('9', '9'), 
+('10', '10');
 
 INSERT INTO `idea` (`ideaDescription`,`ideaCreator`, `ideaLeader`,`media`,`posting`,`update`,`date`,`toDoList`,`ideaMembers`) VALUES 
-('The Idea is based on creating a monopoly video game', '21', '21', '2', '17', '1', '2019-05-04','1', '1'),    
-('The idea is to develop an app that can be used for planning a wedding', '22', '22', '1', '11', '2', '2019-04-21','2', '2'),
-('The idea is to create a book of lesson for children ', '23', '23', '3', '18', '3', '2019-01-02','3', '3'),
-('An idea that allow people how to manage their finance using simple charts', '24', '24', '4', '19', '4', '2019-01-02','4', '4'),
-('Creating a book guide that can be used as guideline to become a technical writer', '25', '25', '5', '20', '5', '2019-07-02','5', '5'),
-('Creating a web application that has the goal to gathering people for sharing skills', '26', '26', '6', '12', '7', '2019-04-25','6', '6'),
-('The idea is to create a cartoon for child under 10 years old', '27', '27', '7', '15', '8', '2019-09-021','7', '7'),
-('The idea is to implement a video game', '28', '28', '8', '17', '9', '2019-10-05','8', '8'),
-('A video that explain how to travel around the world in a smart way', '29', '29', '9', '15', '10', '2019-05-02','9', '9'),
-('The idea is to develop a portal information can be used for free', '30', '30', '10', '20', '6', '2019-09-02','10', '10');
+('The Idea is based on creating a monopoly video game', '1', '1', '1', '1', '1', '2019-05-04','1', '1'),    
+('The idea is to develop an app that can be used for planning a wedding', '2', '2', '2', '2', '2', '2019-04-21','2', '2'),
+('The idea is to create a book of lesson for children', '3', '3', '3', '3', '3', '2019-01-02','3', '3'),
+('An idea that allow people how to manage their finance using simple charts', '4', '4', '4', '4', '4', '2019-01-02','4', '4'),
+('Creating a book guide that can be used as guideline to become a technical writer', '5', '5', '5', '5', '5', '2019-07-02','5', '5'),
+('Creating a web application that has the goal to gathering people for sharing skills', '6', '6', '6', '6', '6', '2019-04-25','6', '6'),
+('The idea is to create a cartoon for child under 10 years old', '7', '7', '7', '7', '7', '2019-09-021','7', '7'),
+('The idea is to implement a video game', '8', '8', '8', '8', '8', '2019-10-05','8', '8'),
+('A video that explain how to travel around the world in a smart way', '9', '9', '9', '9', '9', '2019-05-02','9', '9'),
+('The idea is to develop a portal information can be used for free', '10', '10', '10', '10', '10', '2019-09-02','10', '10');
 
 INSERT INTO `member` (`userID`,`roleID`, `ideaID`,`memberlevel`) VALUES 
 ('1', '2', '1', ''),
