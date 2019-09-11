@@ -1,0 +1,157 @@
+INSERT INTO `media` (`fileName`, `mediaFormat`,`mediaURI`) VALUES
+('Video_Tutorial','mp4', 'https://lavideo.com/path/video-tutorial.mp4#top'),
+('Project_File_v1', 'txt', 'https://editorproject.com/path/project-file-v1.txt#'),
+('List_Requirement,', 'doc', 'https://requirement.com/path/list-requirement.doc#row=4'),
+('ToDoList_v1', ' pdf', 'https://makemylist.com/path/to-do-list-v1.pdf#col=2'),
+('ListGroupTasks_v2', 'docx', 'https://taskforce.com/path/list-group-task#cell=4,1-6,2'),
+('VirtualProject_2017_Slides', 'pptx', 'https://lavideo.com/path/virtual-project-2017-slides.pptx#top'),
+('MeetingSchedule', 'doc', 'https://mymeeting.com/path/meeting-schedule.doc#row=5'),
+('DeliverableProject2017', 'pdf', 'https://editorproject.com/path/deliverable-project-2017#top'),
+('Presenatation_Idea_v2', 'pptx','https://presetationtools.com/path/presentation-idea-v2.pptx#top'),
+('ListPosting', 'docx', 'https://posting.com/path/list-posting.docx#top');
+
+INSERT INTO `profile` (`profilePicture`,`profileDisplayName`,`profileDescription`, `profileProjectDescription`) VALUES 
+('img_profile.png','Martin Kelvin', 'Student and passionate in videogames', 'The Idea is based on creating a video game that can be used by blind child'),
+('img_profile.jpeg','Henry Rollins', 'Software Engineer and Entrepreneur','The idea is to develop an app that can be used for planning a wedding'),
+('img_profile.jpeg','Victor Lee','Fresh graduated looking for a challenge', 'The idea is related to the water consumption and its waste'),
+('img_profile.jpeg','Manila Handerson', 'Actress with the hobby for the sport', 'An idea that can help in creating fit receipt '),
+('img_profile.jpeg','Felipe Turin','Retired professor who is looking for new challenges', 'An idea that shows how to craft shapes with wood'),
+('img_profile.jpeg','Enrique Valez','Web developer with the interest in medicine', 'An idea that can help people to cure with herbs'),
+('img_profile.jpeg','Maria Lopez', 'Accountant and broker with the passion of design and architecture', 'The idea is to design a house that can be used built for charity purpose'),
+('img_profile.jpeg','Karla Veric', 'Technical writer with the interest in C++', 'The idea is to implement a video game'),
+('img_profile.jpeg','Mary Smith', 'Lawyer with the passion of aviation', 'An idea that allow people to travel around the world'),
+('img_profile.jpeg','Leslie Paris', 'Journalist with passion of web development', 'The idea is to develop a portal information can be used for free');
+
+INSERT INTO `credentials` (`userName`, `password`, `previousPasswords`) VALUES
+('KelvinMartin',' 8e5dac988aa0766729136089f2e6c704', ' f1099950db132e5bcb1d3dbc5000df62'),
+('Henry2019', ' 2db8a754d8c0ab2de5462cfc0929e88d', ' ee258baa6606ae7c7fb095c30ded3a11'),
+('victorlee', ' 53a71e6fde0447cc215ccdb0e6d87ed9', ' d003321430d11e39190c0802a434cd6f'),
+('Hande1999', ' 14e273e6f416c4b90a071f59ac01206a', ' 591785b794601e212b260e25925636fd'),
+('Felipe_Tourin', ' aa6303f75e6c0cb55cd7196005ad4856', ' 4729307a2f895c1e5ce606694ba652ae'),
+('Enrique2000', ' 4beb16b0537f7901008ba52f3a97cda3', ' 3edd182cbd5d98b1ef774bc992a03e3b'),
+('MaryLopez', ' 14ac65154661c5f37c4c41fda62ba6ac', ' 7afad4c30d0de824ba1f6284adfffe72'),
+('KarlaVe_2000', ' a02ec069f95825d101e83110055e24a8', ' 9bd43a86568c4a898fcf3d14a68513d1'),
+('msmith', ' b6e7f4684fae52db1c9e33687b697d38', ' 0585c79ce019808f1fbbd19e7e8f75e6'),
+('paris_leslie', ' ec1027cc3775da65bbc7c99c0b084e90', ' c5197605c2b1b35795c120221aee0f7f');
+
+INSERT INTO `todo` (`toDoDescription`) VALUES 
+('Discuss how planning activities for the idea'),
+('Give an overview of the idea with more detail'),
+('Discuss how many hours the members can contribute'),
+('Open a new channel for chatting with contributors'),
+('Create a posting for web designer'),
+('List all the activities that can be shared with contributors'),
+('Monitor idea'),
+('Select the best contributor'),
+('Clarify the scope of the idea'),
+('Support contributors for specific requests');
+
+INSERT INTO `posting` (`postingName`,`postingDescription`, `numberAvailable`,`numberFilled`) VALUES 
+('Web developer', 'Looking for an enthusiastic React developer', '5', '3'), 
+('UX Designer', 'Looking for a UX Designer that has experience with UXPin', '1', '0'),
+('Illustrator', 'Looking for an illustrator that has experience with CAD ', '1', '0'),
+('Animator', 'Seeking an animator who has experience with Adobe Animate', '4', '3'),
+('Male voice Actor', 'Need several voice actors to voice male characters', '15', '2'),
+('Female voice Actor', 'Need several voice actresses to voice female characters and children', '15', '8'),
+('C++ Developer', 'Need C++ developer to create a video game for children under 10 years old', '3', '2'),
+('Teacher', 'Looking for a teacher that has experience how to plan activity for students', '1', '0'),
+('Accountant', 'Looking for an accountant that has experience with Sage Accounting ', '4', '1'),
+('Translator', 'Need a team member translator that has excellent proofreading skill', '3', '0');
+
+INSERT INTO `role` (`roleName`,`roleDescription`) VALUES 
+('Web Developer', 'The Web developer will be taking care of writing code following precise requirements'),
+('UX Designer', 'The UX Designer will be working on the design of the Idea project'),
+('Illustrator', 'The Illustrator will be taking care in creating original document for digital publications'),
+('Animator', 'The animator will be acting as key role in the Idea project'),
+('C++ Programmer', 'The C++ programmer will be focus on implementing and testing code for the application'),
+('Teacher', 'The teacher role will be to supervise the and give opinion ho to model the book'),
+('Accountant', 'This role will be taking care in creating example in excel'),
+('Translator', 'The translator will be in charge to translate document from English to French'),
+('Graphic Designer', 'The graphic designer will take care in creating logos and illustrations'),
+('Data Analyst', 'The Data Analyst will develop analysis');
+
+INSERT INTO `user` (`emailAddress`,`profile`, `isVerified`,`credentials`) VALUES 
+('kelvin1984@gmail.com', '1', '0', '1'),
+('henry2019@hotmail.ca', '2', '1', '2'),
+('victor_lee@gmail.com', '3', '0', '3'),
+('manila@virgilio.it', '4', '1', '4'),
+('felipeTourin2019@gmail.com', '5', '1', '5'),
+('valeze@facebook.ca', '6', '1', '6'),
+('vericKarla@canada.ca', '7', '1', '7'),
+('smith2019@gmail.ca', '8', '1', '8'),
+('paris_leslie@medium.com', '9', '1', '9'),
+('lopez_maria@gmail.ca', '10', '0', '10');
+
+
+INSERT INTO `message` (`timeStamp`,`text`, `sender`) VALUES 
+('2019-9-1', 'Can we talk tomorrow?', '1'),
+('2019-7-1', 'I will available on Monday from 10 am to 11 am', '2'),
+('2019-8-15', 'I have updated the file as requested', '3'),
+('2019-6-18', 'Hi Karla, are you able to look at the last updated file?', '4'),
+('2019-4-21', 'I will be working on the idea only 10 hours a week', '5'),
+('2019-2-3', 'Hey guys, can we postpone the video to Tuesday?', '6'),
+('2019-5-7', 'Hi Manila, I like your idea, can I join the group?', '7'),
+('2019-8-1', 'Hi there, I will be off line until 2pm', '8'),
+('2019-4-25', 'We almost finish the project! Congratulations!', '9'),
+('2019-1-11', 'This is a brilliant idea!I would like to join the group', '10');
+
+INSERT INTO `update` (`description`) VALUES 
+('A new feature has been added to the project'),     
+('The picture (item) related to the User Page has been deleted'),
+('A new update will be released soon'),
+('The idea will be updated with a new scope in the next few days'),
+('A new position for the Charity idea will be posted tomorrow'),
+('A new activity has been discussed for the Idea Last Minute'),
+('The feature related to the point one will not be longer considered'),
+('A requirement to develop the idea is to have Visual Code installed'),
+('For the post new detail will needed'),
+('The Idea will be considered to have more features');
+
+INSERT INTO `chat` (`message`,`chatMember`) VALUES 
+('1', '1'),
+('2', '2'),
+('3', '3'),
+('4', '4'),
+('5', '5'),
+('6', '6'),
+('7', '7'),
+('8', '8'),
+('9', '9'),
+('10', '10');
+
+INSERT INTO `follower` (`ideaID`,`userID`) VALUES 
+('1', '1'), 
+('2', '2'),
+('3', '3'), 
+('4', '4'), 
+('5', '5'),
+('6', '6'), 
+('7', '7'), 
+('8', '8'), 
+('9', '9'), 
+('10', '10');
+
+INSERT INTO `idea` (`ideaDescription`,`ideaCreator`, `ideaLeader`,`media`,`posting`,`update`,`date`,`toDoList`,`ideaMembers`) VALUES 
+('The Idea is based on creating a monopoly video game', '1', '1', '1', '1', '1', '2019-05-04','1', '1'),    
+('The idea is to develop an app that can be used for planning a wedding', '2', '2', '2', '2', '2', '2019-04-21','2', '2'),
+('The idea is to create a book of lesson for children', '3', '3', '3', '3', '3', '2019-01-02','3', '3'),
+('An idea that allow people how to manage their finance using simple charts', '4', '4', '4', '4', '4', '2019-01-02','4', '4'),
+('Creating a book guide that can be used as guideline to become a technical writer', '5', '5', '5', '5', '5', '2019-07-02','5', '5'),
+('Creating a web application that has the goal to gathering people for sharing skills', '6', '6', '6', '6', '6', '2019-04-25','6', '6'),
+('The idea is to create a cartoon for child under 10 years old', '7', '7', '7', '7', '7', '2019-09-021','7', '7'),
+('The idea is to implement a video game', '8', '8', '8', '8', '8', '2019-10-05','8', '8'),
+('A video that explain how to travel around the world in a smart way', '9', '9', '9', '9', '9', '2019-05-02','9', '9'),
+('The idea is to develop a portal information can be used for free', '10', '10', '10', '10', '10', '2019-09-02','10', '10');
+
+INSERT INTO `member` (`userID`,`roleID`, `ideaID`,`memberlevel`) VALUES 
+('1', '2', '1', ''),
+('2', '5', '2', ''),
+('3', '3', '3', ''),
+('4', '7', '4', ''),
+('5', '8', '5', ''),
+('6', '10', '6', ''),
+('7', '9', '7', ''),
+('8', '6', '8', ''),
+('9', '4', '9', ''),
+('10', '1', '10','');
+
