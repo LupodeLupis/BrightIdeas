@@ -1,4 +1,4 @@
-export class Update {
+export interface Update {
     /*date: Date */
     description: string;
 }

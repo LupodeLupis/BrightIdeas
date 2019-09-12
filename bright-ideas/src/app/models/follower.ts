@@ -1,4 +1,4 @@
-export class Follower {
+export interface Follower {
     /*idea: Idea*/
     /*follower: User*/
 }
