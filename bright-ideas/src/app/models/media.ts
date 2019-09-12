@@ -4,3 +4,7 @@ export class Media{
     mediaFormat: string;
     mediaURI: string;
 }
+
+export class AAA {
+    
+}
