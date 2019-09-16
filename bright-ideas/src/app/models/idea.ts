@@ -4,7 +4,7 @@ import { Media } from './media';
 // import { Update } from './update';
 // import { ToDo } from './todo';
 
-export class Idea {
+export interface Idea {
     id: number;
     description: string;
     creator: Member;

@@ -1,6 +1,6 @@
 import { Idea } from './idea';
 
-export class Profile {
+export interface Profile {
     id: number;
     picture: string;
     displayName: string;
