@@ -1,4 +1,4 @@
-//import { Profile } from './profile'
+import { Profile } from './profile';
 
 export class User {
     id: number;
