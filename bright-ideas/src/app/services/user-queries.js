@@ -24,3 +24,8 @@ async function getUserByEmail(email) {
       console.log("error: " + err);
   })
 }
+
+module.exports = {
+  getAllUsers,
+  getAllUsers
+}
