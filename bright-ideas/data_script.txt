@@ -131,27 +131,27 @@ INSERT INTO `follower` (`ideaID`,`userID`) VALUES
 ('9', '9'), 
 ('10', '10');
 
-INSERT INTO `idea` (`ideaDescription`,`ideaCreator`, `ideaLeader`,`media`,`posting`,`update`,`date`,`toDoList`,`ideaMembers`) VALUES 
-('The Idea is based on creating a monopoly video game', '1', '1', '1', '1', '1', '2019-05-04','1', '1'),    
-('The idea is to develop an app that can be used for planning a wedding', '2', '2', '2', '2', '2', '2019-04-21','2', '2'),
-('The idea is to create a book of lesson for children', '3', '3', '3', '3', '3', '2019-01-02','3', '3'),
-('An idea that allow people how to manage their finance using simple charts', '4', '4', '4', '4', '4', '2019-01-02','4', '4'),
-('Creating a book guide that can be used as guideline to become a technical writer', '5', '5', '5', '5', '5', '2019-07-02','5', '5'),
-('Creating a web application that has the goal to gathering people for sharing skills', '6', '6', '6', '6', '6', '2019-04-25','6', '6'),
-('The idea is to create a cartoon for child under 10 years old', '7', '7', '7', '7', '7', '2019-09-021','7', '7'),
-('The idea is to implement a video game', '8', '8', '8', '8', '8', '2019-10-05','8', '8'),
-('A video that explain how to travel around the world in a smart way', '9', '9', '9', '9', '9', '2019-05-02','9', '9'),
-('The idea is to develop a portal information can be used for free', '10', '10', '10', '10', '10', '2019-09-02','10', '10');
+    INSERT INTO `idea` (`ideaDescription`,`ideaCreator`, `ideaLeader`,`media`,`posting`,`update`,`date`,`toDoList`,`ideaMembers`) VALUES 
+    ('The Idea is based on creating a monopoly video game', '1', '1', '1', '1', '1', '2019-05-04','1', '1'),    
+    ('The idea is to develop an app that can be used for planning a wedding', '2', '2', '2', '2', '2', '2019-04-21','2', '2'),
+    ('The idea is to create a book of lesson for children', '3', '3', '3', '3', '3', '2019-01-02','3', '3'),
+    ('An idea that allow people how to manage their finance using simple charts', '4', '4', '4', '4', '4', '2019-01-02','4', '4'),
+    ('Creating a book guide that can be used as guideline to become a technical writer', '5', '5', '5', '5', '5', '2019-07-02','5', '5'),
+    ('Creating a web application that has the goal to gathering people for sharing skills', '6', '6', '6', '6', '6', '2019-04-25','6', '6'),
+    ('The idea is to create a cartoon for child under 10 years old', '7', '7', '7', '7', '7', '2019-09-021','7', '7'),
+    ('The idea is to implement a video game', '8', '8', '8', '8', '8', '2019-10-05','8', '8'),
+    ('A video that explain how to travel around the world in a smart way', '9', '9', '9', '9', '9', '2019-05-02','9', '9'),
+    ('The idea is to develop a portal information can be used for free', '10', '10', '10', '10', '10', '2019-09-02','10', '10');
 
 INSERT INTO `member` (`userID`,`roleID`, `ideaID`,`memberlevel`) VALUES 
-('1', '2', '1', ''),
-('2', '5', '2', ''),
-('3', '3', '3', ''),
-('4', '7', '4', ''),
-('5', '8', '5', ''),
-('6', '10', '6', ''),
-('7', '9', '7', ''),
-('8', '6', '8', ''),
-('9', '4', '9', ''),
-('10', '1', '10','');
+('1', '2', '1', '0'),
+('2', '5', '2', '0'),
+('3', '3', '3', '0'),
+('4', '7', '4', '0'),
+('5', '8', '5', '0'),
+('6', '10', '6', '0'),
+('7', '9', '7', '0'),
+('8', '6', '8', '0'),
+('9', '4', '9', '0'),
+('10', '1', '10','0');
 
