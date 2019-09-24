@@ -1,9 +1,17 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const https = require("https");
+const fs = require("fs");
 
-var { getDB } = require('./db-connection')
+const { getDB } = require('./db-connection')
 const HTTP_PORT = process.env.PORT || 8080;
+const HTTPS_PORT = 4433; 
+const https_options = {
+    key: fs.readFileSync(__dirname + "/" + SSL_KEY_FILE),
+    cert: fs.readFileSync(__dirname + "/" + SSL_CRT_FILE)
+};
+
 
 // setup the static folder 
 app.use(express.static("dist/bright-ideas")); 
