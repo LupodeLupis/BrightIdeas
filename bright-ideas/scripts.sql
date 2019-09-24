@@ -95,6 +95,7 @@ CREATE TABLE IF NOT EXISTS `chat`(
 
 CREATE TABLE IF NOT EXISTS `idea`(
     `ideaID` int(10) NOT NULL AUTO_INCREMENT,
+    `ideaName` varchar(30) NOT NULL,
     `ideaDescription` varchar(200) NOT NULL,
     `ideaCreator` int(10) NOT NULL,
     `ideaLeader` int(10),
