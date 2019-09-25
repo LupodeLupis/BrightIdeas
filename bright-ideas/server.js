@@ -1,9 +1,9 @@
-var express = require("express");
-var app = express();
+const express = require("express");
+const app = express();
+const path = require("path");
 
-var path = require("path");
-
-var HTTP_PORT = process.env.PORT || 8080;
+var { getDB } = require('./db-connection')
+const HTTP_PORT = process.env.PORT || 8080;
 
 // setup the static folder 
 app.use(express.static("dist/bright-ideas")); 
@@ -12,6 +12,9 @@ app.use(express.static("dist/bright-ideas"));
 app.use((req, res) => {
     res.sendFile(path.join(__dirname + "/dist/bright-ideas/index.html"));
 });
+
+// Start DB connection
+getDB;
 
 // Start the server
 app.listen(HTTP_PORT, function(){
