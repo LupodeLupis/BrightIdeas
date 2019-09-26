@@ -36,21 +36,5 @@ module.exports = function() {
                 console.log("Error: " + error)
             })
         },
-        getMediaByName(mediaName) {
-            return fetch(baseUrl + "media-name/" + mediaName, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                return Promise.resolve(data)
-            })
-            .catch(error => {
-                console.log("Error" + error)
-            })
-        }
     }
 } 
