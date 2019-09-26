@@ -21,7 +21,7 @@ module.exports = function() {
             })
         },
         getMessageById(messageId){
-            return fetch(baseUrl + "media/" + messageId, {
+            return fetch(baseUrl + "message/" + messageId, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',

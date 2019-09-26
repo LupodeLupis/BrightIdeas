@@ -5,7 +5,7 @@ module.exports = function() {
     return {
         // Make a GET request to back end API to get all profiles
         getAllMedias(){
-            return fetch(baseUrl + "medias/", {
+            return fetch(baseUrl + "media/", {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
