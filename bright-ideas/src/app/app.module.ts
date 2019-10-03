@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './modules/layout/header/header.component';
 import { ContentComponent } from './modules/layout/content/content.component';
 import { ChangePasswordComponent } from './modules/auth/component/change-password/change-password.component';
+import { CreateIdeaComponent } from './modules/idea/create-idea/create-idea.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ContentComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    CreateIdeaComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
