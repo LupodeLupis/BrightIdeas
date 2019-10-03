@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './modules/layout/header/header.component';
 import { ContentComponent } from './modules/layout/content/content.component';
 import { ChangePasswordComponent } from './modules/auth/component/change-password/change-password.component';
+import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ContentComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ViewMessageComponent
   ],
   imports: [
     BrowserModule,
