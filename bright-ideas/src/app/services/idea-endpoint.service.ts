@@ -12,11 +12,11 @@ export class IdeaEndpointService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<Idea[]> {
+  getIdeas(): Observable<Idea[]> {
     return this.http.get<Idea[]>(`${this.url}/ideas`);
   }
 
-  getUserById(id): Observable<Idea[]> {
+  getIdeaById(id): Observable<Idea[]> {
     return this.http.get<Idea[]>(`${this.url}/idea/` + id);
   }
 }
