@@ -17,7 +17,6 @@ CREATE TABLE IF NOT EXISTS  `profile` (
 
 CREATE TABLE IF NOT EXISTS `credentials` (
     `credentialID` int(10) NOT NULL AUTO_INCREMENT,
-    `userName` varchar(25) NOT NULL,
     `password` varchar(60) NOT NULL,
     `previousPasswords` varchar(60) NOT NULL,
     PRIMARY KEY (`credentialID`) 
