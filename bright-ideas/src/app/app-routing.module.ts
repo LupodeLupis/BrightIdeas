@@ -11,9 +11,11 @@ import { CreateIdeaComponent } from './modules/idea/component/create-idea/create
 import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.component'
 import { SearchResultsComponent } from './modules/layout/search-results/search-results.component'
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component'
-
+import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
 
 const routes: Routes = [
+    { path: 'changePassword', component: ChangePasswordComponent },
+    { path: 'viewMessage', component: ViewMessageComponent},
     { path: 'home', component: HomeComponent },
     { path: 'createAccount', component: CreateAccountComponent },
     { path: 'login', component: LoginComponent },

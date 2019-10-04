@@ -15,6 +15,8 @@ import { LoginComponent } from './modules/auth/component/login/login.component';
 import { ResetPasswordComponent } from './modules/auth/component/reset-password/reset-password.component';
 import { ProfilePageComponent } from './modules/auth/component/profile-page/profile-page.component';
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
+import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,11 +32,13 @@ import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-
     LoginComponent,
     ResetPasswordComponent,
     ProfilePageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ViewMessageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
