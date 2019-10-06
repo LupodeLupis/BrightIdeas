@@ -1,4 +1,4 @@
 export interface Update {
-    date: Date
+    date: Date;
     description: string;
 }

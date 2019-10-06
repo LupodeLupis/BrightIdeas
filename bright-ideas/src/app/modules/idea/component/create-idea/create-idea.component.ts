@@ -4,6 +4,8 @@ import { MediaEndpointService } from '../../../../services/media-endpoint/media-
 import { Media } from '../../../../models/media';
 import { Message } from '../../../../models/message';
 import { MessageEndpointService } from '../../../../services/message-endpoint/message-endpoint.service';
+import { UpdateEndpointService } from '../../../../services/update-endpoint/update-endpoint.service';
+import { Update } from '../../../../models/update';
 
 @Component({
   selector: 'app-create-idea',
@@ -16,6 +18,7 @@ export class CreateIdeaComponent implements OnInit {
     private followerService: FollowerEndpointService,
     private mediaEndpointService: MediaEndpointService,
     private messageEndpointService: MessageEndpointService,
+    private updateEndpointService: UpdateEndpointService,
     ) { }
 
   ngOnInit() {
@@ -27,10 +30,12 @@ export class CreateIdeaComponent implements OnInit {
     this.retrieveAllMedia();
     this.retrieveMessagebyId();
     this.retrieveAllMessages();
+    this.retrieveUpdatebyId();
+    this.retrieveAllUpdates();
 
     console.log('ngOnInit() is called');
   }
-
+  // for testing purpuse - to be deleted after reviewed
   retrieveFollowerById() {
     this.followerService.getFollowerbyId('1').subscribe(
       (response: any) => {
@@ -45,7 +50,6 @@ export class CreateIdeaComponent implements OnInit {
       }
     );
   }
-
   retrieveMediaById() {
     this.mediaEndpointService.getMediabyId('1').subscribe(
       (response: Media) => {
@@ -53,7 +57,6 @@ export class CreateIdeaComponent implements OnInit {
       }
     );
   }
-
   retrieveAllMedia() {
     this.mediaEndpointService.getAllMedia().subscribe(
       (response: Media[]) => {
@@ -61,7 +64,6 @@ export class CreateIdeaComponent implements OnInit {
       }
     );
   }
-
   retrieveMessagebyId() {
     this.messageEndpointService.getMessagebyId('1').subscribe(
       (response: Message) => {
@@ -69,11 +71,24 @@ export class CreateIdeaComponent implements OnInit {
       }
     );
   }
-
   retrieveAllMessages() {
     this.messageEndpointService.getAllMessages().subscribe(
       (response: Message[]) => {
         console.log('Messages: ', response);
+      }
+    );
+  }
+  retrieveUpdatebyId() {
+    this.updateEndpointService.getUpdateById('1').subscribe(
+      (response: Update) =>{
+        console.log('Update by Id: ', response);
+      }
+    );
+  }
+  retrieveAllUpdates() {
+    this.updateEndpointService.getAllUpdates().subscribe(
+      (response: Update[]) => {
+        console.log('Updates: ', response);
       }
     );
   }
