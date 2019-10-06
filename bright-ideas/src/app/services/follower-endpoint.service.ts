@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
+import { Follower } from '../models/follower';
 
 
 @Injectable({ providedIn: 'root' })
 
-export class FollowerService {
+export class FollowerEndpointService {
    private url = 'https://bright-ideas-api.herokuapp.com';
 
    constructor(private http: HttpClient) {}
@@ -26,7 +27,6 @@ export class FollowerService {
       return Observable.create((observer: Observer<any>) => {
          this.http.get(`${this.url}/followers`).subscribe((res: any) => {
             observer.next(res);
-            console.log(res);
             observer.complete();
          },
          (error: HttpErrorResponse) => {

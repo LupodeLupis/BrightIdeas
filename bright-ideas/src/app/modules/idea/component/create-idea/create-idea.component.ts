@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FollowerService } from '../../../../services/follower-endpoint.service';
+import { FollowerEndpointService } from '../../../../services/follower-endpoint.service';
 import { Follower } from '../../../../models/follower';
+import { MediaEndpointService } from '../../../../services/media-endpoint.service';
+import { Media } from '../../../../models/media';
 
 @Component({
   selector: 'app-create-idea',
@@ -10,28 +12,51 @@ import { Follower } from '../../../../models/follower';
 export class CreateIdeaComponent implements OnInit {
 
   constructor(
-    private followerService: FollowerService
+    private followerService: FollowerEndpointService,
+    private mediaEndpointService: MediaEndpointService
     ) { }
 
   ngOnInit() {
+
+    // for testing purpuse - to be deleted after reviewed
     this.retrieveFollowerById();
-    this.retrieveAllFollowers()
-    console.log('ngOnInit() is called')
+    this.retrieveAllFollowers();
+    this.retrieveMediaById();
+    this.retrieveAllMedia();
+
+    console.log('ngOnInit() is called');
   }
 
   retrieveFollowerById() {
     this.followerService.getFollowbyId('1').subscribe(
-      (response: string) => {
-        console.log(response)
+      (response: any) => {
+        console.log('Follower by id: ', response);
       }
     );
   }
-  retrieveAllFollowers(){
+  retrieveAllFollowers() {
     this.followerService.getAllFollowers().subscribe(
-      (response: Follower[]) => {
-        console.log(response);
+      (response: any) => {
+        console.log('Followers: ', response);
       }
     );
   }
+
+  retrieveMediaById() {
+    this.mediaEndpointService.getMediabyId('1').subscribe(
+      (response: Media) => {
+        console.log('Media by id: ', response);
+      }
+    );
+  }
+
+  retrieveAllMedia() {
+    this.mediaEndpointService.getAllMedia().subscribe(
+      (response: Media[]) => {
+        console.log('Media: ', response);
+      }
+    );
+  }
+
 
 }
