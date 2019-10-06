@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FollowerEndpointService } from '../../../../services/follower-endpoint.service';
-import { Follower } from '../../../../models/follower';
 import { MediaEndpointService } from '../../../../services/media-endpoint.service';
 import { Media } from '../../../../models/media';
+import { Message } from '../../../../models/message';
+import { MessageEndpointService } from '../../../../services/message-endpoint.service';
 
 @Component({
   selector: 'app-create-idea',
@@ -13,7 +14,8 @@ export class CreateIdeaComponent implements OnInit {
 
   constructor(
     private followerService: FollowerEndpointService,
-    private mediaEndpointService: MediaEndpointService
+    private mediaEndpointService: MediaEndpointService,
+    private messageEndpointService: MessageEndpointService,
     ) { }
 
   ngOnInit() {
@@ -23,12 +25,14 @@ export class CreateIdeaComponent implements OnInit {
     this.retrieveAllFollowers();
     this.retrieveMediaById();
     this.retrieveAllMedia();
+    this.retrieveMessagebyId();
+    this.retrieveAllMessages();
 
     console.log('ngOnInit() is called');
   }
 
   retrieveFollowerById() {
-    this.followerService.getFollowbyId('1').subscribe(
+    this.followerService.getFollowerbyId('1').subscribe(
       (response: any) => {
         console.log('Follower by id: ', response);
       }
@@ -58,5 +62,19 @@ export class CreateIdeaComponent implements OnInit {
     );
   }
 
+  retrieveMessagebyId() {
+    this.messageEndpointService.getMessagebyId('1').subscribe(
+      (response: Message) => {
+        console.log('Message by Id: ', response);
+      }
+    );
+  }
 
+  retrieveAllMessages() {
+    this.messageEndpointService.getAllMessages().subscribe(
+      (response: Message[]) => {
+        console.log('Messages: ', response);
+      }
+    );
+  }
 }

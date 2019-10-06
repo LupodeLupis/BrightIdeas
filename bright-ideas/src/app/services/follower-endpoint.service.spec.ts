@@ -33,7 +33,7 @@ describe('FollowerService', () => {
       idea: '1',
       follower: 'testFollower'
     };
-    followerService.getFollowbyId('1').subscribe(res => {
+    followerService.getFollowerbyId('1').subscribe(res => {
       expect(res).toEqual(testData);
     });
     const request = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/follower/1');
@@ -74,7 +74,7 @@ describe('FollowerService', () => {
   it('should test for 404 error for get Follower by id', () => {
     const errorMessage = 'Error 404 error';
 
-    followerService.getFollowbyId('1').subscribe(data => fail('should have failed with the 404 error'),
+    followerService.getFollowerbyId('1').subscribe(data => fail('should have failed with the 404 error'),
       (error: HttpErrorResponse) => {
         expect(error.status).toEqual(404, 'status');
         expect(error.error).toEqual(errorMessage, 'message');

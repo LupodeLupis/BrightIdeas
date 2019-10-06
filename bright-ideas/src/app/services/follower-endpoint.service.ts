@@ -11,7 +11,7 @@ export class FollowerEndpointService {
 
    constructor(private http: HttpClient) {}
 
-   getFollowbyId(id: string): Observable<any> {
+   getFollowerbyId(id: string): Observable<any> {
       return Observable.create((observer: Observer<any>) => {
          this.http.get(`${this.url}/follower/${id}`).subscribe((res: any) => {
             observer.next(res);
