@@ -1,19 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
-import { Media } from '../models/media';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class MediaEndpointService {
+export class MessageEndpointService {
   private url = 'https://bright-ideas-api.herokuapp.com';
 
   constructor(private http: HttpClient) { }
 
-  getAllMedia(): Observable<Media[]> {
-    return Observable.create((observer: Observer<Media[]>) => {
-       this.http.get(`${this.url}/media`).subscribe((res: Media[]) => {
+  getAllMessages(): Observable<any[]> {
+    return Observable.create((observer: Observer<any[]>) => {
+       this.http.get(`${this.url}/messages`).subscribe((res: any[]) => {
+          observer.next(res);
+          observer.complete();
+       },
+       (error: HttpErrorResponse) => {
+          observer.error(error);
+       });
+    });
+  }
+  getMessagebyId(id: string): Observable<any> {
+    return Observable.create((observer: Observer<any>) => {
+       this.http.get(`${this.url}/message/${id}`).subscribe((res: any) => {
           observer.next(res);
           observer.complete();
        },
@@ -23,17 +35,9 @@ export class MediaEndpointService {
     });
   }
 
-  getMediabyId(id: string): Observable<Media> {
-    return Observable.create((observer: Observer<Media>) => {
-       this.http.get(`${this.url}/media/${id}`).subscribe((res: Media) => {
-          observer.next(res);
-          observer.complete();
-       },
-       (error: HttpErrorResponse) => {
-          observer.error(error);
-       });
-    });
-  }
+
+
+
 
 
 }

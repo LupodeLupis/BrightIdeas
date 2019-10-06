@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UpdateEndpointService } from './update-endpoint.service';
+import { UpdateEndpointService } from '../update-endpoint/update-endpoint.service';
 
 describe('UpdateEndpointService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

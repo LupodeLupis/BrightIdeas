@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { MediaEndpointService } from './media-endpoint.service';
+import { MediaEndpointService } from '../../services/media-endpoint/media-endpoint.service';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Media } from '../models/media';
+import { Media } from '../../models/media';
 
 describe('MediaEndpointService', () => {
   let httpTestingController: HttpTestingController;

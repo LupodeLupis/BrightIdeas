@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FollowerEndpointService } from '../../../../services/follower-endpoint.service';
-import { MediaEndpointService } from '../../../../services/media-endpoint.service';
+import { FollowerEndpointService } from '../../../../services/follower-endpoint/follower-endpoint.service';
+import { MediaEndpointService } from '../../../../services/media-endpoint/media-endpoint.service';
 import { Media } from '../../../../models/media';
 import { Message } from '../../../../models/message';
-import { MessageEndpointService } from '../../../../services/message-endpoint.service';
+import { MessageEndpointService } from '../../../../services/message-endpoint/message-endpoint.service';
 
 @Component({
   selector: 'app-create-idea',
