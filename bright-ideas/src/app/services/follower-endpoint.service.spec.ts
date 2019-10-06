@@ -78,7 +78,7 @@ describe('FollowerService', () => {
       (error: HttpErrorResponse) => {
         expect(error.status).toEqual(404, 'status');
         expect(error.error).toEqual(errorMessage, 'message');
-      })
+      });
     const req = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/follower/1');
     req.flush(errorMessage, { status: 404, statusText: 'Not Found' });
   });

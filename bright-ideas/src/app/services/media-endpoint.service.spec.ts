@@ -4,7 +4,7 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { HttpErrorResponse } from '@angular/common/http';
 import { Media } from '../models/media';
 
-describe('MediaEndpointService', () => {
+fdescribe('MediaEndpointService', () => {
   let httpTestingController: HttpTestingController;
   let mediaEndpointService: MediaEndpointService;
 
