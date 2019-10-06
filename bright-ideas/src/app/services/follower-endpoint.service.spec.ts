@@ -42,15 +42,15 @@ describe('FollowerService', () => {
     request.flush(testData);
   });
 
-  fit('should test for 404 error for get policy list', () => {
+  it('should test for 404 error for get all folloers list', () => {
     const errorMessage = 'Error 404 error';
 
-    followerService.getFollowbyId('1').subscribe(data => fail('should have failed with the 404 error'),
+    followerService.getAllFollowers().subscribe(data => fail('should have failed with the 404 error'),
       (error: HttpErrorResponse) => {
         expect(error.status).toEqual(404, 'status');
         expect(error.error).toEqual(errorMessage, 'message');
       });
-    const req = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/follower/1');
+    const req = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/followers');
     req.flush(errorMessage, { status: 404, statusText: 'Not Found' });
   });
 
