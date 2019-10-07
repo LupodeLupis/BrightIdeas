@@ -17,6 +17,7 @@ import { ProfilePageComponent } from './modules/auth/component/profile-page/prof
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchIdeasQueriesComponent } from './search-ideas-queries/search-ideas-queries.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
     ResetPasswordComponent,
     ProfilePageComponent,
     PageNotFoundComponent,
-    ViewMessageComponent
+    ViewMessageComponent,
+    SearchIdeasQueriesComponent
   ],
   imports: [
     BrowserModule,
