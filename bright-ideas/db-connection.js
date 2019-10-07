@@ -7,7 +7,7 @@ TO use DB connection for queries
 
 1. import/require this folder ex. - var { getDB } = require('./db-connection') 
 
-2. Enter a query - getDB.query("select * from users")l
+2. Enter a query - getDB.query("select * from users");
 
 ****************************************************************************/
 pool.getConnection(function (err, connection) {
