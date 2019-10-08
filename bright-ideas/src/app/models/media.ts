@@ -1,4 +1,4 @@
-export interface Media{
+export interface Media {
     id: number;
     fileName: string;
     mediaFormat: string;
