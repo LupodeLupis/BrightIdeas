@@ -22,17 +22,17 @@ INSERT INTO `profile` (`profilePicture`,`profileDisplayName`,`profileDescription
 ('img_profile.jpeg','Mary Smith', 'Lawyer with the passion of aviation', 'An idea that allow people to travel around the world'),
 ('img_profile.jpeg','Leslie Paris', 'Journalist with passion of web development', 'The idea is to develop a portal information can be used for free');
 
-INSERT INTO `credentials` (`userName`, `password`, `previousPasswords`) VALUES
-('KelvinMartin',' 8e5dac988aa0766729136089f2e6c704', ' f1099950db132e5bcb1d3dbc5000df62'),
-('Henry2019', ' 2db8a754d8c0ab2de5462cfc0929e88d', ' ee258baa6606ae7c7fb095c30ded3a11'),
-('victorlee', ' 53a71e6fde0447cc215ccdb0e6d87ed9', ' d003321430d11e39190c0802a434cd6f'),
-('Hande1999', ' 14e273e6f416c4b90a071f59ac01206a', ' 591785b794601e212b260e25925636fd'),
-('Felipe_Tourin', ' aa6303f75e6c0cb55cd7196005ad4856', ' 4729307a2f895c1e5ce606694ba652ae'),
-('Enrique2000', ' 4beb16b0537f7901008ba52f3a97cda3', ' 3edd182cbd5d98b1ef774bc992a03e3b'),
-('MaryLopez', ' 14ac65154661c5f37c4c41fda62ba6ac', ' 7afad4c30d0de824ba1f6284adfffe72'),
-('KarlaVe_2000', ' a02ec069f95825d101e83110055e24a8', ' 9bd43a86568c4a898fcf3d14a68513d1'),
-('msmith', ' b6e7f4684fae52db1c9e33687b697d38', ' 0585c79ce019808f1fbbd19e7e8f75e6'),
-('paris_leslie', ' ec1027cc3775da65bbc7c99c0b084e90', ' c5197605c2b1b35795c120221aee0f7f');
+INSERT INTO `credentials` (`password`, `previousPasswords`) VALUES
+('8e5dac988aa0766729136089f2e6c704', 'f1099950db132e5bcb1d3dbc5000df62'),
+('2db8a754d8c0ab2de5462cfc0929e88d', 'ee258baa6606ae7c7fb095c30ded3a11'),
+('53a71e6fde0447cc215ccdb0e6d87ed9', 'd003321430d11e39190c0802a434cd6f'),
+('14e273e6f416c4b90a071f59ac01206a', '591785b794601e212b260e25925636fd'),
+('aa6303f75e6c0cb55cd7196005ad4856', '4729307a2f895c1e5ce606694ba652ae'),
+('4beb16b0537f7901008ba52f3a97cda3', '3edd182cbd5d98b1ef774bc992a03e3b'),
+('14ac65154661c5f37c4c41fda62ba6ac', '7afad4c30d0de824ba1f6284adfffe72'),
+('a02ec069f95825d101e83110055e24a8', '9bd43a86568c4a898fcf3d14a68513d1'),
+('b6e7f4684fae52db1c9e33687b697d38', '0585c79ce019808f1fbbd19e7e8f75e6'),
+('ec1027cc3775da65bbc7c99c0b084e90', 'c5197605c2b1b35795c120221aee0f7f');
 
 INSERT INTO `todo` (`toDoDescription`) VALUES 
 ('Discuss how planning activities for the idea'),
@@ -131,27 +131,29 @@ INSERT INTO `follower` (`ideaID`,`userID`) VALUES
 ('9', '9'), 
 ('10', '10');
 
-INSERT INTO `idea` (`ideaDescription`,`ideaCreator`, `ideaLeader`,`media`,`posting`,`update`,`date`,`toDoList`,`ideaMembers`) VALUES 
-('The Idea is based on creating a monopoly video game', '1', '1', '1', '1', '1', '2019-05-04','1', '1'),    
-('The idea is to develop an app that can be used for planning a wedding', '2', '2', '2', '2', '2', '2019-04-21','2', '2'),
-('The idea is to create a book of lesson for children', '3', '3', '3', '3', '3', '2019-01-02','3', '3'),
-('An idea that allow people how to manage their finance using simple charts', '4', '4', '4', '4', '4', '2019-01-02','4', '4'),
-('Creating a book guide that can be used as guideline to become a technical writer', '5', '5', '5', '5', '5', '2019-07-02','5', '5'),
-('Creating a web application that has the goal to gathering people for sharing skills', '6', '6', '6', '6', '6', '2019-04-25','6', '6'),
-('The idea is to create a cartoon for child under 10 years old', '7', '7', '7', '7', '7', '2019-09-021','7', '7'),
-('The idea is to implement a video game', '8', '8', '8', '8', '8', '2019-10-05','8', '8'),
-('A video that explain how to travel around the world in a smart way', '9', '9', '9', '9', '9', '2019-05-02','9', '9'),
-('The idea is to develop a portal information can be used for free', '10', '10', '10', '10', '10', '2019-09-02','10', '10');
-
 INSERT INTO `member` (`userID`,`roleID`, `ideaID`,`memberlevel`) VALUES 
-('1', '2', '1', ''),
-('2', '5', '2', ''),
-('3', '3', '3', ''),
-('4', '7', '4', ''),
-('5', '8', '5', ''),
-('6', '10', '6', ''),
-('7', '9', '7', ''),
-('8', '6', '8', ''),
-('9', '4', '9', ''),
-('10', '1', '10','');
+('1', '2', '1', '0'),
+('2', '5', '2', '0'),
+('3', '3', '3', '0'),
+('4', '7', '4', '0'),
+('5', '8', '5', '0'),
+('6', '10', '6', '0'),
+('7', '9', '7', '0'),
+('8', '6', '8', '0'),
+('9', '4', '9', '0'),
+('10', '1', '10','0');
+
+
+INSERT INTO `idea` (`ideaName`, `ideaDescription`,`ideaCreator`, `ideaLeader`,`media`,`posting`,`update`,`date`,`toDoList`,`ideaMembers`) VALUES 
+('Vidnopoly','The Idea is based on creating a monopoly video game', '1', '1', '1', '1', '1', '2019-05-04','1', '1'),    
+('EPlanner','The idea is to develop an app that can be used for planning a wedding', '2', '2', '2', '2', '2', '2019-04-21','2', '2'),
+('MathTeacher','The idea is to create a book of lesson for children', '3', '3', '3', '3', '3', '2019-01-02','3', '3'),
+('BudgetTracker','An idea that allow people how to manage their finance using simple charts', '4', '4', '4', '4', '4', '2019-01-02','4', '4'),
+('HowToWrite','Creating a book guide that can be used as guideline to become a technical writer', '5', '5', '5', '5', '5', '2019-07-02','5', '5'),
+('BrightIdeas','Creating a web application that has the goal to gathering people for sharing skills', '6', '6', '6', '6', '6', '2019-04-25','6', '6'),
+('TheSampsons','The idea is to create a cartoon for child under 10 years old', '7', '7', '7', '7', '7', '2019-09-021','7', '7'),
+('LeagueOfHeros','The idea is to implement a video game', '8', '8', '8', '8', '8', '2019-10-05','8', '8'),
+('TravelSmart','A video that explain how to travel around the world in a smart way', '9', '9', '9', '9', '9', '2019-05-02','9', '9'),
+('Wiki','The idea is to develop a portal information can be used for free', '10', '10', '10', '10', '10', '2019-09-02','10', '10');
+
 
