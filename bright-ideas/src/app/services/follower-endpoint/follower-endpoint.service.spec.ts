@@ -59,7 +59,7 @@ describe('FollowerService', () => {
     request.flush(testData);
   });
 
-  it('should test for 404 error for get all folloers list', () => {
+  it('should test for 404 error for get all followers list', () => {
     const errorMessage = 'Error 404 error';
 
     followerService.getAllFollowers().subscribe(data => fail('should have failed with the 404 error'),
