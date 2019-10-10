@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Profile } from '../models/profile'
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Profile } from "../../models/profile";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ProfileEndpointService {
-
   private url = "https://bright-ideas-api.herokuapp.com";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllProfiles(): Observable<Profile[]> {
     return this.http.get<Profile[]>(`${this.url}/profiles`);
