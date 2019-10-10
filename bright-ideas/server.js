@@ -5,13 +5,17 @@ const https = require("https");
 const fs = require("fs");
 
 const { getDB } = require('./db-connection')
-const HTTP_PORT = process.env.PORT || 8080;
-const HTTPS_PORT = 4433; 
-const https_options = {
-    key: fs.readFileSync(__dirname + "/" + SSL_KEY_FILE),
-    cert: fs.readFileSync(__dirname + "/" + SSL_CRT_FILE)
-};
+const HTTPS_PORT = process.env.PORT || 10034;
 
+const key = fs.readFileSync('/root/cert/prj666-2021.key');
+const cert = fs.readFileSync( '/root/cert/prj666-2021.crt' );
+const ca = fs.readFileSync( '/root/cert/RapidSSL_RSA_CA_2018.crt' );
+
+const options = {
+    key: key,
+    cert: cert,
+    ca: ca
+  };
 
 // setup the static folder 
 app.use(express.static("dist/bright-ideas")); 
@@ -25,6 +29,6 @@ app.use((req, res) => {
 getDB;
 
 // Start the server
-app.listen(HTTP_PORT, function(){
-    console.log("Server listening on port: " + HTTP_PORT);
+https.createServer(options, app).listen(HTTPS_PORT, () => {
+    console.log("Server listening on port: " + HTTPS_PORT);
 });
