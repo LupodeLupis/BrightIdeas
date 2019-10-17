@@ -26,15 +26,6 @@ export class CreateIdeaComponent implements OnInit {
     // for testing purpuse - to be deleted after reviewed
     this.retrieveFollowerById();
     this.retrieveAllFollowers();
-<<<<<<< HEAD
-    this.retrieveMediaById();
-    this.retrieveAllMedia();
-    this.retrieveMessagebyId();
-    this.retrieveAllMessages();
-    this.retrieveUpdatebyId();
-    this.retrieveAllUpdates();
-
-=======
 
     this.retrieveMediaById();
     this.retrieveAllMedia();
@@ -46,7 +37,6 @@ export class CreateIdeaComponent implements OnInit {
     this.retrieveAllUpdates();
 
 
->>>>>>> 327f051ee2ca4c845ad052b143c65a7d0aa7b9ac
     console.log('ngOnInit() is called');
   }
   // for testing purpuse - to be deleted after reviewed
@@ -81,20 +71,13 @@ export class CreateIdeaComponent implements OnInit {
   retrieveMessagebyId() {
     this.messageEndpointService.getMessagebyId('1').subscribe(
       (response: Message) => {
-<<<<<<< HEAD
-        console.log('Message by Id: ', response);
-=======
         console.log('GET MESSAGE BY ID: ', response);
->>>>>>> 327f051ee2ca4c845ad052b143c65a7d0aa7b9ac
       }
     );
   }
   retrieveAllMessages() {
     this.messageEndpointService.getAllMessages().subscribe(
       (response: Message[]) => {
-<<<<<<< HEAD
-        console.log('Messages: ', response);
-=======
         console.log('GET ALL MESSAGES: ', response);
       }
     );
@@ -106,7 +89,6 @@ export class CreateIdeaComponent implements OnInit {
       sender: '1'}).subscribe(
       (response: Message []) => {
         console.log('THE MESSAGE IS CREATED');
->>>>>>> 327f051ee2ca4c845ad052b143c65a7d0aa7b9ac
       }
     );
   }
