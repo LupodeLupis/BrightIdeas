@@ -26,12 +26,16 @@ export class CreateIdeaComponent implements OnInit {
     // for testing purpuse - to be deleted after reviewed
     this.retrieveFollowerById();
     this.retrieveAllFollowers();
+
     this.retrieveMediaById();
     this.retrieveAllMedia();
+
     this.retrieveMessagebyId();
     this.retrieveAllMessages();
+    this.createMessage();
     this.retrieveUpdatebyId();
     this.retrieveAllUpdates();
+
 
     console.log('ngOnInit() is called');
   }
@@ -67,14 +71,24 @@ export class CreateIdeaComponent implements OnInit {
   retrieveMessagebyId() {
     this.messageEndpointService.getMessagebyId('1').subscribe(
       (response: Message) => {
-        console.log('Message by Id: ', response);
+        console.log('GET MESSAGE BY ID: ', response);
       }
     );
   }
   retrieveAllMessages() {
     this.messageEndpointService.getAllMessages().subscribe(
       (response: Message[]) => {
-        console.log('Messages: ', response);
+        console.log('GET ALL MESSAGES: ', response);
+      }
+    );
+  }
+  createMessage() {
+    this.messageEndpointService.createMessage({
+      timeStamp: '',
+      text: 'Alberto! a new message cretaed',
+      sender: '1'}).subscribe(
+      (response: Message []) => {
+        console.log('THE MESSAGE IS CREATED');
       }
     );
   }

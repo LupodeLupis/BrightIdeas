@@ -54,7 +54,7 @@ describe('MessageEndpointService', () => {
       //console.log(res)
       expect(res).toEqual(testData);
     });
-    const request = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/messages');
+    const request = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/message');
     expect(request.request.method).toEqual('GET');
     request.flush(testData);
   });

@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
-import { HttpClient, HttpErrorResponse} from '@angular/common/http';
-
+import { HttpClient, HttpErrorResponse, HttpHeaderResponse} from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageEndpointService {
-  private url = 'https://bright-ideas-api.herokuapp.com';
+  private url = environment.api;
 
   constructor(private http: HttpClient) { }
 
   getAllMessages(): Observable<any[]> {
     return Observable.create((observer: Observer<any[]>) => {
-       this.http.get(`${this.url}/messages`).subscribe((res: any[]) => {
+       this.http.get(`${this.url}/message`).subscribe((res: any[]) => {
           observer.next(res);
           observer.complete();
        },
@@ -35,9 +35,15 @@ export class MessageEndpointService {
     });
   }
 
-
-
-
-
-
+  createMessage(body: object): Observable <any> {
+     return Observable.create((observer: Observer<any>) => {
+        this.http.put(`${this.url}/message/create`, body).subscribe((response: any) => {
+            observer.next(response);
+            observer.complete();
+        },
+        (error: HttpErrorResponse) => {
+           observer.error(error);
+        });
+     });
+  }
 }
