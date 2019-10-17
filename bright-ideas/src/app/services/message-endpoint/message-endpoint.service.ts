@@ -37,7 +37,7 @@ export class MessageEndpointService {
 
   createMessage(body: object): Observable <any> {
      return Observable.create((observer: Observer<any>) => {
-        this.http.put(`${this.url}/message/create`, body).subscribe((response: any) => {
+        this.http.post(`${this.url}/message/create`, body).subscribe((response: any) => {
             observer.next(response);
             observer.complete();
         },
