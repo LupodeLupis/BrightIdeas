@@ -84,6 +84,7 @@ export class CreateIdeaComponent implements OnInit {
       }
     );
   }
+  
   // createMessage() {
   //   this.messageEndpointService.createMessage({
   //     timeStamp: '',
