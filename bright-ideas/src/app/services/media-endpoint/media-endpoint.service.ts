@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Media } from '../../models/media';
+import { environment } from '../../../environments/environment';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class MediaEndpointService {
-  private url = 'https://bright-ideas-api.herokuapp.com';
+  private url = environment.api;
 
   constructor(private http: HttpClient) { }
 
@@ -35,6 +37,4 @@ export class MediaEndpointService {
        });
     });
   }
-
-
 }
