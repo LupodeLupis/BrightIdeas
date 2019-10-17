@@ -42,8 +42,20 @@ export class MessageEndpointService {
             observer.complete();
         },
         (error: HttpErrorResponse) => {
-           observer.error(error);
+           observer.error(error)
         });
      });
+  }
+
+  deleteMessage(messageId: string): Observable <any> {
+     return Observable.create((observer: Observer<any>) =>{
+      this.http.delete(`${this.url}/message/delete/${messageId}`).subscribe((response: any) => {
+         observer.next(response);
+         observer.complete();
+      },
+      (error: HttpErrorResponse) => {
+         observer.error(error.message);
+      });
+   });
   }
 }

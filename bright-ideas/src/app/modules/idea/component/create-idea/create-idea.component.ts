@@ -32,7 +32,9 @@ export class CreateIdeaComponent implements OnInit {
 
     this.retrieveMessagebyId();
     this.retrieveAllMessages();
-    this.createMessage();
+   // this.createMessage();
+    this.deleteMessage();
+
     this.retrieveUpdatebyId();
     this.retrieveAllUpdates();
 
@@ -82,13 +84,22 @@ export class CreateIdeaComponent implements OnInit {
       }
     );
   }
-  createMessage() {
-    this.messageEndpointService.createMessage({
-      timeStamp: '',
-      text: 'Alberto! a new message cretaed',
-      sender: '1'}).subscribe(
-      (response: Message []) => {
-        console.log('THE MESSAGE IS CREATED');
+  
+  // createMessage() {
+  //   this.messageEndpointService.createMessage({
+  //     timeStamp: '',
+  //     text: 'Alberto! a new message cretaed',
+  //     sender: '1'}).subscribe(
+  //     (response: Message []) => {
+  //       console.log('THE MESSAGE IS CREATED');
+  //     }
+  //   );
+  // }
+
+  deleteMessage() {
+    this.messageEndpointService.deleteMessage('105').subscribe(
+      (response: Message[]) => {
+        console.log('THE MESSAGE HAS BEEN DELETED');
       }
     );
   }
