@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -20,6 +21,8 @@ import { ViewMessageComponent } from './modules/chat/component/view-message/view
 import { HttpClientModule } from '@angular/common/http';
 import { SearchIdeasQueriesComponent } from './search-ideas-queries/search-ideas-queries.component';
 =======
+=======
+>>>>>>> 327f051ee2ca4c845ad052b143c65a7d0aa7b9ac
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
@@ -37,7 +40,10 @@ import { ResetPasswordComponent } from "./modules/auth/component/reset-password/
 import { ProfilePageComponent } from "./modules/auth/component/profile-page/profile-page.component";
 import { PageNotFoundComponent } from "./modules/layout/page-not-found/page-not-found.component";
 import { ViewMessageComponent } from "./modules/chat/component/view-message/view-message.component";
+<<<<<<< HEAD
 >>>>>>> 7a6643f848792b8602dceac746bef5bf5c2f228e
+=======
+>>>>>>> 327f051ee2ca4c845ad052b143c65a7d0aa7b9ac
 
 @NgModule({
   declarations: [
@@ -55,6 +61,7 @@ import { ViewMessageComponent } from "./modules/chat/component/view-message/view
     ProfilePageComponent,
     PageNotFoundComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
     ViewMessageComponent,
     SearchIdeasQueriesComponent
   ],
@@ -65,6 +72,9 @@ import { ViewMessageComponent } from "./modules/chat/component/view-message/view
 =======
     ViewMessageComponent
 >>>>>>> 7a6643f848792b8602dceac746bef5bf5c2f228e
+=======
+    ViewMessageComponent
+>>>>>>> 327f051ee2ca4c845ad052b143c65a7d0aa7b9ac
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
