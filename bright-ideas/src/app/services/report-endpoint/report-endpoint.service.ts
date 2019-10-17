@@ -13,7 +13,7 @@ export class ReportEndpointService {
 
   getAllReport(): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
-      this.http.get(`${this.url}/reports`).subscribe((res: any) => {
+      this.http.get(`${this.url}/report`).subscribe((res: any) => {
          observer.next(res);
          observer.complete();
       },
@@ -58,4 +58,40 @@ export class ReportEndpointService {
       });
    });
   }
+
+  createReport(body: object): Observable<any> {
+   return Observable.create((observer: Observer<any>) => {
+     this.http.post(`${this.url}/report/create`, body).subscribe((res: any) => {
+        observer.next(res);
+        observer.complete();
+     },
+     (error: HttpErrorResponse) => {
+        observer.error(error);
+     });
+  });
+ }
+
+ updateReport(body: object): Observable<any> {
+   return Observable.create((observer: Observer<any>) => {
+     this.http.put(`${this.url}/report/update`, body).subscribe((res: any) => {
+        observer.next(res);
+        observer.complete();
+     },
+     (error: HttpErrorResponse) => {
+        observer.error(error);
+     });
+  });
+ }
+
+ deleteReport(id): Observable<any> {
+   return Observable.create((observer: Observer<any>) => {
+     this.http.delete(`${this.url}/report/delete/${id}`).subscribe((res: any) => {
+        observer.next(res);
+        observer.complete();
+     },
+     (error: HttpErrorResponse) => {
+        observer.error(error);
+     });
+  });
+ }
 }

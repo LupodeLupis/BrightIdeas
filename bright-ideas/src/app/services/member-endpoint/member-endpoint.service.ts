@@ -13,7 +13,7 @@ export class MemberEndpointService {
 
   getAllMember(): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
-      this.http.get(`${this.url}/members`).subscribe((res: any) => {
+      this.http.get(`${this.url}/member`).subscribe((res: any) => {
          observer.next(res);
          observer.complete();
       },
@@ -82,4 +82,40 @@ export class MemberEndpointService {
       });
    });
   }
+
+  createMember(body: object): Observable<any> {
+   return Observable.create((observer: Observer<any>) => {
+     this.http.post(`${this.url}/member/create`, body).subscribe((res: any) => {
+        observer.next(res);
+        observer.complete();
+     },
+     (error: HttpErrorResponse) => {
+        observer.error(error);
+     });
+  });
+ }
+
+ updateMember(body: object): Observable<any> {
+   return Observable.create((observer: Observer<any>) => {
+     this.http.put(`${this.url}/member/update`, body).subscribe((res: any) => {
+        observer.next(res);
+        observer.complete();
+     },
+     (error: HttpErrorResponse) => {
+        observer.error(error);
+     });
+  });
+ }
+
+ deleteMember(id): Observable<any> {
+   return Observable.create((observer: Observer<any>) => {
+     this.http.delete(`${this.url}/member/delete/${id}`).subscribe((res: any) => {
+        observer.next(res);
+        observer.complete();
+     },
+     (error: HttpErrorResponse) => {
+        observer.error(error);
+     });
+  });
+ }
 }

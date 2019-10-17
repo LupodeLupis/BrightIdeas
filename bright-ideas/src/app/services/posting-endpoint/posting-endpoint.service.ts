@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpClientModule} from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import { environment } from '../../../environments/environment'
 
@@ -36,9 +36,9 @@ export class PostingEndpointService {
    });
   }
 
-  getPostingByNameWildcard(postingName): Observable<any> {
+  getPostingByWildcard(filter): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
-      this.http.get(`${this.url}/postings/postingName%${postingName}`).subscribe((res: any) => {
+      this.http.get(`${this.url}/posting/filter/${filter}`).subscribe((res: any) => {
          observer.next(res);
          observer.complete();
       },
@@ -48,7 +48,7 @@ export class PostingEndpointService {
    });
   }
 
-  getPostingByDescriptionWildcard(postingDesc): Observable<any> {
+  /*getPostingByDescriptionWildcard(postingDesc): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.http.get(`${this.url}/postings/postingDescription%${postingDesc}`).subscribe((res: any) => {
          observer.next(res);
@@ -58,11 +58,11 @@ export class PostingEndpointService {
          observer.error(error);
       });
    });
-  }
+  }*/
 
   getPostingWithOpenPositions(): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
-      this.http.get(`${this.url}/postings/open`).subscribe((res: any) => {
+      this.http.get(`${this.url}/posting/filter/open`).subscribe((res: any) => {
          observer.next(res);
          observer.complete();
       },
@@ -71,4 +71,40 @@ export class PostingEndpointService {
       });
    });
   }
+
+  createPosting(body: object): Observable<any> {
+   return Observable.create((observer: Observer<any>) => {
+     this.http.post(`${this.url}/posting/create`, body).subscribe((res: any) => {
+        observer.next(res);
+        observer.complete();
+     },
+     (error: HttpErrorResponse) => {
+        observer.error(error);
+     });
+  });
+ }
+
+ updatePosting(body: object): Observable<any> {
+   return Observable.create((observer: Observer<any>) => {
+     this.http.put(`${this.url}/posting/update`, body).subscribe((res: any) => {
+        observer.next(res);
+        observer.complete();
+     },
+     (error: HttpErrorResponse) => {
+        observer.error(error);
+     });
+  });
+ }
+
+ deletePosting(id): Observable<any> {
+   return Observable.create((observer: Observer<any>) => {
+     this.http.delete(`${this.url}/posting/delete/${id}`).subscribe((res: any) => {
+        observer.next(res);
+        observer.complete();
+     },
+     (error: HttpErrorResponse) => {
+        observer.error(error);
+     });
+  });
+ }
 }
