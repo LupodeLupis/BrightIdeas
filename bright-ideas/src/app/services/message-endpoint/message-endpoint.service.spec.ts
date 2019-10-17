@@ -34,7 +34,8 @@ fdescribe('MessageEndpointService', () => {
     messageEndpointService.getMessagebyId('1').subscribe(res => {
       expect(res).toEqual(testData);
     });
-    const request = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/message/1');
+    const request = httpTestingController
+    .expectOne('https://bright-ideas-api.herokuapp.com/message/1');
     expect(request.request.method).toEqual('GET');
     request.flush(testData);
   });
@@ -51,10 +52,10 @@ fdescribe('MessageEndpointService', () => {
       chatMembers: 'testChatMembers2'
     }];
     messageEndpointService.getAllMessages().subscribe(res => {
-      //console.log(res)
       expect(res).toEqual(testData);
     });
-    const request = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/message');
+    const request = httpTestingController
+    .expectOne('https://bright-ideas-api.herokuapp.com/message');
     expect(request.request.method).toEqual('GET');
     request.flush(testData);
   });
@@ -68,8 +69,24 @@ fdescribe('MessageEndpointService', () => {
     messageEndpointService.createMessage(testData).subscribe(res => {
       expect(res).toEqual(testData);
     });
-    const request = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/message/create');
+    const request = httpTestingController
+    .expectOne('https://bright-ideas-api.herokuapp.com/message/create');
     expect(request.request.method).toEqual('POST');
+    request.flush(testData);
+  });
+
+  it('should test for delete a message', () => {
+    const testData = {
+      timeStamp: '2019-08-01T00:00:00.000Z',
+      text: 'testText1',
+      chatMembers: 'testChatMembers1'
+    };
+    messageEndpointService.deleteMessage('105').subscribe(res => {
+      expect(res).toEqual(testData);
+    });
+    const request = httpTestingController
+    .expectOne('https://bright-ideas-api.herokuapp.com/message/delete/105');
+    expect(request.request.method).toEqual('DELETE');
     request.flush(testData);
   });
 
