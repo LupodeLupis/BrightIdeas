@@ -63,6 +63,52 @@ describe('MediaEndpointService', () => {
     request.flush(testData);
   });
 
+  it('should test for create a media', () => {
+    const testData = {
+      fileName: 'Vide',
+      mediaFormat: 'pptx',
+      mediaURI: 'https://lavideo.com/path/virtual-project-2017-slide'
+    };
+    mediaEndpointService.createMedia(testData).subscribe(res => {
+      expect(res).toEqual(testData);
+    });
+    const request = httpTestingController
+    .expectOne('https://bright-ideas-api.herokuapp.com/media/create');
+    expect(request.request.method).toEqual('POST');
+    request.flush(testData);
+  });
+
+  it('should test for delete a media', () => {
+    const testData = {
+      fileName: 'Vide',
+      mediaFormat: 'pptx',
+      mediaURI: 'https://lavideo.com/path/virtual-project-2017-slide'
+    };
+    mediaEndpointService.deleteMedia('105').subscribe(res => {
+      expect(res).toEqual(testData);
+    });
+    const request = httpTestingController
+    .expectOne('https://bright-ideas-api.herokuapp.com/media/delete/105');
+    expect(request.request.method).toEqual('DELETE');
+    request.flush(testData);
+  });
+
+  it('should test for update a media', () => {
+    const testData = {
+      mediaID: 90,
+      fileName: 'Vide',
+      mediaFormat: 'pptx',
+      mediaURI: 'https://lavideo.com/path/virtual-project-2017-slide'
+    };
+    mediaEndpointService.updateMedia(testData).subscribe(res => {
+      expect(res).toEqual(testData);
+    });
+    const request = httpTestingController
+    .expectOne('https://bright-ideas-api.herokuapp.com/media/update');
+    expect(request.request.method).toEqual('PUT');
+    request.flush(testData);
+  });
+
   it('should test for 404 error for get Media by Id', () => {
     const errorMessage = 'Error 404 error';
 

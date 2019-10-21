@@ -22,99 +22,29 @@ export class CreateIdeaComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-
-    // for testing purpuse - to be deleted after reviewed
-    this.retrieveFollowerById();
-    this.retrieveAllFollowers();
-
-    this.retrieveMediaById();
-    this.retrieveAllMedia();
-
-    this.retrieveMessagebyId();
-    this.retrieveAllMessages();
-   // this.createMessage();
-    this.deleteMessage();
-
-    this.retrieveUpdatebyId();
-    this.retrieveAllUpdates();
-
-
-    console.log('ngOnInit() is called');
+    this.udpateMedia()
   }
   // for testing purpuse - to be deleted after reviewed
-  retrieveFollowerById() {
-    this.followerService.getFollowerbyId('1').subscribe(
-      (response: any) => {
-        console.log('Follower by id: ', response);
+  udpateMedia() {
+    this.mediaEndpointService.updateMedia({
+      mediaId: 90,
+      fileName: 'new fileName UpdatedTwo',
+      mediaFormat: 'doc',
+      mediaURI: 'https://taskforce.com/path/list-group-task#cell=4'}).subscribe(
+      (response: Media []) => {
+        console.log('THE MEDIA IS UPDATED');
       }
     );
   }
-  retrieveAllFollowers() {
-    this.followerService.getAllFollowers().subscribe(
-      (response: any) => {
-        console.log('Followers: ', response);
-      }
-    );
-  }
-  retrieveMediaById() {
-    this.mediaEndpointService.getMediabyId('1').subscribe(
-      (response: Media) => {
-        console.log('Media by id: ', response);
-      }
-    );
-  }
-  retrieveAllMedia() {
-    this.mediaEndpointService.getAllMedia().subscribe(
-      (response: Media[]) => {
-        console.log('Media: ', response);
-      }
-    );
-  }
-  retrieveMessagebyId() {
-    this.messageEndpointService.getMessagebyId('1').subscribe(
-      (response: Message) => {
-        console.log('GET MESSAGE BY ID: ', response);
-      }
-    );
-  }
-  retrieveAllMessages() {
-    this.messageEndpointService.getAllMessages().subscribe(
-      (response: Message[]) => {
-        console.log('GET ALL MESSAGES: ', response);
-      }
-    );
-  }
-  
-  // createMessage() {
-  //   this.messageEndpointService.createMessage({
-  //     timeStamp: '',
-  //     text: 'Alberto! a new message cretaed',
-  //     sender: '1'}).subscribe(
-  //     (response: Message []) => {
-  //       console.log('THE MESSAGE IS CREATED');
-  //     }
-  //   );
-  // }
 
-  deleteMessage() {
-    this.messageEndpointService.deleteMessage('105').subscribe(
-      (response: Message[]) => {
+
+
+  deleteMedia() {
+    this.mediaEndpointService.deleteMedia('88').subscribe(
+      (response: Media[]) => {
         console.log('THE MESSAGE HAS BEEN DELETED');
       }
     );
   }
-  retrieveUpdatebyId() {
-    this.updateEndpointService.getUpdateById('1').subscribe(
-      (response: Update) =>{
-        console.log('Update by Id: ', response);
-      }
-    );
-  }
-  retrieveAllUpdates() {
-    this.updateEndpointService.getAllUpdates().subscribe(
-      (response: Update[]) => {
-        console.log('Updates: ', response);
-      }
-    );
-  }
+
 }
