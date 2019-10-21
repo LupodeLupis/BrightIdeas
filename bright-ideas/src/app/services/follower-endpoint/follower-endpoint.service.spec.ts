@@ -54,8 +54,36 @@ describe('FollowerService', () => {
     followerService.getAllFollowers().subscribe(res => {
       expect(res).toEqual(testData);
     });
-    const request = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/followers');
+    const request = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/follower');
     expect(request.request.method).toEqual('GET');
+    request.flush(testData);
+  });
+
+  it('should test for create a follower', () => {
+    const testData = {
+      ideaID: 4,
+      userID: 2
+    };
+    followerService.createFollower(testData).subscribe(res => {
+      expect(res).toEqual(testData);
+    });
+    const request = httpTestingController
+    .expectOne('https://bright-ideas-api.herokuapp.com/follower/create');
+    expect(request.request.method).toEqual('POST');
+    request.flush(testData);
+  });
+
+  it('should test for delete a follower', () => {
+    const testData = {
+      ideaID: 4,
+      userID: 2
+    };
+    followerService.deleteFollower('10').subscribe(res => {
+      expect(res).toEqual(testData);
+    });
+    const request = httpTestingController
+    .expectOne('https://bright-ideas-api.herokuapp.com/follower/delete/10');
+    expect(request.request.method).toEqual('DELETE');
     request.flush(testData);
   });
 
@@ -67,7 +95,7 @@ describe('FollowerService', () => {
         expect(error.status).toEqual(404, 'status');
         expect(error.error).toEqual(errorMessage, 'message');
       });
-    const req = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/followers');
+    const req = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/follower');
     req.flush(errorMessage, { status: 404, statusText: 'Not Found' });
   });
 

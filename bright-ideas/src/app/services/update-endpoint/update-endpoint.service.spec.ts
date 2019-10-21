@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { UpdateEndpointService } from '../update-endpoint/update-endpoint.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
-describe('UpdateEndpointService', () => {
+fdescribe('UpdateEndpointService', () => {
   let httpTestingController: HttpTestingController;
   let updateEndpointService: UpdateEndpointService;
   beforeEach(() => {
@@ -49,8 +49,50 @@ describe('UpdateEndpointService', () => {
     updateEndpointService.getAllUpdates().subscribe(res => {
       expect(res).toEqual(testData);
     });
-    const request = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/updates');
+    const request = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/update');
     expect(request.request.method).toEqual('GET');
+    request.flush(testData);
+  });
+
+  it('should test for create an update description for idea', () => {
+    const testData = {
+      date: '2-08-2019',
+      description: 'testdescription'
+    };
+    updateEndpointService.createUpdateDescriptionIdea(testData).subscribe(res => {
+      expect(res).toEqual(testData);
+    });
+    const request = httpTestingController
+    .expectOne('https://bright-ideas-api.herokuapp.com/update/create');
+    expect(request.request.method).toEqual('POST');
+    request.flush(testData);
+  });
+
+  it('should test for delete an update description for idea', () => {
+    const testData = {
+      date: '2-08-2019',
+      description: 'testdescription'
+    };
+    updateEndpointService.deleteUpdateDescriptionIdea('10').subscribe(res => {
+      expect(res).toEqual(testData);
+    });
+    const request = httpTestingController
+    .expectOne('https://bright-ideas-api.herokuapp.com/update/delete/10');
+    expect(request.request.method).toEqual('DELETE');
+    request.flush(testData);
+  });
+
+  it('should test for update an update description for idea', () => {
+    const testData = {
+      date: '2-08-2019',
+      description: 'testdescription'
+    };
+    updateEndpointService.updateDescriptionIdea(testData).subscribe(res => {
+      expect(res).toEqual(testData);
+    });
+    const request = httpTestingController
+    .expectOne('https://bright-ideas-api.herokuapp.com/update/update');
+    expect(request.request.method).toEqual('PUT');
     request.flush(testData);
   });
 
@@ -62,7 +104,7 @@ describe('UpdateEndpointService', () => {
         expect(error.status).toEqual(404, 'status');
         expect(error.error).toEqual(errorMessage, 'message');
       });
-    const req = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/updates');
+    const req = httpTestingController.expectOne('https://bright-ideas-api.herokuapp.com/update');
     req.flush(errorMessage, { status: 404, statusText: 'Not Found' });
   });
 
