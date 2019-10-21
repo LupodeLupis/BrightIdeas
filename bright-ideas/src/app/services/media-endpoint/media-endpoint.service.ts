@@ -28,13 +28,49 @@ export class MediaEndpointService {
 
   getMediabyId(id: string): Observable<Media> {
     return Observable.create((observer: Observer<Media>) => {
-       this.http.get(`${this.url}/media/${id}`).subscribe((res: Media) => {
-          observer.next(res);
+         this.http.get(`${this.url}/media/${id}`).subscribe((res: Media) => {
+            observer.next(res);
+            observer.complete();
+         },
+         (error: HttpErrorResponse) => {
+            observer.error(error);
+         });
+      });
+  }
+
+  createMedia(body: object): Observable <any> {
+   return Observable.create((observer: Observer<any>) => {
+         this.http.post(`${this.url}/media/create`, body).subscribe((response: any) => {
+            observer.next(response);
+            observer.complete();
+         },
+         (error: HttpErrorResponse) => {
+            observer.error(error);
+         });
+      });
+   }
+
+   updateMedia(body: object): Observable<any> {
+      return Observable.create((observer: Observer<any>) => {
+        this.http.put(`${this.url}/media/update`, body).subscribe((res: any) => {
+           observer.next(res);
+           observer.complete();
+        },
+        (error: HttpErrorResponse) => {
+           observer.error(error);
+        });
+     });
+    }
+
+   deleteMedia(mediaId: string): Observable <any> {
+      return Observable.create((observer: Observer<any>) =>{
+       this.http.delete(`${this.url}/media/delete/${mediaId}`).subscribe((response: any) => {
+          observer.next(response);
           observer.complete();
        },
        (error: HttpErrorResponse) => {
-          observer.error(error);
+          observer.error(error.message);
        });
     });
-  }
+   }
 }
