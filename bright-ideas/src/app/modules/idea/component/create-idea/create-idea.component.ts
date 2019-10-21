@@ -22,29 +22,6 @@ export class CreateIdeaComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.udpateMedia()
-  }
-  // for testing purpuse - to be deleted after reviewed
-  udpateMedia() {
-    this.mediaEndpointService.updateMedia({
-      mediaId: 90,
-      fileName: 'new fileName UpdatedTwo',
-      mediaFormat: 'doc',
-      mediaURI: 'https://taskforce.com/path/list-group-task#cell=4'}).subscribe(
-      (response: Media []) => {
-        console.log('THE MEDIA IS UPDATED');
-      }
-    );
-  }
-
-
-
-  deleteMedia() {
-    this.mediaEndpointService.deleteMedia('88').subscribe(
-      (response: Media[]) => {
-        console.log('THE MESSAGE HAS BEEN DELETED');
-      }
-    );
   }
 
 }
