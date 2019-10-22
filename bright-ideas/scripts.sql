@@ -6,22 +6,6 @@ CREATE TABLE IF NOT EXISTS `media` (
     PRIMARY KEY (`mediaID`) 
 ) AUTO_INCREMENT=1;
 
-CREATE TABLE IF NOT EXISTS  `profile` (
-    `profileID` int(10) NOT NULL AUTO_INCREMENT,
-    `profilePicture` varchar(30) NOT NULL,
-    `profileDisplayName` varchar(25) NOT NULL,
-    `profileDescription` varchar(500) NOT NULL,
-    `profileProjectDescription` varchar(200),
-    PRIMARY KEY (`profileID`) 
-) AUTO_INCREMENT=1;
-
-CREATE TABLE IF NOT EXISTS `credentials` (
-    `credentialID` int(10) NOT NULL AUTO_INCREMENT,
-    `password` varchar(60) NOT NULL,
-    `previousPasswords` varchar(60) NOT NULL,
-    PRIMARY KEY (`credentialID`) 
-) AUTO_INCREMENT=1;
-
 
 CREATE TABLE IF NOT EXISTS `todo`(
     `toDoID` int(10) NOT NULL AUTO_INCREMENT,
@@ -57,10 +41,20 @@ CREATE TABLE IF NOT EXISTS `user`(
     `emailAddress` varchar(40) NOT NULL,
     `profile` int(10),
     `isVerified` tinyint(1) NOT NULL DEFAULT 0,
-    `credentials` int(10) NOT NULL,
-    PRIMARY KEY (`userID`),
-    CONSTRAINT `fk_profile_id` FOREIGN KEY (`profile`) REFERENCES `profile` (`profileID`) ,
-    CONSTRAINT `fk_credentials_id` FOREIGN KEY (`credentials`) REFERENCES `credentials` (`credentialID`) 
+    `password` varchar(60) NOT NULL,
+    `previousPasswords` varchar(60) NOT NULL,
+    PRIMARY KEY (`userID`)
+) AUTO_INCREMENT=1;
+
+CREATE TABLE IF NOT EXISTS `profile` (
+    `profileID` int(10) NOT NULL AUTO_INCREMENT,
+    `profilePicture` varchar(30) NOT NULL,
+    `profileDisplayName` varchar(25) NOT NULL,
+    `profileDescription` varchar(500) NOT NULL,
+    `profileProjectDescription` varchar(200),
+    `userID` int(10) NOT NULL,
+    PRIMARY KEY (`profileID`),
+    CONSTRAINT `fk_user_id` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`)  
 ) AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `message`(
@@ -120,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `follower`(
     `ideaID` int(10) NOT NULL,
     `userID` int(10) NOT NULL,
     PRIMARY KEY (`followerID`),
-    CONSTRAINT `fk_user_id` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) 
+    CONSTRAINT `fk_user_follower_id` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`) 
 )AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS `report`(
@@ -132,18 +126,3 @@ CREATE TABLE IF NOT EXISTS `report`(
     CONSTRAINT `fk_flagged_user_id` FOREIGN KEY (`flaggedUser`) REFERENCES `user` (`userID`) ,
     CONSTRAINT `fk_flagged_idea_id` FOREIGN KEY (`flaggedIdea`) REFERENCES `idea` (`ideaID`)
 ) AUTO_INCREMENT=1;
-
-DROP TABLE IF EXISTS `report`;
-DROP TABLE IF EXISTS `follower`;
-DROP TABLE IF EXISTS `idea`;
-DROP TABLE IF EXISTS `chat`;
-DROP TABLE IF EXISTS `member`;
-DROP TABLE IF EXISTS `message`;
-DROP TABLE IF EXISTS `user`;
-DROP TABLE IF EXISTS `role`;
-DROP TABLE IF EXISTS `posting`;
-DROP TABLE IF EXISTS `update`;
-DROP TABLE IF EXISTS `todo`;
-DROP TABLE IF EXISTS `credentials`;
-DROP TABLE IF EXISTS `media`;
-DROP TABLE IF EXISTS `profile`;
