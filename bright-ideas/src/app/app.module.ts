@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { ResetPasswordComponent } from './modules/auth/component/reset-password/
 import { ProfilePageComponent } from './modules/auth/component/profile-page/profile-page.component';
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
+import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +34,15 @@ import { ViewMessageComponent } from './modules/chat/component/view-message/view
     ResetPasswordComponent,
     ProfilePageComponent,
     PageNotFoundComponent,
-    ViewMessageComponent
+    ViewMessageComponent,
+    CreateAccountComponent
 
   ],
   imports: [
     BrowserModule, 
     AppRoutingModule, 
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
