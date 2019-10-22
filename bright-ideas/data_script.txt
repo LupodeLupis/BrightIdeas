@@ -10,30 +10,6 @@ INSERT INTO `media` (`fileName`, `mediaFormat`,`mediaURI`) VALUES
 ('Presenatation_Idea_v2', 'pptx','https://presetationtools.com/path/presentation-idea-v2.pptx#top'),
 ('ListPosting', 'docx', 'https://posting.com/path/list-posting.docx#top');
 
-INSERT INTO `profile` (`profilePicture`,`profileDisplayName`,`profileDescription`, `profileProjectDescription`) VALUES 
-('img_profile.png','Martin Kelvin', 'Student and passionate in videogames', 'The Idea is based on creating a video game that can be used by blind child'),
-('img_profile.jpeg','Henry Rollins', 'Software Engineer and Entrepreneur','The idea is to develop an app that can be used for planning a wedding'),
-('img_profile.jpeg','Victor Lee','Fresh graduated looking for a challenge', 'The idea is related to the water consumption and its waste'),
-('img_profile.jpeg','Manila Handerson', 'Actress with the hobby for the sport', 'An idea that can help in creating fit receipt '),
-('img_profile.jpeg','Felipe Turin','Retired professor who is looking for new challenges', 'An idea that shows how to craft shapes with wood'),
-('img_profile.jpeg','Enrique Valez','Web developer with the interest in medicine', 'An idea that can help people to cure with herbs'),
-('img_profile.jpeg','Maria Lopez', 'Accountant and broker with the passion of design and architecture', 'The idea is to design a house that can be used built for charity purpose'),
-('img_profile.jpeg','Karla Veric', 'Technical writer with the interest in C++', 'The idea is to implement a video game'),
-('img_profile.jpeg','Mary Smith', 'Lawyer with the passion of aviation', 'An idea that allow people to travel around the world'),
-('img_profile.jpeg','Leslie Paris', 'Journalist with passion of web development', 'The idea is to develop a portal information can be used for free');
-
-INSERT INTO `credentials` (`password`, `previousPasswords`) VALUES
-('8e5dac988aa0766729136089f2e6c704', 'f1099950db132e5bcb1d3dbc5000df62'),
-('2db8a754d8c0ab2de5462cfc0929e88d', 'ee258baa6606ae7c7fb095c30ded3a11'),
-('53a71e6fde0447cc215ccdb0e6d87ed9', 'd003321430d11e39190c0802a434cd6f'),
-('14e273e6f416c4b90a071f59ac01206a', '591785b794601e212b260e25925636fd'),
-('aa6303f75e6c0cb55cd7196005ad4856', '4729307a2f895c1e5ce606694ba652ae'),
-('4beb16b0537f7901008ba52f3a97cda3', '3edd182cbd5d98b1ef774bc992a03e3b'),
-('14ac65154661c5f37c4c41fda62ba6ac', '7afad4c30d0de824ba1f6284adfffe72'),
-('a02ec069f95825d101e83110055e24a8', '9bd43a86568c4a898fcf3d14a68513d1'),
-('b6e7f4684fae52db1c9e33687b697d38', '0585c79ce019808f1fbbd19e7e8f75e6'),
-('ec1027cc3775da65bbc7c99c0b084e90', 'c5197605c2b1b35795c120221aee0f7f');
-
 INSERT INTO `todo` (`toDoDescription`) VALUES 
 ('Discuss how planning activities for the idea'),
 ('Give an overview of the idea with more detail'),
@@ -70,17 +46,29 @@ INSERT INTO `role` (`roleName`,`roleDescription`) VALUES
 ('Graphic Designer', 'The graphic designer will take care in creating logos and illustrations'),
 ('Data Analyst', 'The Data Analyst will develop analysis');
 
-INSERT INTO `user` (`emailAddress`,`profile`, `isVerified`,`credentials`) VALUES 
-('kelvin1984@gmail.com', '1', '0', '1'),
-('henry2019@hotmail.ca', '2', '1', '2'),
-('victor_lee@gmail.com', '3', '0', '3'),
-('manila@virgilio.it', '4', '1', '4'),
-('felipeTourin2019@gmail.com', '5', '1', '5'),
-('valeze@facebook.ca', '6', '1', '6'),
-('vericKarla@canada.ca', '7', '1', '7'),
-('smith2019@gmail.ca', '8', '1', '8'),
-('paris_leslie@medium.com', '9', '1', '9'),
-('lopez_maria@gmail.ca', '10', '0', '10');
+INSERT INTO `user` (`emailAddress`,`profile`, `isVerified`,`password`, `previousPasswords`) VALUES 
+('kelvin1984@gmail.com', '1', '0','8e5dac988aa0766729136089f2e6c704', 'f1099950db132e5bcb1d3dbc5000df62'),
+('henry2019@hotmail.ca', '2', '1','2db8a754d8c0ab2de5462cfc0929e88d', 'ee258baa6606ae7c7fb095c30ded3a11'),
+('victor_lee@gmail.com', '3', '0','53a71e6fde0447cc215ccdb0e6d87ed9', 'd003321430d11e39190c0802a434cd6f'),
+('manila@virgilio.it', '4', '1', '14e273e6f416c4b90a071f59ac01206a', '591785b794601e212b260e25925636fd'),
+('felipeTourin2019@gmail.com', '5', '1','aa6303f75e6c0cb55cd7196005ad4856', '4729307a2f895c1e5ce606694ba652ae'),
+('valeze@facebook.ca', '6', '1','4beb16b0537f7901008ba52f3a97cda3', '3edd182cbd5d98b1ef774bc992a03e3b'),
+('vericKarla@canada.ca', '7', '1','14ac65154661c5f37c4c41fda62ba6ac', '7afad4c30d0de824ba1f6284adfffe72'),
+('smith2019@gmail.ca', '8', '1','a02ec069f95825d101e83110055e24a8', '9bd43a86568c4a898fcf3d14a68513d1'),
+('paris_leslie@medium.com', '9', '1','b6e7f4684fae52db1c9e33687b697d38', '0585c79ce019808f1fbbd19e7e8f75e6'),
+('lopez_maria@gmail.ca', '10', '0','ec1027cc3775da65bbc7c99c0b084e90', 'c5197605c2b1b35795c120221aee0f7f');
+
+INSERT INTO `profile` (`profilePicture`,`profileDisplayName`,`profileDescription`, `profileProjectDescription`, `userID`) VALUES 
+('img_profile.png','Martin Kelvin', 'Student and passionate in videogames', 'The Idea is based on creating a video game that can be used by blind child', '1'),
+('img_profile.jpeg','Henry Rollins', 'Software Engineer and Entrepreneur','The idea is to develop an app that can be used for planning a wedding', '2'),
+('img_profile.jpeg','Victor Lee','Fresh graduated looking for a challenge', 'The idea is related to the water consumption and its waste', '3'),
+('img_profile.jpeg','Manila Handerson', 'Actress with the hobby for the sport', 'An idea that can help in creating fit receipt ', '4'),
+('img_profile.jpeg','Felipe Turin','Retired professor who is looking for new challenges', 'An idea that shows how to craft shapes with wood', '5'),
+('img_profile.jpeg','Enrique Valez','Web developer with the interest in medicine', 'An idea that can help people to cure with herbs', '6'),
+('img_profile.jpeg','Maria Lopez', 'Accountant and broker with the passion of design and architecture', 'The idea is to design a house that can be used built for charity purpose', '7'),
+('img_profile.jpeg','Karla Veric', 'Technical writer with the interest in C++', 'The idea is to implement a video game', '8'),
+('img_profile.jpeg','Mary Smith', 'Lawyer with the passion of aviation', 'An idea that allow people to travel around the world', '9'),
+('img_profile.jpeg','Leslie Paris', 'Journalist with passion of web development', 'The idea is to develop a portal information can be used for free', '10');
 
 
 INSERT INTO `message` (`timeStamp`,`text`, `sender`) VALUES 
