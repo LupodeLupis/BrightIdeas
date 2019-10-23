@@ -17,7 +17,7 @@ export class CreateAccountComponent implements OnInit {
     userNameRegex = new RegExp('^[a-zA-Z0-9_-]{8,25}$');
     passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
     
-    constructor(private formBuilder: FormBuilder, private userEndPointService: UserEndpointService, private router: Router) { }
+    constructor(private formBuilder: FormBuilder, private userService: UserEndpointService, private router: Router) { }
 
     get f() { return this.registerForm.controls; }
 
@@ -33,37 +33,28 @@ export class CreateAccountComponent implements OnInit {
     }
 
     onSubmit(){
-        this.submitted = true;
+        this.submitted = true;        
         if(this.registerForm.valid){
             this.loading = true;
-            this.userEndPointService.registerUser(this.registerForm)
-            .subscribe((data) => {
-                this.router.navigate(['login']);
-                console.log(data)
+            this.userService.registerUser(this.registerForm)
+            .subscribe((response) => {
+                if(response.error){
+                    alert(response.error)
+                } else {
+                    this.router.navigate(['login']);
+                }        
             },(error) => {
-                this.loading = false;
-                console.log(error)
+                console.log(error.error)
             });
-        } else {
-            alert('User form is not valid!!');
+            this.loading = false;
         }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     matchPassword(FC: FormControl) {
         if(FC.parent){
             let password = FC.parent.get('password').value;
-            let confirmPassword = FC.parent.get('confirmPassword').value;
-            if(password == confirmPassword){
-                return null;
-            } else {
-                // NEEDS TO BE FIXED, CANNOT SET ERRORS
-                FC.parent.get('confirmPassword').setErrors({});
-            }
+            return password == FC.value ? null : {passNotMatching: true};
         }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }

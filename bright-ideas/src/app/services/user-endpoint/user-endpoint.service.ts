@@ -18,17 +18,21 @@ export class UserEndpointService {
         return this.http.get<User[]>(`${this.url}/user`);
     }
 
-    getUserById(id): Observable<User[]> {
-        return this.http.get<User[]>(`${this.url}/user/` + id);
+    getUserByEmail(eMail): Observable<User> {
+        return this.http.get<User>(`${this.url}/user/` + eMail);
     }
 
     registerUser(form: FormGroup): Observable<any>{
-        // Create a new user object
+        let newUser = this.createUserObject(form);
+        return this.http.post<User>(`${this.url}/user/create`, newUser);
+    }
+
+    createUserObject(form: FormGroup){
         let newUser = new User;
         newUser.emailAddress = form.get('eMail').value;
         newUser.password = this.getSaltAndHashPassword(form.get('password').value);
         newUser.previousPasswords = newUser.password;
-        return this.http.post<User>(`${this.url}/user/create`, newUser);
+        return newUser;
     }
 
     getSaltAndHashPassword(password: string){
