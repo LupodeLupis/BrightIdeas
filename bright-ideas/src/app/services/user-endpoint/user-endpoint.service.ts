@@ -7,15 +7,20 @@ import { User } from "../../models/user";
   providedIn: "root"
 })
 export class UserEndpointService {
-  private url = "https://bright-ideas-api.herokuapp.com";
+    private url = "https://bright-ideas-api.herokuapp.com";
 
-  constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.url}/users`);
-  }
+    getUsers(): Observable<User[]> {
+        return this.http.get<User[]>(`${this.url}/user`);
+    }
 
-  getUserById(id): Observable<User[]> {
-    return this.http.get<User[]>(`${this.url}/user/` + id);
-  }
+    getUserById(id): Observable<User[]> {
+        return this.http.get<User[]>(`${this.url}/user/` + id);
+    }
+
+    createNewUser(user: User): Observable<any> {
+        return this.http.post<User>(`${this.url}/user/create`, user);
+    }
+
 }
