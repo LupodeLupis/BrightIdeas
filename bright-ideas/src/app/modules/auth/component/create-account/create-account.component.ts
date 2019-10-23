@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import bcrypt from 'bcryptjs';
-import { User } from './../../../../models/user';
 import { UserEndpointService } from './../../../../services/user-endpoint/user-endpoint.service';
 
 @Component({
@@ -37,40 +35,18 @@ export class CreateAccountComponent implements OnInit {
     onSubmit(){
         this.submitted = true;
         if(this.registerForm.valid){
-            console.log(this.registerForm)
-            //this.loading = true;
-            //this.registerUser();
-            alert('User form is valid!!')
+            this.loading = true;
+            this.userEndPointService.registerUser(this.registerForm)
+            .subscribe((data) => {
+                this.router.navigate(['login']);
+                console.log(data)
+            },(error) => {
+                this.loading = false;
+                console.log(error)
+            });
         } else {
-        alert('User form is not valid!!')
-        this.submitted = false;
+            alert('User form is not valid!!');
         }
-    }
-
-    newUser(){
-        let newUser = new User();
-        newUser.emailAddress = this.registerForm.get('eMail').value;
-        newUser.password = this.getSaltAndHashPassword();
-        newUser.previousPasswords = newUser.password;
-        return newUser;
-    }
-
-    getSaltAndHashPassword(){
-        let password = this.registerForm.get('password').value;
-        let salt = bcrypt.genSaltSync(10);
-        let hash = bcrypt.hashSync(password, salt);
-        return hash;
-    }
-
-    registerUser(){
-        this.userEndPointService.createNewUser(this.newUser())
-        .subscribe((data) => {
-            this.router.navigate(['login']);
-            console.log(data)
-        },(error) => {
-            this.loading = false;
-            console.log(error)
-        });
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -80,14 +56,10 @@ export class CreateAccountComponent implements OnInit {
             let password = FC.parent.get('password').value;
             let confirmPassword = FC.parent.get('confirmPassword').value;
             if(password == confirmPassword){
-                console.log('match')
                 return null;
             } else {
-                console.log(' NOT match')
-                
+                // NEEDS TO BE FIXED, CANNOT SET ERRORS
                 FC.parent.get('confirmPassword').setErrors({});
-                
-                console.log(FC.parent.get('confirmPassword'))
             }
         }
     }
