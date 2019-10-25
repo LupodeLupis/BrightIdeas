@@ -2,6 +2,7 @@ import { TestBed, async } from "@angular/core/testing";
 import { IdeaEndpointService } from "./idea-endpoint.service";
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment'
+import { Idea } from 'src/app/models/idea';
 
 
 describe("IdeaEndpointService", () => {
@@ -9,11 +10,10 @@ describe("IdeaEndpointService", () => {
   let ideaEndpointService: IdeaEndpointService;
   
   const testData = [{
-    ideaID: 1,
-    ideaName: "Vidnopoly",
-    ideaDescription: "The Idea is based on creating a monopoly video game",
-    ideaCreator: 1,
-    ideaLeader: 1,
+    name: "Vidnopoly",
+    description: "The Idea is based on creating a monopoly video game",
+    creator: 1,
+    leader: 1,
     media: 1,
     posting: 1,
     update: 1,
@@ -22,11 +22,10 @@ describe("IdeaEndpointService", () => {
     ideaMembers: 1
   },
   {
-    ideaID: 2,
-    ideaName: "EPlanner",
-    ideaDescription: "The Idea is based on creating a monopoly video game",
-    ideaCreator: 1,
-    ideaLeader: 1,
+    name: "Eplanner",
+    description: "The Idea is based on creating a monopoly video game",
+    creator: 1,
+    leader: 1,
     media: 1,
     posting: 1,
     update: 1,
@@ -55,7 +54,7 @@ describe("IdeaEndpointService", () => {
 
   it('should get all ideas', () => {
     ideaEndpointService.getIdeas().subscribe(res => {
-      expect(res).toEqual(this.testData);
+      expect(res).toEqual(testData);
     });
     // const request = httpTestingController
     //   .expectOne(`${environment.api}/idea`);
@@ -66,7 +65,7 @@ describe("IdeaEndpointService", () => {
   
   it('should get an idea by id', () => {
     ideaEndpointService.getIdeaById(1).subscribe(res => {
-      expect(res).toEqual(this.testData[0]);
+      expect(res).toEqual(testData[0]);
     });
     // const request = httpTestingController
     //   .expectOne(`${environment.api}/idea`);
