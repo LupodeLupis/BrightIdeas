@@ -1,7 +1,5 @@
 import { TestBed, async } from "@angular/core/testing";
-
 import { IdeaEndpointService } from "./idea-endpoint.service";
-// import { HttpClientModule } from '@angular/common/http';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { environment } from '../../../environments/environment'
 
@@ -11,6 +9,7 @@ describe("IdeaEndpointService", () => {
   let ideaEndpointService: IdeaEndpointService;
   
   const testData = [{
+    ideaID: 1,
     ideaName: "Vidnopoly",
     ideaDescription: "The Idea is based on creating a monopoly video game",
     ideaCreator: 1,
@@ -23,7 +22,8 @@ describe("IdeaEndpointService", () => {
     ideaMembers: 1
   },
   {
-    ideaName: "Vidnopoly",
+    ideaID: 2,
+    ideaName: "EPlanner",
     ideaDescription: "The Idea is based on creating a monopoly video game",
     ideaCreator: 1,
     ideaLeader: 1,
@@ -85,4 +85,15 @@ describe("IdeaEndpointService", () => {
   //   expect(request.request.method).toEqual('POST');
   //   request.flush(testData);
   // });
+
+  it("should create update an idea", () => {
+    ideaEndpointService.updateIdea(testData[1]).subscribe((res) => {
+      expect(res).toEqual(testData[1]);
+    });
+  });
+  //   const request = httpTestingController
+  //   .expectOne(`${environment.api}/idea/update`);
+  //   expect(request.request.method).toEqual('POST');
+  //   request.flush(testData);
+  // })
 });

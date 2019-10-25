@@ -13,14 +13,30 @@ export class IdeaEndpointService {
   constructor(private http: HttpClient) { }
 
   getIdeas(): Observable<Idea[]> {
-    return this.http.get<Idea[]>(`${this.url}/idea`);
+    return Observable.create((observer: Observer<any[]>) => {
+      this.http.get(`${this.url}/idea`).subscribe((res: any[]) => {
+         observer.next(res);
+         observer.complete();
+      },
+      (error: HttpErrorResponse) => {
+         observer.error(error);
+      });
+   });;
   }
 
-  getIdeaById(id: number): Observable<Idea[]> {
-    return this.http.get<Idea[]>(`${this.url}/idea/` + id);
+  getIdeaById(id): Observable<Idea[]> {
+    return Observable.create((observer: Observer<any>) => {
+      this.http.get(`${this.url}/idea/${id}`).subscribe((res: any) => {
+         observer.next(res);
+         observer.complete();
+      },
+      (error: HttpErrorResponse) => {
+         observer.error(error);
+      });
+   });
   }
 
-  createIdea(idea: object): Observable<any> {
+  createIdea(idea): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.http.post(`${this.url}/idea/create`, idea).subscribe((response) => {
         observer.next(response);
@@ -32,7 +48,7 @@ export class IdeaEndpointService {
     });
   }
 
-  deleteIdea(id: number): Observable<any> {
+  deleteIdea(id): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.http.delete(`${this.url}/idea/delete/${id}`).subscribe((response) => {
         observer.next(response);
@@ -44,7 +60,7 @@ export class IdeaEndpointService {
     });
   }
 
-  updateIdea(idea: object): Observable<any> {
+  updateIdea(idea): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.http.put(`${this.url}/idea/update`, idea).subscribe((response) => {
         observer.next(response);
