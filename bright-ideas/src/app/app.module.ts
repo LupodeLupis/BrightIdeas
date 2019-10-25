@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchIdeasQueriesComponent } from './search-ideas-queries/search-ideas-queries.component';
+import { SearchProfilesComponent } from './search-profiles/search-profiles.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SearchIdeasQueriesComponent } from './search-ideas-queries/search-ideas
     ProfilePageComponent,
     PageNotFoundComponent,
     ViewMessageComponent,
-    SearchIdeasQueriesComponent
+    SearchIdeasQueriesComponent,
+    SearchProfilesComponent
   ],
   imports: [
     BrowserModule,
