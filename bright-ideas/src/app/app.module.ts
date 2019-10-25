@@ -16,9 +16,12 @@ import { ResetPasswordComponent } from './modules/auth/component/reset-password/
 import { ProfilePageComponent } from './modules/auth/component/profile-page/profile-page.component';
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
+<<<<<<< HEAD
 import { HttpClientModule } from '@angular/common/http';
 import { SearchIdeasQueriesComponent } from './search-ideas-queries/search-ideas-queries.component';
 import { SearchProfilesComponent } from './search-profiles/search-profiles.component';
+=======
+>>>>>>> ecedf308b14153dc590bca7ff68640eedc229a10
 
 @NgModule({
   declarations: [
@@ -35,16 +38,21 @@ import { SearchProfilesComponent } from './search-profiles/search-profiles.compo
     ResetPasswordComponent,
     ProfilePageComponent,
     PageNotFoundComponent,
+<<<<<<< HEAD
     ViewMessageComponent,
     SearchIdeasQueriesComponent,
     SearchProfilesComponent
+=======
+    ViewMessageComponent
+
+>>>>>>> ecedf308b14153dc590bca7ff68640eedc229a10
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    BrowserModule, 
+    AppRoutingModule, 
     HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

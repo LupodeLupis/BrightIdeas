@@ -1,6 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Idea } from 'src/app/models/idea';
-import { IdeaEndpointService } from 'src/app/services/idea-endpoint.service';
+import { IdeaEndpointService } from '../../../../services/idea-endpoint/idea-endpoint.service';
 
 @Component({
   selector: 'app-view-message',
@@ -8,7 +9,6 @@ import { IdeaEndpointService } from 'src/app/services/idea-endpoint.service';
   styleUrls: ['./view-message.component.css']
 })
 export class ViewMessageComponent implements OnInit {
-  
   ideas: Idea[] = [];
   getIdeasSub;
   filteredIdeas: Idea[] = [];
@@ -22,7 +22,6 @@ export class ViewMessageComponent implements OnInit {
         this.ideas = data;
         console.log(this.ideas);
       }
-    )
+    );
   }
-
 }
