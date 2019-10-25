@@ -12,9 +12,26 @@ export class IdeaEndpointService {
 
   constructor(private http: HttpClient) { }
 
-  getIdeas(): Observable<Idea[]> {
-    return Observable.create((observer: Observer<any[]>) => {
-      this.http.get(`${this.url}/idea`).subscribe((res: any[]) => {
+  // getIdeas(): Observable<Idea[]> {
+  //   return this.http.get<Idea[]>(`${this.url}/idea`);
+  // }
+
+  // getIdeaById(id): Observable<Idea[]> {
+  //   return this.http.get<Idea[]>(`${this.url}/idea/${id}`);
+  // }
+
+  // createIdea(idea: Idea): Observable<any> {
+  //   return this.http.post<any>(`${this.url}/idea/create`, idea)
+  // }
+
+  // updateIdea(idea: Idea): Observable<any> {
+  //   return this.http.put<any>(`${this.url}/idea/update`, idea);
+  // }
+
+  
+  getIdeas(): Observable<any> {
+    return Observable.create((observer: Observer<any>) => {
+      this.http.get(`${this.url}/idea`).subscribe((res: any) => {
          observer.next(res);
          observer.complete();
       },
@@ -24,7 +41,7 @@ export class IdeaEndpointService {
    });;
   }
 
-  getIdeaById(id): Observable<Idea[]> {
+  getIdeaById(id): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.http.get(`${this.url}/idea/${id}`).subscribe((res: any) => {
          observer.next(res);
@@ -71,4 +88,5 @@ export class IdeaEndpointService {
       });
     })
   }
+  
 }
