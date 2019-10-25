@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment'
 describe("IdeaEndpointService", () => {
   // let httpTestingController: HttpTestingController;
   let ideaEndpointService: IdeaEndpointService;
-
+  
   const testData = [{
     ideaName: "Vidnopoly",
     ideaDescription: "The Idea is based on creating a monopoly video game",
@@ -34,8 +34,8 @@ describe("IdeaEndpointService", () => {
     toDoList: 1,
     ideaMembers: 1
   }]
-
   beforeEach(async(() => {
+   
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule
@@ -44,7 +44,7 @@ describe("IdeaEndpointService", () => {
         IdeaEndpointService
       ]
     })
-    // httpTestingController = TestBed.get(httpTestingController);
+    //  httpTestingController = TestBed.get(httpTestingController);
     ideaEndpointService = TestBed.get(IdeaEndpointService);
   }));
 
@@ -55,7 +55,18 @@ describe("IdeaEndpointService", () => {
 
   it('should get all ideas', () => {
     ideaEndpointService.getIdeas().subscribe(res => {
-      expect(res).toEqual(testData[0]);
+      expect(res).toEqual(this.testData);
+    });
+    // const request = httpTestingController
+    //   .expectOne(`${environment.api}/idea`);
+    // expect(request.request.method).toEqual('GET');
+    // request.flush(testData);
+  });
+
+  
+  it('should get an idea by id', () => {
+    ideaEndpointService.getIdeaById(1).subscribe(res => {
+      expect(res).toEqual(this.testData[0]);
     });
     // const request = httpTestingController
     //   .expectOne(`${environment.api}/idea`);
@@ -64,10 +75,11 @@ describe("IdeaEndpointService", () => {
   });
 
 
-  // it("should create an idea", () => {
-  //   ideaEndpointService.createIdea(testData).subscribe((res) => {
-  //     expect(res).toEqual(testData);
-  //   });
+  it("should create an idea", () => {
+    ideaEndpointService.createIdea(testData[0]).subscribe((res) => {
+      expect(res).toEqual(testData[0]);
+    });
+  });
   //   const request = httpTestingController
   //   .expectOne(`${environment.api}/idea/create`);
   //   expect(request.request.method).toEqual('POST');
