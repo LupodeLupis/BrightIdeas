@@ -6,20 +6,43 @@
       </h1>
     </div>
     <div class="row">
-      <div class="col-md-2 col-md-offset-1">
-        <label id="label">View Chat From</label>
-      </div>
-      <div class="col-md-5">
-        <select class="form-control">
-          <option autoFocus>Select Idea</option>
-          <option *ngFor="let i of ideas">{{i.ideaName}}</option>
-        </select>
-      </div>
+      <select class="form-control">
+        <option autoFocus>View chat from</option>
+        <option *ngFor="let i of ideas">{{i.ideaName}}</option>
+      </select>
     </div>
   </div>
   <div class="col-md-6">
     <h1 class="header-title">
       Messages
     </h1>
+    <div class="row">
+      <div class="col-md-6">
+        <label id="label">In chat with:</label>
+      </div>
+      <div class="col-md-6">
+        <button type="button" class="btn btn-primary">+ Add Recipient</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6" id="chat-box">
+        chat goes heres
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-2">
+        Send a message
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6" id="message-box">
+        messages goes here
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-primary">Send</button>
+      </div>
+    </div>
   </div>
 </div>
