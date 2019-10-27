@@ -1,9 +1,9 @@
 
 import { Idea } from './idea';
 export interface Profile {
-    id: number;
-    picture: string;
-    displayName: string;
-    projectDescription: string;
-    idea: Idea; 
+    profileID: number;
+    profilePicture: string;
+    profileDisplayName: string;
+    profileProjectDescription: string;
+    idea: Idea; //Should be array?
 }

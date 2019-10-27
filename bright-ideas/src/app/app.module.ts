@@ -10,6 +10,7 @@ import { CreateIdeaComponent } from './modules/idea/component/create-idea/create
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './modules/layout/home/home.component';
 import { IdeaSearchResultsComponent } from './modules/layout/idea-search-results/idea-search-results.component';
+import { ProfileSearchResultsComponent } from './modules/layout/profile-search-results/profile-search-results.component';
 import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.component'
 import { LoginComponent } from './modules/auth/component/login/login.component';
 import { ResetPasswordComponent } from './modules/auth/component/reset-password/reset-password.component';
@@ -35,7 +36,8 @@ import { FormsModule } from '@angular/forms';
     ProfilePageComponent,
     PageNotFoundComponent,
     ViewMessageComponent,
-    UploadMediaComponent
+    UploadMediaComponent,
+    ProfileSearchResultsComponent
   ],
   imports: [
     BrowserModule, 
