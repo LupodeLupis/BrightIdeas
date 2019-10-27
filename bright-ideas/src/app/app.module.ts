@@ -9,19 +9,15 @@ import { ChangePasswordComponent } from './modules/auth/component/change-passwor
 import { CreateIdeaComponent } from './modules/idea/component/create-idea/create-idea.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './modules/layout/home/home.component';
-import { SearchResultsComponent } from './modules/layout/search-results/search-results.component';
-import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.component';
+import { IdeaSearchResultsComponent } from './modules/layout/idea-search-results/idea-search-results.component';
+import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.component'
 import { LoginComponent } from './modules/auth/component/login/login.component';
 import { ResetPasswordComponent } from './modules/auth/component/reset-password/reset-password.component';
 import { ProfilePageComponent } from './modules/auth/component/profile-page/profile-page.component';
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
-<<<<<<< HEAD
-import { HttpClientModule } from '@angular/common/http';
-import { SearchIdeasQueriesComponent } from './search-ideas-queries/search-ideas-queries.component';
-import { SearchProfilesComponent } from './search-profiles/search-profiles.component';
-=======
->>>>>>> ecedf308b14153dc590bca7ff68640eedc229a10
+import { UploadMediaComponent } from './modules/media/upload-media/upload-media.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,26 +27,21 @@ import { SearchProfilesComponent } from './search-profiles/search-profiles.compo
     ChangePasswordComponent,
     CreateIdeaComponent,
     HomeComponent,
-    SearchResultsComponent,
+    IdeaSearchResultsComponent,
     CreateIdeaComponent,
     ViewIdeaComponent,
     LoginComponent,
     ResetPasswordComponent,
     ProfilePageComponent,
     PageNotFoundComponent,
-<<<<<<< HEAD
     ViewMessageComponent,
-    SearchIdeasQueriesComponent,
-    SearchProfilesComponent
-=======
-    ViewMessageComponent
-
->>>>>>> ecedf308b14153dc590bca7ff68640eedc229a10
+    UploadMediaComponent
   ],
   imports: [
     BrowserModule, 
     AppRoutingModule, 
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
