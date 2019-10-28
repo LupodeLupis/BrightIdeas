@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api: "https://bright-ideas-api.herokuapp.com"
+  api: "https://bright-ideas-api.herokuapp.com",
+  vmHostPort: 'http://localhost:10034'
 };
 
 /*
