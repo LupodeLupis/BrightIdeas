@@ -14,7 +14,7 @@ export class ChatService {
   constructor() {
     this.getMessages = new Subject(); 
     
-    this.socket = io.connect(environment.vmHostPort); // we can also use io.connect() to connect to the current host
+    this.socket = io.connect(environment.api); // we can also use io.connect() to connect to the current host
 
     this.socket.on('chat message', (msg) => {
       this.getMessages.next(msg); // send the new message
