@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { ProfilePageComponent } from './modules/auth/component/profile-page/prof
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,12 +35,12 @@ import { ViewMessageComponent } from './modules/chat/component/view-message/view
     ProfilePageComponent,
     PageNotFoundComponent,
     ViewMessageComponent
-
   ],
   imports: [
     BrowserModule, 
     AppRoutingModule, 
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

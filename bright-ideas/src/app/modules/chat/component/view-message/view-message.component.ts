@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Idea } from 'src/app/models/idea';
 import { IdeaEndpointService } from '../../../../services/idea-endpoint/idea-endpoint.service';
+import { ChatService } from 'src/app/services/chat/chat.service';
 
 @Component({
   selector: 'app-view-message',
@@ -13,15 +14,37 @@ export class ViewMessageComponent implements OnInit {
   getIdeasSub;
   filteredIdeas: Idea[] = [];
 
-  constructor(private ideaService: IdeaEndpointService) { }
+  private getMessagesSub: any;
+  messages: string[] = [];
+  currentMessage: string;
+
+  constructor(
+    private ideaService: IdeaEndpointService,
+    private chatService: ChatService
+    ) { }
 
   ngOnInit() {
 
     this.getIdeasSub = this.ideaService.getIdeas().subscribe(
       (data) => {
         this.ideas = data;
-        console.log(this.ideas);
+        // console.log(this.ideas);
       }
     );
+
+    this.getMessagesSub = this.chatService.getMessages.subscribe((data) => {
+      this.messages.push(data);
+    });
   }
+
+  sendMessage(){
+    this.chatService.sendMessage(this.currentMessage);
+    this.currentMessage = "";
+  }
+
+  // nGOnDestroy(){
+  //   if (this.getMessagesSub)
+  //     this.getMessagesSub.unsubscribe();
+  // }
+
 }
