@@ -17,7 +17,7 @@ export class UserEndpointService {
     getUsers(): Observable<User[]> {
         return this.http.get<User[]>(`${this.url}/user`);
     }
-
+    // We need to get by eMail instead of ID
     getUserByEmail(eMail): Observable<User> {
         return this.http.get<User>(`${this.url}/user/` + eMail);
     }
