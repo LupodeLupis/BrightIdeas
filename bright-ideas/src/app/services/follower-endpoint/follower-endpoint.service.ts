@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 
 
 @Injectable({ providedIn: 'root' })
 
 export class FollowerEndpointService {
-   private url = 'https://bright-ideas-api.herokuapp.com';
+   private url = environment.api;
 
    constructor(private http: HttpClient) {}
 
@@ -25,7 +26,7 @@ export class FollowerEndpointService {
 
    getAllFollowers(): Observable<any> {
       return Observable.create((observer: Observer<any>) => {
-         this.http.get(`${this.url}/followers`).subscribe((res: any) => {
+         this.http.get(`${this.url}/follower`).subscribe((res: any) => {
             observer.next(res);
             observer.complete();
          },
@@ -35,4 +36,27 @@ export class FollowerEndpointService {
       });
    }
 
+   createFollower(body: object): Observable <any> {
+      return Observable.create((observer: Observer<any>) => {
+         this.http.post(`${this.url}/follower/create`, body).subscribe((response: any) => {
+            observer.next(response);
+            observer.complete();
+         },
+         (error: HttpErrorResponse) => {
+            observer.error(error);
+         });
+      });
+   }
+
+   deleteFollower(followerId: string): Observable <any> {
+      return Observable.create((observer: Observer<any>) =>{
+         this.http.delete(`${this.url}/follower/delete/${followerId}`).subscribe((response: any) => {
+            observer.next(response);
+            observer.complete();
+         },
+         (error: HttpErrorResponse) => {
+            observer.error(error.message);
+         });
+      });
+   }
 }

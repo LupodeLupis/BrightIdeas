@@ -4,7 +4,6 @@ const path = require("path");
 const https = require("https");
 const fs = require("fs");
 
-const { getDB } = require('./db-connection')
 const HTTPS_PORT = process.env.PORT || 10034;
 
 const key = fs.readFileSync('/root/cert/prj666-2021.key');
@@ -25,8 +24,6 @@ app.use((req, res) => {
     res.sendFile(path.join(__dirname + "/dist/bright-ideas/index.html"));
 });
 
-// Start DB connection
-getDB;
 
 // Start the server
 https.createServer(options, app).listen(HTTPS_PORT, () => {

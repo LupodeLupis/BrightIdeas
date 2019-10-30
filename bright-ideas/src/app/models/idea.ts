@@ -6,6 +6,7 @@ import { ToDo } from './todo';
 
 export interface Idea {
     id: number;
+    name: string
     description: string;
     creator: Member;
     leader: Member;
@@ -14,5 +15,4 @@ export interface Idea {
     update: Update;
     date: Date;     //TypeScript default class type
     toDoList: ToDo;
-    members: Member;
 }
