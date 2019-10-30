@@ -10,10 +10,12 @@ import { CreateIdeaComponent } from './modules/idea/component/create-idea/create
 import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.component'
 import { SearchResultsComponent } from './modules/layout/search-results/search-results.component'
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component'
-import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
+import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component'
+import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component'
 
 const routes: Routes = [
     { path: 'changePassword', component: ChangePasswordComponent },
+    { path: 'createAccount', component: CreateAccountComponent },
     { path: 'viewMessage', component: ViewMessageComponent},
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },

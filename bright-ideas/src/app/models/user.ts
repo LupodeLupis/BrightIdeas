@@ -1,9 +1,10 @@
 import { Profile } from './profile';
 
-export interface User {
-    id: number;
-    email: string;
+export class User {
+    userID: number;
+    emailAddress: string;
     profile: Profile;
+    isVarified: number;
     password: string;
-    previousPassword: string;
+    previousPasswords: string;
 }
