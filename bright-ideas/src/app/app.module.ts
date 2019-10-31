@@ -18,7 +18,6 @@ import { ProfilePageComponent } from './modules/auth/component/profile-page/prof
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
 import { UploadMediaComponent } from './modules/media/upload-media/upload-media.component';
-import { FormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
 
 @NgModule({
