@@ -1,0 +1,27 @@
+#idea-title {
+    max-width: 300px;
+    margin-left: 50px;
+    display: inline;
+}
+#idea-category {
+    max-width: 300px;
+    margin-left: 20px;
+    display: inline;
+}
+
+.width-idea-btn {
+    max-width: 150px;
+    margin: 10px auto;
+    color: white;
+    font-size: 13px;
+}
+
+#submit { 
+    float: right;
+    margin: 16px;
+}
+
+hr{
+ margin: 0;
+ border-top: 4px solid rgb(138, 135, 135);
+}
