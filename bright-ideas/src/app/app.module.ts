@@ -10,15 +10,16 @@ import { ChangePasswordComponent } from './modules/auth/component/change-passwor
 import { CreateIdeaComponent } from './modules/idea/component/create-idea/create-idea.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './modules/layout/home/home.component';
-import { SearchResultsComponent } from './modules/layout/search-results/search-results.component';
-import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.component';
+import { IdeaSearchResultsComponent } from './modules/layout/idea-search-results/idea-search-results.component';
+import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.component'
 import { LoginComponent } from './modules/auth/component/login/login.component';
 import { ResetPasswordComponent } from './modules/auth/component/reset-password/reset-password.component';
 import { ProfilePageComponent } from './modules/auth/component/profile-page/profile-page.component';
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
+import { UploadMediaComponent } from './modules/media/upload-media/upload-media.component';
+import { FormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
-
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { CreateAccountComponent } from './modules/auth/component/create-account/
     ChangePasswordComponent,
     CreateIdeaComponent,
     HomeComponent,
-    SearchResultsComponent,
+    IdeaSearchResultsComponent,
     CreateIdeaComponent,
     ViewIdeaComponent,
     LoginComponent,
@@ -36,8 +37,8 @@ import { CreateAccountComponent } from './modules/auth/component/create-account/
     ProfilePageComponent,
     PageNotFoundComponent,
     ViewMessageComponent,
+    UploadMediaComponent,
     CreateAccountComponent
-
   ],
   imports: [
     BrowserModule, 

@@ -5,11 +5,11 @@ import { Update } from './update';
 import { ToDo } from './todo';
 
 export interface Idea {
-    id: number;
-    name: string
-    description: string;
-    creator: Member;
-    leader: Member;
+    ideaID: number;
+    ideaName: string
+    ideaDescription: string;
+    ideaCreator: Member;
+    ideaLeader: Member;
     media: Media;
     posting: Posting;
     update: Update;
