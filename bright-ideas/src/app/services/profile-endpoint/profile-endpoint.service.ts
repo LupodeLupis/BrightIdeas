@@ -40,6 +40,18 @@ getProfileById(id): Observable<any> {
  });
 }
 
+getProfileByWildcard(filter): Observable<any> {
+  return Observable.create((observer: Observer<any>) => {
+    this.http.get(`${this.url}/profile/filter/${filter}`).subscribe((res: any) => {
+       observer.next(res);
+       observer.complete();
+    },
+    (error: HttpErrorResponse) => {
+       observer.error(error);
+    });
+ });
+}
+
 createProfile(profile): Observable<any> {
   return Observable.create((observer: Observer<any>) => {
     this.http.post(`${this.url}/profile/create`, profile).subscribe((response) => {
