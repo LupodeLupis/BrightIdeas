@@ -1,0 +1,14 @@
+<p>
+  profile-search-results works!
+</p>
+<div *ngIf = "hasResults; else noResults">
+  <div *ngFor = "let p of profileResults">
+    <a routerLink="/profile/{{p.profileID}}">Picture: {{p.profileDisplayName}} Display Name: {{p.profileDisplayName}}</a>
+    <br/>
+    <br/>
+  </div>
+</div>
+
+<ng-template #noResults>
+  <div>No results found</div>
+</ng-template>

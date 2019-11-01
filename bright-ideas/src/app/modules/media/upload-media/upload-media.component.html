@@ -1,0 +1,7 @@
+<div>
+  <form #f='ngForm' (ngSubmit)='onSubmit(f)'>
+    <input name="mediaInput" type="file" accept="image/png, image/jpg" required/>
+    <br/>
+    <button type="submit" name="submitMedia" [disabled]="!f.valid">Upload Media</button>
+</form>
+</div>>
