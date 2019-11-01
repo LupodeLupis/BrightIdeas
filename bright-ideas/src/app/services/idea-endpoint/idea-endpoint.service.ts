@@ -54,8 +54,10 @@ export class IdeaEndpointService {
   }
 
   createIdea(idea): Observable<any> {
+    console.log(idea)
     return Observable.create((observer: Observer<any>) => {
       this.http.post(`${this.url}/idea/create`, idea).subscribe((response) => {
+        console.log(response)
         observer.next(response);
         observer.complete();
       },
