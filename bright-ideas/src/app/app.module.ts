@@ -20,6 +20,8 @@ import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
 import { UploadMediaComponent } from './modules/media/upload-media/upload-media.component';
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
+import { CreatePositionComponent } from './modules/idea/component/create-idea/create-position/create-position.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { CreateAccountComponent } from './modules/auth/component/create-account/
     ViewMessageComponent,
     UploadMediaComponent,
     ProfileSearchResultsComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    CreatePositionComponent
   ],
   imports: [
     BrowserModule, 

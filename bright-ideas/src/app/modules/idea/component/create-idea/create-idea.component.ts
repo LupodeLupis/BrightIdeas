@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, ElementRef, Output } from '@angular/core';
 import { IdeaEndpointService } from '../../../../services/idea-endpoint/idea-endpoint.service';
 import { PostingEndpointService } from '../../../../services/posting-endpoint/posting-endpoint.service';
-import { IdeaBasicFields } from '../../../../models/idea';
+import { IdeaBasicFields, Idea } from '../../../../models/idea';
 import { FormGroup } from '@angular/forms';
+
 
 @Component({
   selector: 'app-create-idea',
@@ -11,24 +12,33 @@ import { FormGroup } from '@angular/forms';
 })
 export class CreateIdeaComponent implements OnInit {
    idea: IdeaBasicFields;
-
+   isModalVisible: boolean;
   constructor(
     private ideaEndpointService: IdeaEndpointService,
     private postingEndpointService: PostingEndpointService,
     ) {
+      this.isModalVisible = true;
       this.idea = {
-        name: '',
-        description: ''
+        title: '',
+        description: '',
+        creator: 0,
+        leader: 0,
       };
      }
 
   ngOnInit() {
+    this.ideaEndpointService.getIdeaById(3)
   }
 
-  onSubmit(){
-    if (this.idea){
-      this.ideaEndpointService.createIdea(this.idea);
-    }
+  onSubmit() {
   }
+
+  onCloseModal(event: object) {
+      console.log(event)
+   }
+
+   addPosition(){
+    this.isModalVisible = true;
+   }
 
 }
