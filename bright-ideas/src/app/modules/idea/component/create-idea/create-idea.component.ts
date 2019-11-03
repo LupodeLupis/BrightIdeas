@@ -27,7 +27,7 @@ export class CreateIdeaComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.ideaEndpointService.getIdeaById(3)
+    
   }
 
   onSubmit() {

@@ -12,20 +12,34 @@
               <div class="form-group">
                 <label for="title" class="col-form-label">Title</label>
                 <input type="text" class="form-control" id="position-title" [formControl]="positionModalForm.controls['title']">
+                <div *ngIf="positionModalForm.controls['title'].invalid &&
+                            (positionModalForm.controls['title'].dirty || positionModalForm.controls['title'].touched)"
+                            class="alert alert-danger">The field is required.
+                </div>  
               </div>
               <div class="form-group">
                 <label for="description" class="col-form-label">Description</label>
                 <textarea class="form-control" id="position-description" [formControl]="positionModalForm.controls['description']"></textarea>
+                <div *ngIf="positionModalForm.controls['description'].invalid &&
+                            (positionModalForm.controls['description'].dirty || positionModalForm.controls['description'].touched)"
+                            class="alert alert-danger">The field is required.
+                </div>
               </div>
               <div class="form-group">
                   <label for="availability" class="col-form-label">Positions available:</label>
-                  <input class="form-control" id="position-available" [formControl]="positionModalForm.controls['availability']">
+                  <input #positionsAvailable (input)="checkNumberValues(positionsAvailable)" class="form-control" id="position-available" [formControl]="positionModalForm.controls['availability']" maxlength="2">
+                  <div  *ngIf="positionModalForm.controls['availability'].invalid &&
+                        (positionModalForm.controls['availability'].dirty || positionModalForm.controls['availability'].touched)"
+                        class="alert alert-danger">The field is required.
+                  </div>
+                  <div *ngIf="checkNumberValues(positionsAvailable)" class="alert alert-danger">The field must be numeric.</div>
               </div>
             </form>
       </div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <button type="button" class="btn bkg-col-element" id="save-positions" (click)="onSave()" data-dismiss="modal">Save</button>
+        <button type="button" class="btn bkg-col-element"(click)="addNewPosition()">Add a new position</button>
+        <button [disabled]="!positionModalForm.valid" type="submit" class="btn bkg-col-element" id="save-positions" (click)="onSave()" data-dismiss="modal">Save</button>
+        
       </div>
     </div>
   </div>

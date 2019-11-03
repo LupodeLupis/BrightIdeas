@@ -3,7 +3,8 @@ import { Posting } from '../../../../../models/posting';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { PostingEndpointService } from '../../../../../services/posting-endpoint/posting-endpoint.service';
-import { MessageEndpointService } from 'src/app/services/message-endpoint/message-endpoint.service';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 
 @Component({
@@ -14,22 +15,23 @@ import { MessageEndpointService } from 'src/app/services/message-endpoint/messag
 export class CreatePositionComponent implements OnInit {
   @Output() openModalPosition = new EventEmitter<string>();
   @Output() saveModalPosition = new EventEmitter<object>();
+  @Input() positionsAvailable: Event;
   modalId: string;
   position: Posting;
   positionModalForm: FormGroup;
   
 
-  constructor(private positionEndPointService: MessageEndpointService ) {
+  constructor(private positionEndPointService: PostingEndpointService ) {
     this.positionModalForm = new FormGroup({
       title:        new FormControl('', Validators.required),
       description:  new FormControl('', Validators.required),
-      availability: new FormControl('', Validators.maxLength(2))
+      availability: new FormControl('', Validators.required)
     });
    }
 
   ngOnInit() {
     this.initilizationList();
-    this.positionEndPointService.getMessagebyId('1');
+    // console.log(this.positionModalForm);
   }
 
   initilizationList() {
@@ -50,7 +52,6 @@ export class CreatePositionComponent implements OnInit {
   }
 
   onSave() {
-    this.positionEndPointService.getMessagebyId('1');
     if (this.positionModalForm.valid) {
       this.position.postingName = this.positionModalForm.get('title').value;
       this.position.postingDescription = this.positionModalForm.get('description').value;
@@ -65,12 +66,21 @@ export class CreatePositionComponent implements OnInit {
     //   description: this.position.postingDescription,
     //   pos_available: this.position.numberAvailble
     // });
-    // this.positionEndPointService.createPosting({
-    //   postingName: this.positionModalForm.get('title').value,
-    //   postingDescription: this.positionModalForm.get('description').value,
-    //   numberAvailble: this.positionModalForm.get('availability').value,
-    //   numberFilled: 0}
-    // );
+    this.positionEndPointService.createPosting({
+      postingName: this.positionModalForm.get('title').value,
+      postingDescription: this.positionModalForm.get('description').value,
+      numberAvailable: this.positionModalForm.get('availability').value,
+      numberFilled: 0}
+    ).subscribe((response: Posting ) => {
+
+      // here goes a success message
+    },
+    (error: HttpErrorResponse) => {
+      console.log(error.message);
+    });
   }
 
+  checkNumberValues(event: any): boolean {
+    return isNaN(event.value);
+  }
 }
