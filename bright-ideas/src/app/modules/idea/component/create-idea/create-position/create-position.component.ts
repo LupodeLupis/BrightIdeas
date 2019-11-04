@@ -71,6 +71,8 @@ export class CreatePositionComponent implements OnInit {
       postingDescription: this.positionModalForm.get('description').value,
       numberAvailable: this.positionModalForm.get('availability').value,
       numberFilled: 0}
+
+
     ).subscribe((response: Posting ) => {
 
       // here goes a success message
@@ -84,6 +86,4 @@ export class CreatePositionComponent implements OnInit {
     return isNaN(event.value);
   }
 
-  addNewPosition() {
-  }
 }

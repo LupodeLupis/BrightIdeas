@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalPosition" tabindex="-1" role="dialog" aria-labelledby="addPositionTitle" aria-hidden="true" (click)="addPosition()">
+<div class="modal fade" id="modalPosition" tabindex="-1" role="dialog" aria-labelledby="addPositionTitle" aria-hidden="true" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -37,8 +37,7 @@
             </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn bkg-col-element"(click)="addNewPosition()">Add a new position</button>
-        <button [disabled]="!positionModalForm.valid" type="submit" class="btn bkg-col-element" id="save-positions" (click)="onSave()" data-dismiss="modal">Save</button>
+        <button [disabled]="!positionModalForm.valid" type="submit" class="btn bkg-col-element" id="save-positions" (click)="onSave()">Add New Position</button>
       </div>
     </div>
   </div>

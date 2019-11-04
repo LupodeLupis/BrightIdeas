@@ -3,6 +3,7 @@ import { IdeaEndpointService } from '../../../../services/idea-endpoint/idea-end
 import { PostingEndpointService } from '../../../../services/posting-endpoint/posting-endpoint.service';
 import { IdeaBasicFields, Idea } from '../../../../models/idea';
 import { FormGroup } from '@angular/forms';
+import { CATEGORIES } from '../../../../shared/models/global-constants';
 
 
 @Component({
@@ -13,10 +14,12 @@ import { FormGroup } from '@angular/forms';
 export class CreateIdeaComponent implements OnInit {
    idea: IdeaBasicFields;
    isModalVisible: boolean;
+   categoryList: string[] = [];
   constructor(
     private ideaEndpointService: IdeaEndpointService,
     private postingEndpointService: PostingEndpointService,
     ) {
+      this.categoryList = CATEGORIES;
       this.isModalVisible = true;
       this.idea = {
         title: '',
@@ -27,7 +30,6 @@ export class CreateIdeaComponent implements OnInit {
      }
 
   ngOnInit() {
-    
   }
 
   onSubmit() {
