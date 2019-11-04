@@ -13,12 +13,23 @@ import { environment } from "../../../environments/environment"
 export class UserEndpointService {
 
     private url = environment.api;
+    nameRegex = new RegExp('^[a-zA-Z]+$');
+    userNameRegex = new RegExp('^[a-zA-Z0-9_-]{8,25}$');
+    passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
    
     constructor(private http: HttpClient) {}
+
+    login(form: FormGroup): Observable<any> {
+        let newUser = new User;
+        newUser.emailAddress = form.get('eMail').value;
+        newUser.password = form.get('password').value;
+        return this.http.post<User>(`${this.url}/user/login`, newUser);
+    }
 
     getUsers(): Observable<User[]> {
         return this.http.get<User[]>(`${this.url}/user`);
     }
+
     // We need to get by eMail instead of ID
     getUserByEmail(eMail): Observable<User> {
         return this.http.get<User>(`${this.url}/user/` + eMail);
