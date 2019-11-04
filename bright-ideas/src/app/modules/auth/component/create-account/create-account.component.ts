@@ -13,9 +13,6 @@ export class CreateAccountComponent implements OnInit {
     registerForm: FormGroup;
     submitted = false;
     loading = false;
-    nameRegex = new RegExp('^[a-zA-Z]+$');
-    userNameRegex = new RegExp('^[a-zA-Z0-9_-]{8,25}$');
-    passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
     
     constructor(private formBuilder: FormBuilder, private userService: UserEndpointService, private router: Router) { }
 
@@ -23,11 +20,11 @@ export class CreateAccountComponent implements OnInit {
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
-            firstName: ['', [Validators.required, Validators.pattern(this.nameRegex)]],
-            lastName: ['', [Validators.required, Validators.pattern(this.nameRegex)]],
-            userName: ['', [Validators.required, Validators.pattern(this.userNameRegex)]],
+            firstName: ['', [Validators.required, Validators.pattern(this.userService.nameRegex)]],
+            lastName: ['', [Validators.required, Validators.pattern(this.userService.nameRegex)]],
+            userName: ['', [Validators.required, Validators.pattern(this.userService.userNameRegex)]],
             eMail: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required,  Validators.pattern(this.passwordRegex)]],
+            password: ['', [Validators.required, Validators.pattern(this.userService.passwordRegex)]],
             confirmPassword: ['', [this.matchPassword]]
         });
     }
