@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,10 +13,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  search(searchText, searchType): void {
-    console.log("submitted");
-    console.log(searchText.value + " " + searchType);
+  redirectToHome(): void {
+    this.router.navigateByUrl("/home");
+  }
 
+  search(searchText, searchType): void {
     if (searchText != null)
     {
       if(searchType == null || searchType == "ideas")

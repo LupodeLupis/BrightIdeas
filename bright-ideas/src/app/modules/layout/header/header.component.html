@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div id='header'>
-    <img id="BrightIdeasLogo" src="../../assets/images/BrightIdeas_Logo.png" width="400px" style="display: inline-block;"/>
+    <img (click)="redirectToHome()" id="BrightIdeasLogo" src="../../assets/images/BrightIdeas_Logo.png" width="400px" style="display: inline-block;"/>
     <div id="search" style="display: inline-block;">
         <div id="searchBar" style="display: inline-block;">
             <button (click)="search(searchText, searchType1.checked ? searchType1.value : searchType2.checked ? searchType2.value : null)" id="searchButton" tabindex="-1" aria-label="Close"><i class="fa fa-search"></i></button>
