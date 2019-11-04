@@ -34,7 +34,6 @@ export class CreateIdeaComponent implements OnInit {
   }
 
   onCloseModal(event: object) {
-      console.log(event)
    }
 
    addPosition(){

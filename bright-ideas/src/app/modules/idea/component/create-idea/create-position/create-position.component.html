@@ -10,7 +10,7 @@
       <div class="modal-body">
           <form>
               <div class="form-group">
-                <label for="title" class="col-form-label">Title</label>
+                <label for="title" class="col-form-label bkg-col-text"><strong>Title</strong></label>
                 <input type="text" class="form-control" id="position-title" [formControl]="positionModalForm.controls['title']">
                 <div *ngIf="positionModalForm.controls['title'].invalid &&
                             (positionModalForm.controls['title'].dirty || positionModalForm.controls['title'].touched)"
@@ -18,7 +18,7 @@
                 </div>  
               </div>
               <div class="form-group">
-                <label for="description" class="col-form-label">Description</label>
+                <label for="description" class="col-form-label bkg-col-text"><strong>Description</strong></label>
                 <textarea class="form-control" id="position-description" [formControl]="positionModalForm.controls['description']"></textarea>
                 <div *ngIf="positionModalForm.controls['description'].invalid &&
                             (positionModalForm.controls['description'].dirty || positionModalForm.controls['description'].touched)"
@@ -26,7 +26,7 @@
                 </div>
               </div>
               <div class="form-group">
-                  <label for="availability" class="col-form-label">Positions available:</label>
+                  <label for="availability" class="col-form-label bkg-col-text"><strong>Positions available:</strong></label>
                   <input #positionsAvailable (input)="checkNumberValues(positionsAvailable)" class="form-control" id="position-available" [formControl]="positionModalForm.controls['availability']" maxlength="2">
                   <div  *ngIf="positionModalForm.controls['availability'].invalid &&
                         (positionModalForm.controls['availability'].dirty || positionModalForm.controls['availability'].touched)"

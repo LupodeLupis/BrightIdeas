@@ -1,6 +1,10 @@
+
+.idea-container{
+    padding-top: 40px;
+}
 #idea-title {
     max-width: 300px;
-    margin-left: 50px;
+    margin-left: 54px;
     display: inline;
 }
 #idea-category {
@@ -9,16 +13,8 @@
     display: inline;
 }
 
-.width-idea-btn {
-    max-width: 150px;
-    margin: 10px auto;
-    color: white;
-    font-size: 13px;
-}
-
 #submit { 
     float: right;
-
 }
 
 hr{

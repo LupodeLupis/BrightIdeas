@@ -31,7 +31,7 @@ export class CreatePositionComponent implements OnInit {
 
   ngOnInit() {
     this.initilizationList();
-    // console.log(this.positionModalForm);
+    console.log(this.positionModalForm);
   }
 
   initilizationList() {
@@ -76,11 +76,14 @@ export class CreatePositionComponent implements OnInit {
       // here goes a success message
     },
     (error: HttpErrorResponse) => {
-      console.log(error.message);
+      // here goes a failure message
     });
   }
 
   checkNumberValues(event: any): boolean {
     return isNaN(event.value);
+  }
+
+  addNewPosition() {
   }
 }

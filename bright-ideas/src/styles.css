@@ -1,8 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
 .bkg-col-element {
-    background-color: orange;
+    background-color: black;
+    color: orange;
+    margin: 10px;
 }
-.bkg-col-text {
-    color:orange
+.navbar {
+    background-color: black
+}
+.nav-link {
+    color: orange !important;
+}
+
+.bkg-col-text{
+    color: orange;
+}
+.navbar-toggler {
+    background-color: orange;
 }
