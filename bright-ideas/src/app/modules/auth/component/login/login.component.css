@@ -1,0 +1,25 @@
+form input, form select {
+    max-width: 30%;
+    display: inline-block;
+   }
+ form label {
+   width: 25%;
+   text-align: right;
+   color: orange;
+   padding-right: 50px;
+ }
+
+button {
+    background-color: orange;
+    border-radius: 10px;
+    width: 10%;
+}
+
+h2 {
+    padding: 50px;
+    font-size: 50px;
+}
+
+a {
+    color: orange;
+}
