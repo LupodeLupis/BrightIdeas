@@ -1,11 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Observable, Observer } from "rxjs";
-import { Idea } from "../../models/idea";
-import { environment } from "../../../environments/environment"
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, Observer } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class IdeaEndpointService {
   private url = environment.api;

@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, Subject } from 'rxjs';
 import { environment } from '../../../environments/environment'
+import { Posting } from '../../models/posting';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostingEndpointService {
+   showPositionList = new Subject<Posting []>();
 
   private url = environment.api;
 

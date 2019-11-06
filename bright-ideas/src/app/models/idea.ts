@@ -20,7 +20,7 @@ export interface Idea {
 export interface IdeaBasicFields {
     title: string;
     description: string;
-    creator: any;
-    leader: any;
+    creator_id: number;
+    leader_id: number;
 
 }

@@ -1,0 +1,9 @@
+.alert-success , .alert-danger  {
+    margin: 17px 10px 0 10px;
+    text-align: center;
+}
+
+span , p {
+    position: relative;
+    top: 8px;
+}

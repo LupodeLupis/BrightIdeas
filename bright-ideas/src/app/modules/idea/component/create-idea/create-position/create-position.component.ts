@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Posting } from '../../../../../models/posting';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { PostingEndpointService } from '../../../../../services/posting-endpoint/posting-endpoint.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ModalNotificationService } from '../../../../../shared/services/modal-notification/modal-notification.service';
 
 
 
@@ -13,72 +14,64 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./create-position.component.css']
 })
 export class CreatePositionComponent implements OnInit {
-  @Output() openModalPosition = new EventEmitter<string>();
-  @Output() saveModalPosition = new EventEmitter<object>();
-  @Input() positionsAvailable: Event;
+  // @Output() ModalPosition = new Subject<Posting[]>();
   modalId: string;
   position: Posting;
   positionModalForm: FormGroup;
-  
+  positionList: Posting [] = [];
+  positionListResponse: Posting [] = [];
+  counterNmbrPositionsAvailable = 0;
+  counterNmbrPositionFilled = 0;
+  areFieldsEmpty = true;
 
-  constructor(private positionEndPointService: PostingEndpointService ) {
+  constructor(private positionEndPointService: PostingEndpointService,
+              private modalNotificationService: ModalNotificationService) {
     this.positionModalForm = new FormGroup({
       title:        new FormControl('', Validators.required),
       description:  new FormControl('', Validators.required),
       availability: new FormControl('', Validators.required)
     });
+
+    this.position = {
+      postingName: '',
+      postingDescription: '',
+      numberAvailable: this.counterNmbrPositionsAvailable,
+      numberFilled: this.counterNmbrPositionFilled,
+    };
    }
 
   ngOnInit() {
-    this.initilizationList();
-    console.log(this.positionModalForm);
+   // this.initilizationPositionsList();
+  }
+  initilizationPositionsList() {
+    // filter all position based on the user logged in
+    // check before saving if the position name already exist
+    this.positionEndPointService.getAllPosting().subscribe((response: Posting[]) => {
+      this.positionListResponse = response;
+    })
   }
 
-  initilizationList() {
-    if (_.isEmpty(this.position)) {
-        this.position = {
-          postingID: 0,
-          postingName: '',
-          postingDescription: '',
-          numberAvailble: 0,
-          numberFilled: 0
-        };
-    } else {
-    }
-  }
-
-  addPosition() {
-    this.openModalPosition.emit(this.modalId);
-  }
 
   onSave() {
     if (this.positionModalForm.valid) {
-      this.position.postingName = this.positionModalForm.get('title').value;
-      this.position.postingDescription = this.positionModalForm.get('description').value;
-      this.position.numberAvailble = this.positionModalForm.get('availability').value;
+      this.position = {
+        postingName: this.positionModalForm.get('title').value,
+        postingDescription: this.positionModalForm.get('description').value,
+        numberAvailable: this.positionModalForm.get('availability').value,
+        numberFilled: this.counterNmbrPositionFilled
+      };
     } else {
-      this.positionModalForm.get('title').setValue('');
-      this.positionModalForm.get('description').setValue('');
-      this.positionModalForm.get('availability').setValue(0);
+      this.resetFieldsValues();
     }
-    // this.saveModalPosition.emit({
-    //   title: this.position.postingName,
-    //   description: this.position.postingDescription,
-    //   pos_available: this.position.numberAvailble
-    // });
-    this.positionEndPointService.createPosting({
-      postingName: this.positionModalForm.get('title').value,
-      postingDescription: this.positionModalForm.get('description').value,
-      numberAvailable: this.positionModalForm.get('availability').value,
-      numberFilled: 0}
-
-
-    ).subscribe((response: Posting ) => {
-
-      // here goes a success message
+    this.positionEndPointService.createPosting(this.position).subscribe((response: Posting ) => {
+      this.modalNotificationService.openModalNotification({
+        successMessage: 'The position ' + this.position.postingName + ' is added succesfully.'
+      });
+      this.positionList.push(this.position);
+      this.positionEndPointService.showPositionList.next(this.positionList);
     },
     (error: HttpErrorResponse) => {
-      // here goes a failure message
+      this.modalNotificationService.openModalNotification({messageFailure: 'Position could not be added. Try again.'});
     });
   }
 
@@ -86,4 +79,10 @@ export class CreatePositionComponent implements OnInit {
     return isNaN(event.value);
   }
 
+  resetFieldsValues(): boolean {
+    this.positionModalForm.get('title').setValue(' ');
+    this.positionModalForm.get('description').setValue(' ');
+    this.positionModalForm.get('availability').setValue(' ');
+    return false;
+  }
 }

@@ -3,9 +3,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="addPositionTitle"><strong>Add Position</strong></h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button> -->
       </div>
       <div class="modal-body">
           <form>
@@ -38,6 +38,7 @@
       </div>
       <div class="modal-footer">
         <button [disabled]="!positionModalForm.valid" type="submit" class="btn bkg-col-element" id="save-positions" (click)="onSave()">Add New Position</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

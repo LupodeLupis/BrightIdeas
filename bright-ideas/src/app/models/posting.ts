@@ -1,7 +1,6 @@
 export interface Posting {
-    postingID: number;
     postingName: string;
     postingDescription: string;
-    numberAvailble: number;
+    numberAvailable: number;
     numberFilled: number;
 }

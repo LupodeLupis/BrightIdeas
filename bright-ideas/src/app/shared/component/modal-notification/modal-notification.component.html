@@ -1,0 +1,15 @@
+
+<div *ngIf="message.successMessage; else errorMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+  <p><strong>{{message.successMessage}}</strong></p>
+  <button type="button" class="close" aria-label="Close" data-dismiss="alert" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+  </button> 
+</div>
+<ng-template #errorMessage>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <p><strong>{{message.messageFailure}}</strong></p>
+    <button type="button" class="close" aria-label="Close" data-dismiss="alert" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button> 
+  </div>
+</ng-template>

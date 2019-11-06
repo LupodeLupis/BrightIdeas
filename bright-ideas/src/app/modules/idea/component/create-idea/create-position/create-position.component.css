@@ -6,3 +6,11 @@
 .close {
     font-size: 35px;
 }
+.modal-header {
+    border-bottom: 0;
+}
+.modal-content {
+    border: 0px !important
+}
+
+

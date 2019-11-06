@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
-
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './modules/layout/header/header.component';
@@ -21,6 +21,7 @@ import { ViewMessageComponent } from './modules/chat/component/view-message/view
 import { UploadMediaComponent } from './modules/media/upload-media/upload-media.component';
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
 import { CreatePositionComponent } from './modules/idea/component/create-idea/create-position/create-position.component';
+import { ModalNotificationComponent } from './shared/component/modal-notification/modal-notification.component';
 
 
 @NgModule({
@@ -42,16 +43,23 @@ import { CreatePositionComponent } from './modules/idea/component/create-idea/cr
     UploadMediaComponent,
     ProfileSearchResultsComponent,
     CreateAccountComponent,
-    CreatePositionComponent
+    CreatePositionComponent,
+    ModalNotificationComponent
   ],
   imports: [
-    BrowserModule, 
-    AppRoutingModule, 
+    BrowserModule,
+    AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    NgbActiveModal
+  ],
+  entryComponents: [
+    ModalNotificationComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
