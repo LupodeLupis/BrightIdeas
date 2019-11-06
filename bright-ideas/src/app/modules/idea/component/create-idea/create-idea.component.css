@@ -1,7 +1,3 @@
-
-.idea-container{
-    padding-top: 40px;
-}
 #idea-title {
     max-width: 300px;
     margin-left: 54px;
@@ -12,11 +8,9 @@
     margin-left: 20px;
     display: inline;
 }
-
 #submit { 
     float: right;
 }
-
 hr{
  margin: 0;
  border-top: 4px solid rgb(138, 135, 135);

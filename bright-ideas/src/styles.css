@@ -5,16 +5,28 @@
     color: orange;
     margin: 10px;
 }
+.bkg-col-element:hover {
+    background-color: orange;
+    color: black;
+}
 .navbar {
     background-color: black
 }
 .nav-link {
     color: orange !important;
 }
-
 .bkg-col-text{
     color: orange;
 }
 .navbar-toggler {
     background-color: orange;
 }
+a:hover{
+    color: black;
+    text-decoration: none;
+}
+.form-selector-width{
+    max-width: 300px;
+    margin: 0 auto;
+}
+
