@@ -14,7 +14,6 @@ import { IdeaSearchResultsComponent } from './modules/layout/idea-search-results
 import { ProfileSearchResultsComponent } from './modules/layout/profile-search-results/profile-search-results.component';
 import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.component'
 import { LoginComponent } from './modules/auth/component/login/login.component';
-import { ResetPasswordComponent } from './modules/auth/component/reset-password/reset-password.component';
 import { ProfilePageComponent } from './modules/auth/component/profile-page/profile-page.component';
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
@@ -37,7 +36,6 @@ import { AuthInterceptorService } from './shared/services/authInterceptor/auth-i
     CreateIdeaComponent,
     ViewIdeaComponent,
     LoginComponent,
-    ResetPasswordComponent,
     ProfilePageComponent,
     PageNotFoundComponent,
     ViewMessageComponent,

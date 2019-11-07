@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private router: Router) {
-    // this.isUserLoggedIn = tokenIsValid();
+    this.isUserLoggedIn = tokenIsValid();
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     };

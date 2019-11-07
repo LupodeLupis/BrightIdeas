@@ -6,7 +6,6 @@ import { HomeComponent } from './modules/layout/home/home.component';
 import { LoginComponent } from './modules/auth/component/login/login.component';
 import { ProfilePageComponent } from './modules/auth/component/profile-page/profile-page.component';
 import { ChangePasswordComponent } from './modules/auth/component/change-password/change-password.component';
-import { ResetPasswordComponent } from './modules/auth/component/reset-password/reset-password.component';
 import { CreateIdeaComponent } from './modules/idea/component/create-idea/create-idea.component';
 import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.component';
 import { IdeaSearchResultsComponent } from './modules/layout/idea-search-results/idea-search-results.component';
@@ -36,8 +35,6 @@ const routes: Routes = [
     //    { path: 'profile/:id', component: ProfilePageComponent },
     { path: 'changePassword',
       component: ChangePasswordComponent },
-    { path: 'resetPassword',
-      component: ResetPasswordComponent },
     { path: 'createIdea',
       component: CreateIdeaComponent},
     { path: 'uploadMedia',
