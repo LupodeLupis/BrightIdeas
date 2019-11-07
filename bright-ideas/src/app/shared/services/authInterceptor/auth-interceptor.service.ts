@@ -1,9 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-
 import { Observable } from 'rxjs/Observable';
-
-import { tokenIsValid } from  '../../../../../indexedDB-manager.js'
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +14,5 @@ export class AuthInterceptorService implements HttpInterceptor {
             },
         });
         return next.handle(req);
-    }
-}
+    };
+};

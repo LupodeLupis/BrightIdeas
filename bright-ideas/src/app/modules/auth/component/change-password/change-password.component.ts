@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { getDB } from '../../../../../../db-connection.js'
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ModalNotificationService } from './../../../../shared/services/modal-notification/modal-notification.service';
 import { UserEndpointService } from './../../../../services/user-endpoint/user-endpoint.service';
+import { removeToken } from './../../../../../../indexedDB-manager.js';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from './../../../../models/user';
+import { Router } from '@angular/router';
 import bcrypt from 'bcryptjs';
-
 
 @Component({
   selector: 'app-change-password',
@@ -13,23 +14,26 @@ import bcrypt from 'bcryptjs';
 })
 
 export class ChangePasswordComponent implements OnInit {
+    @Input() eMail: string;
+    @Input() changePassword: boolean = false;
     editPasswordForm: FormGroup;
     submitted: boolean = false;
     loading: boolean = false;
-    changePassword: boolean = true;
-    eMail: string;
-
-    constructor(private formBuilder: FormBuilder, private userService: UserEndpointService, private router: Router) { }
+    
+    constructor(private formBuilder: FormBuilder,
+                private userService: UserEndpointService,
+                private router: Router,
+                private modalNotificationService: ModalNotificationService) { }
 
     get f() { return this.editPasswordForm.controls; }
 
     ngOnInit() {
         this.editPasswordForm = this.formBuilder.group({
-            currentPassword: ['', [Validators.required]],
-            newPassword: ['', [Validators.required,  Validators.pattern(this.userService.passwordRegex)]],
-            confirmPassword: ['', [this.matchPassword]]
+            currentPassword: ['', this.changePassword ? Validators.required : null],
+            password: ['', [Validators.required, this.userService.customRegExpValidator(this.userService.passwordRegex)]],
+            confirmPassword: ['', [this.userService.matchPassword()]]
         });
-    }
+    };
 
     onSubmit(){
         this.submitted = true;
@@ -38,29 +42,43 @@ export class ChangePasswordComponent implements OnInit {
             this.userService.getUserByEmail(this.eMail)
             .subscribe((user) => {
                 if(user[0]){
-                    if(
-                        this.changePassword
-                        &&
-                        bcrypt.compareSync(this.editPasswordForm.get('newPassword').value, user[0].password)
-                        &&
-                        !bcrypt.compareSync(this.editPasswordForm.get('newPassword').value, user[0].previousPasswords)
-                        ){
-                        this.router.navigate(['home']);
-                    }
-                }
-                this.editPasswordForm.get('password').setErrors({error: true})
+                    let updatingUser: User = user[0];
+                    let currentPass = this.editPasswordForm.get('currentPassword').value;
+                    let newPass = this.editPasswordForm.get('password').value;
+                    let passwordIsCorrect = bcrypt.compareSync(currentPass, updatingUser.password);
+                    let newPassMatchPrevPass = bcrypt.compareSync(newPass, updatingUser.previousPasswords);
+                    if(this.changePassword){
+                        if(passwordIsCorrect){
+                            if(!newPassMatchPrevPass){
+                                updatingUser.previousPasswords = updatingUser.password;
+                                updatingUser.password = this.userService.getSaltAndHashPassword(newPass);
+                                this.userService.updateUser(updatingUser).subscribe((data) => {
+                                    removeToken();
+                                    this.modalNotificationService.openModalNotification({ successMessage: "Successfully updated password" });
+                                    this.router.navigate(['login']);
+                                    console.log(data);
+                                });
+                            } else {
+                                this.editPasswordForm.get('password').setErrors({ reusePassword: true });
+                            };
+                        } else {
+                            this.editPasswordForm.get('currentPassword').setErrors({ incorrectPassword: true });
+                        };
+                    } else {
+                        updatingUser.previousPasswords = updatingUser.password;
+                        updatingUser.password = this.userService.getSaltAndHashPassword(newPass);
+                        this.userService.updateUser(updatingUser).subscribe((data) => {
+                            removeToken();
+                            this.modalNotificationService.openModalNotification({ successMessage: "Successfully reset password" });
+                            this.router.navigate(['login']);
+                            console.log(data);
+                        });
+                    };
+                };
             },(error) => {
                 console.log(error)
             });
             this.loading = false;
         };
-    }
-
-    matchPassword(FC: FormControl) {
-        if(FC.parent){
-            let password = FC.parent.get('newPassword').value;
-            return password == FC.value ? null : {passNotMatching: true};
-        }
-    }
-
-}
+    };
+};

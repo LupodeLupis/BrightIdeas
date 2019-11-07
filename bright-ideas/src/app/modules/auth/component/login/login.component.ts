@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ModalNotificationService } from './../../../../shared/services/modal-notification/modal-notification.service';
 import { UserEndpointService } from './../../../../services/user-endpoint/user-endpoint.service';
-import { saveToken, tokenIsValid, removeToken } from  './../../../../../../indexedDB-manager.js';
-
+import { saveToken } from  './../../../../../../indexedDB-manager.js';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,33 +15,39 @@ export class LoginComponent implements OnInit {
     submitted = false;
     loading = false;
 
-    constructor(private formBuilder: FormBuilder, private userService: UserEndpointService, private router: Router) { }
+    constructor(private formBuilder: FormBuilder,
+                private userService: UserEndpointService,
+                private router: Router,
+                private modalNotificationService: ModalNotificationService) { };
 
-    get f() { return this.loginForm.controls; }
+    // Return form controls, for ease of use
+    get f() { return this.loginForm.controls; };
 
     ngOnInit() {
+        // Initilize all form controls and set validators
         this.loginForm = this.formBuilder.group({
             eMail: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required]]
         });
-    }
+    };
 
     onSubmit(){
         this.submitted = true;
         if(this.loginForm.valid){
             this.loading = true;
             this.userService.login(this.loginForm)
-            .subscribe((data) => {
+            .subscribe((response) => {
                 // Server will return a webToken if login was successful. save the token locally to be used later
-                if(data.token){
-                    saveToken(data.token);
+                if(response.token){
+                    saveToken(response.token);
                     this.router.navigate(['home']);
                 };
-                this.loginForm.get('password').setErrors({error: true})
+                this.loginForm.get('password').setErrors({ error: true });
             },(error) => {
-                console.log(error)
+                this.modalNotificationService.openModalNotification({ messageFailure: "Encountered an error logging in, please try again" });
+                console.log(error);
             })
             this.loading = false;
         };
-    }
-}
+    };
+};
