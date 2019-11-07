@@ -1,6 +1,7 @@
 // Create a data base open request, named "dataBase", version 1
 let request = indexedDB.open("dataBase", 1);
 let dataBase;
+var Buffer = require('buffer/').Buffer 
 
 // Data base did NOT already exist, but now created
 request.onupgradeneeded = function() {
