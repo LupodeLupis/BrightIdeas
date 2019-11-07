@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ChildrenOutletContexts, PreloadAllModules } from '@angular/router';
 import { AuthGuardService } from './shared/services/auth-guard/auth-guard.service';
 
 import { HomeComponent } from './modules/layout/home/home.component';
@@ -20,26 +20,40 @@ import { CreateAccountComponent } from './modules/auth/component/create-account/
 // NOTE THIS WILL ONLY CHECK TO SEE IF A VALID TOKEN IS FOUND IN LOCAL STORAGE
 // IF IT NEEDS TO BE ROLE PROTECTED, WE NEED TO ADD A NEW AUTH GUARD
 const routes: Routes = [
-    { path: 'changePassword', component: ChangePasswordComponent },
-    { path: 'createAccount', component: CreateAccountComponent },
-    { path: 'viewMessage', component: ViewMessageComponent, canActivate: [AuthGuardService] },
-    { path: 'home', component: HomeComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'profile', component: ProfilePageComponent },
+    { path: 'changePassword',
+      component: ChangePasswordComponent },
+    { path: 'createAccount',
+      component: CreateAccountComponent },
+    { path: 'viewMessage',
+      component: ViewMessageComponent,
+      canActivate: [AuthGuardService] },
+    { path: 'home',
+      component: HomeComponent},
+    { path: 'login',
+      component: LoginComponent },
+    { path: 'profile',
+      component: ProfilePageComponent },
     //    { path: 'profile/:id', component: ProfilePageComponent },
-    { path: 'changePassword', component: ChangePasswordComponent },
-    { path: 'resetPassword', component: ResetPasswordComponent },
-    { path: 'createIdea', component: CreateIdeaComponent},
-    { path: 'uploadMedia', component: UploadMediaComponent },
-    { path: 'idea/:id', component: ViewIdeaComponent },
-    { path: 'searchResults/Ideas/:query', component: IdeaSearchResultsComponent },
-    { path: 'searchResults/Profiles/:query', component: ProfileSearchResultsComponent},
+    { path: 'changePassword',
+      component: ChangePasswordComponent },
+    { path: 'resetPassword',
+      component: ResetPasswordComponent },
+    { path: 'createIdea',
+      component: CreateIdeaComponent},
+    { path: 'uploadMedia',
+      component: UploadMediaComponent },
+    { path: 'idea/:id',
+      component: ViewIdeaComponent },
+    { path: 'searchResults/Ideas/:query',
+      component: IdeaSearchResultsComponent },
+    { path: 'searchResults/Profiles/:query',
+      component: ProfileSearchResultsComponent},
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {preloadingStrategy : PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

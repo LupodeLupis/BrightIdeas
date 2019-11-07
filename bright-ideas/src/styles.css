@@ -22,6 +22,9 @@ input:focus, textarea:focus, select:focus{
 .nav-link {
     color: white !important;
 }
+.nav-link:hover {
+    color: orange !important;;
+}
 .bkg-col-text{
     color: orange;
 }

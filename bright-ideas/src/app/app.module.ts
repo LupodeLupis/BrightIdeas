@@ -52,7 +52,7 @@ import { ModalNotificationComponent } from './shared/component/modal-notificatio
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
   ],
   providers: [
     NgbActiveModal

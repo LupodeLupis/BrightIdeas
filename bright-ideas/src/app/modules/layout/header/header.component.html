@@ -8,9 +8,7 @@
     <li routerLinkActive="active"><a routerLink="/createIdea">Create Idea</a></li>
 </ul>
 </nav> -->
-
-<nav class="navbar navbar-expand-lg navbar-light ">
-    <!-- <a class="navbar-brand" href="/">Navbar</a> -->
+<nav *ngIf="isUserLoggedIn; else userNotLoggedIn" class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="/">
         <img src="../../../../assets/img/logo.ico" width="130" height="30" class="d-inline-block align-top" alt="brightIdeas_Logo">
       </a>
@@ -25,15 +23,36 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/viewMessage">View Chat</a>
         </li>
-        <li class="nav-item" routerLinkActive="active">
+        <!-- <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/login">Login</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active" >
+        </li> -->
+        <!-- <li class="nav-item" routerLinkActive="active" >
             <a class="nav-link" routerLink="/createAccount">Create Account</a>
-        </li>
+        </li> -->
         <li class="nav-item" routerLinkActive="active" >
             <a class="nav-link"routerLink="/createIdea">Create Idea</a>
         </li>
       </ul>
     </div>
   </nav>
+
+<ng-template #userNotLoggedIn>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/">
+            <img src="../../../../assets/img/logo.ico" width="130" height="30" class="d-inline-block align-top" alt="brightIdeas_Logo">
+        </a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link" routerLink="/login">Login</a>
+            </li>
+            <li class="nav-item" routerLinkActive="active" >
+                <a class="nav-link" routerLink="/createAccount">Register</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+</ng-template>
