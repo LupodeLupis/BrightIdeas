@@ -22,7 +22,6 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'profile', component: ProfilePageComponent },
-    //    { path: 'profile/:id', component: ProfilePageComponent },
     { path: 'changePassword', component: ChangePasswordComponent },
     { path: 'resetPassword', component: ResetPasswordComponent },
     { path: 'createIdea', component: CreateIdeaComponent },
