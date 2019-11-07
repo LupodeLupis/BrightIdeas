@@ -152,12 +152,11 @@
 }
 .msg_send_btn:hover {
     background-color:black;
+    color: orange;
 }
-
 .messaging {
 	padding: 0 0 50px 0;
 }
-
 .msg_history {
 	height: 516px;
 	overflow-y: auto;
