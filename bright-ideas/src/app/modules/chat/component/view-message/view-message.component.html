@@ -53,15 +53,14 @@
     <div class="col pt-4">
       <p><strong>Chats</strong></p>
       <hr>
-        <div class="form-group pt-4">
+        <div class="form-group pt-4 text-center">
           <label for="message-inline" class="bkg-col-text">View Chats from</label>
           <select class="form-control" id="message-inline"  >
               <option *ngFor="let idea of ideas" [value]="idea">{{idea.ideaName}}</option>
           </select>
         </div>
         <div class="headind_srch">
-          <div class="recent_heading">
-            <label class="bkg-col-text" >Recent</label>
+          <div class="recent_heading text-center">
             <input type="text" class="search-bar"  placeholder="Search" >
           </div>
         </div>
