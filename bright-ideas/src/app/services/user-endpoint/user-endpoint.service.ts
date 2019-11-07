@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { environment } from "../../../environments/environment"
+import { FormGroup, FormControl } from '@angular/forms';
 import { Observable, Observer } from "rxjs";
+import { Injectable } from "@angular/core";
 import { User } from "../../models/user";
 import bcrypt from 'bcryptjs';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { environment } from "../../../environments/environment"
 
 @Injectable({
   providedIn: "root"
@@ -18,6 +18,26 @@ export class UserEndpointService {
     passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
    
     constructor(private http: HttpClient) {}
+
+        // Check that password and confirmPassword match, if not return an error
+        matchPassword() {
+            return (control: FormControl) => {
+                if (control.value && control.parent) {
+                    let password = control.parent.get('password').value;
+                    return password == control.value ? null : { passNotMatching: true };
+                };
+            };
+        };
+        // Check that the form control value matches the passed in regExp pattern, if not return error
+        customRegExpValidator(regExPattern: RegExp){
+            return (control: FormControl) => {
+                if (control.value && !control.value.match(regExPattern)) {
+                    return { invalid: true };
+                } else {
+                    return null;
+                };
+            };
+        };
 
     login(form: FormGroup): Observable<any> {
         let newUser = new User;

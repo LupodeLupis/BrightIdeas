@@ -1,7 +1,8 @@
+import { ModalNotificationService } from './../../../../shared/services/modal-notification/modal-notification.service';
+import { UserEndpointService } from './../../../../services/user-endpoint/user-endpoint.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { UserEndpointService } from './../../../../services/user-endpoint/user-endpoint.service';
 
 @Component({
   selector: 'app-create-account',
@@ -14,44 +15,43 @@ export class CreateAccountComponent implements OnInit {
     submitted = false;
     loading = false;
     
-    constructor(private formBuilder: FormBuilder, private userService: UserEndpointService, private router: Router) { }
+    constructor(private formBuilder: FormBuilder, 
+                private userService: UserEndpointService,
+                private router: Router,
+                private modalNotificationService: ModalNotificationService) { };
 
-    get f() { return this.registerForm.controls; }
+    // Return form controls, for ease of use
+    get f() { return this.registerForm.controls; };
 
     ngOnInit() {
+        // Initilize all form controls and set validators
         this.registerForm = this.formBuilder.group({
-            firstName: ['', [Validators.required, Validators.pattern(this.userService.nameRegex)]],
-            lastName: ['', [Validators.required, Validators.pattern(this.userService.nameRegex)]],
-            userName: ['', [Validators.required, Validators.pattern(this.userService.userNameRegex)]],
+            firstName: ['', [Validators.required, this.userService.customRegExpValidator(this.userService.nameRegex)]],
+            lastName: ['', [Validators.required, this.userService.customRegExpValidator(this.userService.nameRegex)]],
+            userName: ['', [Validators.required, this.userService.customRegExpValidator(this.userService.userNameRegex)]],
             eMail: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, Validators.pattern(this.userService.passwordRegex)]],
-            confirmPassword: ['', [this.matchPassword]]
+            password: ['', [Validators.required, this.userService.customRegExpValidator(this.userService.passwordRegex)]],
+            confirmPassword: ['', [this.userService.matchPassword()]]
         });
-    }
+    };
 
     onSubmit(){
-        this.submitted = true;        
+        this.submitted = true;
         if(this.registerForm.valid){
             this.loading = true;
             this.userService.registerUser(this.registerForm)
             .subscribe((response) => {
                 if(response.error){
-                    alert(response.error)
+                    this.modalNotificationService.openModalNotification({ messageFailure: response.error });
                 } else {
+                    this.modalNotificationService.openModalNotification({ successMessage: response.message });
                     this.router.navigate(['login']);
                 }        
             },(error) => {
+                this.modalNotificationService.openModalNotification({ messageFailure: "Encountered an error creating an account, please try again" });
                 console.log(error.error)
             });
             this.loading = false;
-        }
-    }
-
-    matchPassword(FC: FormControl) {
-        if(FC.parent){
-            let password = FC.parent.get('password').value;
-            return password == FC.value ? null : {passNotMatching: true};
-        }
-    }
-
-}
+        };
+    };
+};

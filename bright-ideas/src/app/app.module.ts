@@ -8,7 +8,7 @@ import { HeaderComponent } from './modules/layout/header/header.component';
 import { ContentComponent } from './modules/layout/content/content.component';
 import { ChangePasswordComponent } from './modules/auth/component/change-password/change-password.component';
 import { CreateIdeaComponent } from './modules/idea/component/create-idea/create-idea.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './modules/layout/home/home.component';
 import { IdeaSearchResultsComponent } from './modules/layout/idea-search-results/idea-search-results.component';
 import { ProfileSearchResultsComponent } from './modules/layout/profile-search-results/profile-search-results.component';
@@ -22,6 +22,7 @@ import { UploadMediaComponent } from './modules/media/upload-media/upload-media.
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
 import { CreatePositionComponent } from './modules/idea/component/create-idea/create-position/create-position.component';
 import { ModalNotificationComponent } from './shared/component/modal-notification/modal-notification.component';
+import { AuthInterceptorService } from './shared/services/authInterceptor/auth-interceptor.service';
 
 
 @NgModule({
@@ -54,7 +55,11 @@ import { ModalNotificationComponent } from './shared/component/modal-notificatio
     FormsModule,
     NgbModule.forRoot(),
   ],
-  providers: [
+  providers: [ {
+    provide : HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi   : true,
+    },
     NgbActiveModal
   ],
   entryComponents: [
