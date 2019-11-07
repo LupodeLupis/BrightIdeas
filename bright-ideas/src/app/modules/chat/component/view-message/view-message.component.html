@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="col-md-6">
     <div class="row">
       <h1 class="header-title">
@@ -43,6 +43,81 @@
     <div class="row">
       <div class="col-md-6">
         <button type="button" class="btn btn-primary">Send</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col pt-4">
+      <p><strong>Chats</strong></p>
+      <hr>
+        <div class="form-group pt-4">
+          <label for="message-inline" class="bkg-col-text">View Chats from</label>
+          <select class="form-control" id="message-inline"  >
+              <option *ngFor="let idea of ideas" [value]="idea">{{idea.ideaName}}</option>
+          </select>
+        </div>
+        <div class="headind_srch">
+          <div class="recent_heading">
+            <label class="bkg-col-text" >Recent</label>
+            <input type="text" class="search-bar"  placeholder="Search" >
+          </div>
+        </div>
+        <div class="chat_list">
+            <div class="chat_people">
+              <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="chat_ib">
+                  <h5>Sunil Rajput <span class="notification">1</span></h5>
+                  <p>Test, which is a new approach to have all...</p>
+                </div>
+            </div>
+        </div>
+        <div class="chat_list">
+          <div class="chat_people">
+            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+              <div class="chat_ib">
+                <h5>Sunil Rajput <span class="notification">1</span></h5>
+                <p>Test, which is a new approach to have....</p>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="col pt-4">
+      <p><strong>Messages</strong></p>
+      <hr>
+      <div class="form-group pt-4">
+        <label id="chat-messages-lbl" class="bkg-col-text"> In chat with: <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </label>
+          <button type="button" class=" float-right btn bkg-col-element">+ Add Recipiant</button>
+      </div>
+      <div class="mesgs pt-4">
+        <div class="msg_history">
+          <div class="incoming_msg">
+            <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+              <div class="received_msg">
+                <div class="received_withd_msg">
+                  <p>Test which is a new approach to have all
+                  solutions</p>
+                  <span class="time_date"> 11:01 AM    |    June 9</span>
+                </div>
+              </div>
+          </div>
+          <div class="outgoing_msg">
+            <div class="outgoing_msg_img"> <img id="outgoing_img" src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+              <div class="sent_msg">
+                <p>Test which is a new approach to have all
+                  solutions</p>
+                <span class="time_date"> 11:01 AM    |    June 9</span> 
+              </div>  
+          </div>
+        </div>
+        <div class="type_msg">
+          <div class="input_msg_write">
+            <input type="text" class="write_msg" placeholder="Type a message" />
+            <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

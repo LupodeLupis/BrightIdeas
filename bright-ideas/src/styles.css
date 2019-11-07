@@ -1,19 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
 .bkg-col-element {
-    background-color: black;
-    color: orange;
-    margin: 10px;
-}
-.bkg-col-element:hover {
     background-color: orange;
     color: black;
+   /* margin: 10px; */
+}
+.bkg-col-element:hover {
+    background-color: black;
+    color: orange;
 }
 .navbar {
     background-color: black
 }
 .nav-link {
-    color: orange !important;
+    color: white !important;
 }
 .bkg-col-text{
     color: orange;
@@ -28,5 +28,10 @@ a:hover{
 .form-selector-width{
     max-width: 300px;
     margin: 0 auto;
+}
+
+hr {
+    margin: 0;
+    border-top: 4px solid rgb(138, 135, 135)
 }
 
