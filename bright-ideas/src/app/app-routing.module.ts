@@ -27,7 +27,8 @@ const routes: Routes = [
       component: ViewMessageComponent,
       canActivate: [AuthGuardService] },
     { path: 'home',
-      component: HomeComponent},
+      component: HomeComponent,
+      runGuardsAndResolvers: 'always'},
     { path: 'login',
       component: LoginComponent },
     { path: 'profile',
@@ -50,7 +51,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {preloadingStrategy : PreloadAllModules})],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

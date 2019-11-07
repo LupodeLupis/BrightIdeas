@@ -31,23 +31,24 @@ export class LoginComponent implements OnInit {
         });
     };
 
-    onSubmit(){
+    onSubmit() {
         this.submitted = true;
-        if(this.loginForm.valid){
+        if (this.loginForm.valid) {
             this.loading = true;
             this.userService.login(this.loginForm)
             .subscribe((response) => {
                 // Server will return a webToken if login was successful. save the token locally to be used later
-                if(response.token){
+                if (response.token) {
                     saveToken(response.token);
                     this.router.navigate(['home']);
                 };
                 this.loginForm.get('password').setErrors({ error: true });
             },(error) => {
-                this.modalNotificationService.openModalNotification({ messageFailure: "Encountered an error logging in, please try again" });
-                console.log(error);
-            })
+                this.modalNotificationService.openModalNotification(
+                    { messageFailure: 'Encountered an error logging in, please try again'
+                });
+            });
             this.loading = false;
-        };
-    };
-};
+        }
+    }
+}
