@@ -1,3 +1,76 @@
-<p>
-  create-idea works!
-</p>
+<div class="container pt-4">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <h2 class="pb-4"><strong>Create Idea</strong></h2>
+      <form>
+        <div class="form-group">
+            <label for="title" class="bkg-col-text"><strong>Title</strong></label> 
+            <input  type="text" id="idea-title" class="form-control" aria-label="title" [formControl]="ideaForm.controls['idea_title']">
+            <div *ngIf="ideaForm.controls['idea_title'].invalid &&
+                        (ideaForm.controls['idea_title'].dirty || ideaForm.controls['idea_title'].touched)"
+                        class="alert alert-danger">The field is required.
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="category" class="bkg-col-text"><strong>Category</strong></label>
+            <select class="form-control category" id="category">
+                <option *ngFor="let cat of categoryList" [value]="cat" >{{cat}}</option>
+            </select>
+        </div>
+        <div class="form-group pt-4">
+          <label class="bkg-col-text" for="description"><strong>Description</strong></label>
+          <textarea  placeholder="Tell us about your idea..." class="form-control" id="idea-description" rows="3" 
+            [formControl]="ideaForm.controls['idea_description']">
+          </textarea>
+          <div *ngIf="ideaForm.controls['idea_description'].invalid &&
+                      (ideaForm.controls['idea_description'].dirty || ideaForm.controls['idea_description'].touched)"
+                      class="alert alert-danger">The field is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="bkg-col-text" for="media"><strong>Media</strong></label>
+          <hr>
+          <div class="text-center">
+            <button class="btn bkg-col-element">Upload File</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="bkg-col-text" for="media"><strong>Available Position</strong></label>
+          <hr>
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Position</th>
+              <th scope="col">Description</th>
+              <th scope="col">Positions Available</th>
+                <!-- <th scope="col">Positions Filled</th>
+                <th scope="col">Media</th> -->
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let position of positionsList; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ position.postingName}}</td>
+              <td>{{ position.postingDescription}}</td>
+              <td>{{ position.numberAvailable}}</td>
+              <!-- <td>{{ }}</td> -->
+            </tr>
+            </tbody>
+          </table>
+          <div class="text-center">
+            <button class="btn bkg-col-element"
+              type="button" data-toggle="modal" data-target="#modalPosition" (click)="addPosition()">
+              Add Position
+            </button>
+          </div>
+        </div>
+        <div class="form-group">
+            <button click="onSubmit()" type="submit" id="submit" class="bkg-col-element btn">Submit for Approval</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<app-create-position></app-create-position>
+

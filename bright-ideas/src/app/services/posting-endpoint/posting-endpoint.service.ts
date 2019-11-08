@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, Subject } from 'rxjs';
 import { environment } from '../../../environments/environment'
+import { Posting } from '../../models/posting';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostingEndpointService {
+   showPositionList = new Subject<Posting []>();
 
   private url = environment.api;
 
@@ -73,8 +75,10 @@ export class PostingEndpointService {
   }
 
   createPosting(body: object): Observable<any> {
+   console.log('this is the posting body', body )
    return Observable.create((observer: Observer<any>) => {
      this.http.post(`${this.url}/posting/create`, body).subscribe((res: any) => {
+        console.log(res)
         observer.next(res);
         observer.complete();
      },

@@ -1,0 +1,42 @@
+<div class="modal fade" id="modalPosition" tabindex="-1" role="dialog" aria-labelledby="addPositionTitle" aria-hidden="true" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="addPositionTitle"><strong>Add Position</strong></h3>
+      </div>
+      <div class="modal-body">
+          <form>
+              <div class="form-group">
+                <label for="title" class="col-form-label bkg-col-text"><strong>Title</strong></label>
+                <input type="text" class="form-control" id="position-title" [formControl]="positionModalForm.controls['title']">
+                <div *ngIf="positionModalForm.controls['title'].invalid &&
+                            (positionModalForm.controls['title'].dirty || positionModalForm.controls['title'].touched)"
+                            class="alert alert-danger">The field is required.
+                </div>  
+              </div>
+              <div class="form-group">
+                <label for="description" class="col-form-label bkg-col-text"><strong>Description</strong></label>
+                <textarea class="form-control" id="position-description" [formControl]="positionModalForm.controls['description']"></textarea>
+                <div *ngIf="positionModalForm.controls['description'].invalid &&
+                            (positionModalForm.controls['description'].dirty || positionModalForm.controls['description'].touched)"
+                            class="alert alert-danger">The field is required.
+                </div>
+              </div>
+              <div class="form-group">
+                  <label for="availability" class="col-form-label bkg-col-text"><strong>Positions available:</strong></label>
+                  <input #positionsAvailable (input)="checkNumberValues(positionsAvailable)" class="form-control" id="position-available" [formControl]="positionModalForm.controls['availability']" maxlength="2">
+                  <div  *ngIf="positionModalForm.controls['availability'].invalid &&
+                        (positionModalForm.controls['availability'].dirty || positionModalForm.controls['availability'].touched)"
+                        class="alert alert-danger">The field is required.
+                  </div>
+                  <div *ngIf="checkNumberValues(positionsAvailable)" class="alert alert-danger">The field must be numeric.</div>
+              </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button [disabled]="!positionModalForm.valid" type="submit" class="btn bkg-col-element" id="save-positions" (click)="onSave()">Add New Position</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

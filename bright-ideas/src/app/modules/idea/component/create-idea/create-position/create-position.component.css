@@ -1,0 +1,16 @@
+#position-available {
+    max-width: 50px;
+    display: inline;
+    margin: 10px;
+}
+.close {
+    font-size: 35px;
+}
+.modal-header {
+    border-bottom: 0;
+}
+.modal-content {
+    border: 0px !important
+}
+
+

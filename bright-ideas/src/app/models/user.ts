@@ -8,3 +8,8 @@ export class User {
     password: string;
     previousPasswords: string;
 }
+
+export interface Credential {
+    email: string;
+    password: string;
+}

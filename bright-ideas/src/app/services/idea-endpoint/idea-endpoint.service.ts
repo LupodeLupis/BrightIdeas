@@ -1,11 +1,10 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Observable, Observer } from "rxjs";
-import { Idea } from "../../models/idea";
-import { environment } from "../../../environments/environment"
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, Observer } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class IdeaEndpointService {
   private url = environment.api;
@@ -68,6 +67,7 @@ export class IdeaEndpointService {
   createIdea(idea): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.http.post(`${this.url}/idea/create`, idea).subscribe((response) => {
+        console.log(response)
         observer.next(response);
         observer.complete();
       },

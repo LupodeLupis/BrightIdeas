@@ -5,8 +5,8 @@ import { Update } from './update';
 import { ToDo } from './todo';
 
 export interface Idea {
-    ideaID: number;
-    ideaName: string
+    ideaID: any;
+    ideaName: string;
     ideaDescription: string;
     ideaCreator: Member;
     ideaLeader: Member;
@@ -15,4 +15,12 @@ export interface Idea {
     update: Update;
     date: Date;     //TypeScript default class type
     toDoList: ToDo;
+}
+
+export interface IdeaBasicFields {
+    title: string;
+    description: string;
+    creator_id: number;
+    leader_id: number;
+
 }

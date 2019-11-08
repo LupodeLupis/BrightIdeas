@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { tokenIsValid } from '../../../../../indexedDB-manager.js';
+import { Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,10 +9,13 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  isUserLoggedIn: boolean;
 
-  ngOnInit() {
+  constructor(private router: Router) {
+    this.isUserLoggedIn = tokenIsValid();
   }
+
+  ngOnInit(){}
 
   redirectToHome(): void {
     this.router.navigateByUrl("/home");

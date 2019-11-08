@@ -1,1 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+p{
+    font-weight: 600;
+}
+
+input:focus, textarea:focus, select:focus{
+    outline: none !important;
+}
+
+.bkg-col-element {
+    background-color: orange;
+    color: black;
+   /* margin: 10px; */
+}
+.bkg-col-element:hover {
+    background-color: black;
+    color: orange;
+}
+.navbar {
+    background-color: black
+}
+.nav-link {
+    color: white !important;
+}
+.nav-link:hover {
+    color: orange !important;;
+}
+.bkg-col-text{
+    color: orange;
+}
+.navbar-toggler {
+    background-color: orange;
+}
+a:hover{
+    color: black;
+    text-decoration: none;
+}
+.form-selector-width{
+    max-width: 300px;
+    margin: 0 auto;
+}
+hr {
+    margin: 0;
+    border-top: 4px solid rgb(138, 135, 135)
+}
+.category-sel-opt {
+    max-width: 300px;
+    margin-left: 20px;
+    display: inline;
+}
+
