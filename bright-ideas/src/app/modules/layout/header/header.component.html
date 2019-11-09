@@ -1,33 +1,23 @@
-<!-- <nav class="navbar navbar-light bg-light bkg-col-element" id="header" role="banner">
-<ul class="nav navbar-nav">
-    <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
-    <li routerLinkActive="active"><a routerLink="/viewMessage">View Chat</a></li>
-    <li routerLinkActive="active"><a routerLink="/changePassword">View Change Password</a></li>
-    <li routerLinkActive="active"><a routerLink="/login">Login</a></li>
-    <li routerLinkActive="active"><a routerLink="/createAccount">Create Account</a></li>
-    <li routerLinkActive="active"><a routerLink="/createIdea">Create Idea</a></li>
-</ul>
-</nav> -->
 <nav *ngIf="isUserLoggedIn; else userNotLoggedIn" class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="/">
         <img src="../../../../assets/img/logo.ico" width="130" height="30" class="d-inline-block align-top" alt="brightIdeas_Logo">
       </a>
-      <div id='header'>
-          <div id="search" style="display: inline-block;">
-              <div id="searchBar" style="display: inline-block;">
-                  <button (click)="search(searchText, searchType1.checked ? searchType1.value : searchType2.checked ? searchType2.value : null)" id="searchButton" tabindex="-1" aria-label="Close"><i class="fa fa-search"></i></button>
-                  <input #searchText type="text" id="searchText" placeholder="Search BrightIdeas"/>
-              </div>
-              <div id="searchType" class="btn-group" data-toggle="buttons" style="display: inline-block;">
-                      <label class="btn btn-primary active" id="ideasButton">
-                        <input #searchType1 value="ideas" type="radio" id="option1" name="searchType"> Ideas
-                      </label>
-                      <label class="btn btn-primary" id="profilesButton">
-                        <input #searchType2 value="profiles" type="radio" id="option2" name="searchType"> Profiles
-                      </label>
-              </div>
-            </div>  
-      </div>
+      <!-- <div id='header'>
+        <div id="search" style="display: inline-block;">
+            <div id="searchBar" style="display: inline-block;">
+                <button (click)="search(searchText, searchType1.checked ? searchType1.value : searchType2.checked ? searchType2.value : null)" id="searchButton" tabindex="-1" aria-label="Close"><i class="fa fa-search"></i></button>
+                <input #searchText type="text" id="searchText" placeholder="Search BrightIdeas"/>
+            </div>
+            <div id="searchType" class="btn-group" data-toggle="buttons" style="display: inline-block;">
+                <label class="btn btn-primary active" id="ideasButton">
+                  <input #searchType1 value="ideas" type="radio" id="option1" name="searchType"> Ideas
+                </label>
+                <label class="btn btn-primary" id="profilesButton">
+                  <input #searchType2 value="profiles" type="radio" id="option2" name="searchType"> Profiles
+                </label>
+            </div>
+          </div>  
+      </div> -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -39,17 +29,18 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/viewMessage">View Chat</a>
         </li>
-        <!-- <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="/login">Login</a>
-        </li> -->
-        <!-- <li class="nav-item" routerLinkActive="active" >
-            <a class="nav-link" routerLink="/createAccount">Create Account</a>
-        </li> -->
         <li class="nav-item" routerLinkActive="active" >
             <a class="nav-link"routerLink="/createIdea">Create Idea</a>
         </li>
       </ul>
+      <div class="search-container-header input-group md-form form-sm form-1 pl-0">
+        <div class="form-group has-search">
+            <span class="fa fa-search form-control-feedback"></span>
+            <input type="text" class="form-control has-search-header" placeholder="Search">
+        </div>
+      </div>
     </div>
+    
   </nav>
 
 <ng-template #userNotLoggedIn>

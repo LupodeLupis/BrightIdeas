@@ -1,39 +1,8 @@
-#header{
-    background-color: darkslategray;
+.search-container-header {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-#BrightIdeasLogo {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 50px;
-    padding-right: 50px;
-    cursor: pointer;
-}
-
-#searchBar {
-    background: grey;
-    padding: 2px;
-    border: 1px solid darkslategray;
-    border-radius: 10px;
-}
-
-#searchBar #searchButton, #searchText {
-    text-decoration: none;
-	text-shadow: none;
-	border: 0;
-	margin: 0;
-	background: transparent;
-	cursor: pointer;
-}
-
-#searchBar #searchButton {
-    padding-left: 10px;
-    padding-right:10px;
-    color: lightgrey;
-}
-
-#searchBar #searchText {
-    width: 500px;
-    height: 30px;
-    color: white;
-}
+/* .has-search-header {
+     padding: 0
+} */

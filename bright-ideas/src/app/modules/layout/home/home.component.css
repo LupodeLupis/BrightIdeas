@@ -1,39 +1,25 @@
-h2 {
-    max-width: 700px;
+.text-container h3 {
+    max-width: 600px;
     margin: 0 auto;
     font-weight: 400;
 }
-h2 a {
-    font-size: 25px;
+h3 a {
+    font-size: 20px;
 }
 .carousel-caption p {
     margin: 0;
     font-size: 13px;
     font-weight: 600;
 }
-#carousel-featured-idea, #carousel-new-idea{
-    max-width: 500px;
+.corousel-container{
+    max-width: 250px;
     margin: 0 auto;;
-}
-
-.has-search .form-control {
-    padding-left: 2.375rem;
-}
-
-.has-search .form-control-feedback {
-    position: absolute;
-    z-index: 2;
-    display: block;
-    width: 2.375rem;
-    height: 2.375rem;
-    line-height: 2.375rem;
-    text-align: center;
-    pointer-events: none;
-    color: #aaa;
 }
 
 .carousel-control-next-icon, .carousel-control-prev-icon {
     position: relative;
     top: 28px;
 }
+
+
 
