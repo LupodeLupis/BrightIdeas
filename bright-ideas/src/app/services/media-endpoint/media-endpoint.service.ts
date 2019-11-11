@@ -38,6 +38,30 @@ export class MediaEndpointService {
       });
   }
 
+  getMediabyIdeaId(ideaId: string): Observable<Media> {
+   return Observable.create((observer: Observer<Media>) => {
+        this.http.get(`${this.url}/media/idea/${ideaId}`).subscribe((res: Media) => {
+           observer.next(res);
+           observer.complete();
+        },
+        (error: HttpErrorResponse) => {
+           observer.error(error);
+        });
+     });
+ }
+
+ getMediabyProfileId(profileId: string): Observable<Media> {
+   return Observable.create((observer: Observer<Media>) => {
+        this.http.get(`${this.url}/media/profile/${profileId}`).subscribe((res: Media) => {
+           observer.next(res);
+           observer.complete();
+        },
+        (error: HttpErrorResponse) => {
+           observer.error(error);
+        });
+     });
+ }
+
   createMedia(body: object): Observable <any> {
    return Observable.create((observer: Observer<any>) => {
          this.http.post(`${this.url}/media/create`, body).subscribe((response: any) => {
