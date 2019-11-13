@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CATEGORIES } from '../../../shared/models/global-constants';
-import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
