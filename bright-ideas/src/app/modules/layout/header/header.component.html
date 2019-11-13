@@ -2,22 +2,6 @@
     <a class="navbar-brand" href="/">
         <img src="../../../../assets/img/logo.ico" width="130" height="30" class="d-inline-block align-top" alt="brightIdeas_Logo">
       </a>
-      <!-- <div id='header'>
-        <div id="search" style="display: inline-block;">
-            <div id="searchBar" style="display: inline-block;">
-                <button (click)="search(searchText, searchType1.checked ? searchType1.value : searchType2.checked ? searchType2.value : null)" id="searchButton" tabindex="-1" aria-label="Close"><i class="fa fa-search"></i></button>
-                <input #searchText type="text" id="searchText" placeholder="Search BrightIdeas"/>
-            </div>
-            <div id="searchType" class="btn-group" data-toggle="buttons" style="display: inline-block;">
-                <label class="btn btn-primary active" id="ideasButton">
-                  <input #searchType1 value="ideas" type="radio" id="option1" name="searchType"> Ideas
-                </label>
-                <label class="btn btn-primary" id="profilesButton">
-                  <input #searchType2 value="profiles" type="radio" id="option2" name="searchType"> Profiles
-                </label>
-            </div>
-          </div>  
-      </div> -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,14 +17,24 @@
             <a class="nav-link"routerLink="/createIdea">Create Idea</a>
         </li>
       </ul>
-      <div class="search-container-header input-group md-form form-sm form-1 pl-0">
-        <div class="form-group has-search">
-            <span class="fa fa-search form-control-feedback"></span>
-            <input type="text" class="form-control has-search-header" placeholder="Search">
-        </div>
-      </div>
     </div>
-    
+    <div class="search-container-header input-group md-form form-sm form-1 pl-0">
+        <div class="form-group search-input-container">
+            <button (click)="search(searchText, searchType1.checked ? searchType1.value : searchType2.checked ? searchType2.value : null)" id="searchButton" tabindex="-1" aria-label="Close">
+              <i class="fa fa-search"></i>
+            </button>
+            <input #searchText type="text" id="searchText" placeholder="  Search..."/>
+        </div>
+        <div class="form-check form-check-inline">
+            <input #searchType1 value="ideas" type="radio" class="form-check-input" id="option-idea" name="searchType" >
+            <label class="form-check-label nav-text-color" for="option-idea">Ideas</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+            <input #searchType2 value="profiles" type="radio" class="form-check-input" id="option-profile" name="searchType">
+            <label class="form-check-label nav-text-color " for="option-profile">Profiles</label>
+        </div>  
+    </div>
   </nav>
 
 <ng-template #userNotLoggedIn>

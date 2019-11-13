@@ -3,7 +3,7 @@ p{
     font-weight: 600;
 }
 
-input:focus, textarea:focus, select:focus{
+input:focus, textarea:focus, select:focus, button:focus{
     outline: none !important;
 }
 
@@ -19,10 +19,13 @@ input:focus, textarea:focus, select:focus{
     background-color: black;
     padding: 20px;
 }
-.nav-link {
+.nav-link, .nav-text-color{
     color: white !important;
 }
 .nav-link:hover {
+    color: orange !important;;
+}
+.nav-text-color:hover {
     color: orange !important;;
 }
 .bkg-col-text{
@@ -67,3 +70,7 @@ hr {
     pointer-events: none;
     color: #aaa;
 }
+
+.search-container-header {
+    max-width: 500px;
+} 
