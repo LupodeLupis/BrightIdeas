@@ -12,9 +12,16 @@
     position: relative;
     bottom: 1px;
     cursor: pointer;
-
+    border-radius: 9px 0px 0px 9px;
 }
 
-#searchText {
+.searchText {
      border: 2.5px solid orange;
+     background-color: orange;
+     border-radius: 0px 9px 9px 0px;
+}
+
+.search-container-header-not-lggin{
+     margin: 0 auto;
+     max-width: 383px;
 }

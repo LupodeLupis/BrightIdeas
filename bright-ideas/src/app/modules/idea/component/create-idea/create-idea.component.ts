@@ -18,8 +18,9 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
    isModalVisible: boolean;
    categoryList: string[] = [];
    ideaForm: FormGroup;
+   keyIdPosting: string [] = [];
    private positionsListSub: Subscription;
-   @Input() positionsList: Posting[] = [];
+   @Input() positionsList: Posting [] = [];
 
 
   constructor(
@@ -43,13 +44,18 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.positionsListSub = this.postingEndpointService.showPositionList.subscribe((position) => {
+      console.log(position)
       this.positionsList = position;
+
     });
+    
   }
 
 
   onSubmit() {
   }
+
+
   ngOnDestroy() {
     this.positionsListSub.unsubscribe();
   }

@@ -22,7 +22,7 @@ export class CreatePositionComponent implements OnInit {
   positionListResponse: Posting [] = [];
   counterNmbrPositionsAvailable = 0;
   counterNmbrPositionFilled = 0;
-  areFieldsEmpty = true;
+  postingIdList: string [] = [];
 
   constructor(private positionEndPointService: PostingEndpointService,
               private modalNotificationService: ModalNotificationService) {
@@ -31,22 +31,20 @@ export class CreatePositionComponent implements OnInit {
       description:  new FormControl('', Validators.required),
       availability: new FormControl('', Validators.required)
     });
-
-    this.position = {
-      postingName: '',
-      postingDescription: '',
-      numberAvailable: this.counterNmbrPositionsAvailable,
-      numberFilled: this.counterNmbrPositionFilled,
-    };
    }
 
   ngOnInit() {
-   // this.initilizationPositionsList();
+   //this.initilizationPositionsList();
   }
   initilizationPositionsList() {
     // filter all position based on the user logged in
     // check before saving if the position name already exist
+
+    console.log('this.positionListResponse', this.positionListResponse)
+    
+
     this.positionEndPointService.getAllPosting().subscribe((response: Posting[]) => {
+      console.log(response)
       this.positionListResponse = response;
     })
   }
@@ -61,14 +59,21 @@ export class CreatePositionComponent implements OnInit {
         numberFilled: this.counterNmbrPositionFilled
       };
     } else {
-      this.resetFieldsValues();
+      this.positionModalForm.reset();
     }
-    this.positionEndPointService.createPosting(this.position).subscribe((response: Posting ) => {
+    this.positionEndPointService.createPosting(this.position).subscribe((response: any ) => {
       this.modalNotificationService.openModalNotification({
         successMessage: 'The position ' + this.position.postingName + ' is added succesfully.'
       });
-      this.positionList.push(this.position);
-      this.positionEndPointService.showPositionList.next(this.positionList);
+      if (response.insertId) {
+        this.positionEndPointService.getPostingById(response.insertId).subscribe((posting: Posting) => {
+          this.positionList.push(posting[0])
+          this.positionEndPointService.showPositionList.next(this.positionList);
+        });
+      }
+      this.positionModalForm.reset();
+      this.postingIdList.push(response.insertId)
+      
     },
     (error: HttpErrorResponse) => {
       this.modalNotificationService.openModalNotification({messageFailure: 'Position could not be added. Try again.'});
@@ -77,12 +82,5 @@ export class CreatePositionComponent implements OnInit {
 
   checkNumberValues(event: any): boolean {
     return isNaN(event.value);
-  }
-
-  resetFieldsValues(): boolean {
-    this.positionModalForm.get('title').setValue(' ');
-    this.positionModalForm.get('description').setValue(' ');
-    this.positionModalForm.get('availability').setValue(' ');
-    return false;
   }
 }

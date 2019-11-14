@@ -75,10 +75,10 @@ export class PostingEndpointService {
   }
 
   createPosting(body: object): Observable<any> {
-   console.log('this is the posting body', body )
+   // console.log('this is the posting body', body )
    return Observable.create((observer: Observer<any>) => {
      this.http.post(`${this.url}/posting/create`, body).subscribe((res: any) => {
-        console.log(res)
+      //   console.log(res)
         observer.next(res);
         observer.complete();
      },
