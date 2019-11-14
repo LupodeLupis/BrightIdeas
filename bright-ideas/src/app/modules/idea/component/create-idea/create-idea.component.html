@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
           <label for="category" class="bkg-col-text"><strong>Category</strong></label>
-            <select class="form-control" id="category" [formControl]="ideaForm.controls['idea_category']">
+            <select class="form-control" id="idea-category" [formControl]="ideaForm.controls['idea_category']">
                 <option *ngFor="let cat of categoryList" [value]="cat" >{{cat}}</option>
             </select>
         </div>
@@ -45,8 +45,7 @@
               <th scope="col">Positions Available</th>
               <th scope="col">Positions Filled</th>
               <th scope="col">Media</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
+              <th scope="col">Option</th>
             </tr>
             </thead>
             <tbody>
@@ -57,8 +56,11 @@
               <td>{{ position.numberAvailable}}</td>
               <td>{{ position.numberAvailable}}</td>
               <td>{{ position.numberAvailable}}</td>
-              <td><button class="btn action-icon"><i class="fas fa-pencil-alt"></i></button></td> 
-              <td><button class="btn action-icon"><i class="far fa-window-close"></i></button></td>
+              <td>
+                <button (click)="editPosition()" class="btn action-icon"><i class="fas fa-pencil-alt"></i></button> 
+                <button type="button" (click)="deletePosition()" class="btn action-icon"><i class="far fa-window-close"></i></button>
+                <button type="button" data-toggle="modal" data-target="#modalPosition" (click)="addPosition()" class="btn action-icon"><i class="fas fa-plus"></i></button>
+              </td> 
             </tr>
             </tbody>
           </table>

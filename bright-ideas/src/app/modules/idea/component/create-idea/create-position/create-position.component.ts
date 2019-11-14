@@ -3,7 +3,6 @@ import { Posting } from '../../../../../models/posting';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { PostingEndpointService } from '../../../../../services/posting-endpoint/posting-endpoint.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ModalNotificationService } from '../../../../../shared/services/modal-notification/modal-notification.service';
 
 
@@ -18,7 +17,6 @@ export class CreatePositionComponent implements OnInit {
   position: Posting;
   positionModalForm: FormGroup;
   positionList: Posting [] = [];
-  positionListResponse: Posting [] = [];
   counterNmbrPositionsAvailable = 0;
   counterNmbrPositionFilled = 0;
   postingIdList: string [] = [];
@@ -33,18 +31,6 @@ export class CreatePositionComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.positionList)
-   //this.initilizationPositionsList();
-  }
-  initilizationPositionsList() {
-    // filter all position based on the user logged in
-    // check before saving if the position name already exist
-
-    console.log('this.positionListResponse', this.positionListResponse)
-    this.positionEndPointService.getAllPosting().subscribe((response: Posting[]) => {
-      console.log(response)
-      this.positionListResponse = response;
-    })
   }
 
 
@@ -67,22 +53,6 @@ export class CreatePositionComponent implements OnInit {
       this.modalNotificationService.openModalNotification({messageFailure: 'Position could not be added. Try again.'});
       this.positionModalForm.reset();
     }
-    // this.positionEndPointService.createPosting(this.position).subscribe((response: any ) => {
-    //   this.modalNotificationService.openModalNotification({
-    //     successMessage: 'The position ' + this.position.postingName + ' is added succesfully.'
-    //   });
-    //   if (response.insertId) {
-    //     this.positionEndPointService.getPostingById(response.insertId).subscribe((posting: Posting) => {
-    //       this.positionList.push(posting[0])
-    //       this.positionEndPointService.showPositionList.next(this.positionList);
-    //     });
-    //   }
-    //   this.positionModalForm.reset();
-    //   this.postingIdList.push(response.insertId)
-    // },
-    // (error: HttpErrorResponse) => {
-    //   this.modalNotificationService.openModalNotification({messageFailure: 'Position could not be added. Try again.'});
-    // });
   }
 
   checkNumberValues(event: any): boolean {

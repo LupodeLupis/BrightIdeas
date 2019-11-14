@@ -4,6 +4,12 @@
     display: inline;
 }
 
+#idea-category{
+    max-width: 300px;
+    margin-left: 20px;
+    display: inline; 
+}
+
 #submit { 
     float: right;
 }

@@ -24,7 +24,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
    private positionsListSub: Subscription;
    private ideasListSubmission: Subscription;
    @Input() positionsList: Posting [] = [];
-   
+
   constructor(
     private ideaEndpointService: IdeaEndpointService,
     private postingEndpointService: PostingEndpointService,
@@ -65,12 +65,12 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
           this.positionsList[index].ideaID = response.insertId;
         });
         this.modalNotificationService.openModalNotification({
-          successMessage: 'The idea has been created'
+          successMessage: 'The idea has been created succesfully!.'
         });
       },
       (error: HttpErrorResponse) => {
         this.modalNotificationService.openModalNotification({
-          errorMessage: error.message
+          messageFailure: 'The idea could not be created.'
         });
       });
       setTimeout(() => {
@@ -83,14 +83,17 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     }
   }
 
-
   ngOnDestroy() {
     this.positionsListSub.unsubscribe();
-    this.ideasListSubmission.unsubscribe();
+   // this.ideasListSubmission.unsubscribe();
   }
 
   addPosition() {
   this.isModalVisible = true;
+  }
+
+  deletePosition(event: ElementRef){
+    console.log(event)
   }
 
 }
