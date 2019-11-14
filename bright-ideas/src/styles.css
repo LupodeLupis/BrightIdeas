@@ -4,7 +4,9 @@ p{
 }
 
 input:focus, textarea:focus, select:focus, button:focus{
-    outline: none !important;
+    /* outline: none !important; */
+    outline: none;
+    box-shadow: none;
 }
 
 .bkg-col-element {
@@ -77,4 +79,8 @@ hr {
 
 .modal-content{
     border: none !important
+}
+
+.alert-success {
+    margin: 0 !important;
 }

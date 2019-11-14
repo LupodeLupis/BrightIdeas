@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
           <label for="category" class="bkg-col-text"><strong>Category</strong></label>
-            <select class="form-control category" id="category">
+            <select class="form-control" id="category" [formControl]="ideaForm.controls['idea_category']">
                 <option *ngFor="let cat of categoryList" [value]="cat" >{{cat}}</option>
             </select>
         </div>
@@ -40,33 +40,37 @@
           <table class="table table-striped">
             <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Position</th>
+              <th scope="col">Position Title</th>
               <th scope="col">Description</th>
               <th scope="col">Positions Available</th>
-                <!-- <th scope="col">Positions Filled</th>
-                <th scope="col">Media</th> -->
+              <th scope="col">Positions Filled</th>
+              <th scope="col">Media</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let position of positionsList; index as i">
-              <th scope="row">{{ i + 1 }}</th>
+              <!-- <th scope="row">{{ i + 1 }}</th> -->
               <td>{{ position.postingName}}</td>
               <td>{{ position.postingDescription}}</td>
               <td>{{ position.numberAvailable}}</td>
-              <!-- <td>{{ }}</td> -->
+              <td>{{ position.numberAvailable}}</td>
+              <td>{{ position.numberAvailable}}</td>
+              <td><button class="btn action-icon"><i class="fas fa-pencil-alt"></i></button></td> 
+              <td><button class="btn action-icon"><i class="far fa-window-close"></i></button></td>
             </tr>
             </tbody>
           </table>
           <div class="text-center">
-            <button class="btn bkg-col-element"
+            <button class="btn bkg-col-element" [disabled]="!ideaForm.valid"
               type="button" data-toggle="modal" data-target="#modalPosition" (click)="addPosition()">
               Add Position
             </button>
           </div>
         </div>
         <div class="form-group">
-            <button [disabled]="!ideaForm.valid"click="onSubmit()" type="submit" id="submit" class="bkg-col-element btn">Submit for Approval</button>
+            <button [disabled]="!ideaForm.valid" (click)="onSubmit()" type="submit" id="submit" class="bkg-col-element btn">Submit for Approval</button>
         </div>
       </form>
     </div>
