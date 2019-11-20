@@ -18,19 +18,18 @@ export class HeaderComponent implements OnInit {
   ngOnInit(){}
 
   redirectToHome(): void {
-    this.router.navigateByUrl("/home");
+    this.router.navigateByUrl('/home');
   }
 
   search(searchText, searchType): void {
     if (searchText != null)
     {
-      if(searchType == null || searchType == "ideas")
+      if(searchType == null || searchType === 'ideas')
       {
-        this.router.navigateByUrl('/searchResults/Ideas/' + searchText.value)
-      }
-      else
+        this.router.navigateByUrl('/searchResults/Ideas/' + searchText.value);
+      } else
       {
-        this.router.navigateByUrl('/searchResults/Profiles/' + searchText.value)
+        this.router.navigateByUrl('/searchResults/Profiles/' + searchText.value);
       }
     }
   }
