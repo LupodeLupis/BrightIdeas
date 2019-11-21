@@ -36,5 +36,37 @@ module.exports = function() {
                 console.log("Error: " + error)
             })
         },
+        getMediaByIdeaID(ideaId){
+            return fetch(baseUrl + "media/idea/" + ideaId, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                return Promise.resolve(data)
+            })
+            .catch(error => {
+                console.log("Error: " + error)
+            })
+        },
+        getMediaByProfileID(profileId){
+            return fetch(baseUrl + "media/profile/" + profileId, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                return Promise.resolve(data)
+            })
+            .catch(error => {
+                console.log("Error: " + error)
+            })
+        },
     }
 } 
