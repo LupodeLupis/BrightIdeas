@@ -31,8 +31,8 @@
           <label class="bkg-col-text" for="media"><strong>Media</strong></label>
           <hr>
           <div class="text-center">
-            <input id="mediaInput" type="file" accept="image/*" required/>
-            <button class="btn bkg-col-element" type="submit" name="submitMedia" (click)="uploadFile()">Upload File</button>
+            <input #mediaInput type="file" accept="image/*" required/>
+            <button class="btn bkg-col-element" type="submit" name="submitMedia" (click)="uploadFile($event)">Upload File</button>
           </div>
         </div>
         <div class="form-group">

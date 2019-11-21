@@ -1,31 +1,38 @@
-import { Component, OnInit, EventEmitter, Input, ElementRef, Output, Inject, OnDestroy } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, ElementRef, Output, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { IdeaEndpointService } from '../../../../services/idea-endpoint/idea-endpoint.service';
 import { PostingEndpointService } from '../../../../services/posting-endpoint/posting-endpoint.service';
 import { Idea } from '../../../../models/idea';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CATEGORIES } from '../../../../shared/models/global-constants';
+import { CATEGORIES, FILE_SIZE } from '../../../../shared/models/global-constants';
 import { Posting } from '../../../../models/posting';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ModalNotificationService } from '../../../../shared/services/modal-notification/modal-notification.service';
 import * as _ from 'lodash';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
+import { MediaEndpointService } from 'src/app/services/media-endpoint/media-endpoint.service';
+import { Media } from '../../../../models/media';
+import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 
-@Component({
+
+@Component({  
   selector: 'app-create-idea',
   templateUrl: './create-idea.component.html',
   styleUrls: ['./create-idea.component.css']
 })
 export class CreateIdeaComponent implements OnInit, OnDestroy {
    idea: Idea;
+   media: Media;
    isModalVisible: boolean;
    categoryList: string[] = [];
-   ideaForm: FormGroup;
+   filesList: File[] = [];
    keyIdPosting: string [] = [];
+   ideaForm: FormGroup;
    private positionsListSub: Subscription;
   //  private ideasListSubmission: Subscription;
    @Input() positionsList: Posting [] = [];
    positionEdited: object = {};
+   @ViewChild('mediaInput') mediaInput: ElementRef;
   
 
   constructor(
@@ -33,11 +40,12 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     private postingEndpointService: PostingEndpointService,
     private modalNotificationService: ModalNotificationService,
     private sessionStoargeService: SessionStorageService,
+    private mediaEndpointService: MediaEndpointService,
     ) {
       this.ideaForm = new FormGroup({
         idea_title:       new FormControl('', Validators.required),
         idea_description: new FormControl ('', Validators.required),
-        idea_category:    new FormControl('', Validators.required)
+        idea_category:    new FormControl('', Validators.required),
       });
       const currentUser = this.sessionStoargeService.getUser();
       this.categoryList = CATEGORIES;
@@ -50,6 +58,11 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
         category: '',
         toDoList: 1
       };
+      this.media = { 
+        fileName: null,
+        mediaFormat: '',
+        mediaURI: '',
+      }
      }
 
   ngOnInit() {
@@ -66,18 +79,15 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     }
   }
 
-  initilizationFile() {
-    const fileField = (<HTMLInputElement>document.getElementById('mediaInput'));
-    fileField.onchange = function()
-    {
-      //alert(fileField.files[0].size);
-      if (fileField.files[0].size > 8388608)
-      {
-        alert("File size limit: 8mb");
-        fileField.value = '';
-      }
-    }
-  }
+  // initilizationFile() {
+  //   const fileField = this.ideaForm.get('idea_media').value;
+  //   console.log(fileField)
+  //   if (fileField.files[0].size > FILE_SIZE) {
+  //     alert("File size limit: 8mb");
+  //     this.ideaForm.get('idea_media').setValue('');
+  //   }
+    
+  // }
 
 
   onSubmit() {
@@ -133,10 +143,24 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
   }
 
   uploadFile(): void {
-    console.log('uploadFile() is called')
-    const fileField = (<HTMLInputElement>document.getElementById('mediaInput'));
-    const file = fileField.files[0];
-    console.log(file);
+    const file: File = this.mediaInput.nativeElement.files;
+    if (file[0] === undefined) {
+      this.modalNotificationService.openModalNotification({
+        messageFailure: 'Please select a file'
+      });
+    } else {
+      if (file.size > FILE_SIZE) {
+        this.modalNotificationService.openModalNotification({
+          messageFailure: 'The file is over the size limit'
+        })
+      } else {
+        this.media.fileName = file;
+        this.media.mediaFormat = file[0].type;
+        this.mediaEndpointService.createMedia(this.media)
+      }
+    }
+    // const file = fileField.files[0];
+    // console.log(file);
     // this.uploadedFile.emit(file);
   }
 
