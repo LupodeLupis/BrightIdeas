@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Media } from 'src/app/models/media';
 import { NgForm } from "@angular/forms"
 
@@ -9,16 +9,29 @@ import { NgForm } from "@angular/forms"
 })
 export class UploadMediaComponent implements OnInit {
 
-  media: Media;
+  @Output() uploadedFile = new EventEmitter<File>();
 
   constructor() { 
 
   }
 
   ngOnInit() {
+    var fileField = (<HTMLInputElement>document.getElementById('mediaInput'));
+    fileField.onchange = function()
+    {
+      //alert(fileField.files[0].size);
+      if (fileField.files[0].size > 8388608)
+      {
+        alert("File size limit: 8mb");
+        fileField.value = "";
+      }
+    }
   }
 
-  onSubmit(f: NgForm): void {
-
+  onSubmit(): void {
+    var fileField = (<HTMLInputElement>document.getElementById('mediaInput'));
+    var file = fileField.files[0];
+    //console.log(file);
+    this.uploadedFile.emit(file);
   }
 }
