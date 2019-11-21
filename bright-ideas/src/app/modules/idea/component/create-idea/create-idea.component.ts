@@ -26,6 +26,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
   //  private ideasListSubmission: Subscription;
    @Input() positionsList: Posting [] = [];
    positionEdited: object = {};
+  
 
   constructor(
     private ideaEndpointService: IdeaEndpointService,
@@ -62,6 +63,19 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     const positionsFromSessionStorage: Posting[] = this.sessionStoargeService.getPositions();
     if (this.positionsList) {
       this.positionsList = positionsFromSessionStorage;
+    }
+  }
+
+  initilizationFile() {
+    const fileField = (<HTMLInputElement>document.getElementById('mediaInput'));
+    fileField.onchange = function()
+    {
+      //alert(fileField.files[0].size);
+      if (fileField.files[0].size > 8388608)
+      {
+        alert("File size limit: 8mb");
+        fileField.value = '';
+      }
     }
   }
 
@@ -115,8 +129,15 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     if (indexPosition > -1) {
       this.positionsList.splice(indexPosition, 1);
     }
-    this.sessionStoargeService.removePositions()
-    
+    this.sessionStoargeService.removePositions();
+  }
+
+  uploadFile(): void {
+    console.log('uploadFile() is called')
+    const fileField = (<HTMLInputElement>document.getElementById('mediaInput'));
+    const file = fileField.files[0];
+    console.log(file);
+    // this.uploadedFile.emit(file);
   }
 
 }

@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +20,7 @@ export class LoginComponent implements OnInit {
                 private userService: UserEndpointService,
                 private router: Router,
                 private modalNotificationService: ModalNotificationService,
-                private sessionStorageService: SessionStorageService) { };
+                private sessionStorageService: SessionStorageService) { }
 
     // Return form controls, for ease of use
     get f() { return this.loginForm.controls; };

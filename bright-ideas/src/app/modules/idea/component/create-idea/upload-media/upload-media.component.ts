@@ -25,7 +25,7 @@ export class UploadMediaComponent implements OnInit {
         alert("File size limit: 8mb");
         fileField.value = "";
       }
-    }
+    };
   }
 
   onSubmit(): void {
