@@ -9,6 +9,7 @@ import { Posting } from '../../models/posting';
 })
 export class PostingEndpointService {
    showPositionList = new Subject<Posting []>();
+   currentPositionEdited = new Subject<Posting>();
 
   private url = environment.api;
 
@@ -110,5 +111,9 @@ export class PostingEndpointService {
         observer.error(error);
      });
   });
+ }
+
+ checkNumberValues(event: any): boolean {
+   return isNaN(event.value);
  }
 }

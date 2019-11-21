@@ -22,6 +22,7 @@ import { CreateAccountComponent } from './modules/auth/component/create-account/
 import { CreatePositionComponent } from './modules/idea/component/create-idea/create-position/create-position.component';
 import { ModalNotificationComponent } from './shared/component/modal-notification/modal-notification.component';
 import { AuthInterceptorService } from './shared/services/authInterceptor/auth-interceptor.service';
+import { EditPositionComponent } from './modules/idea/component/create-idea/edit-position/edit-position.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { AuthInterceptorService } from './shared/services/authInterceptor/auth-i
     ProfileSearchResultsComponent,
     CreateAccountComponent,
     CreatePositionComponent,
-    ModalNotificationComponent
+    ModalNotificationComponent,
+    EditPositionComponent
   ],
   imports: [
     BrowserModule,

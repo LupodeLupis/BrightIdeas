@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { PostingEndpointService } from '../../../../../services/posting-endpoint/posting-endpoint.service';
 import { ModalNotificationService } from '../../../../../shared/services/modal-notification/modal-notification.service';
+import { SessionStorageService } from '../../../../../shared/services/session-storage/session-storage.service';
 
 
 
@@ -22,7 +23,8 @@ export class CreatePositionComponent implements OnInit {
   postingIdList: string [] = [];
 
   constructor(private positionEndPointService: PostingEndpointService,
-              private modalNotificationService: ModalNotificationService) {
+              private modalNotificationService: ModalNotificationService,
+              private sessionStorageService: SessionStorageService) {
     this.positionModalForm = new FormGroup({
       title:        new FormControl('', Validators.required),
       description:  new FormControl('', Validators.required),
@@ -37,17 +39,22 @@ export class CreatePositionComponent implements OnInit {
   onSave() {
     if (this.positionModalForm.valid) {
       this.position = {
-        ideaID: '',
+        postingID: '',
+        //ideaID: '',
         postingName: this.positionModalForm.get('title').value,
         postingDescription: this.positionModalForm.get('description').value,
         numberAvailable: this.positionModalForm.get('availability').value,
         numberFilled: this.counterNmbrPositionFilled
       };
+      this.positionEndPointService.createPosting(this.position).subscribe((response: any) => {
+        this.position.postingID = response.insertId;
+        this.positionList.push(this.position);
+        this.sessionStorageService.savePositions(this.positionList);
+        this.positionEndPointService.showPositionList.next(this.positionList);
+      })
       this.modalNotificationService.openModalNotification({
         successMessage: 'The position ' + this.position.postingName + ' is added succesfully.'
       });
-      this.positionList.push(this.position);
-      this.positionEndPointService.showPositionList.next(this.positionList);
       this.positionModalForm.reset();
     } else {
       this.modalNotificationService.openModalNotification({messageFailure: 'Position could not be added. Try again.'});
@@ -55,7 +62,7 @@ export class CreatePositionComponent implements OnInit {
     }
   }
 
-  checkNumberValues(event: any): boolean {
-    return isNaN(event.value);
+  checkIfisNumber(event: any): boolean {
+    return this.positionEndPointService.checkNumberValues(event);
   }
 }

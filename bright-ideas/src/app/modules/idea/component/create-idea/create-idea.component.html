@@ -57,9 +57,9 @@
               <td>{{ position.numberAvailable}}</td>
               <td>{{ position.numberAvailable}}</td>
               <td>
-                <button (click)="editPosition()" class="btn action-icon"><i class="fas fa-pencil-alt"></i></button> 
-                <button type="button" (click)="deletePosition(position.postingName)" class="btn action-icon"><i class="far fa-window-close"></i></button>
-                <button type="button" data-toggle="modal" data-target="#modalPosition" (click)="addPosition()" class="btn action-icon"><i class="fas fa-plus"></i></button>
+                <button type="button" (click)="editPosition(i, position.postingID)" data-toggle="modal" data-target="#modalEditPosition" class="btn action-icon"><i class="fas fa-pencil-alt"></i></button> 
+                <button type="button" (click)="deletePosition(i)" class="btn action-icon"><i class="fas fa-trash-alt"></i></button>
+                <button type="button"  (click)="addPosition()" data-toggle="modal" data-target="#modalPosition" class="btn action-icon"><i class="fas fa-plus"></i></button>
               </td> 
             </tr>
             </tbody>
@@ -79,4 +79,5 @@
   </div>
 </div>
 <app-create-position></app-create-position>
+<app-edit-position></app-edit-position>
 
