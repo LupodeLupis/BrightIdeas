@@ -17,11 +17,12 @@ import { LoginComponent } from './modules/auth/component/login/login.component';
 import { ProfilePageComponent } from './modules/auth/component/profile-page/profile-page.component';
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
-import { UploadMediaComponent } from './modules/media/upload-media/upload-media.component';
+import { UploadMediaComponent } from './modules/idea/component/create-idea/upload-media/upload-media.component';
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
 import { CreatePositionComponent } from './modules/idea/component/create-idea/create-position/create-position.component';
 import { ModalNotificationComponent } from './shared/component/modal-notification/modal-notification.component';
 import { AuthInterceptorService } from './shared/services/authInterceptor/auth-interceptor.service';
+import { EditPositionComponent } from './modules/idea/component/create-idea/edit-position/edit-position.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { AuthInterceptorService } from './shared/services/authInterceptor/auth-i
     ProfileSearchResultsComponent,
     CreateAccountComponent,
     CreatePositionComponent,
-    ModalNotificationComponent
+    ModalNotificationComponent,
+    EditPositionComponent
   ],
   imports: [
     BrowserModule,

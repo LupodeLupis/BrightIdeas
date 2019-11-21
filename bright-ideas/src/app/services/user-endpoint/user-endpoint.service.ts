@@ -12,6 +12,7 @@ import bcrypt from 'bcryptjs';
 
 export class UserEndpointService {
 
+    private userSource$;
     private url = environment.api;
     nameRegex = new RegExp('^[a-zA-Z]+$');
     userNameRegex = new RegExp('^[a-zA-Z0-9_-]{8,25}$');
@@ -66,6 +67,10 @@ export class UserEndpointService {
         newUser.password = this.getSaltAndHashPassword(form.get('password').value);
         newUser.previousPasswords = newUser.password;
         return newUser;
+    }
+
+    setUser(user: User): void {
+      this.userSource$.next(user);
     }
 
     getSaltAndHashPassword(password: string){

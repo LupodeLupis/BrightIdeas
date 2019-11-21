@@ -12,7 +12,7 @@ import { IdeaSearchResultsComponent } from './modules/layout/idea-search-results
 import { ProfileSearchResultsComponent } from './modules/layout/profile-search-results/profile-search-results.component';
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
-import { UploadMediaComponent } from './modules/media/upload-media/upload-media.component';
+import { UploadMediaComponent } from './modules/idea/component/create-idea/upload-media/upload-media.component';
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
 
 // If you need any route protected add this code to the route you need --->    canActivate: [AuthGuardService]  <--

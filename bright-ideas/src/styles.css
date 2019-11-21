@@ -3,10 +3,6 @@ p{
     font-weight: 600;
 }
 
-input:focus, textarea:focus, select:focus, button:focus{
-    outline: none !important;
-}
-
 .bkg-col-element {
     background-color: orange;
     color: black;
@@ -76,5 +72,11 @@ hr {
 } 
 
 .modal-content{
-    border: none !important
+    border: none !important;
 }
+.message-container{
+    position: absolute;
+    right: 2%;
+    width: 100%;
+}
+

@@ -63,13 +63,16 @@ export class MediaEndpointService {
  }
 
   createMedia(body: object): Observable <any> {
+   console.log('this is the body of media', body)
    return Observable.create((observer: Observer<any>) => {
          this.http.post(`${this.url}/media/create`, body).subscribe((response: any) => {
             observer.next(response);
+            console.log('response fomr media', response)
             observer.complete();
          },
          (error: HttpErrorResponse) => {
             observer.error(error);
+            console.log(error)
          });
       });
    }

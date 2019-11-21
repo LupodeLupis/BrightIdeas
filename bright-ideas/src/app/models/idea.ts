@@ -1,26 +1,9 @@
-import { Media } from './media';
-import { Member } from './member';
-import { Posting } from './posting';
-import { Update } from './update';
-import { ToDo } from './todo';
-
 export interface Idea {
-    ideaID: any;
     ideaName: string;
     ideaDescription: string;
-    ideaCreator: Member;
-    ideaLeader: Member;
-    media: Media;
-    posting: Posting;
-    update: Update;
-    date: Date;     //TypeScript default class type
-    toDoList: ToDo;
-}
-
-export interface IdeaBasicFields {
-    title: string;
-    description: string;
-    creator_id: number;
-    leader_id: number;
-
+    ideaCreator: number;
+    ideaLeader: number;
+   // date: string;
+    category: string;
+    toDoList: number;
 }

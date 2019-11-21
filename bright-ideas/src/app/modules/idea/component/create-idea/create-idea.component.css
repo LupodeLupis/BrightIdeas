@@ -4,6 +4,19 @@
     display: inline;
 }
 
+#idea-category{
+    max-width: 300px;
+    margin-left: 20px;
+    display: inline; 
+}
+
 #submit { 
     float: right;
+}
+.action-icon {
+    background: no-repeat;   
+}
+.action-icon:focus {
+    outline: none;
+    box-shadow: none;
 }

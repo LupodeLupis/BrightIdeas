@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApplyPositionComponent } from './apply-position.component';
+import { EditPositionComponent } from './edit-position.component';
 
-describe('ApplyPositionComponent', () => {
-  let component: ApplyPositionComponent;
-  let fixture: ComponentFixture<ApplyPositionComponent>;
+describe('EditPositionComponent', () => {
+  let component: EditPositionComponent;
+  let fixture: ComponentFixture<EditPositionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApplyPositionComponent ]
+      declarations: [ EditPositionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ApplyPositionComponent);
+    fixture = TestBed.createComponent(EditPositionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
