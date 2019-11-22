@@ -10,7 +10,7 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        LocalStorageService],
+         ],
       declarations: [ HeaderComponent ]
     })
     .compileComponents();

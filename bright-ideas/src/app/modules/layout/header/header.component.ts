@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router,
               private sessionStorageService: SessionStorageService,
               private modalNotificationService: ModalNotificationService,
-              private locStorageService: LocalStorageService,
+              // private locStorageService: LocalStorageService,
               ) {
                 this.isUserLoggedIn = tokenIsValid();
   }
@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
     this.currentUser = null;
     this.modalNotificationService.openModalNotification({
       successMessage: 'You are succesfully logged out'
-    })
+    });
     location.reload();
   }
 

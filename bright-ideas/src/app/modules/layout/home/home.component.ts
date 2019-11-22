@@ -11,12 +11,12 @@ import { HeaderComponent } from '../header/header.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements  OnDestroy {
+export class HomeComponent implements OnInit,  OnDestroy {
   categoryList: string[] = [];
   navigationSubscription: any;
   isUserLoggedIn: boolean;
-  constructor(private router: Router,
-              private headerComponent: HeaderComponent) {
+  constructor(private router: Router) {
+
     this.isUserLoggedIn = tokenIsValid();
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
@@ -25,15 +25,14 @@ export class HomeComponent implements  OnDestroy {
       if (event instanceof NavigationEnd && this.isUserLoggedIn ) {
         console.log('event',event)
         // Trick the Router into believing it's last link wasn't previously loaded
-        this.router.navigated = true;
-        this.headerComponent.ngOnInit()
+        this.router.navigated = false;
       }
     });
     this.categoryList = CATEGORIES;
   }
 
-  // ngOnInit() {
-  // }
+  ngOnInit() {
+  }
 
 
   ngOnDestroy() {
