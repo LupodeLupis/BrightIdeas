@@ -90,13 +90,17 @@ export class PostingEndpointService {
  }
 
  updatePosting(body: object): Observable<any> {
+   //console.log('body update posting', body)
    return Observable.create((observer: Observer<any>) => {
      this.http.put(`${this.url}/posting/update`, body).subscribe((res: any) => {
-        observer.next(res);
-        observer.complete();
+      console.log('response from update posting', res)
+      observer.next(res);
+      observer.complete();
      },
      (error: HttpErrorResponse) => {
-        observer.error(error);
+      console.log(error)
+      observer.error(error);
+      console.log(error)
      });
   });
  }

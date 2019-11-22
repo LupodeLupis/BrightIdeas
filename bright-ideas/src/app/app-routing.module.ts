@@ -28,11 +28,12 @@ const routes: Routes = [
       canActivate: [AuthGuardService] },
     { path: 'home',
       component: HomeComponent,
-      runGuardsAndResolvers: 'always'},
+      runGuardsAndResolvers: 'always'
+      }, 
     { path: 'login',
       component: LoginComponent },
     { path: 'profile',
-      component: ProfilePageComponent },
+      component: ProfilePageComponent,},
     //    { path: 'profile/:id', component: ProfilePageComponent },
     { path: 'changePassword',
       component: ChangePasswordComponent },
@@ -46,6 +47,9 @@ const routes: Routes = [
       component: IdeaSearchResultsComponent },
     { path: 'searchResults/Profiles/:query',
       component: ProfileSearchResultsComponent},
+    {
+      path: 'logout',
+      component: LoginComponent},
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

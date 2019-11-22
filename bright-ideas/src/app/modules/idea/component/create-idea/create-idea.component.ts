@@ -12,7 +12,6 @@ import * as _ from 'lodash';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
 import { MediaEndpointService } from 'src/app/services/media-endpoint/media-endpoint.service';
 import { Media } from '../../../../models/media';
-import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 
 
 @Component({  
@@ -23,6 +22,7 @@ import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 export class CreateIdeaComponent implements OnInit, OnDestroy {
    idea: Idea;
    media: Media;
+   
    isModalVisible: boolean;
    categoryList: string[] = [];
    filesList: File[] = [];
@@ -92,16 +92,23 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.positionsList) {
+      let ideaId = '';
       this.idea.ideaName = this.ideaForm.get('idea_title').value;
       this.idea.ideaDescription = this.ideaForm.get('idea_description').value;
       this.idea.category = this.ideaForm.get('idea_category').value;
       this.ideaEndpointService.createIdea(this.idea).subscribe((response: any ) => {
-        // _.forEach(this.positionsList, (value, index) => {
-        //   this.positionsList[index].ideaID = response.insertId;
-        // });
+        ideaId = response.insertId;
         this.modalNotificationService.openModalNotification({
           successMessage: 'The idea has been created succesfully!.'
         });
+
+        _.forEach(this.positionsList, (value,index)=>{
+          this.positionsList[index].ideaID = ideaId;
+          this.postingEndpointService.updatePosting(this.positionsList[index])
+          console.log('this.positionsList', this.positionsList)
+        });
+
+
       },
       (error: HttpErrorResponse) => {
         this.modalNotificationService.openModalNotification({

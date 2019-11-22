@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "../../../environments/environment"
 import { FormGroup, FormControl } from '@angular/forms';
 import { Observable, Observer } from "rxjs";
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter, Output } from "@angular/core";
 import { User } from "../../models/user";
 import bcrypt from 'bcryptjs';
 
@@ -11,7 +11,7 @@ import bcrypt from 'bcryptjs';
 })
 
 export class UserEndpointService {
-
+    
     private userSource$;
     private url = environment.api;
     nameRegex = new RegExp('^[a-zA-Z]+$');
@@ -138,5 +138,7 @@ export class UserEndpointService {
         });
     })
   }
+
+
 
 }

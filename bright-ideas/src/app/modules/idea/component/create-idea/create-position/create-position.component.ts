@@ -39,8 +39,8 @@ export class CreatePositionComponent implements OnInit {
   onSave() {
     if (this.positionModalForm.valid) {
       this.position = {
+        ideaID: null,
         postingID: '',
-        //ideaID: '',
         postingName: this.positionModalForm.get('title').value,
         postingDescription: this.positionModalForm.get('description').value,
         numberAvailable: this.positionModalForm.get('availability').value,

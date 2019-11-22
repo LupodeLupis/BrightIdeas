@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
+import { HeaderComponent } from '../../../../modules/layout/header/header.component';
+import { LocalStorageService } from '../../../../shared/services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,9 @@ export class LoginComponent implements OnInit {
                 private userService: UserEndpointService,
                 private router: Router,
                 private modalNotificationService: ModalNotificationService,
-                private sessionStorageService: SessionStorageService) { }
+                private sessionStorageService: SessionStorageService,
+                private locStorage: LocalStorageService
+                ) { }
 
     // Return form controls, for ease of use
     get f() { return this.loginForm.controls; };
@@ -46,6 +50,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate(['home']);
                 }
                 this.loginForm.get('password').setErrors({ error: true });
+                
             },(error) => {
                 this.modalNotificationService.openModalNotification(
                     { messageFailure: 'Encountered an error logging in, please try again'
