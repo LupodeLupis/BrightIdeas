@@ -1,24 +1,26 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "../../../environments/environment"
 import { FormGroup, FormControl } from '@angular/forms';
-import { Observable, Observer } from "rxjs";
-import { Injectable } from "@angular/core";
+import { Observable, Observer, Subject } from "rxjs";
+import { Injectable, EventEmitter, Output } from "@angular/core";
 import { User } from "../../models/user";
 import bcrypt from 'bcryptjs';
+import { SessionStorageService } from '../../shared/services/session-storage/session-storage.service';
 
 @Injectable({
   providedIn: "root"
 })
 
 export class UserEndpointService {
-
-    private userSource$;
+    
+   
     private url = environment.api;
     nameRegex = new RegExp('^[a-zA-Z]+$');
     userNameRegex = new RegExp('^[a-zA-Z0-9_-]{8,25}$');
     passwordRegex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})');
    
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient,
+                private sessionStorageService: SessionStorageService) {}
 
         // Check that password and confirmPassword match, if not return an error
         matchPassword() {
@@ -67,10 +69,6 @@ export class UserEndpointService {
         newUser.password = this.getSaltAndHashPassword(form.get('password').value);
         newUser.previousPasswords = newUser.password;
         return newUser;
-    }
-
-    setUser(user: User): void {
-      this.userSource$.next(user);
     }
 
     getSaltAndHashPassword(password: string){

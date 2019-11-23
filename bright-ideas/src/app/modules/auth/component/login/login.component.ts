@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
+import { AuthService } from '../../services/auth.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +17,16 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     submitted = false;
     loading = false;
+    user: any;
 
     constructor(private formBuilder: FormBuilder,
-                private userService: UserEndpointService,
+                private userEndpointService: UserEndpointService,
                 private router: Router,
                 private modalNotificationService: ModalNotificationService,
-                private sessionStorageService: SessionStorageService) { }
+                private sessionStorageService: SessionStorageService,
+                private authService: AuthService,
+                private spinnerService: Ng4LoadingSpinnerService,
+                ) { }
 
     // Return form controls, for ease of use
     get f() { return this.loginForm.controls; };
@@ -37,16 +43,24 @@ export class LoginComponent implements OnInit {
         this.submitted = true;
         if (this.loginForm.valid) {
             this.loading = true;
-            this.userService.login(this.loginForm)
+            this.userEndpointService.login(this.loginForm)
             .subscribe((response) => {
                 // Server will return a webToken if login was successful. save the token locally to be used later
                 if (response.token) {
                     saveToken(response.token);
-                    this.sessionStorageService.saveUser(response.user)
-                    this.router.navigate(['home']);
+                    this.authService.setUser(response.user);
+                    this.sessionStorageService.saveUser(response.user);
+                    this.user = response.user;
+                    this.spinnerService.show();
+                    this.modalNotificationService.openModalNotification({
+                        successMessage: 'Logged in successfully'
+                    });
+                    setTimeout(() =>{
+                        this.router.navigate(['home']);
+                    }, 2500);
                 }
                 this.loginForm.get('password').setErrors({ error: true });
-            },(error) => {
+            }, (error) => {
                 this.modalNotificationService.openModalNotification(
                     { messageFailure: 'Encountered an error logging in, please try again'
                 });

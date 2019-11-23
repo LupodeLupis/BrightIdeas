@@ -21,7 +21,10 @@
      border-radius: 0px 9px 9px 0px;
 }
 
-.search-container-header-not-lggin{
+/* .search-container-header-not-lggin{
      margin: 0 auto;
      max-width: 387px;
+} */
+#signout {
+     cursor: pointer;
 }

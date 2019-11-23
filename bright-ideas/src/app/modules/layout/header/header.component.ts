@@ -1,25 +1,43 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { tokenIsValid } from '../../../../../indexedDB-manager.js';
-import { Router, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { tokenIsValid, removeToken } from '../../../../../indexedDB-manager.js';
+import { Router } from '@angular/router';
+import { SessionStorageService } from '../../../shared/services/session-storage/session-storage.service.js';
+import { ModalNotificationService } from '../../../shared/services/modal-notification/modal-notification.service.js';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  @Input()user: any;
   isUserLoggedIn: boolean;
+  currentToken: string;
+  signout = false;
+  constructor(private router: Router,
+              private sessionStorageService: SessionStorageService,
+              private modalNotificationService: ModalNotificationService,
+              private spinnerService: Ng4LoadingSpinnerService,
 
-  constructor(private router: Router) {
-    this.isUserLoggedIn = tokenIsValid();
+              ) {
   }
 
-  ngOnInit(){}
+  ngOnInit() {
+    console.log('this.user', this.user)
+   }
 
-  redirectToHome(): void {
-    this.router.navigateByUrl('/home');
+
+  signOut() {
+    this.sessionStorageService.clearAll();
+    removeToken();
+    this.user = null;
+    this.spinnerService.show();
+    this.modalNotificationService.openModalNotification({
+      successMessage: 'You are succesfully logged out'
+    });
   }
+
 
   search(searchText, searchType): void {
     if (searchText != null)

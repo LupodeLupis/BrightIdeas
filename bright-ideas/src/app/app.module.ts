@@ -23,7 +23,7 @@ import { CreatePositionComponent } from './modules/idea/component/create-idea/cr
 import { ModalNotificationComponent } from './shared/component/modal-notification/modal-notification.component';
 import { AuthInterceptorService } from './shared/services/authInterceptor/auth-interceptor.service';
 import { EditPositionComponent } from './modules/idea/component/create-idea/edit-position/edit-position.component';
-
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import { EditPositionComponent } from './modules/idea/component/create-idea/edit
     CreateAccountComponent,
     CreatePositionComponent,
     ModalNotificationComponent,
-    EditPositionComponent
+    EditPositionComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +54,7 @@ import { EditPositionComponent } from './modules/idea/component/create-idea/edit
     ReactiveFormsModule,
     FormsModule,
     NgbModule.forRoot(),
+    Ng4LoadingSpinnerModule.forRoot(),
   ],
   providers: [ {
     provide : HTTP_INTERCEPTORS,
@@ -63,7 +64,7 @@ import { EditPositionComponent } from './modules/idea/component/create-idea/edit
     NgbActiveModal
   ],
   entryComponents: [
-    ModalNotificationComponent
+    ModalNotificationComponent,
   ],
   bootstrap: [AppComponent]
 })

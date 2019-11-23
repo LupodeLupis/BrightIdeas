@@ -1,5 +1,7 @@
-<app-header></app-header>
-<app-content></app-content>
+<app-header [user]="user"></app-header>
+<router-outlet></router-outlet>
+<ng4-loading-spinner  [timeout]="2000"></ng4-loading-spinner>
+<!-- <app-content></app-content> -->
 
 <!--The content below is only a placeholder and can be replaced.-->
 

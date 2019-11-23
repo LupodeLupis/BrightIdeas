@@ -21,6 +21,7 @@ export class CreatePositionComponent implements OnInit {
   counterNmbrPositionsAvailable = 0;
   counterNmbrPositionFilled = 0;
   postingIdList: string [] = [];
+  isLoading: boolean;
 
   constructor(private positionEndPointService: PostingEndpointService,
               private modalNotificationService: ModalNotificationService,
@@ -39,17 +40,17 @@ export class CreatePositionComponent implements OnInit {
   onSave() {
     if (this.positionModalForm.valid) {
       this.position = {
-        postingID: '',
-        //ideaID: '',
         postingName: this.positionModalForm.get('title').value,
         postingDescription: this.positionModalForm.get('description').value,
         numberAvailable: this.positionModalForm.get('availability').value,
-        numberFilled: this.counterNmbrPositionFilled
+        numberFilled: this.counterNmbrPositionFilled,
+        ideaID: null,
+        postingID: '',
       };
       this.positionEndPointService.createPosting(this.position).subscribe((response: any) => {
         this.position.postingID = response.insertId;
         this.positionList.push(this.position);
-        this.sessionStorageService.savePositions(this.positionList);
+        // this.sessionStorageService.savePositions(this.positionList);
         this.positionEndPointService.showPositionList.next(this.positionList);
       })
       this.modalNotificationService.openModalNotification({

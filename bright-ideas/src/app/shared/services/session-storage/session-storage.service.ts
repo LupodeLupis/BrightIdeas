@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../../models/user';
 import { Posting } from 'src/app/models/posting';
+import { Subject } from 'rxjs';
 
 
 const KEY_AS_USER = 'currentUser';
@@ -33,5 +34,8 @@ export class SessionStorageService {
   }
   getPositions(): Posting[] {
     return JSON.parse(sessionStorage.getItem(KEY_AS_POSITION));
+  }
+  clearAll() {
+    sessionStorage.clear();
   }
 }
