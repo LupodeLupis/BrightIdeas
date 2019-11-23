@@ -1,10 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { tokenIsValid, removeToken } from '../../../../../indexedDB-manager.js';
-import { Router, NavigationEnd } from '@angular/router';
-import { LocalStorageService } from '../../../shared/services/local-storage/local-storage.service.js';
-import { User } from 'src/app/models/user.js';
+import { Router } from '@angular/router';
 import { SessionStorageService } from '../../../shared/services/session-storage/session-storage.service.js';
-import { UserEndpointService } from '../../../services/user-endpoint/user-endpoint.service.js';
 import { ModalNotificationService } from '../../../shared/services/modal-notification/modal-notification.service.js';
 
 @Component({
@@ -13,30 +10,28 @@ import { ModalNotificationService } from '../../../shared/services/modal-notific
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  @Input()user: any;
   isUserLoggedIn: boolean;
   currentToken: string;
-  currentUser: User;
   signout = false;
   constructor(private router: Router,
               private sessionStorageService: SessionStorageService,
               private modalNotificationService: ModalNotificationService,
-              // private locStorageService: LocalStorageService,
               ) {
-                this.isUserLoggedIn = tokenIsValid();
   }
 
-  ngOnInit() {  }
+  ngOnInit() {
+    console.log('this.user', this.user)
+   }
 
 
   signOut() {
     this.sessionStorageService.clearAll();
     removeToken();
-    this.currentUser = null;
+    this.user = null;
     this.modalNotificationService.openModalNotification({
       successMessage: 'You are succesfully logged out'
     });
-    location.reload();
   }
 
 

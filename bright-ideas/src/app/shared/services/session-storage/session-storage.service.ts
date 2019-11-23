@@ -13,12 +13,8 @@ const KEY_AS_POSITION = 'currentpositions';
 
 export class SessionStorageService {
 
-  private userSource$ = new Subject<string>()
   constructor() { }
 
-    // setUser(user: string): void {
-    //   this.userSource$.next(user);
-    // }
   removeUser() {
     window.sessionStorage.removeItem(KEY_AS_USER);
     window.sessionStorage.clear();

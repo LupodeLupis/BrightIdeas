@@ -18,16 +18,6 @@ export class HomeComponent implements OnInit,  OnDestroy {
   constructor(private router: Router) {
 
     this.isUserLoggedIn = tokenIsValid();
-    this.router.routeReuseStrategy.shouldReuseRoute = () => {
-      return false;
-    };
-    this.navigationSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd && this.isUserLoggedIn ) {
-        console.log('event',event)
-        // Trick the Router into believing it's last link wasn't previously loaded
-        this.router.navigated = false;
-      }
-    });
     this.categoryList = CATEGORIES;
   }
 
@@ -36,9 +26,6 @@ export class HomeComponent implements OnInit,  OnDestroy {
 
 
   ngOnDestroy() {
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
   }
 
 }

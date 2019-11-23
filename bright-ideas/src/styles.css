@@ -69,6 +69,7 @@ hr {
 
 .search-container-header {
     max-width: 500px;
+    margin: 0; 
 } 
 
 .modal-content{

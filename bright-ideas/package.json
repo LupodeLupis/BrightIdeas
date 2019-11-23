@@ -31,6 +31,7 @@
     "express": "^4.17.1",
     "lodash": "^4.17.15",
     "mysql": "^2.17.1",
+    "ng4-loading-spinner": "^1.2.3",
     "nodejs": "0.0.0",
     "path": "^0.12.7",
     "rxjs": "~6.3.3",

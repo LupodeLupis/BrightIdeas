@@ -12,6 +12,8 @@ import * as _ from 'lodash';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
 import { MediaEndpointService } from 'src/app/services/media-endpoint/media-endpoint.service';
 import { Media } from '../../../../models/media';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Route, Router } from '@angular/router';
 
 
 @Component({  
@@ -20,20 +22,17 @@ import { Media } from '../../../../models/media';
   styleUrls: ['./create-idea.component.css']
 })
 export class CreateIdeaComponent implements OnInit, OnDestroy {
-   idea: Idea;
-   media: Media;
-   
-   isModalVisible: boolean;
-   categoryList: string[] = [];
-   filesList: File[] = [];
-   keyIdPosting: string [] = [];
-   ideaForm: FormGroup;
-   private positionsListSub: Subscription;
-  //  private ideasListSubmission: Subscription;
-   @Input() positionsList: Posting [] = [];
-   positionEdited: object = {};
-   @ViewChild('mediaInput') mediaInput: ElementRef;
-  
+  idea: Idea;
+  media: Media;
+  isModalVisible: boolean;
+  categoryList: string[] = [];
+  filesList: File[] = [];
+  keyIdPosting: string [] = [];
+  ideaForm: FormGroup;
+  private positionsListSub: Subscription;
+  @Input() positionsList: Posting [] = [];
+  positionEdited: object = {};
+  @ViewChild('mediaInput') mediaInput: ElementRef;
 
   constructor(
     private ideaEndpointService: IdeaEndpointService,
@@ -41,6 +40,9 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     private modalNotificationService: ModalNotificationService,
     private sessionStoargeService: SessionStorageService,
     private mediaEndpointService: MediaEndpointService,
+    private spinnerService: Ng4LoadingSpinnerService,
+    private router: Router,
+    
     ) {
       this.ideaForm = new FormGroup({
         idea_title:       new FormControl('', Validators.required),
@@ -58,37 +60,46 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
         category: '',
         toDoList: 1
       };
-      this.media = { 
+      this.media = {
         fileName: null,
         mediaFormat: '',
         mediaURI: '',
-      }
+      };
      }
 
   ngOnInit() {
     this.positionsListSub = this.postingEndpointService.showPositionList.subscribe((position) => {
       this.positionsList = position;
     });
-    this.initilizationPositions();
+    //this.initilizationPositions();
+    //this.initilizationIdea()
   }
 
   initilizationPositions() {
     const positionsFromSessionStorage: Posting[] = this.sessionStoargeService.getPositions();
-    if (this.positionsList) {
-      this.positionsList = positionsFromSessionStorage;
-    }
+    // this.positionsList = positionsFromSessionStorage;
+    _.forEach(positionsFromSessionStorage, (value, index) => {
+      this.postingEndpointService.getPostingById(value.postingID).subscribe((response: Posting) => {
+        this.positionsList.push(value);
+        console.log(value)
+        console.log('position is retrieved');
+      }, (error: HttpErrorResponse) => {
+        console.log('Error in retrieveing position');
+      });
+    });
   }
 
-  // initilizationFile() {
-  //   const fileField = this.ideaForm.get('idea_media').value;
-  //   console.log(fileField)
-  //   if (fileField.files[0].size > FILE_SIZE) {
-  //     alert("File size limit: 8mb");
-  //     this.ideaForm.get('idea_media').setValue('');
-  //   }
-    
-  // }
-
+  initilizationIdea() {
+    const ideaFromSessionStorage: Posting[] = this.sessionStoargeService.getPositions();
+    const ideaId = ideaFromSessionStorage[0].ideaID;
+    this.ideaEndpointService.getIdeaById(ideaId).subscribe((response: Idea) => {
+      this.ideaForm.get('idea_title').setValue(response[0].ideaName);
+      this.ideaForm.get('idea_category').setValue(response[0].category);
+      this.ideaForm.get('idea_description').setValue(response[0].ideaDescription);
+    }, (error: HttpErrorResponse) => {
+      console.log('Error while retrieving idea')
+    });
+  }
 
   onSubmit() {
     if (this.positionsList) {
@@ -98,31 +109,32 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
       this.idea.category = this.ideaForm.get('idea_category').value;
       this.ideaEndpointService.createIdea(this.idea).subscribe((response: any ) => {
         ideaId = response.insertId;
-        this.modalNotificationService.openModalNotification({
-          successMessage: 'The idea has been created succesfully!.'
-        });
-
-        _.forEach(this.positionsList, (value,index)=>{
+        _.forEach(this.positionsList, (value, index) => {
           this.positionsList[index].ideaID = ideaId;
-          this.postingEndpointService.updatePosting(this.positionsList[index])
-          console.log('this.positionsList', this.positionsList)
+          this.postingEndpointService.updatePosting(value).subscribe((res: Posting) => {
+            console.log('the posting is  updated')
+          }, (error: HttpErrorResponse) => {
+            console.log('Posting updating error', error)
+          });
         });
-
-
+        this.spinnerService.show();
+        this.positionsList = [];
+        this.ideaForm.reset();
       },
       (error: HttpErrorResponse) => {
         this.modalNotificationService.openModalNotification({
           messageFailure: 'The idea could not be created.'
         });
+        this.positionsList = [];
+        this.ideaForm.reset();
       });
-      // setTimeout(() => {
-      //   this.postingEndpointService.createPosting(this.positionsList).subscribe((response: any) => {
-      //   console.log(response);
-      // }, (error: HttpErrorResponse) => {
-      //     console.log(error);
-      //   });
-      // });
     }
+    this.spinnerService.hide();
+    setTimeout(() => {
+      this.modalNotificationService.openModalNotification({
+        successMessage: 'The idea has been created succesfully!.'
+      });
+    }, 2500);
   }
 
   ngOnDestroy() {
@@ -166,9 +178,6 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
         this.mediaEndpointService.createMedia(this.media)
       }
     }
-    // const file = fileField.files[0];
-    // console.log(file);
-    // this.uploadedFile.emit(file);
   }
 
 }
