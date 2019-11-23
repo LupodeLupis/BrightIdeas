@@ -3,6 +3,7 @@ import { tokenIsValid, removeToken } from '../../../../../indexedDB-manager.js';
 import { Router } from '@angular/router';
 import { SessionStorageService } from '../../../shared/services/session-storage/session-storage.service.js';
 import { ModalNotificationService } from '../../../shared/services/modal-notification/modal-notification.service.js';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,8 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router,
               private sessionStorageService: SessionStorageService,
               private modalNotificationService: ModalNotificationService,
+              private spinnerService: Ng4LoadingSpinnerService,
+
               ) {
   }
 
@@ -29,6 +32,7 @@ export class HeaderComponent implements OnInit {
     this.sessionStorageService.clearAll();
     removeToken();
     this.user = null;
+    this.spinnerService.show();
     this.modalNotificationService.openModalNotification({
       successMessage: 'You are succesfully logged out'
     });

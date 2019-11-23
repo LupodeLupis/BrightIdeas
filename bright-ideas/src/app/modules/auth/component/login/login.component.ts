@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
 import { AuthService } from '../../services/auth.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
                 private modalNotificationService: ModalNotificationService,
                 private sessionStorageService: SessionStorageService,
                 private authService: AuthService,
+                private spinnerService: Ng4LoadingSpinnerService,
                 ) { }
 
     // Return form controls, for ease of use
@@ -49,7 +51,13 @@ export class LoginComponent implements OnInit {
                     this.authService.setUser(response.user);
                     this.sessionStorageService.saveUser(response.user);
                     this.user = response.user;
-                    this.router.navigate(['home']);
+                    this.spinnerService.show();
+                    this.modalNotificationService.openModalNotification({
+                        successMessage: 'Logged in successfully'
+                    });
+                    setTimeout(() =>{
+                        this.router.navigate(['home']);
+                    }, 2500);
                 }
                 this.loginForm.get('password').setErrors({ error: true });
             }, (error) => {

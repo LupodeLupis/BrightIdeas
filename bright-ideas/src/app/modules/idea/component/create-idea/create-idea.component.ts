@@ -13,10 +13,10 @@ import { SessionStorageService } from '../../../../shared/services/session-stora
 import { MediaEndpointService } from 'src/app/services/media-endpoint/media-endpoint.service';
 import { Media } from '../../../../models/media';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { Route, Router } from '@angular/router';
 
 
-@Component({  
+
+@Component({
   selector: 'app-create-idea',
   templateUrl: './create-idea.component.html',
   styleUrls: ['./create-idea.component.css']
@@ -41,7 +41,6 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     private sessionStoargeService: SessionStorageService,
     private mediaEndpointService: MediaEndpointService,
     private spinnerService: Ng4LoadingSpinnerService,
-    private router: Router,
     
     ) {
       this.ideaForm = new FormGroup({
