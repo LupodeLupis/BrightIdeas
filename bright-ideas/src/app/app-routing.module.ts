@@ -13,7 +13,8 @@ import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
 import { UploadMediaComponent } from './modules/idea/component/create-idea/upload-media/upload-media.component';
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
-import { UserProfileComponent} from './modules/profile/user-profile/user-profile.component'
+import { UserProfileComponent} from './modules/profile/user-profile/user-profile.component';
+import { ViewUserProfileComponent } from './modules/profile/user-profile/view-user-profile/view-user-profile.component';
 
 // If you need any route protected add this code to the route you need --->    canActivate: [AuthGuardService]  <--
 // NOTE THIS WILL ONLY CHECK TO SEE IF A VALID TOKEN IS FOUND IN LOCAL STORAGE
@@ -27,14 +28,13 @@ const routes: Routes = [
       component: ViewMessageComponent,
       canActivate: [AuthGuardService] },
     { path: 'home',
-      component: HomeComponent,
-      // runGuardsAndResolvers: 'always'
-      }, 
+      component: HomeComponent},
     { path: 'login',
-      component: LoginComponent },
-    { path: 'profile',
+      component: LoginComponent},
+    { path: 'profile/:id',
       component: UserProfileComponent},
-    //    { path: 'profile/:id', component: ProfilePageComponent },
+    { path: 'profile/user/:id',
+      component: ViewUserProfileComponent },
     { path: 'changePassword',
       component: ChangePasswordComponent },
     { path: 'createIdea',
