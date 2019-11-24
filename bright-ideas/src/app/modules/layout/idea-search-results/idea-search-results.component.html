@@ -1,9 +1,19 @@
-<p>
-  search-results works!
-</p>
+<h1>Results</h1>
 <div *ngIf = "hasResults; else noResults">
   <div *ngFor = "let i of ideaResults">
-    <a routerLink="/idea/{{i.ideaID}}">Media:{{i.media}} Idea Name:{{i.ideaName}} Idea Description:{{i.ideaDescription}} Idea Leader:{{i.ideaLeader}}</a>
+    <div class="result">
+      <a routerLink="/idea/{{i.ideaID}}">
+        <div class="previewImage">
+          <img src="../../../../assets/images/testImg.jpg" alt="{{i.ideaName}} preview">
+        </div>
+        <div class="header">
+            <h2 class="title">{{i.ideaName}}</h2>
+            <h3 class="leader">Idea Leader: {{i.ideaLeader}}</h3>
+        </div>
+        <div class="description">{{i.ideaDescription}}</div>
+        <div class="category">Category><b>{{i.category}}</b></div>     
+      </a>
+    </div>
     <br/>
     <br/>
   </div>

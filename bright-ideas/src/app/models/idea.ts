@@ -15,6 +15,7 @@ export interface Idea {
     update: Update;
     date: Date;     //TypeScript default class type
     toDoList: ToDo;
+    category: String;
 }
 
 export interface IdeaBasicFields {

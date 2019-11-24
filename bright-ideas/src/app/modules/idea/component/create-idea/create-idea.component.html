@@ -31,7 +31,7 @@
           <label class="bkg-col-text" for="media"><strong>Media</strong></label>
           <hr>
           <div class="text-center">
-            <button class="btn bkg-col-element">Upload File</button>
+            <app-upload-media (uploadedFile)="addFileToQueue($event)"></app-upload-media>
           </div>
         </div>
         <div class="form-group">
@@ -66,7 +66,8 @@
           </div>
         </div>
         <div class="form-group">
-            <button [disabled]="!ideaForm.valid"click="onSubmit()" type="submit" id="submit" class="bkg-col-element btn">Submit for Approval</button>
+            <!--<button [disabled]="!ideaForm.valid"click="onSubmit()" type="submit" id="submit" class="bkg-col-element btn">Submit for Approval</button>-->
+            <button (click)="onSubmit()" type="submit" id="submit" class="bkg-col-element btn">Submit for Approval</button>
         </div>
       </form>
     </div>

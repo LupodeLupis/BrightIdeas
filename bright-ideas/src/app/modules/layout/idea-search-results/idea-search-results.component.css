@@ -1,0 +1,67 @@
+.result a
+{
+    text-decoration: none;
+    color : #000000;
+}
+
+.result
+{
+    margin: 0 auto;
+    width: 90%;
+    height: 200px;
+
+    overflow: auto;
+    border-style: solid;
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: slategray;
+    
+    box-shadow: 3px 4px lightgrey;
+}
+
+.previewImage
+{
+    float: left;
+    width: 125px;
+    height: 125px;
+    overflow: hidden;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+
+    margin-top: 37.5px;
+    margin-left: 10px;
+}
+
+.previewImage img
+{
+    height: 125px;
+    margin-left: -50px;
+}
+
+.header
+{
+
+}
+
+.title
+{
+    display: inline;
+}
+
+.leader
+{
+    float: right;
+    display: inline;
+}
+
+.result .description
+{
+    font-size: 14px;
+    margin: auto 0;
+}
+
+.category
+{
+
+}
