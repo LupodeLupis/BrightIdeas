@@ -4,7 +4,6 @@ import { AuthGuardService } from './shared/services/auth-guard/auth-guard.servic
 
 import { HomeComponent } from './modules/layout/home/home.component';
 import { LoginComponent } from './modules/auth/component/login/login.component';
-import { ProfilePageComponent } from './modules/auth/component/profile-page/profile-page.component';
 import { ChangePasswordComponent } from './modules/auth/component/change-password/change-password.component';
 import { CreateIdeaComponent } from './modules/idea/component/create-idea/create-idea.component';
 import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.component';
@@ -14,6 +13,7 @@ import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
 import { UploadMediaComponent } from './modules/idea/component/create-idea/upload-media/upload-media.component';
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
+import { UserProfileComponent} from './modules/profile/user-profile/user-profile.component'
 
 // If you need any route protected add this code to the route you need --->    canActivate: [AuthGuardService]  <--
 // NOTE THIS WILL ONLY CHECK TO SEE IF A VALID TOKEN IS FOUND IN LOCAL STORAGE
@@ -33,7 +33,7 @@ const routes: Routes = [
     { path: 'login',
       component: LoginComponent },
     { path: 'profile',
-      component: ProfilePageComponent,},
+      component: UserProfileComponent},
     //    { path: 'profile/:id', component: ProfilePageComponent },
     { path: 'changePassword',
       component: ChangePasswordComponent },

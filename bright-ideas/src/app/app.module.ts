@@ -14,7 +14,6 @@ import { IdeaSearchResultsComponent } from './modules/layout/idea-search-results
 import { ProfileSearchResultsComponent } from './modules/layout/profile-search-results/profile-search-results.component';
 import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.component'
 import { LoginComponent } from './modules/auth/component/login/login.component';
-import { ProfilePageComponent } from './modules/auth/component/profile-page/profile-page.component';
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
 import { UploadMediaComponent } from './modules/idea/component/create-idea/upload-media/upload-media.component';
@@ -24,6 +23,8 @@ import { ModalNotificationComponent } from './shared/component/modal-notificatio
 import { AuthInterceptorService } from './shared/services/authInterceptor/auth-interceptor.service';
 import { EditPositionComponent } from './modules/idea/component/create-idea/edit-position/edit-position.component';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { FooterComponent } from './modules/layout/footer/footer.component';
+import { UserProfileComponent } from './modules/profile/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,6 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     CreateIdeaComponent,
     ViewIdeaComponent,
     LoginComponent,
-    ProfilePageComponent,
     PageNotFoundComponent,
     ViewMessageComponent,
     UploadMediaComponent,
@@ -46,6 +46,8 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
     CreatePositionComponent,
     ModalNotificationComponent,
     EditPositionComponent,
+    FooterComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
