@@ -67,6 +67,29 @@ hr {
     color: #aaa;
 }
 
+.img-upload {
+    cursor: pointer;
+    padding: 10px;
+    background-color: orange;
+    border-radius: 10px;
+    display: block;
+    max-width: 300px;
+    margin: 0 auto;
+    position: relative;
+    top: 30px;
+    font-weight: 600;
+}
+.img-upload:hover {
+    background-color: black;
+    color: orange;
+}
+
+.profile-img {
+    height: 300px;
+    max-width: 310px;
+    border-radius: 140px;
+}
+
 .search-container-header {
     max-width: 500px;
     margin: 0; 
@@ -83,8 +106,7 @@ hr {
 
 footer{
     position: absolute;
-    left: 0;
-    right: 0;
+    width: 100%;
     bottom: 0;
     background-color: black;
 }

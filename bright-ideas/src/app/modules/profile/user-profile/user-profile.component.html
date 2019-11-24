@@ -1,8 +1,8 @@
 <section class="">
   <div class="row profile-wrapper">
     <div class="col-7 align-self-center text-center">
-        <img [src]="url" id="profile-img" >
-        <label class="file-upload" for="file">Select Image</label>
+        <img [src]="url" class="profile-img" >
+        <label class="img-upload" for="file">Select Image</label>
         <input #image id="file" type="file" (change)="onFileSelectedEvent($event)"  style="visibility:hidden;" accept="image/*">
     </div>
     <div class="col-3 align-self-center">
