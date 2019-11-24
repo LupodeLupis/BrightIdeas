@@ -33,7 +33,19 @@ getProfileById(id): Observable<any> {
   return Observable.create((observer: Observer<any>) => {
     this.http.get(`${this.url}/profile/${id}`).subscribe((res: any) => {
        observer.next(res);
-       console.log(res)
+       observer.complete();
+    },
+    (error: HttpErrorResponse) => {
+       observer.error(error);
+    });
+ });
+}
+
+
+getProfileByUserId(id): Observable<any> {
+  return Observable.create((observer: Observer<any>) => {
+    this.http.get(`${this.url}/profile/userid/${id}`).subscribe((res: any) => {
+       observer.next(res);
        observer.complete();
     },
     (error: HttpErrorResponse) => {

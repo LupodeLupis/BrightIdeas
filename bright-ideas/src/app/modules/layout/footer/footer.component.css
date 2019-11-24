@@ -1,10 +1,11 @@
-.page-footer {
-    padding: 0 !important;
-}
+
 p {
     margin: 0;
 }
-
 #names {
     padding-bottom: 10px;
+}
+
+.bkg-col-text {
+    margin-top: 18px;
 }
