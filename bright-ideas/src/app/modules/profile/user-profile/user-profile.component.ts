@@ -25,6 +25,7 @@ export class UserProfileComponent implements OnInit {
   user: User;
   isImgUploaded: boolean;
   @ViewChild('image') image: ElementRef;
+  @Input() profileId: any;
 
   constructor( private modalNotificationService: ModalNotificationService,
                private profileEndpointService: ProfileEndpointService,

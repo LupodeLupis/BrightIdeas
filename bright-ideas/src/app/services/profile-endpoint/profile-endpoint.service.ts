@@ -29,9 +29,11 @@ getProfiles(): Observable<any> {
 }
 
 getProfileById(id): Observable<any> {
+  console.log(id)
   return Observable.create((observer: Observer<any>) => {
     this.http.get(`${this.url}/profile/${id}`).subscribe((res: any) => {
        observer.next(res);
+       console.log(res)
        observer.complete();
     },
     (error: HttpErrorResponse) => {

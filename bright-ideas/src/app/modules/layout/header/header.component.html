@@ -30,18 +30,14 @@
       <li *ngIf="user" class="nav-item" routerLinkActive="active" >
           <a class="nav-link"routerLink="/createIdea">Create Idea</a>
       </li>
-      <!-- <li *ngIf="user" class="nav-item dropdown" routerLinkActive="active" >
-          <a class="nav-link dropdown-toggle" routerLink="/profile">My Profile</a>
-      </li> -->
-
       <li *ngIf="user" class="nav-item dropdown" routerLinkActive="active" >
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
           role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" routerLink="/profile">Create Profile</a>
-              <a class="dropdown-item" href="#">View Profile</a>
+              <a class="dropdown-item" routerLink="/profile/{{user.userID}}"[queryParams]="{debug: true}">Create Profile</a>
+              <a class="dropdown-item" routerLink="/profile/user/{{user.userID}}" [queryParams]="{debug: true}">View Profile</a>
           </div>
       </li>
 

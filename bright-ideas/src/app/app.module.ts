@@ -25,6 +25,7 @@ import { EditPositionComponent } from './modules/idea/component/create-idea/edit
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { FooterComponent } from './modules/layout/footer/footer.component';
 import { UserProfileComponent } from './modules/profile/user-profile/user-profile.component';
+import { ViewUserProfileComponent } from './modules/profile/user-profile/view-user-profile/view-user-profile.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { UserProfileComponent } from './modules/profile/user-profile/user-profil
     EditPositionComponent,
     FooterComponent,
     UserProfileComponent,
+    ViewUserProfileComponent,
   ],
   imports: [
     BrowserModule,

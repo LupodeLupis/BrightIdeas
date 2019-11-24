@@ -1,0 +1,57 @@
+<section class="container text-center">
+  <div class="row">
+    <div class="col">
+      <form action="">
+        <div class="form-group">
+          <img [src]="url" class="profile-image">
+          <label class="img-upload" for="image-profile">Change Image</label>
+          <input id="image-profile"  type="file" (change)="onFileChangeSelectedEvent($event)" style="visibility:hidden;" accept="image/*">
+        </div>
+        <div class="form-group text-left form-selector-width">
+          <label for="profile-name" class="bkg-col-text"><strong>Name</strong></label>
+          <input type="text" id="profile-name" class="form-control" aria-label="title" [formControl]="profileForm.controls['profile_name']">
+        </div>
+        <div class="form-group text-left form-selector-width">
+          <label for="profile-email" class="bkg-col-text"><strong>Email</strong></label>
+          <input type="text" id="profile-email" class="form-control" aria-label="title" [formControl]="profileForm.controls['profile_email']">
+        </div>
+        <div class="form-group text-left form-selector-width">
+            <label for="profile-about" class="bkg-col-text"><strong>About me</strong></label>
+            <textarea  placeholder="Tell us about you..." class="form-control" id="profile-about" rows="3" 
+            [formControl]="profileForm.controls['profile_about']">
+          </textarea>
+        </div>
+        <div class="form-group text-left">
+          <label class="bkg-col-text" for="profile-idea"><strong>My Ideas</strong></label>
+          <hr>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Created</th>
+                <th scope="col">Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr *ngFor="let position of positionsList; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ position.postingName}}</td>
+                <td>{{ position.postingDescription}}</td>
+                <td>
+                  <button type="button" (click)="" data-toggle="modal" data-target="#modalEditPosition" class="btn action-icon"><i class="fas fa-pencil-alt"></i></button> 
+                  <button type="button" (click)="deletePosition(i)" class="btn action-icon"><i class="fas fa-trash-alt"></i></button>
+                  <button type="button"  (click)="addPosition()" data-toggle="modal" data-target="#modalPosition" class="btn action-icon"><i class="fas fa-plus"></i></button>
+                </td> 
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+        <div class="form-group text-right">
+            <button [disabled]="!profileForm.valid" (click)="onSubmit()" type="submit" id="submit" class="bkg-col-element btn">Edit Profile</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
