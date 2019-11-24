@@ -1,0 +1,36 @@
+<section class="">
+  <div class="row profile-wrapper">
+    <div class="col-6 align-self-center text-center">
+        <img [src]="url" id="profile-img" >
+        <label class="file-upload" for="file">Select Image</label>
+        <input #image id="file" type="file" (change)="onFileSelectedEvent($event)"  style="visibility:hidden;" accept="image/*">
+    </div>
+    <div class="col-5 align-self-center">
+        <h5 >Your Name: {{profile.profileDisplayName}}</h5>
+        <form>
+            <div class="form-group">
+               <input  type="text"  class="form-control" aria-label="title" [formControl]="profileForm.controls['display_name']">
+               <div *ngIf="profileForm.controls['display_name'].invalid &&
+							(profileForm.controls['display_name'].dirty || profileForm.controls['display_name'].touched)"
+							class="alert alert-danger">The field is required.
+               </div>
+            </div>
+            <h5 class="pt-4">About Me</h5>
+            <div class="form-group">
+              <textarea  placeholder="Tell us about you..." class="form-control "  rows="3" 
+              [formControl]="profileForm.controls['about_me']"></textarea>
+				<div *ngIf="profileForm.controls['about_me'].invalid &&
+							(profileForm.controls['about_me'].dirty || profileForm.controls['about_me'].touched)"
+							class="alert alert-danger">The field is required.
+				</div>
+				</div>
+				<div class="form-group text-right">
+					<button [disabled]="!profileForm.valid" (click)="onSubmit()" type="submit" id="submit" class="bkg-col-element btn">Create Profile</button>
+					<!-- <p>{{isImgUploaded || !profileForm.valid}}</p> -->
+				</div>
+        </form>
+        <!-- <h5>Contribution</h5> -->
+        <br>
+    </div>
+  </div>
+</section>
