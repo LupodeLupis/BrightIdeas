@@ -44,7 +44,7 @@
                 <td>{{idea.date | date: 'fullDate'}}</td>
                 <td>{{idea.category}}</td>
                 <td>
-                  <button type="button" (click)="editIdea(idea.ideaID)" data-toggle="modal" data-target="#modalEditPosition" class="btn action-icon"><i class="fas fa-pencil-alt"></i></button> 
+                  <button type="button" (click)="editIdea(idea.ideaID)" data-toggle="modal" data-target="#modalEditIdea" class="btn action-icon"><i class="fas fa-pencil-alt"></i></button> 
                   <button type="button" (click)="deleteIdea(i)" class="btn action-icon"><i class="fas fa-trash-alt"></i></button>
                 </td> 
               </tr>
@@ -59,3 +59,4 @@
     </div>
   </div>
 </section>
+<app-edit-idea></app-edit-idea>

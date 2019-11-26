@@ -8,7 +8,7 @@ import { Posting } from '../../../../models/posting';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ModalNotificationService } from '../../../../shared/services/modal-notification/modal-notification.service';
-import * as _ from 'lodash';
+  import * as _ from 'lodash';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
 import { MediaEndpointService } from 'src/app/services/media-endpoint/media-endpoint.service';
 import { Media } from '../../../../models/media';
@@ -51,6 +51,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
       this.categoryList = CATEGORIES;
       this.isModalVisible = true;
       this.idea = {
+        ideaID: '',
         ideaName: '',
         ideaDescription: '',
         ideaCreator: currentUser.userID,
@@ -110,7 +111,6 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
         _.forEach(this.positionsList, (value, index) => {
           this.positionsList[index].ideaID = ideaId;
           this.postingEndpointService.updatePosting(value).subscribe((res: Posting) => {
-            console.log('the posting is  updated')
           }, (error: HttpErrorResponse) => {
             console.log('Posting updating error', error)
           });

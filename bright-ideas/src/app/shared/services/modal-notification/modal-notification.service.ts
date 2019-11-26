@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalNotificationComponent } from '../../component/modal-notification/modal-notification.component';
 
 @Injectable({
@@ -13,4 +13,5 @@ export class ModalNotificationService {
     const modalRef = this.modalService.open(ModalNotificationComponent);
     modalRef.componentInstance.message = notificationMsg;
   }
+
 }

@@ -26,6 +26,7 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { FooterComponent } from './modules/layout/footer/footer.component';
 import { UserProfileComponent } from './modules/profile/user-profile/user-profile.component';
 import { ViewUserProfileComponent } from './modules/profile/user-profile/view-user-profile/view-user-profile.component';
+import { EditIdeaComponent } from './modules/idea/component/edit-idea/edit-idea.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ViewUserProfileComponent } from './modules/profile/user-profile/view-us
     FooterComponent,
     UserProfileComponent,
     ViewUserProfileComponent,
+    EditIdeaComponent,
   ],
   imports: [
     BrowserModule,
