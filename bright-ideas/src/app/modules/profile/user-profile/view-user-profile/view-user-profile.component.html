@@ -2,11 +2,12 @@
   <div class="row">
     <div class="col">
       <form action="">
-        <div class="form-group">
-          <img [src]="url" class="profile-image">
+        <!-- <div class="form-group">
+          <img [src]="url" class="profile-img">
           <label class="img-upload" for="image-profile">Change Image</label>
-          <input id="image-profile"  type="file" (change)="onFileChangeSelectedEvent($event)" style="visibility:hidden;" accept="image/*">
-        </div>
+          <input  id="image-profile"  type="file" (change)="onFileChangeSelectedEvent($event)" 
+          [formControl]="profileForm.controls['profile_img']"  style="visibility:hidden;" accept="image/*">
+        </div> -->
         <div class="form-group text-left form-selector-width">
           <label for="profile-name" class="bkg-col-text"><strong>Name</strong></label>
           <input type="text" id="profile-name" class="form-control" aria-label="title" [formControl]="profileForm.controls['profile_name']">
@@ -24,7 +25,7 @@
         <div class="form-group text-left">
           <label class="bkg-col-text" for="profile-idea"><strong>My Ideas</strong></label>
           <hr>
-          <table class="table table-striped">
+          <table class="table table-striped text-center">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -32,24 +33,27 @@
                 <th scope="col">Description</th>
                 <th scope="col">Created</th>
                 <th scope="col">Category</th>
+                <th scope="col">Option</th>
               </tr>
             </thead>
             <tbody>
-              <!-- <tr *ngFor="let position of positionsList; index as i">
+              <tr *ngFor="let idea of listIdea; index as i">
                 <th scope="row">{{ i + 1 }}</th>
-                <td>{{ position.postingName}}</td>
-                <td>{{ position.postingDescription}}</td>
+                <td>{{idea.ideaName}}</td>
+                <td>{{idea.ideaDescription}}</td>
+                <td>{{idea.date | date: 'fullDate'}}</td>
+                <td>{{idea.category}}</td>
                 <td>
-                  <button type="button" (click)="" data-toggle="modal" data-target="#modalEditPosition" class="btn action-icon"><i class="fas fa-pencil-alt"></i></button> 
-                  <button type="button" (click)="deletePosition(i)" class="btn action-icon"><i class="fas fa-trash-alt"></i></button>
-                  <button type="button"  (click)="addPosition()" data-toggle="modal" data-target="#modalPosition" class="btn action-icon"><i class="fas fa-plus"></i></button>
+                  <button type="button" (click)="editIdea(idea.ideaID)" data-toggle="modal" data-target="#modalEditPosition" class="btn action-icon"><i class="fas fa-pencil-alt"></i></button> 
+                  <button type="button" (click)="deleteIdea(i)" class="btn action-icon"><i class="fas fa-trash-alt"></i></button>
                 </td> 
-              </tr> -->
+              </tr>
             </tbody>
           </table>
         </div>
         <div class="form-group text-right">
-            <button [disabled]="!profileForm.valid" (click)="onSubmit()" type="submit" id="submit" class="bkg-col-element btn">Edit Profile</button>
+            <button [disabled]="!profileForm.valid" (click)="deleteProfile()" type="button" class="bkg-col-element btn mr-3">Delete Profile</button>
+            <button [disabled]="!profileForm.valid" (click)="editProfile()" type="submit" id="submit" class="bkg-col-element btn">Edit Profile</button>
         </div>
       </form>
     </div>

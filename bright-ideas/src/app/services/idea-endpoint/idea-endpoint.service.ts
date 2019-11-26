@@ -52,6 +52,18 @@ export class IdeaEndpointService {
    });
   }
 
+  getIdeaByUserId(id: any): Observable<any> {
+    return Observable.create((observer: Observer<any>) => {
+      this.http.get(`${this.url}/idea/ideacreator/${id}`).subscribe((res: any) => {
+         observer.next(res);
+         observer.complete();
+      },
+      (error: HttpErrorResponse) => {
+         observer.error(error);
+      });
+   });
+  }
+
   getIdeaByWildcard(filter): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.http.get(`${this.url}/idea/filter/${filter}`).subscribe((res: any) => {

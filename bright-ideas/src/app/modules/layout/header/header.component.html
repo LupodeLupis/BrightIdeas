@@ -27,20 +27,26 @@
       <li *ngIf="user" class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/viewMessage">Messages</a>
       </li>
-      <li *ngIf="user" class="nav-item" routerLinkActive="active" >
-          <a class="nav-link"routerLink="/createIdea">Create Idea</a>
-      </li>
       <li *ngIf="user" class="nav-item dropdown" routerLinkActive="active" >
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" 
           role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Profile
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
               <a class="dropdown-item" routerLink="/profile/{{user.userID}}"[queryParams]="{debug: true}">Create Profile</a>
               <a class="dropdown-item" routerLink="/profile/user/{{user.userID}}" [queryParams]="{debug: true}">View Profile</a>
           </div>
       </li>
-
+      <li *ngIf="user" class="nav-item dropdown" routerLinkActive="active" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownIdea" 
+        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Idea
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownIdea">
+          <a class="dropdown-item" routerLink="/createIdea" [queryParams]="{debug: true}">Create Idea</a>
+          <a class="dropdown-item" routerLink="" [queryParams]="{debug: true}">View Idea</a>
+        </div>
+      </li>
       <li *ngIf="user" class="nav-item" routerLinkActive="active">
           <a id='signout' class="nav-link" routerLink="/logout" (click)="signOut()">Log Out</a>
       </li>
