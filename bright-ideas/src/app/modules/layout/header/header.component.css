@@ -27,3 +27,18 @@
 #signout {
      cursor: pointer;
 }
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+     top: 30px;
+     border: none;
+     background-color: black;
+     min-width: 0;
+}
+
+.dropdown-item {
+     background-color: black;
+     color: white;
+}
+.dropdown-item:hover {
+     background-color: orange;
+}
+

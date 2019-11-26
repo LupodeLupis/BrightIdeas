@@ -9,3 +9,8 @@ p {
 .bkg-col-text {
     margin-top: 18px;
 }
+
+footer{
+    bottom: 0;
+    position: absolute;
+}

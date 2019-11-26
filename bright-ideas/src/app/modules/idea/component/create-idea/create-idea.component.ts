@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CATEGORIES, FILE_SIZE } from '../../../../shared/models/global-constants';
 import { Posting } from '../../../../models/posting';
 import { Subscription } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ModalNotificationService } from '../../../../shared/services/modal-notification/modal-notification.service';
 import * as _ from 'lodash';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
@@ -30,7 +30,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
   keyIdPosting: string [] = [];
   ideaForm: FormGroup;
   private positionsListSub: Subscription;
-  @Input() positionsList: Posting [] = [];
+  positionsList: Posting [] = [];
   positionEdited: object = {};
   @ViewChild('mediaInput') mediaInput: ElementRef;
 
@@ -41,7 +41,6 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     private sessionStoargeService: SessionStorageService,
     private mediaEndpointService: MediaEndpointService,
     private spinnerService: Ng4LoadingSpinnerService,
-    
     ) {
       this.ideaForm = new FormGroup({
         idea_title:       new FormControl('', Validators.required),
@@ -153,11 +152,22 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     });
   }
 
-  deletePosition(indexPosition: any) {
-    if (indexPosition > -1) {
+  deletePosition(indexPosition: any, positionId: any) {
+    if (indexPosition > -1 && positionId !== 0) {
       this.positionsList.splice(indexPosition, 1);
     }
+    this.postingEndpointService.deletePosting(positionId).subscribe( (res: any) => {
+      this.modalNotificationService.openModalNotification({
+        successMessage: 'Position deleted succesfully'
+      });
+      this.spinnerService.show()
+    }, (error: HttpErrorResponse) => {
+      this.modalNotificationService.openModalNotification({
+        messageFailure: error.message
+      });
+    });
     this.sessionStoargeService.removePositions();
+    this.spinnerService.hide();
   }
 
   uploadFile(): void {
@@ -170,7 +180,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
       if (file.size > FILE_SIZE) {
         this.modalNotificationService.openModalNotification({
           messageFailure: 'The file is over the size limit'
-        })
+        });
       } else {
         this.media.fileName = file;
         this.media.mediaFormat = file[0].type;
@@ -178,5 +188,4 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
       }
     }
   }
-
 }

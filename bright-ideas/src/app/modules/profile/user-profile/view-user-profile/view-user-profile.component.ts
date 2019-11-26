@@ -53,6 +53,7 @@ export class ViewUserProfileComponent implements OnInit {
           this.profileForm.get('profile_email').setValue(this.user.emailAddress);
           this.profileForm.get('profile_about').setValue(response[0].profileDescription);
           this.ideaEndpointService.getIdeaByUserId(this.user.userID).subscribe((res: any) => {
+            console.log(res)
             this.listIdea = res;
           }, (error: HttpErrorResponse) => {
             this.modalNotificationService.openModalNotification({
@@ -86,6 +87,11 @@ export class ViewUserProfileComponent implements OnInit {
 
   editProfile() {
 
+  }
+
+  editIdea(ideaId: any){
+
+    
   }
 
   // onFileChangeSelectedEvent(event) {
