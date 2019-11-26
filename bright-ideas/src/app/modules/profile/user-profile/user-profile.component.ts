@@ -50,9 +50,6 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
   }
 
-  initilializeProfile() {
-
-  }
 
   onFileSelectedEvent(event) {
     this.selectedImage = event.target.files[0] as File;
@@ -71,6 +68,7 @@ export class UserProfileComponent implements OnInit {
     }
     this.isImgUploaded = true;
   }
+
 
   onSubmit() {
     if (this.profileForm.valid && this.isImgUploaded) {

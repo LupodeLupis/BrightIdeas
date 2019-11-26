@@ -9,6 +9,7 @@ import { Idea } from '../../../../models/idea';
 import { IdeaEndpointService } from '../../../../services/idea-endpoint/idea-endpoint.service';
 import { ModalNotificationService } from '../../../../shared/services/modal-notification/modal-notification.service';
 import { FILE_SIZE } from 'src/app/shared/models/global-constants';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-view-user-profile',
@@ -31,7 +32,7 @@ export class ViewUserProfileComponent implements OnInit {
     this.user = sessionStorageService.getUser();
     this.isProfileDeleted = true;
     this.profileForm = new FormGroup({
-      profile_img:   new FormControl('', Validators.required),
+      // profile_img:   new FormControl('', Validators.required),
       profile_name:  new FormControl('', Validators.required),
       profile_email: new FormControl('', Validators.required),
       profile_about: new FormControl('', Validators.required)
@@ -42,18 +43,28 @@ export class ViewUserProfileComponent implements OnInit {
     this.initilizationList();
   }
 
+  editIdea(ideaId: any) {
+    _.forEach(this.listIdea, (value, index) => {
+      if (value.ideaID === ideaId) {
+        this.profileEndpointService.currentIdea.next(value);
+      }
+    });
+  }
+
+  deleteIdea(index: number, ideaId: any) {
+
+  }
+
   initilizationList() {
     if (this.user) {
       this.profileEndpointService.getProfileByUserId(this.user.userID).subscribe((response: any) => {
         if (response.length !== 0) {
           this.profileId = response[0].profileID;
           this.url = response[0].profilePicture;
-          console.log(this.url)
           this.profileForm.get('profile_name').setValue(response[0].profileDisplayName);
           this.profileForm.get('profile_email').setValue(this.user.emailAddress);
           this.profileForm.get('profile_about').setValue(response[0].profileDescription);
           this.ideaEndpointService.getIdeaByUserId(this.user.userID).subscribe((res: any) => {
-            console.log(res)
             this.listIdea = res;
           }, (error: HttpErrorResponse) => {
             this.modalNotificationService.openModalNotification({
@@ -89,10 +100,6 @@ export class ViewUserProfileComponent implements OnInit {
 
   }
 
-  editIdea(ideaId: any){
-
-    
-  }
 
   // onFileChangeSelectedEvent(event) {
   //   this.selectedImage = event.target.files[0] as File;

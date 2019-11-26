@@ -111,3 +111,12 @@ footer{
     background-color: black;
 }
 
+.action-icon {
+    background: no-repeat;   
+}
+.action-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+

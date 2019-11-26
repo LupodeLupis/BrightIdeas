@@ -5,11 +5,9 @@ p {
 #names {
     padding-bottom: 10px;
 }
-
-.bkg-col-text {
-    margin-top: 18px;
+.footer-copyright{
+    margin-top: 12px;
 }
-
 footer{
     bottom: 0;
     position: absolute;

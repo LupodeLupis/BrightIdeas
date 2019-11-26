@@ -14,8 +14,9 @@ export class ModalNotificationComponent implements OnInit {
 
   }
   ngOnInit() {
-    setTimeout(()=> {
+    setTimeout(() => {
       this.activeModal.close();
     }, 2000);
   }
+
 }

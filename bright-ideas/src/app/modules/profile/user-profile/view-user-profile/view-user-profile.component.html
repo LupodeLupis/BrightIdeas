@@ -2,12 +2,13 @@
   <div class="row">
     <div class="col">
       <form action="">
-        <!-- <div class="form-group">
-          <img [src]="url" class="profile-img">
+        <div class="form-group">
+          <h1>HERE SHOULD GO THE IMAGE....</h1>
+          <!-- <img [src]="url" class="profile-img">
           <label class="img-upload" for="image-profile">Change Image</label>
           <input  id="image-profile"  type="file" (change)="onFileChangeSelectedEvent($event)" 
-          [formControl]="profileForm.controls['profile_img']"  style="visibility:hidden;" accept="image/*">
-        </div> -->
+          [formControl]="profileForm.controls['profile_img']"  style="visibility:hidden;" accept="image/*"> -->
+        </div>
         <div class="form-group text-left form-selector-width">
           <label for="profile-name" class="bkg-col-text"><strong>Name</strong></label>
           <input type="text" id="profile-name" class="form-control" aria-label="title" [formControl]="profileForm.controls['profile_name']">
@@ -44,8 +45,8 @@
                 <td>{{idea.date | date: 'fullDate'}}</td>
                 <td>{{idea.category}}</td>
                 <td>
-                  <button type="button" (click)="editIdea(idea.ideaID)" data-toggle="modal" data-target="#modalEditPosition" class="btn action-icon"><i class="fas fa-pencil-alt"></i></button> 
-                  <button type="button" (click)="deleteIdea(i)" class="btn action-icon"><i class="fas fa-trash-alt"></i></button>
+                  <button [disabled]="true" type="button" (click)="editIdea(idea.ideaID)" data-toggle="modal" data-target="#modalEditIdea" class="btn action-icon"><i class="fas fa-pencil-alt"></i></button> 
+                  <button [disabled]="true" type="button" (click)="deleteIdea(i, idea.ideaID)" class="btn action-icon"><i class="fas fa-trash-alt"></i></button>
                 </td> 
               </tr>
             </tbody>
@@ -59,3 +60,4 @@
     </div>
   </div>
 </section>
+<app-edit-idea></app-edit-idea>

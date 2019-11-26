@@ -13,10 +13,3 @@
 #submit { 
     float: right;
 }
-.action-icon {
-    background: no-repeat;   
-}
-.action-icon:focus {
-    outline: none;
-    box-shadow: none;
-}

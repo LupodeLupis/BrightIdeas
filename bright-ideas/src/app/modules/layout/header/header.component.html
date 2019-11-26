@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" href="/">
-      <img src="../../../../assets/img/logo.ico" width="130" height="30" class="d-inline-block align-top" alt="brightIdeas_Logo">
-    </a>
+    <img src="../../../../assets/img/logo.ico" width="130" height="30" class="d-inline-block align-top" alt="brightIdeas_Logo">
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -33,8 +33,8 @@
           Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
-              <a class="dropdown-item" routerLink="/profile/{{user.userID}}"[queryParams]="{debug: true}">Create Profile</a>
-              <a class="dropdown-item" routerLink="/profile/user/{{user.userID}}" [queryParams]="{debug: true}">View Profile</a>
+            <a class="dropdown-item" routerLink="/profile/{{user.userID}}"[queryParams]="{debug: true}">Create Profile</a>
+            <a class="dropdown-item" routerLink="/profile/user/{{user.userID}}" [queryParams]="{debug: true}">View Profile</a>
           </div>
       </li>
       <li *ngIf="user" class="nav-item dropdown" routerLinkActive="active" >
@@ -44,7 +44,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownIdea">
           <a class="dropdown-item" routerLink="/createIdea" [queryParams]="{debug: true}">Create Idea</a>
-          <a class="dropdown-item" routerLink="" [queryParams]="{debug: true}">View Idea</a>
+          <a class="dropdown-item" routerLink="/idea/" [queryParams]="{debug: true}">View Idea</a>
         </div>
       </li>
       <li *ngIf="user" class="nav-item" routerLinkActive="active">

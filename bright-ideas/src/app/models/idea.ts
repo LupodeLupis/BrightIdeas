@@ -1,4 +1,5 @@
 export interface Idea {
+    ideaID: any;
     ideaName: string;
     ideaDescription: string;
     ideaCreator: number;
