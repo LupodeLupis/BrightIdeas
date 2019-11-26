@@ -32,7 +32,7 @@ export class ViewUserProfileComponent implements OnInit {
     this.user = sessionStorageService.getUser();
     this.isProfileDeleted = true;
     this.profileForm = new FormGroup({
-      profile_img:   new FormControl('', Validators.required),
+      // profile_img:   new FormControl('', Validators.required),
       profile_name:  new FormControl('', Validators.required),
       profile_email: new FormControl('', Validators.required),
       profile_about: new FormControl('', Validators.required)
@@ -49,6 +49,10 @@ export class ViewUserProfileComponent implements OnInit {
         this.profileEndpointService.currentIdea.next(value);
       }
     });
+  }
+
+  deleteIdea(index: number, ideaId: any) {
+
   }
 
   initilizationList() {
