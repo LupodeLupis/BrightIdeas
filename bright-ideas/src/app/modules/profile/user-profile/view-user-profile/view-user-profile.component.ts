@@ -8,8 +8,9 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Idea } from '../../../../models/idea';
 import { IdeaEndpointService } from '../../../../services/idea-endpoint/idea-endpoint.service';
 import { ModalNotificationService } from '../../../../shared/services/modal-notification/modal-notification.service';
-import { FILE_SIZE } from 'src/app/shared/models/global-constants';
 import * as _ from 'lodash';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Profile } from '../../../../models/profile';
 
 @Component({
   selector: 'app-view-user-profile',
@@ -22,21 +23,31 @@ export class ViewUserProfileComponent implements OnInit {
   profileForm: FormGroup;
   user: User;
   profileId: any;
+  profile: Profile;
   listIdea: Idea [] = [];
   isProfileDeleted: boolean;
   constructor(private sessionStorageService: SessionStorageService,
               private profileEndpointService: ProfileEndpointService,
               private ideaEndpointService: IdeaEndpointService,
               private modalNotificationService: ModalNotificationService ,
+              private spinnerService: Ng4LoadingSpinnerService,
+
               ) {
     this.user = sessionStorageService.getUser();
     this.isProfileDeleted = true;
     this.profileForm = new FormGroup({
-      // profile_img:   new FormControl('', Validators.required),
+      // profile_img:   new FormControl('', Validators.required), // not in use at the moment
       profile_name:  new FormControl('', Validators.required),
       profile_email: new FormControl('', Validators.required),
       profile_about: new FormControl('', Validators.required)
     });
+    this.profile = {
+      profileID: '',
+      profilePicture: '',
+      profileDescription: '',
+      profileDisplayName: '',
+      userID: this.user.userID
+    }
   }
 
   ngOnInit() {
@@ -49,10 +60,6 @@ export class ViewUserProfileComponent implements OnInit {
         this.profileEndpointService.currentIdea.next(value);
       }
     });
-  }
-
-  deleteIdea(index: number, ideaId: any) {
-
   }
 
   initilizationList() {
@@ -96,8 +103,38 @@ export class ViewUserProfileComponent implements OnInit {
     this.listIdea = [];
   }
 
-  editProfile() {
+  deleteIdea(index: number, ideaId: any) {
+    if (index > -1 && ideaId !== 0) {
+      this.listIdea.splice(index, 1);
+    }
+    this.ideaEndpointService.deleteIdea(ideaId).subscribe( (res: any) => {
+      this.modalNotificationService.openModalNotification({
+        successMessage: 'Position deleted succesfully'
+      });
+      this.spinnerService.show();
+    }, (error: HttpErrorResponse) => {
+      this.modalNotificationService.openModalNotification({
+        messageFailure: error.message
+      });
+    });
+    this.spinnerService.hide();
+  }
 
+  editProfile() {
+    if (this.profileId) {
+     this.profile.profileID = this.profileId;
+     this.profile.profileDisplayName =  this.profileForm.get('profile_name').value;
+     this.profile.profileDescription = this.profileForm.get('profile_about').value;
+     this.profileEndpointService.updateProfile(this.profile).subscribe( (response: Profile) => {
+      this.modalNotificationService.openModalNotification({
+        successMessage: 'Profile edited succesfully'
+      });
+     }, (error: HttpErrorResponse) => {
+        this.modalNotificationService.openModalNotification({
+          failureMessage: error.message
+        });
+     });
+    }
   }
 
 
