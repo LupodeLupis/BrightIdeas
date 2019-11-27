@@ -39,6 +39,7 @@ export class UserProfileComponent implements OnInit {
                 });
                 this.user = sessionStorageService.getUser();
                 this.profile = {
+                    profileID: '',
                     profilePicture: '',
                     profileDisplayName: '',
                     profileDescription: '',

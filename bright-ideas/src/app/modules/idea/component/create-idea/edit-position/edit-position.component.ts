@@ -36,7 +36,6 @@ export class EditPositionComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.initilizationPositionList();
-    console.log('position from edit-position-component', this.position)
   }
 
   initilizationPositionList() {
@@ -55,9 +54,7 @@ export class EditPositionComponent implements OnInit, OnDestroy{
     return this.positionEndPointService.checkNumberValues(event)
   }
 
-  ngOnDestroy() {
-    this.editPositionSubscription.unsubscribe();
-  }
+  
 
   editPosition() {
     if (this.position !== undefined) {
@@ -81,5 +78,9 @@ export class EditPositionComponent implements OnInit, OnDestroy{
       });
     }
     this.spinnerService.hide();
+  }
+
+  ngOnDestroy() {
+    this.editPositionSubscription.unsubscribe();
   }
 }

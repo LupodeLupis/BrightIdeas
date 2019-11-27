@@ -8,7 +8,7 @@ import { Posting } from '../../../../models/posting';
 import { Subscription } from 'rxjs';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ModalNotificationService } from '../../../../shared/services/modal-notification/modal-notification.service';
-  import * as _ from 'lodash';
+import * as _ from 'lodash';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
 import { MediaEndpointService } from 'src/app/services/media-endpoint/media-endpoint.service';
 import { Media } from '../../../../models/media';
@@ -70,36 +70,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     this.positionsListSub = this.postingEndpointService.showPositionList.subscribe((position) => {
       this.positionsList = position;
     });
-    //this.initilizationPositions();
-    //this.initilizationIdea()
   }
-
-  initilizationPositions() {
-    const positionsFromSessionStorage: Posting[] = this.sessionStoargeService.getPositions();
-    // this.positionsList = positionsFromSessionStorage;
-    _.forEach(positionsFromSessionStorage, (value, index) => {
-      this.postingEndpointService.getPostingById(value.postingID).subscribe((response: Posting) => {
-        this.positionsList.push(value);
-        console.log(value)
-        console.log('position is retrieved');
-      }, (error: HttpErrorResponse) => {
-        console.log('Error in retrieveing position');
-      });
-    });
-  }
-
-  initilizationIdea() {
-    const ideaFromSessionStorage: Posting[] = this.sessionStoargeService.getPositions();
-    const ideaId = ideaFromSessionStorage[0].ideaID;
-    this.ideaEndpointService.getIdeaById(ideaId).subscribe((response: Idea) => {
-      this.ideaForm.get('idea_title').setValue(response[0].ideaName);
-      this.ideaForm.get('idea_category').setValue(response[0].category);
-      this.ideaForm.get('idea_description').setValue(response[0].ideaDescription);
-    }, (error: HttpErrorResponse) => {
-      console.log('Error while retrieving idea')
-    });
-  }
-
   onSubmit() {
     if (this.positionsList) {
       let ideaId = '';
@@ -137,7 +108,6 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.positionsListSub.unsubscribe();
-   // this.ideasListSubmission.unsubscribe();
   }
 
   addPosition() {
@@ -169,23 +139,23 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     this.sessionStoargeService.removePositions();
     this.spinnerService.hide();
   }
-
-  uploadFile(): void {
-    const file: File = this.mediaInput.nativeElement.files;
-    if (file[0] === undefined) {
-      this.modalNotificationService.openModalNotification({
-        messageFailure: 'Please select a file'
-      });
-    } else {
-      if (file.size > FILE_SIZE) {
-        this.modalNotificationService.openModalNotification({
-          messageFailure: 'The file is over the size limit'
-        });
-      } else {
-        this.media.fileName = file;
-        this.media.mediaFormat = file[0].type;
-        this.mediaEndpointService.createMedia(this.media)
-      }
-    }
-  }
+  // NOT WORKING 
+  // uploadFile(): void {
+  //   const file: File = this.mediaInput.nativeElement.files;
+  //   if (file[0] === undefined) {
+  //     this.modalNotificationService.openModalNotification({
+  //       messageFailure: 'Please select a file'
+  //     });
+  //   } else {
+  //     if (file.size > FILE_SIZE) {
+  //       this.modalNotificationService.openModalNotification({
+  //         messageFailure: 'The file is over the size limit'
+  //       });
+  //     } else {
+  //       this.media.fileName = file;
+  //       this.media.mediaFormat = file[0].type;
+  //       this.mediaEndpointService.createMedia(this.media)
+  //     }
+  //   }
+  // }
 }
