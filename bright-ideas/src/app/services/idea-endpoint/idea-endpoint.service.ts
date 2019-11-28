@@ -41,9 +41,9 @@ export class IdeaEndpointService {
    });;
   }
 
-  getIdeaById(ideaId): Observable<Idea[]> {
+  getIdeaById(ideaId): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
-      this.http.get(`${this.url}/idea/${ideaId}`).subscribe((res: Idea[]) => {
+      this.http.get(`${this.url}/idea/${ideaId}`).subscribe((res: any) => {
          observer.next(res);
          observer.complete();
       },

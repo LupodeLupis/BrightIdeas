@@ -44,7 +44,7 @@ class IdeaDisp
 export class ViewIdeaComponent implements OnInit {
 
   ideaId;
-  idea: Idea;
+  idea;
   displayIdea = new IdeaDisp('', '', '', '', '', '', '', '', '');
 
   constructor(private IdeaService: IdeaEndpointService, private MediaService: MediaEndpointService, private ProfileService: ProfileEndpointService, private route: ActivatedRoute) { }
@@ -53,7 +53,7 @@ export class ViewIdeaComponent implements OnInit {
         this.route.paramMap.subscribe(params => {
             this.ideaId = params.get("ideaId");
             this.IdeaService.getIdeaById(this.ideaId).subscribe((idea) => {
-                this.idea = idea[0];
+                this.idea = idea;
             });
         });
     }
