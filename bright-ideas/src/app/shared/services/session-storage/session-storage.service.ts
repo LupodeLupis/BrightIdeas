@@ -4,7 +4,7 @@ import { Posting } from 'src/app/models/posting';
 import { Subject } from 'rxjs';
 
 
-const KEY_AS_USER = 'currentUser';
+const KEY_AS_USER = 'user';
 const KEY_AS_POSITION = 'currentpositions';
 
 @Injectable({
@@ -16,15 +16,15 @@ export class SessionStorageService {
   constructor() { }
 
   removeUser() {
-    window.sessionStorage.removeItem(KEY_AS_USER);
-    window.sessionStorage.clear();
+    //window.sessionStorage.removeItem(KEY_AS_USER);
+    //window.sessionStorage.clear();
   }
   getUser(): User {
-    return JSON.parse(sessionStorage.getItem(KEY_AS_USER));
+      return JSON.parse(localStorage.getItem(KEY_AS_USER));
   }
   saveUser(user: string) {
-    window.sessionStorage.removeItem(KEY_AS_USER);
-    window.sessionStorage.setItem(KEY_AS_USER, JSON.stringify(user));
+    //window.sessionStorage.removeItem(KEY_AS_USER);
+    //window.sessionStorage.setItem(KEY_AS_USER, JSON.stringify(user));
   }
   savePositions(positions: Posting[]) {
    window.sessionStorage.setItem(KEY_AS_POSITION, JSON.stringify(positions));

@@ -1,6 +1,6 @@
 import { ModalNotificationService } from './../../../../shared/services/modal-notification/modal-notification.service';
 import { UserEndpointService } from './../../../../services/user-endpoint/user-endpoint.service';
-import { saveToken } from  './../../../../../../indexedDB-manager.js';
+import { saveToken, saveUser } from  './../../../../../../indexedDB-manager.js';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -47,10 +47,9 @@ export class LoginComponent implements OnInit {
             .subscribe((response) => {
                 // Server will return a webToken if login was successful. save the token locally to be used later
                 if (response.token) {
+                    saveUser(response.user);
                     saveToken(response.token);
                     this.authService.setUser(response.user);
-                    this.sessionStorageService.saveUser(response.user);
-                    this.user = response.user;
                     this.spinnerService.show();
                     this.modalNotificationService.openModalNotification({
                         successMessage: 'Logged in successfully'
@@ -58,8 +57,9 @@ export class LoginComponent implements OnInit {
                     setTimeout(() =>{
                         this.router.navigate(['home']);
                     }, 2500);
+                } else {
+                    this.loginForm.get('password').setErrors({ error: true });
                 }
-                this.loginForm.get('password').setErrors({ error: true });
             }, (error) => {
                 this.modalNotificationService.openModalNotification(
                     { messageFailure: 'Encountered an error logging in, please try again'

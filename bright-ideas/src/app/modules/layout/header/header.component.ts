@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { tokenIsValid, removeToken } from '../../../../../indexedDB-manager.js';
+import { removeToken } from '../../../../../indexedDB-manager.js';
 import { Router } from '@angular/router';
 import { SessionStorageService } from '../../../shared/services/session-storage/session-storage.service.js';
 import { ModalNotificationService } from '../../../shared/services/modal-notification/modal-notification.service.js';
@@ -26,20 +26,20 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('this.user from header', this.user)
+    //console.log('this.user from header', this.user)
   }
 
 
 
 
   signOut() {
-    this.sessionStorageService.clearAll();
     removeToken();
     this.user = null;
     this.spinnerService.show();
     this.modalNotificationService.openModalNotification({
       successMessage: 'You are succesfully logged out'
     });
+    this.router.navigate(['home']);
   }
 
 

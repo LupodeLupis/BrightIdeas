@@ -22,25 +22,25 @@ export class UserEndpointService {
     constructor(private http: HttpClient,
                 private sessionStorageService: SessionStorageService) {}
 
-        // Check that password and confirmPassword match, if not return an error
-        matchPassword() {
-            return (control: FormControl) => {
-                if (control.value && control.parent) {
-                    let password = control.parent.get('password').value;
-                    return password == control.value ? null : { passNotMatching: true };
-                };
+    // Check that password and confirmPassword match, if not return an error
+    matchPassword() {
+        return (control: FormControl) => {
+            if (control.value && control.parent) {
+                let password = control.parent.get('password').value;
+                return password == control.value ? null : { passNotMatching: true };
             };
         };
-        // Check that the form control value matches the passed in regExp pattern, if not return error
-        customRegExpValidator(regExPattern: RegExp){
-            return (control: FormControl) => {
-                if (control.value && !control.value.match(regExPattern)) {
-                    return { invalid: true };
-                } else {
-                    return null;
-                };
+    };
+    // Check that the form control value matches the passed in regExp pattern, if not return error
+    customRegExpValidator(regExPattern: RegExp){
+        return (control: FormControl) => {
+            if (control.value && !control.value.match(regExPattern)) {
+                return { invalid: true };
+            } else {
+                return null;
             };
         };
+    };
 
     login(form: FormGroup): Observable<any> {
         let newUser = new User;
@@ -68,6 +68,7 @@ export class UserEndpointService {
         newUser.emailAddress = form.get('eMail').value;
         newUser.password = this.getSaltAndHashPassword(form.get('password').value);
         newUser.previousPasswords = newUser.password;
+        newUser.isVerified = 1;
         return newUser;
     }
 
