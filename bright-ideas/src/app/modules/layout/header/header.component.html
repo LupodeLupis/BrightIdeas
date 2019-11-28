@@ -22,38 +22,30 @@
           <label class="form-check-label nav-text-color " for="option-profile">Profiles</label>
       </div>  
     </div>
-    
     <ul class="navbar-nav ml-auto">
-      <li *ngIf="user" class="nav-item" routerLinkActive="active">
+      <li *ngIf="user" class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/viewMessage">Messages</a>
       </li>
-      <li *ngIf="user" class="nav-item dropdown" routerLinkActive="active" >
+      <li *ngIf="user" class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" routerLink="/createIdea" [queryParams]="{debug: true}">Create Idea</a>
+      </li>
+      <li *ngIf="user" class="nav-item dropdown" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" 
           role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Profile
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
             <a class="dropdown-item" routerLink="/profile/{{user.userID}}"[queryParams]="{debug: true}">Create Profile</a>
-            <a class="dropdown-item" routerLink="/profile/user/{{user.userID}}" [queryParams]="{debug: true}">View Profile</a>
+            <a class="dropdown-item" routerLink="/profile/user/{{user.userID}}" [queryParams]="{debug: true}">My Profile</a>
           </div>
       </li>
-      <li *ngIf="user" class="nav-item dropdown" routerLinkActive="active" >
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownIdea" 
-        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Idea
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownIdea">
-          <a class="dropdown-item" routerLink="/createIdea" [queryParams]="{debug: true}">Create Idea</a>
-          <a class="dropdown-item" routerLink="/idea/" [queryParams]="{debug: true}">View Idea</a>
-        </div>
-      </li>
-      <li *ngIf="user" class="nav-item" routerLinkActive="active">
+      <li *ngIf="user" class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a id='signout' class="nav-link" routerLink="/logout" (click)="signOut()">Log Out</a>
       </li>
-      <li *ngIf="!user" class="nav-item" routerLinkActive="active">
+      <li *ngIf="!user" class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a class="nav-link" routerLink="/login">Login</a>
       </li>
-      <li *ngIf="!user" class="nav-item" routerLinkActive="active" >
+      <li *ngIf="!user" class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a class="nav-link" routerLink="/createAccount">Register</a>
       </li>
     </ul>

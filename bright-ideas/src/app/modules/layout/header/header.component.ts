@@ -22,15 +22,9 @@ export class HeaderComponent implements OnInit {
               private spinnerService: Ng4LoadingSpinnerService,
               private ideaEndPointService: IdeaEndpointService,
 
-              ) {
-  }
+              ) { }
 
-  ngOnInit() {
-    //console.log('this.user from header', this.user)
-  }
-
-
-
+  ngOnInit() { }
 
   signOut() {
     removeToken();

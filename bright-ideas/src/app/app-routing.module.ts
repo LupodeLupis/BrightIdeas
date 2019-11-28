@@ -16,6 +16,7 @@ import { CreateAccountComponent } from './modules/auth/component/create-account/
 import { UserProfileComponent} from './modules/profile/user-profile/user-profile.component';
 import { ViewUserProfileComponent } from './modules/profile/user-profile/view-user-profile/view-user-profile.component';
 
+
 // If you need any route protected add this code to the route you need --->    canActivate: [AuthGuardService]  <--
 // NOTE THIS WILL ONLY CHECK TO SEE IF A VALID TOKEN IS FOUND IN LOCAL STORAGE
 // IF IT NEEDS TO BE ROLE PROTECTED, WE NEED TO ADD A NEW AUTH GUARD
@@ -24,8 +25,7 @@ const routes: Routes = [
       component: ChangePasswordComponent,
       canActivate: [AuthGuardService] },
     { path: 'createAccount',
-      component: CreateAccountComponent,
-      canActivate: [AuthGuardService] },
+      component: CreateAccountComponent },
     { path: 'viewMessage',
       component: ViewMessageComponent,
       canActivate: [AuthGuardService] },

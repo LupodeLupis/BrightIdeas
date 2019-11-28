@@ -103,14 +103,6 @@ hr {
     right: 2%;
     width: 100%;
 }
-
-footer{
-    position: relative;
-    width: 100%;
-    bottom: 0;
-    background-color: black;
-}
-
 .action-icon {
     background: no-repeat;   
 }
@@ -118,5 +110,3 @@ footer{
     outline: none;
     box-shadow: none;
 }
-
-
