@@ -1,3 +1,60 @@
+<<<<<<< HEAD
+<div class="container ideaBody">
+  <div class="row">
+    <div class="col-6 cat">Category > {{displayIdea.ideaCat}}</div>
+    <div class="col-6 leader">Idea Leader: <span><a routerLink="/profile/{{displayIdea.leadID}}">{{displayIdea.leadName}} </a></span><a routerLink="/profile/{{displayIdea.leadID}}"><div class="profImgSmall" [ngStyle]="{'background-image':'url('+displayIdea.leadImg+')'}"></div></a></div>
+  </div>
+
+  <div class="row title">
+    <div class="col">{{displayIdea.ideaName}}</div>
+  </div>
+  <div class="row date">
+    <div class="col time">{{displayIdea.ideaDate}}</div>
+  </div>
+
+  <div class="row heading">Description</div>
+  <div class="row desc">
+    <div class="col">
+      {{displayIdea.ideaDesc}}
+    </div>
+  </div>
+
+  <div class="row heading">Media</div>
+  <div class="row media">
+    <div class="col" *ngFor= "let i of displayIdea.ideaImgs">
+      <img class="imgPreview" src="{{i}}" alt="Idea Image">
+    </div>
+  </div>
+
+  <div class="row heading">Updates</div>
+  <div class="row updates">
+
+  </div>
+
+  <div class="row heading">Positions</div>
+
+  <div class="row heading">Contributors</div>
+
+  <div class="row">
+    <div class="col">Inappropriate Content? <span class="reportButton">Report</span> this idea.</div>
+  </div>
+</div>
+
+
+<!--<div><span class="category">Category > {{displayIdea.ideaCat}}</span><span class="leader">Idea Leader: <a routerLink="/profile/{{displayIdea.leadID}}"><span class="leader">{{displayIdea.leadName}} <div class="profImgSmall"><img src="{{displayIdea.leadImg}}"></div></span></a></span></div>
+<h1 class="title">{{displayIdea.ideaName}}</h1>
+<h2 class="date">{{displayIdea.ideaDate}}</h2>
+<h3 class="subheader">Description</h3>
+<p class="description">{{displayIdea.ideaDesc}}</p>
+<h3 class="subheader">Media</h3>
+<div class="containter">
+  <div class="col-md" *ngFor= "let i of displayIdea.ideaImgs">
+    <img class="imgPreview" src="{{i}}" alt="Idea Image">
+  </div>
+</div>
+<h3 class="subheader">Positions</h3>-->
+
+=======
 <h1 class="text center">
   Coming soon....
 </h1>
@@ -9,3 +66,4 @@
   {{idea?.posting}} <br/>
   {{idea?.update}} <br/>
 </p>
+>>>>>>> 6a5d9a5ff42397e10e5a72c7f2fcffa1fbfbdf5b

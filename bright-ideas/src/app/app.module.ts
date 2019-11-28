@@ -16,7 +16,7 @@ import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.
 import { LoginComponent } from './modules/auth/component/login/login.component';
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
-import { UploadMediaComponent } from './modules/idea/component/create-idea/upload-media/upload-media.component';
+import { UploadMediaComponent } from './modules/media/upload-media/upload-media.component';
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
 import { CreatePositionComponent } from './modules/idea/component/create-idea/create-position/create-position.component';
 import { ModalNotificationComponent } from './shared/component/modal-notification/modal-notification.component';
