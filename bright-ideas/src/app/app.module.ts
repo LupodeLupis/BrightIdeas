@@ -14,7 +14,6 @@ import { IdeaSearchResultsComponent } from './modules/layout/idea-search-results
 import { ProfileSearchResultsComponent } from './modules/layout/profile-search-results/profile-search-results.component';
 import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.component'
 import { LoginComponent } from './modules/auth/component/login/login.component';
-import { ProfilePageComponent } from './modules/auth/component/profile-page/profile-page.component';
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
 import { UploadMediaComponent } from './modules/media/upload-media/upload-media.component';
@@ -22,7 +21,10 @@ import { CreateAccountComponent } from './modules/auth/component/create-account/
 import { CreatePositionComponent } from './modules/idea/component/create-idea/create-position/create-position.component';
 import { ModalNotificationComponent } from './shared/component/modal-notification/modal-notification.component';
 import { AuthInterceptorService } from './shared/services/authInterceptor/auth-interceptor.service';
-
+import { EditPositionComponent } from './modules/idea/component/create-idea/edit-position/edit-position.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { FooterComponent } from './modules/layout/footer/footer.component';
+import { UserProfileComponent } from './modules/profile/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -36,14 +38,16 @@ import { AuthInterceptorService } from './shared/services/authInterceptor/auth-i
     CreateIdeaComponent,
     ViewIdeaComponent,
     LoginComponent,
-    ProfilePageComponent,
     PageNotFoundComponent,
     ViewMessageComponent,
     UploadMediaComponent,
     ProfileSearchResultsComponent,
     CreateAccountComponent,
     CreatePositionComponent,
-    ModalNotificationComponent
+    ModalNotificationComponent,
+    EditPositionComponent,
+    FooterComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,7 @@ import { AuthInterceptorService } from './shared/services/authInterceptor/auth-i
     ReactiveFormsModule,
     FormsModule,
     NgbModule.forRoot(),
+    Ng4LoadingSpinnerModule.forRoot(),
   ],
   providers: [ {
     provide : HTTP_INTERCEPTORS,
@@ -61,7 +66,7 @@ import { AuthInterceptorService } from './shared/services/authInterceptor/auth-i
     NgbActiveModal
   ],
   entryComponents: [
-    ModalNotificationComponent
+    ModalNotificationComponent,
   ],
   bootstrap: [AppComponent]
 })

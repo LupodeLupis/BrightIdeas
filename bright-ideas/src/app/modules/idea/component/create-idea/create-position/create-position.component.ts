@@ -3,8 +3,8 @@ import { Posting } from '../../../../../models/posting';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { PostingEndpointService } from '../../../../../services/posting-endpoint/posting-endpoint.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ModalNotificationService } from '../../../../../shared/services/modal-notification/modal-notification.service';
+import { SessionStorageService } from '../../../../../shared/services/session-storage/session-storage.service';
 
 
 
@@ -14,18 +14,18 @@ import { ModalNotificationService } from '../../../../../shared/services/modal-n
   styleUrls: ['./create-position.component.css']
 })
 export class CreatePositionComponent implements OnInit {
-  // @Output() ModalPosition = new Subject<Posting[]>();
   modalId: string;
   position: Posting;
   positionModalForm: FormGroup;
   positionList: Posting [] = [];
-  positionListResponse: Posting [] = [];
   counterNmbrPositionsAvailable = 0;
   counterNmbrPositionFilled = 0;
   postingIdList: string [] = [];
+  isLoading: boolean;
 
   constructor(private positionEndPointService: PostingEndpointService,
-              private modalNotificationService: ModalNotificationService) {
+              private modalNotificationService: ModalNotificationService,
+              private sessionStorageService: SessionStorageService) {
     this.positionModalForm = new FormGroup({
       title:        new FormControl('', Validators.required),
       description:  new FormControl('', Validators.required),
@@ -34,19 +34,6 @@ export class CreatePositionComponent implements OnInit {
    }
 
   ngOnInit() {
-   //this.initilizationPositionsList();
-  }
-  initilizationPositionsList() {
-    // filter all position based on the user logged in
-    // check before saving if the position name already exist
-
-    console.log('this.positionListResponse', this.positionListResponse)
-    
-
-    this.positionEndPointService.getAllPosting().subscribe((response: Posting[]) => {
-      console.log(response)
-      this.positionListResponse = response;
-    })
   }
 
 
@@ -56,31 +43,27 @@ export class CreatePositionComponent implements OnInit {
         postingName: this.positionModalForm.get('title').value,
         postingDescription: this.positionModalForm.get('description').value,
         numberAvailable: this.positionModalForm.get('availability').value,
-        numberFilled: this.counterNmbrPositionFilled
+        numberFilled: this.counterNmbrPositionFilled,
+        ideaID: null,
+        postingID: '',
       };
-    } else {
-      this.positionModalForm.reset();
-    }
-    this.positionEndPointService.createPosting(this.position).subscribe((response: any ) => {
+      this.positionEndPointService.createPosting(this.position).subscribe((response: any) => {
+        this.position.postingID = response.insertId;
+        this.positionList.push(this.position);
+        // this.sessionStorageService.savePositions(this.positionList);
+        this.positionEndPointService.showPositionList.next(this.positionList);
+      })
       this.modalNotificationService.openModalNotification({
         successMessage: 'The position ' + this.position.postingName + ' is added succesfully.'
       });
-      if (response.insertId) {
-        this.positionEndPointService.getPostingById(response.insertId).subscribe((posting: Posting) => {
-          this.positionList.push(posting[0])
-          this.positionEndPointService.showPositionList.next(this.positionList);
-        });
-      }
       this.positionModalForm.reset();
-      this.postingIdList.push(response.insertId)
-      
-    },
-    (error: HttpErrorResponse) => {
+    } else {
       this.modalNotificationService.openModalNotification({messageFailure: 'Position could not be added. Try again.'});
-    });
+      this.positionModalForm.reset();
+    }
   }
 
-  checkNumberValues(event: any): boolean {
-    return isNaN(event.value);
+  checkIfisNumber(event: any): boolean {
+    return this.positionEndPointService.checkNumberValues(event);
   }
 }

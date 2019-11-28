@@ -1,0 +1,42 @@
+<div class="modal fade" id="modalEditPosition" tabindex="-1" role="dialog" aria-labelledby="editPositionTitle" aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="editPositionTitle"><strong>Edit Position</strong></h3>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                  <label for="edit-position-title" class="col-form-label bkg-col-text"><strong>Title</strong></label>
+                  <input type="text" class="form-control" id="edit-position-title" [formControl]="editPositionForm.controls['title_position']">
+                  <div *ngIf="editPositionForm.controls['title_position'].invalid &&
+                              (editPositionForm.controls['title_position'].dirty || editPositionForm.controls['title_position'].touched)"
+                              class="alert alert-danger">The field is required.
+                  </div>  
+                </div>
+                <div class="form-group">
+                  <label for="edit-position-description" class="col-form-label bkg-col-text"><strong>Description</strong></label>
+                  <textarea class="form-control" id="edit-position-description" [formControl]="editPositionForm.controls['description_position']"></textarea>
+                  <div *ngIf="editPositionForm.controls['description_position'].invalid &&
+                              (editPositionForm.controls['description_position'].dirty || editPositionForm.controls['description_position'].touched)"
+                              class="alert alert-danger">The field is required.
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="availability" class="col-form-label bkg-col-text"><strong>Positions available:</strong></label>
+                    <input #posAvailable (input)="checkIfisNumber(posAvailable)" class="form-control" id="edit-position-available" [formControl]="editPositionForm.controls['nbr_pos_available']" maxlength="2">
+                    <div  *ngIf="editPositionForm.controls['nbr_pos_available'].invalid &&
+                                (editPositionForm.controls['nbr_pos_available'].dirty || editPositionForm.controls['nbr_pos_available'].touched)"
+                                class="alert alert-danger">The field is required.
+                    </div>
+                    <div *ngIf="checkIfisNumber(posAvailable)" class="alert alert-danger">The field must be numeric.</div>
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button [disabled]="!editPositionForm.valid" type="submit" class="btn bkg-col-element" id="edit-save-positions" (click)="onSave()">Edit Position</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,11 +1,13 @@
-<p>
-  view-idea works!
-</p>
-<p>
-  {{idea?.ideaName}} <br/>
-  {{idea?.date}} <br/>
-  {{idea?.ideaDescription}} <br/>
-  {{idea?.media}} <br/>
-  {{idea?.posting}} <br/>
-  {{idea?.update}} <br/>
-</p>
+<div><span class="category">Category > {{displayIdea.ideaCat}}</span><span class="leader">Idea Leader: <a routerLink="/profile/{{displayIdea.leadID}}"><span class="leader">{{displayIdea.leadName}} <div class="profImgSmall"><img src="{{displayIdea.leadImg}}"></div></span></a></span></div>
+<h1 class="title">{{displayIdea.ideaName}}</h1>
+<h2 class="date">{{displayIdea.ideaDate}}</h2>
+<h3 class="subheader">Description</h3>
+<p class="description">{{displayIdea.ideaDesc}}</p>
+<h3 class="subheader">Media</h3>
+<div class="containter">
+  <div class="col-md" *ngFor= "let i of displayIdea.ideaImgs">
+    <img class="imgPreview" src="{{i}}" alt="Idea Image">
+  </div>
+</div>
+<h3 class="subheader">Positions</h3>
+

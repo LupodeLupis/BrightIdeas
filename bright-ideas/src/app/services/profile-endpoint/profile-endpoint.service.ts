@@ -53,6 +53,7 @@ getProfileByWildcard(filter): Observable<any> {
 }
 
 createProfile(profile): Observable<any> {
+  console.log('this is the body of profile', profile)
   return Observable.create((observer: Observer<any>) => {
     this.http.post(`${this.url}/profile/create`, profile).subscribe((response) => {
       observer.next(response);
@@ -60,6 +61,7 @@ createProfile(profile): Observable<any> {
     },
       (error) => {
         observer.error(error)
+        console.log(error)
       });
   });
 }

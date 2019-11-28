@@ -1,6 +1,6 @@
 export interface Media {
     mediaID: number;
-    file: File;
+    file: String;
     mediaFormat: string;
     ideaID: number;
     profileID: number;

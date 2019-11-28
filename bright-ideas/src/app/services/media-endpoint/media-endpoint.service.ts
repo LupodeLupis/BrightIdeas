@@ -14,7 +14,7 @@ export class MediaEndpointService {
 
   constructor(private http: HttpClient) { }
 
-  getAllMedia(): Observable<Media[]> {
+  getAllMedia(): Observable<any> {
     return Observable.create((observer: Observer<Media[]>) => {
        this.http.get(`${this.url}/media`).subscribe((res: Media[]) => {
           observer.next(res);
@@ -26,7 +26,7 @@ export class MediaEndpointService {
     });
   }
 
-  getMediabyId(id: string): Observable<Media> {
+  getMediaById(id: string): Observable<any> {
     return Observable.create((observer: Observer<Media>) => {
          this.http.get(`${this.url}/media/${id}`).subscribe((res: Media) => {
             observer.next(res);
@@ -38,7 +38,7 @@ export class MediaEndpointService {
       });
   }
 
-  getMediabyIdeaId(ideaId: string): Observable<Media> {
+  getMediaByIdeaId(ideaId: Number): Observable<any> {
    return Observable.create((observer: Observer<Media>) => {
         this.http.get(`${this.url}/media/idea/${ideaId}`).subscribe((res: Media) => {
            observer.next(res);
@@ -50,7 +50,7 @@ export class MediaEndpointService {
      });
  }
 
- getMediabyProfileId(profileId: string): Observable<Media> {
+ getMediaByProfileId(profileId: Number): Observable<any> {
    return Observable.create((observer: Observer<Media>) => {
         this.http.get(`${this.url}/media/profile/${profileId}`).subscribe((res: Media) => {
            observer.next(res);
@@ -62,9 +62,19 @@ export class MediaEndpointService {
      });
  }
 
-  createMedia(media: Media): Observable <any> {
-      console.log(`${this.url}/media/create` + "|" + media);
-      return this.http.post<Media>(`${this.url}/media/create`, media);
+  createMedia(body: object): Observable <any> {
+   console.log('this is the body of media', body)
+   return Observable.create((observer: Observer<any>) => {
+         this.http.post(`${this.url}/media/create`, body).subscribe((response: any) => {
+            observer.next(response);
+            console.log('response fomr media', response)
+            observer.complete();
+         },
+         (error: HttpErrorResponse) => {
+            observer.error(error);
+            console.log(error)
+         });
+      });
    }
 
    updateMedia(body: object): Observable<any> {

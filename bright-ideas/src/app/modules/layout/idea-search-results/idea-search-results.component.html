@@ -1,21 +1,39 @@
 <h1>Results</h1>
 <div *ngIf = "hasResults; else noResults">
-  <div *ngFor = "let i of ideaResults">
-    <div class="result">
+  <div *ngFor = "let i of searchResults">
+    
+    <div class="container">
+			<div class="result">
+        <a routerLink="/idea/{{i.ideaID}}">
+          <div class="preview" [ngStyle]="{'background-image':'url('+i.ideaImg+')'}"></div>
+          <div class="row top">
+            <div class="col-6 title">{{i.ideaName}}</div>
+            <div class="col-6 name"><span>Idea Leader: <a routerLink="/profile/{{i.leadID}}">{{i.leadName}}</a></span><a routerLink="/profile/{{i.leadID}}"><div class="profImgSmall" [ngStyle]="{'background-image':'url('+i.leadImg+')'}"></div></a></div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col desc">{{i.ideaDesc}}</div>
+          </div>
+          <div class="row align-items-end">
+            <div class="col cat">Category><b>{{i.ideaCat}}</b></div>
+          </div>
+        </a>
+			</div>
+		</div>
+    
+  
+    <!--<div class="result">
       <a routerLink="/idea/{{i.ideaID}}">
-        <div class="previewImage">
-          <img src="../../../../assets/images/testImg.jpg" alt="{{i.ideaName}} preview">
-        </div>
+        <div class="previewImage" style="background-image:url({{i.ideaImg}})"></div>
         <div class="header">
             <h2 class="title">{{i.ideaName}}</h2>
-            <h3 class="leader">Idea Leader: {{i.ideaLeader}}</h3>
+            <a routerLink="/profile/{{i.leadID}}"><span class="leader">Idea Leader: {{i.leadName}} <div class="profImgSmall"><img src="{{i.leadImg}}"></div></span></a>
         </div>
-        <div class="description">{{i.ideaDescription}}</div>
-        <div class="category">Category><b>{{i.category}}</b></div>     
+        <div class="description">{{i.ideaDesc}}</div>
+        <div class="category">Category><b>{{i.ideaCat}}</b></div>     
       </a>
     </div>
     <br/>
-    <br/>
+    <br/>-->
   </div>
 </div>
 

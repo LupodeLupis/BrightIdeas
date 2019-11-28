@@ -1,76 +1,59 @@
-<nav *ngIf="isUserLoggedIn; else userNotLoggedIn" class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="/">
-        <img src="../../../../assets/img/logo.ico" width="130" height="30" class="d-inline-block align-top" alt="brightIdeas_Logo">
-      </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active" routerLinkActive="active">
-            <a class="nav-link" routerLink="/home">Home</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/viewMessage">View Chat</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active" >
-            <a class="nav-link"routerLink="/createIdea">Create Idea</a>
-        </li>
-      </ul>
-      <div class="search-container-header input-group ml-auto">
-          <div class="form-group search-input-container">
-              <button (click)="search(searchText, searchType1.checked ? searchType1.value : searchType2.checked ? searchType2.value : null)" id="searchButton" tabindex="-1" aria-label="Close">
-                <i class="fa fa-search"></i>
-              </button>
-              <input #searchText type="text" class="searchText" placeholder="Search..."/>
-          </div>
-          <div class="form-check form-check-inline">
-              <input #searchType1 value="ideas" type="radio" class="form-check-input" id="option-idea" name="searchType" >
-              <label class="form-check-label nav-text-color" for="option-idea">Ideas</label>
-          </div>
-  
-          <div class="form-check form-check-inline">
-              <input #searchType2 value="profiles" type="radio" class="form-check-input" id="option-profile" name="searchType">
-              <label class="form-check-label nav-text-color " for="option-profile">Profiles</label>
-          </div>  
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="/">
+      <img src="../../../../assets/img/logo.ico" width="130" height="30" class="d-inline-block align-top" alt="brightIdeas_Logo">
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="search-container-header input-group mr-auto">
+      <div class="form-group search-input-container">
+          <button (click)="search(searchText, searchType1.checked ? searchType1.value : searchType2.checked ? searchType2.value : null)" id="searchButton" tabindex="-1" aria-label="Close">
+            <i class="fa fa-search"></i>
+          </button>
+          <input #searchText type="text" class="searchText" placeholder="Search..."/>
       </div>
+      <div class="form-check form-check-inline">
+          <input #searchType1 value="ideas" type="radio" class="form-check-input" id="option-idea" name="searchType" >
+          <label class="form-check-label nav-text-color" for="option-idea">Ideas</label>
+      </div>
+      <div class="form-check form-check-inline">
+          <input #searchType2 value="profiles" type="radio" class="form-check-input" id="option-profile" name="searchType">
+          <label class="form-check-label nav-text-color " for="option-profile">Profiles</label>
+      </div>  
     </div>
     
-  </nav>
+    <ul class="navbar-nav ml-auto">
+      <li *ngIf="user" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/viewMessage">Messages</a>
+      </li>
+      <li *ngIf="user" class="nav-item" routerLinkActive="active" >
+          <a class="nav-link"routerLink="/createIdea">Create Idea</a>
+      </li>
+      <!-- <li *ngIf="user" class="nav-item dropdown" routerLinkActive="active" >
+          <a class="nav-link dropdown-toggle" routerLink="/profile">My Profile</a>
+      </li> -->
 
-<ng-template #userNotLoggedIn>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="/">
-            <img src="../../../../assets/img/logo.ico" width="130" height="30" class="d-inline-block align-top" alt="brightIdeas_Logo">
-        </a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <div class="search-container-header-not-lggin input-group">
-              <div class="form-group search-input-container">
-                  <button (click)="search(searchText, searchType1.checked ? searchType1.value : searchType2.checked ? searchType2.value : null)" id="searchButton" tabindex="-1" aria-label="Close">
-                    <i class="fa fa-search"></i>
-                  </button>
-                  <input #searchText type="text" class="searchText" placeholder="Search..."/>
-              </div>
-              <div class="form-check form-check-inline">
-                  <input #searchType1 value="ideas" type="radio" class="form-check-input" id="option-idea-not-lggin" name="searchType" >
-                  <label class="form-check-label nav-text-color" for="option-idea-not-lggin">Ideas</label>
-              </div>
-              <div class="form-check form-check-inline">
-                  <input #searchType2 value="profiles" type="radio" class="form-check-input" id="option-profile-not-lggin" name="searchType">
-                  <label class="form-check-label nav-text-color " for="option-profile-not-lggin">Profiles</label>
-              </div>  
+      <li *ngIf="user" class="nav-item dropdown" routerLinkActive="active" >
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" 
+          role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profile
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/profile">Create Profile</a>
+              <a class="dropdown-item" href="#">View Profile</a>
           </div>
-          <ul class="navbar-nav">
-            <li class="nav-item" routerLinkActive="active">
-                <a class="nav-link" routerLink="/login">Login</a>
-            </li>
-            <li class="nav-item" routerLinkActive="active" >
-                <a class="nav-link" routerLink="/createAccount">Register</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-</ng-template>
+      </li>
+
+      <li *ngIf="user" class="nav-item" routerLinkActive="active">
+          <a id='signout' class="nav-link" routerLink="/logout" (click)="signOut()">Log Out</a>
+      </li>
+      <li *ngIf="!user" class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/login">Login</a>
+      </li>
+      <li *ngIf="!user" class="nav-item" routerLinkActive="active" >
+          <a class="nav-link" routerLink="/createAccount">Register</a>
+      </li>
+    </ul>
+  </div>
+</nav>

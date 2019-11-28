@@ -20,8 +20,10 @@
      background-color: orange;
      border-radius: 0px 9px 9px 0px;
 }
-
-.search-container-header-not-lggin{
-     margin: 0 auto;
-     max-width: 383px;
+.dropdown-toggle::after {
+     position: relative;
+     top: 3px;
+}
+#signout {
+     cursor: pointer;
 }
