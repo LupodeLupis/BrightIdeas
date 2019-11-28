@@ -48,7 +48,7 @@ const routes: Routes = [
     { path: 'uploadMedia',
       component: UploadMediaComponent,
       canActivate: [AuthGuardService] },
-    { path: 'idea/:id',
+    { path: 'idea/:ideaId',
       component: ViewIdeaComponent,
       canActivate: [AuthGuardService] },
     { path: 'searchResults/Ideas/:query',
