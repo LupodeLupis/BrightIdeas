@@ -35,7 +35,7 @@ export class CreateAccountComponent implements OnInit {
         });
     };
 
-    onSubmit(){
+    onSubmit() {
         this.submitted = true;
         if(this.registerForm.valid){
             this.loading = true;
@@ -46,10 +46,11 @@ export class CreateAccountComponent implements OnInit {
                 } else {
                     this.modalNotificationService.openModalNotification({ successMessage: response.message });
                     this.router.navigate(['login']);
-                }        
+                }
             },(error) => {
-                this.modalNotificationService.openModalNotification({ messageFailure: "Encountered an error creating an account, please try again" });
-                console.log(error.error)
+            this.modalNotificationService.openModalNotification({ 
+                messageFailure: "Encountered an error creating an account, please try again" });
+            console.log(error.error)
             });
             this.loading = false;
         };
