@@ -8,6 +8,7 @@
                     <input type="email" formControlName="eMail" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.eMail.errors }" />
                     <div *ngIf="submitted && f.eMail.errors" class="invalid-feedback">
                         <div *ngIf="f.eMail.errors.required">eMail is required</div>
+                        <div *ngIf="f.eMail.errors.email">Please enter a valid email address</div>
                     </div>
                 </div>
                 <div class="form-group">

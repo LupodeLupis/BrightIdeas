@@ -4,7 +4,7 @@ import { removeToken } from './../../../../../../indexedDB-manager.js';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from './../../../../models/user';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import bcrypt from 'bcryptjs';
 
 @Component({
@@ -15,7 +15,7 @@ import bcrypt from 'bcryptjs';
 
 export class ChangePasswordComponent implements OnInit {
     @Input() eMail: string;
-    @Input() changePassword: boolean = false;
+    @Input() changePassword: boolean;
     editPasswordForm: FormGroup;
     submitted: boolean = false;
     loading: boolean = false;
@@ -23,11 +23,13 @@ export class ChangePasswordComponent implements OnInit {
     constructor(private formBuilder: FormBuilder,
                 private userService: UserEndpointService,
                 private router: Router,
-                private modalNotificationService: ModalNotificationService) { }
+                private modalNotificationService: ModalNotificationService,
+                private route: ActivatedRoute) { }
 
     get f() { return this.editPasswordForm.controls; }
 
     ngOnInit() {
+        this.changePassword = this.route.snapshot.paramMap.get('userEmail') ? true : false;
         this.editPasswordForm = this.formBuilder.group({
             currentPassword: ['', this.changePassword ? Validators.required : null],
             password: ['', [Validators.required, this.userService.customRegExpValidator(this.userService.passwordRegex)]],
