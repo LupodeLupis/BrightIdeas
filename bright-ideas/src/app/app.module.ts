@@ -28,6 +28,7 @@ import { UserProfileComponent } from './modules/profile/user-profile/user-profil
 import { ViewUserProfileComponent } from './modules/profile/user-profile/view-user-profile/view-user-profile.component';
 import { EditIdeaComponent } from './modules/idea/component/edit-idea/edit-idea.component';
 import { ModalModule } from 'ngx-bootstrap';
+import { DeleteNotificationComponent } from './shared/component/delete-notification/delete-notification.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ModalModule } from 'ngx-bootstrap';
     UserProfileComponent,
     ViewUserProfileComponent,
     EditIdeaComponent,
+    DeleteNotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +75,7 @@ import { ModalModule } from 'ngx-bootstrap';
   ],
   entryComponents: [
     ModalNotificationComponent,
+    DeleteNotificationComponent
   ],
   bootstrap: [AppComponent]
 })

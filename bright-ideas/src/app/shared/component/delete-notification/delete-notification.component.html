@@ -1,0 +1,11 @@
+<div class="message-container">
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <p><strong>Are you sure to delete {{body.type}} {{body.name}}</strong></p>
+      <button type="button" class="close" aria-label="Close" data-dismiss="alert" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button> 
+      <div class="text-right">
+        <button type="submit" class="btn bkg-col-element" (click)="delete()">Delete</button>
+      </div>
+    </div>
+</div>

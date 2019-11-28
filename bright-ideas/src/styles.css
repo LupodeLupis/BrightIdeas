@@ -110,3 +110,9 @@ hr {
     outline: none;
     box-shadow: none;
 }
+
+.form-control:focus{
+    box-shadow: none;
+    outline: none;
+    border-color: orange;
+}

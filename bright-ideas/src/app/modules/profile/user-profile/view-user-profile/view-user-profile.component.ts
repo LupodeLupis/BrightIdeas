@@ -87,35 +87,25 @@ export class ViewUserProfileComponent implements OnInit {
 
   deleteProfile() {
     if (this.profileId) {
-      this.profileEndpointService.deleteProfile(this.profileId).subscribe((response: any) => {
-        this.modalNotificationService.openModalNotification({
-          successMessage: 'Profile deleted successfully'
-        });
-      }, (error: HttpErrorResponse) => {
-        this.modalNotificationService.openModalNotification({
-          failureMessage: error.message
-        });
+      this.modalNotificationService.openModalDeletenNotification({
+        type: 'profile',
+        id: this.profileId,
       });
     }
     this.profileForm.reset();
     this.listIdea = [];
   }
 
-  deleteIdea(index: number, ideaId: any) {
+  deleteIdea(index: number, ideaId: any, ideaTitle: string) {
     if (index > -1 && ideaId !== 0) {
-      this.listIdea.splice(index, 1);
+      this.modalNotificationService.openModalDeletenNotification({
+        type: 'idea',
+        id: ideaId,
+        name: ideaTitle,
+        list: this.listIdea,
+        listIndex: index
+      });
     }
-    this.ideaEndpointService.deleteIdea(ideaId).subscribe( (res: any) => {
-      this.modalNotificationService.openModalNotification({
-        successMessage: 'Position deleted succesfully'
-      });
-      this.spinnerService.show();
-    }, (error: HttpErrorResponse) => {
-      this.modalNotificationService.openModalNotification({
-        messageFailure: error.message
-      });
-    });
-    this.spinnerService.hide();
   }
 
   editProfile() {
