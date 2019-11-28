@@ -15,12 +15,14 @@ export class ViewIdeaComponent implements OnInit {
 
   constructor(private IdeaService: IdeaEndpointService, private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this.ideaId = params.get("id");
-      this.getIdea(this.ideaId);
-    });
-  }
+    ngOnInit() {
+        this.route.paramMap.subscribe(params => {
+            this.ideaId = params.get("ideaId");
+            this.IdeaService.getIdeaById(this.ideaId).subscribe((idea) => {
+                this.idea = idea[0];
+            });
+        });
+    }
 
   getIdea(id): void {
     this.IdeaService.getIdeaById(id).subscribe((i) => {

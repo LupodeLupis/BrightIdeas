@@ -31,7 +31,7 @@ export class ViewUserProfileComponent implements OnInit {
               private ideaEndpointService: IdeaEndpointService,
               private modalNotificationService: ModalNotificationService ,
               private spinnerService: Ng4LoadingSpinnerService,
-
+              private router: Router,
               ) {
     this.user = sessionStorageService.getUser();
     this.isProfileDeleted = true;
@@ -126,7 +126,7 @@ export class ViewUserProfileComponent implements OnInit {
   }
 
   showIdea(ideaId){
-    console.log(ideaId)
+    this.router.navigate(['idea/' + ideaId]);
   }
 
 
