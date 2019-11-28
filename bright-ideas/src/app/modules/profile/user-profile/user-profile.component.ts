@@ -10,8 +10,6 @@ import { SessionStorageService } from '../../../shared/services/session-storage/
 import { HttpErrorResponse } from '@angular/common/http';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
-
-
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -87,6 +85,7 @@ export class UserProfileComponent implements OnInit {
                 successMessage: 'The profile has been addded succesfully'
             });
               this.spinnerService.show();
+              this.profileForm.reset();
                 // this.image.nativeElement.value = null;
             }, (error: HttpErrorResponse) => {
                 this.modalNotificationService.openModalNotification({
@@ -102,7 +101,7 @@ export class UserProfileComponent implements OnInit {
             messageFailure: 'Please upload an image'
         });
     }
-    this.profileForm.reset();
+    
     this.image.nativeElement.value = null;
   }
 }
