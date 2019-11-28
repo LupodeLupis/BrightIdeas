@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { Idea } from './../../models/idea';
 
 @Injectable({
   providedIn: 'root'
@@ -40,9 +41,9 @@ export class IdeaEndpointService {
    });;
   }
 
-  getIdeaById(id): Observable<any> {
+  getIdeaById(ideaId): Observable<Idea[]> {
     return Observable.create((observer: Observer<any>) => {
-      this.http.get(`${this.url}/idea/${id}`).subscribe((res: any) => {
+      this.http.get(`${this.url}/idea/${ideaId}`).subscribe((res: Idea[]) => {
          observer.next(res);
          observer.complete();
       },
