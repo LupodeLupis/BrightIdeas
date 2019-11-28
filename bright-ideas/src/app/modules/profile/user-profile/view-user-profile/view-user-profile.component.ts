@@ -126,7 +126,6 @@ export class ViewUserProfileComponent implements OnInit {
   }
 
   showIdea(ideaId){
-    
     console.log(ideaId)
   }
 
