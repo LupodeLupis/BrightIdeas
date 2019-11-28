@@ -135,6 +135,11 @@ export class ViewUserProfileComponent implements OnInit {
     }
   }
 
+  showIdea(ideaId){
+    
+    console.log(ideaId)
+  }
+
 
   // onFileChangeSelectedEvent(event) {
   //   this.selectedImage = event.target.files[0] as File;
