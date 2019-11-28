@@ -1,9 +1,10 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, Subject } from 'rxjs';
 import { Profile } from '../../models/profile';
 import { environment } from '../../../environments/environment';
+import { Idea } from '../../models/idea';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ import { environment } from '../../../environments/environment';
 
 
 export class ProfileEndpointService {
-
-private url = environment.api;
+  currentIdea = new Subject<Idea>();
+  private url = environment.api;
 
 constructor(private http: HttpClient) {}
 
@@ -29,8 +30,22 @@ getProfiles(): Observable<any> {
 }
 
 getProfileById(id): Observable<any> {
+  console.log(id)
   return Observable.create((observer: Observer<any>) => {
     this.http.get(`${this.url}/profile/${id}`).subscribe((res: any) => {
+       observer.next(res);
+       observer.complete();
+    },
+    (error: HttpErrorResponse) => {
+       observer.error(error);
+    });
+ });
+}
+
+
+getProfileByUserId(id): Observable<any> {
+  return Observable.create((observer: Observer<any>) => {
+    this.http.get(`${this.url}/profile/userid/${id}`).subscribe((res: any) => {
        observer.next(res);
        observer.complete();
     },

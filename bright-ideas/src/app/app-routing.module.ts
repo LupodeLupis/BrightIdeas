@@ -13,43 +13,48 @@ import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
 import { UploadMediaComponent } from './modules/media/upload-media/upload-media.component';
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
-import { UserProfileComponent} from './modules/profile/user-profile/user-profile.component'
+import { UserProfileComponent} from './modules/profile/user-profile/user-profile.component';
+import { ViewUserProfileComponent } from './modules/profile/user-profile/view-user-profile/view-user-profile.component';
 
 // If you need any route protected add this code to the route you need --->    canActivate: [AuthGuardService]  <--
 // NOTE THIS WILL ONLY CHECK TO SEE IF A VALID TOKEN IS FOUND IN LOCAL STORAGE
 // IF IT NEEDS TO BE ROLE PROTECTED, WE NEED TO ADD A NEW AUTH GUARD
 const routes: Routes = [
     { path: 'changePassword',
-      component: ChangePasswordComponent },
+      component: ChangePasswordComponent,
+      canActivate: [AuthGuardService] },
     { path: 'createAccount',
-      component: CreateAccountComponent },
+      component: CreateAccountComponent,
+      canActivate: [AuthGuardService] },
     { path: 'viewMessage',
       component: ViewMessageComponent,
       canActivate: [AuthGuardService] },
     { path: 'home',
-      component: HomeComponent,
-      // runGuardsAndResolvers: 'always'
-      }, 
+      component: HomeComponent},
     { path: 'login',
-      component: LoginComponent },
-    { path: 'profile',
-      component: UserProfileComponent},
-    //    { path: 'profile/:id', component: ProfilePageComponent },
-    { path: 'changePassword',
+      component: LoginComponent},
+    { path: 'profile/:id',
+      component: UserProfileComponent,
+      canActivate: [AuthGuardService]},
+    { path: 'profile/user/:id',
+      component: ViewUserProfileComponent },
+    { path: 'resetPassword',
+      component: ChangePasswordComponent },
+    { path: 'changePassword/:userEmail',
       component: ChangePasswordComponent },
     { path: 'createIdea',
-      component: CreateIdeaComponent},
+      component: CreateIdeaComponent,
+      canActivate: [AuthGuardService]},
     { path: 'uploadMedia',
-      component: UploadMediaComponent },
+      component: UploadMediaComponent,
+      canActivate: [AuthGuardService] },
     { path: 'idea/:id',
-      component: ViewIdeaComponent },
+      component: ViewIdeaComponent,
+      canActivate: [AuthGuardService] },
     { path: 'searchResults/Ideas/:query',
       component: IdeaSearchResultsComponent },
     { path: 'searchResults/Profiles/:query',
       component: ProfileSearchResultsComponent},
-    {
-      path: 'logout',
-      component: LoginComponent},
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

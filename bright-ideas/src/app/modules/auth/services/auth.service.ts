@@ -10,12 +10,11 @@ export class AuthService {
   private userSource$ = new Subject<User>();
   constructor( private sessionStorageService: SessionStorageService) { }
 
-
+  
   getUserSource$() {
     return this.userSource$.asObservable();
   }
   setUser(user: User): void {
-    console.log(user);
     this.userSource$.next(user);
   }
 

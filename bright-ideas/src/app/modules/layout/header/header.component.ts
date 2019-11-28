@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { tokenIsValid, removeToken } from '../../../../../indexedDB-manager.js';
+import { removeToken } from '../../../../../indexedDB-manager.js';
 import { Router } from '@angular/router';
 import { SessionStorageService } from '../../../shared/services/session-storage/session-storage.service.js';
 import { ModalNotificationService } from '../../../shared/services/modal-notification/modal-notification.service.js';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { IdeaEndpointService } from 'src/app/services/idea-endpoint/idea-endpoint.service.js';
 
 @Component({
   selector: 'app-header',
@@ -14,28 +15,31 @@ export class HeaderComponent implements OnInit {
   @Input()user: any;
   isUserLoggedIn: boolean;
   currentToken: string;
-  signout = false;
+  ideaId: string;
   constructor(private router: Router,
               private sessionStorageService: SessionStorageService,
               private modalNotificationService: ModalNotificationService,
               private spinnerService: Ng4LoadingSpinnerService,
+              private ideaEndPointService: IdeaEndpointService,
 
               ) {
   }
 
   ngOnInit() {
-    console.log('this.user', this.user)
-   }
+    //console.log('this.user from header', this.user)
+  }
+
+
 
 
   signOut() {
-    this.sessionStorageService.clearAll();
     removeToken();
     this.user = null;
     this.spinnerService.show();
     this.modalNotificationService.openModalNotification({
       successMessage: 'You are succesfully logged out'
     });
+    this.router.navigate(['home']);
   }
 
 

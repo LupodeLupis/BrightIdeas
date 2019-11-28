@@ -8,8 +8,12 @@ import { CATEGORIES, FILE_SIZE } from '../../../../shared/models/global-constant
 import { Posting } from '../../../../models/posting';
 import { Media } from '../../../../models/media';
 import { Subscription } from 'rxjs';
+<<<<<<< HEAD
 import { saveAs } from 'file-saver'
 import { HttpErrorResponse } from '@angular/common/http';
+=======
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+>>>>>>> 909b57281cbc214809f0fad904217960bfbe2f1c
 import { ModalNotificationService } from '../../../../shared/services/modal-notification/modal-notification.service';
 import * as _ from 'lodash';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
@@ -31,7 +35,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
   keyIdPosting: string [] = [];
   ideaForm: FormGroup;
   private positionsListSub: Subscription;
-  @Input() positionsList: Posting [] = [];
+  positionsList: Posting [] = [];
   positionEdited: object = {};
   @ViewChild('mediaInput') mediaInput: ElementRef;
 
@@ -42,7 +46,6 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     private sessionStoargeService: SessionStorageService,
     private mediaEndpointService: MediaEndpointService,
     private spinnerService: Ng4LoadingSpinnerService,
-    
     ) {
       this.ideaForm = new FormGroup({
         idea_title:       new FormControl('', Validators.required),
@@ -53,7 +56,11 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
       this.categoryList = CATEGORIES;
       this.isModalVisible = true;
       this.idea = {
+<<<<<<< HEAD
         ideaID: 0,
+=======
+        ideaID: '',
+>>>>>>> 909b57281cbc214809f0fad904217960bfbe2f1c
         ideaName: '',
         ideaDescription: '',
         ideaCreator: currentUser.userID,
@@ -78,9 +85,8 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     this.positionsListSub = this.postingEndpointService.showPositionList.subscribe((position) => {
       this.positionsList = position;
     });
-    //this.initilizationPositions();
-    //this.initilizationIdea()
   }
+<<<<<<< HEAD
 
   initilizationPositions() {
     const positionsFromSessionStorage: Posting[] = this.sessionStoargeService.getPositions();
@@ -120,6 +126,8 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
       //console.log(tempMedia);
       //this.mediaEndpointService.createMedia(tempMedia);
     }*/
+=======
+>>>>>>> 909b57281cbc214809f0fad904217960bfbe2f1c
   onSubmit() {
     if (this.positionsList) {
       let ideaId = '';
@@ -131,7 +139,6 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
         _.forEach(this.positionsList, (value, index) => {
           this.positionsList[index].ideaID = ideaId;
           this.postingEndpointService.updatePosting(value).subscribe((res: Posting) => {
-            console.log('the posting is  updated')
           }, (error: HttpErrorResponse) => {
             console.log('Posting updating error', error)
           });
@@ -158,11 +165,11 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.positionsListSub.unsubscribe();
-   // this.ideasListSubmission.unsubscribe();
   }
 
   addPosition() {
   this.isModalVisible = true;
+  
   }
 
   public addFileToQueue(img : any) {
@@ -179,11 +186,46 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     });
   }
 
-  deletePosition(indexPosition: any) {
-    if (indexPosition > -1) {
+  deletePosition(indexPosition: any, positionId: any) {
+    if (indexPosition > -1 && positionId !== 0) {
       this.positionsList.splice(indexPosition, 1);
     }
+<<<<<<< HEAD
     this.sessionStoargeService.removePositions();
   }
 
+=======
+    this.postingEndpointService.deletePosting(positionId).subscribe( (res: any) => {
+      this.modalNotificationService.openModalNotification({
+        successMessage: 'Position deleted succesfully'
+      });
+      this.spinnerService.show()
+    }, (error: HttpErrorResponse) => {
+      this.modalNotificationService.openModalNotification({
+        messageFailure: error.message
+      });
+    });
+    this.sessionStoargeService.removePositions();
+    this.spinnerService.hide();
+  }
+  // NOT WORKING 
+  // uploadFile(): void {
+  //   const file: File = this.mediaInput.nativeElement.files;
+  //   if (file[0] === undefined) {
+  //     this.modalNotificationService.openModalNotification({
+  //       messageFailure: 'Please select a file'
+  //     });
+  //   } else {
+  //     if (file.size > FILE_SIZE) {
+  //       this.modalNotificationService.openModalNotification({
+  //         messageFailure: 'The file is over the size limit'
+  //       });
+  //     } else {
+  //       this.media.fileName = file;
+  //       this.media.mediaFormat = file[0].type;
+  //       this.mediaEndpointService.createMedia(this.media)
+  //     }
+  //   }
+  // }
+>>>>>>> 909b57281cbc214809f0fad904217960bfbe2f1c
 }

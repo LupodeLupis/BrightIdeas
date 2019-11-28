@@ -34,7 +34,7 @@
               </form>
         </div>
         <div class="modal-footer">
-          <button [disabled]="!editPositionForm.valid" type="submit" class="btn bkg-col-element" id="edit-save-positions" (click)="onSave()">Edit Position</button>
+          <button [disabled]="!editPositionForm.valid" type="submit" class="btn bkg-col-element" id="edit-save-positions" (click)="editPosition()" data-dismiss="modal">Edit Position</button>
           <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
         </div>
       </div>

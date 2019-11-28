@@ -25,6 +25,7 @@ export class UserProfileComponent implements OnInit {
   user: User;
   isImgUploaded: boolean;
   @ViewChild('image') image: ElementRef;
+  @Input() profileId: any;
 
   constructor( private modalNotificationService: ModalNotificationService,
                private profileEndpointService: ProfileEndpointService,
@@ -38,6 +39,7 @@ export class UserProfileComponent implements OnInit {
                 });
                 this.user = sessionStorageService.getUser();
                 this.profile = {
+                    profileID: '',
                     profilePicture: '',
                     profileDisplayName: '',
                     profileDescription: '',
@@ -49,9 +51,6 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
   }
 
-  initilializeProfile() {
-
-  }
 
   onFileSelectedEvent(event) {
     this.selectedImage = event.target.files[0] as File;
@@ -71,21 +70,33 @@ export class UserProfileComponent implements OnInit {
     this.isImgUploaded = true;
   }
 
+
   onSubmit() {
     if (this.profileForm.valid && this.isImgUploaded) {
         this.profile.profilePicture = this.selectedImage.name;
         this.profile.profileDisplayName = this.profileForm.get('display_name').value;
-        this.profileEndpointService.createProfile(this.profile).subscribe((response: Profile) => {
+        this.profile.profileDescription = this.profileForm.get('about_me').value;
+        this.profileEndpointService.getProfileByUserId(this.user.userID).subscribe( (resp: any [] ) => {
+          if (resp.length > 1) {
             this.modalNotificationService.openModalNotification({
-                successMessage: 'The profile has been created succesfully'
+              messageFailure: 'The profile already exist'
             });
-            this.spinnerService.show();
-            // this.image.nativeElement.value = null;
-        }, (error: HttpErrorResponse) => {
-            this.modalNotificationService.openModalNotification({
-                messageFailure: 'Something went wrong..Please try again'
+          } else {
+            this.profileEndpointService.createProfile(this.profile).subscribe((response: Profile) => {
+              this.modalNotificationService.openModalNotification({
+                successMessage: 'The profile has been addded succesfully'
             });
+              this.spinnerService.show();
+                // this.image.nativeElement.value = null;
+            }, (error: HttpErrorResponse) => {
+                this.modalNotificationService.openModalNotification({
+                    messageFailure: 'Something went wrong..Please try again'
+                });
+            });
+          }
         });
+
+        // this.image.nativeElement.value = null;
     } else {
         this.modalNotificationService.openModalNotification({
             messageFailure: 'Please upload an image'

@@ -27,39 +27,37 @@
                       class="alert alert-danger">The field is required.
           </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label class="bkg-col-text" for="media"><strong>Media</strong></label>
           <hr>
           <div class="text-center">
             <app-upload-media (uploadedFile)="addFileToQueue($event)"></app-upload-media>
           </div>
-        </div>
+        </div> -->
         <div class="form-group">
           <label class="bkg-col-text" for="media"><strong>Available Position</strong></label>
           <hr>
-          <table class="table table-striped">
+          <table class="table table-striped text-center">
             <thead>
             <tr>
               <th scope="col">Position Title</th>
               <th scope="col">Description</th>
               <th scope="col">Positions Available</th>
-              <th scope="col">Positions Filled</th>
-              <th scope="col">Media</th>
+              <!-- <th scope="col">Positions Filled</th> -->
+              <!-- <th scope="col">Media</th> -->
               <th scope="col">Option</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let position of positionsList; index as i">
-              <!-- <th scope="row">{{ i + 1 }}</th> -->
               <td>{{ position.postingName}}</td>
               <td>{{ position.postingDescription}}</td>
               <td>{{ position.numberAvailable}}</td>
-              <td>{{ position.numberAvailable}}</td>
-              <td>{{ position.numberAvailable}}</td>
+              <!-- <td>{{ position.numberAvailable}}</td> -->
+              <!-- <td>{{ position.numberAvailable}}</td> -->
               <td>
                 <button type="button" (click)="editPosition(i, position.postingID)" data-toggle="modal" data-target="#modalEditPosition" class="btn action-icon"><i class="fas fa-pencil-alt"></i></button> 
-                <button type="button" (click)="deletePosition(i)" class="btn action-icon"><i class="fas fa-trash-alt"></i></button>
-                <button type="button"  (click)="addPosition()" data-toggle="modal" data-target="#modalPosition" class="btn action-icon"><i class="fas fa-plus"></i></button>
+                <button type="button" (click)="deletePosition(i, position.postingID)" class="btn action-icon"><i class="fas fa-trash-alt"></i></button>
               </td> 
             </tr>
             </tbody>
@@ -79,5 +77,5 @@
   </div>
 </div>
 <app-create-position></app-create-position>
-<app-edit-position></app-edit-position>
+<app-edit-position [position]="positionsList"></app-edit-position>
 

@@ -1,3 +1,14 @@
-.page-footer {
-    padding: 0 !important;
+
+p {
+    margin: 0;
 }
+#names {
+    padding-bottom: 10px;
+}
+.footer-copyright{
+    margin-top: 12px;
+}
+/* footer{
+    bottom: 0;
+    position: absolute;
+} */

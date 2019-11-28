@@ -2,25 +2,3 @@
     height: 80vh;
 }
 
-.file-upload {
-    cursor: pointer;
-    padding: 10px;
-    background-color: orange;
-    border-radius: 10px;
-    display: block;
-    max-width: 400px;
-    margin: 0 auto;
-    position: relative;
-    top: 30px;
-    font-weight: 600;
-}
-.file-upload:hover {
-    background-color: black;
-    color: orange;
-}
-
-#profile-img {
-    height: 400px;
-    max-width: 499px;
-    border-radius: 140px;
-}
