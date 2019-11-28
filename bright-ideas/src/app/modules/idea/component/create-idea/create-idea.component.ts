@@ -119,7 +119,6 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
 
   addPosition() {
   this.isModalVisible = true;
-  
   }
 
   public addFileToQueue(img : any) {
@@ -136,22 +135,16 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     });
   }
 
-  deletePosition(indexPosition: any, positionId: any) {
+  deletePosition(indexPosition: any, positionId: any, positionTitle: string) {
     if (indexPosition > -1 && positionId !== 0) {
-      this.positionsList.splice(indexPosition, 1);
+      this.modalNotificationService.openModalDeletenNotification({
+        type: 'position',
+        id: positionId,
+        name: positionTitle,
+        list: this.positionsList,
+        listIndex: indexPosition
+      });
     }
-    this.postingEndpointService.deletePosting(positionId).subscribe( (res: any) => {
-      this.modalNotificationService.openModalNotification({
-        successMessage: 'Position deleted succesfully'
-      });
-      this.spinnerService.show()
-    }, (error: HttpErrorResponse) => {
-      this.modalNotificationService.openModalNotification({
-        messageFailure: error.message
-      });
-    });
-    this.sessionStoargeService.removePositions();
-    this.spinnerService.hide();
   }
   // NOT WORKING 
   // uploadFile(): void {
