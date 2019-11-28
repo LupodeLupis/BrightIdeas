@@ -8,12 +8,8 @@ import { CATEGORIES, FILE_SIZE } from '../../../../shared/models/global-constant
 import { Posting } from '../../../../models/posting';
 import { Media } from '../../../../models/media';
 import { Subscription } from 'rxjs';
-<<<<<<< HEAD
 import { saveAs } from 'file-saver'
-import { HttpErrorResponse } from '@angular/common/http';
-=======
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
->>>>>>> 909b57281cbc214809f0fad904217960bfbe2f1c
 import { ModalNotificationService } from '../../../../shared/services/modal-notification/modal-notification.service';
 import * as _ from 'lodash';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
@@ -56,11 +52,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
       this.categoryList = CATEGORIES;
       this.isModalVisible = true;
       this.idea = {
-<<<<<<< HEAD
         ideaID: 0,
-=======
-        ideaID: '',
->>>>>>> 909b57281cbc214809f0fad904217960bfbe2f1c
         ideaName: '',
         ideaDescription: '',
         ideaCreator: currentUser.userID,
@@ -86,48 +78,6 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
       this.positionsList = position;
     });
   }
-<<<<<<< HEAD
-
-  initilizationPositions() {
-    const positionsFromSessionStorage: Posting[] = this.sessionStoargeService.getPositions();
-    // this.positionsList = positionsFromSessionStorage;
-    _.forEach(positionsFromSessionStorage, (value, index) => {
-      this.postingEndpointService.getPostingById(value.postingID).subscribe((response: Posting) => {
-        this.positionsList.push(value);
-        console.log(value)
-        console.log('position is retrieved');
-      }, (error: HttpErrorResponse) => {
-        console.log('Error in retrieveing position');
-      });
-    });
-  }
-
-  initilizationIdea() {
-    const ideaFromSessionStorage: Posting[] = this.sessionStoargeService.getPositions();
-    const ideaId = ideaFromSessionStorage[0].ideaID;
-    this.ideaEndpointService.getIdeaById(ideaId).subscribe((response: Idea) => {
-      this.ideaForm.get('idea_title').setValue(response[0].ideaName);
-      this.ideaForm.get('idea_category').setValue(response[0].category);
-      this.ideaForm.get('idea_description').setValue(response[0].ideaDescription);
-    }, (error: HttpErrorResponse) => {
-      console.log('Error while retrieving idea')
-    });
-  }
-
- /* onSubmit(): void {
-    console.log("Submitting files");
-    for (var i = 0; i < this.imageQueue.length; i++)
-    {
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.open("POST", '../../../../../assets/uploadedImages' + this.imageQueue[i].name, true);
-      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xmlhttp.send(this.imageQueue[i]);
-      //var tempMedia: Media = {mediaID: null, file: null, mediaFormat: this.imageQueue[i].name.split('.')[1].toLowerCase(), ideaID: 1, profileID: null};
-      //console.log(tempMedia);
-      //this.mediaEndpointService.createMedia(tempMedia);
-    }*/
-=======
->>>>>>> 909b57281cbc214809f0fad904217960bfbe2f1c
   onSubmit() {
     if (this.positionsList) {
       let ideaId = '';
@@ -190,11 +140,6 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     if (indexPosition > -1 && positionId !== 0) {
       this.positionsList.splice(indexPosition, 1);
     }
-<<<<<<< HEAD
-    this.sessionStoargeService.removePositions();
-  }
-
-=======
     this.postingEndpointService.deletePosting(positionId).subscribe( (res: any) => {
       this.modalNotificationService.openModalNotification({
         successMessage: 'Position deleted succesfully'
@@ -227,5 +172,4 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
   //     }
   //   }
   // }
->>>>>>> 909b57281cbc214809f0fad904217960bfbe2f1c
 }
