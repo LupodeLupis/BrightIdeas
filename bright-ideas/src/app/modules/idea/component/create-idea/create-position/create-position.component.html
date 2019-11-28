@@ -34,7 +34,7 @@
             </form>
       </div>
       <div class="modal-footer">
-        <button [disabled]="!positionModalForm.valid" type="submit" class="btn bkg-col-element" id="save-positions" (click)="onSave()">Add New Position</button>
+        <button data-dismiss="modal" type="submit" class="btn bkg-col-element" (click)="onSave()">Add New Position</button>
         <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
       </div>
     </div>

@@ -112,6 +112,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
 
   addPosition() {
   this.isModalVisible = true;
+  
   }
 
   editPosition(indexPosition: number, positionId: any) {
