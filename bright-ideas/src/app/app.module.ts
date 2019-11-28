@@ -27,6 +27,7 @@ import { FooterComponent } from './modules/layout/footer/footer.component';
 import { UserProfileComponent } from './modules/profile/user-profile/user-profile.component';
 import { ViewUserProfileComponent } from './modules/profile/user-profile/view-user-profile/view-user-profile.component';
 import { EditIdeaComponent } from './modules/idea/component/edit-idea/edit-idea.component';
+import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { EditIdeaComponent } from './modules/idea/component/edit-idea/edit-idea.
     FormsModule,
     NgbModule.forRoot(),
     Ng4LoadingSpinnerModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   providers: [ {
     provide : HTTP_INTERCEPTORS,

@@ -38,7 +38,6 @@ export class ViewUserProfileComponent implements OnInit {
     this.profileForm = new FormGroup({
       // profile_img:   new FormControl('', Validators.required), // not in use at the moment
       profile_name:  new FormControl('', Validators.required),
-      profile_email: new FormControl('', Validators.required),
       profile_about: new FormControl('', Validators.required)
     });
     this.profile = {
@@ -47,7 +46,7 @@ export class ViewUserProfileComponent implements OnInit {
       profileDescription: '',
       profileDisplayName: '',
       userID: this.user.userID
-    }
+    };
   }
 
   ngOnInit() {
@@ -69,7 +68,6 @@ export class ViewUserProfileComponent implements OnInit {
           this.profileId = response[0].profileID;
           this.url = response[0].profilePicture;
           this.profileForm.get('profile_name').setValue(response[0].profileDisplayName);
-          this.profileForm.get('profile_email').setValue(this.user.emailAddress);
           this.profileForm.get('profile_about').setValue(response[0].profileDescription);
           this.ideaEndpointService.getIdeaByUserId(this.user.userID).subscribe((res: any) => {
             this.listIdea = res;
