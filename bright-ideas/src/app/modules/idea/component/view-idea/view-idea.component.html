@@ -8,7 +8,7 @@
     <div class="col">{{displayIdea.ideaName}}</div>
   </div>
   <div class="row date">
-    <div class="col time">{{displayIdea.ideaDate}}</div>
+    <div class="col time">Posted on {{displayIdea.ideaDate}}</div>
   </div>
 
   <div class="row heading">Description</div>
@@ -19,9 +19,11 @@
   </div>
 
   <div class="row heading">Media</div>
-  <div class="row media">
-    <div class="col" *ngFor= "let i of displayIdea.ideaImgs">
-      <img class="imgPreview" src="{{i}}" alt="Idea Image">
+  <div class="row">
+    <div class="col mx-auto media">
+      <div *ngFor= "let i of displayIdea.ideaImgs">
+        <img class="ideaImg" src="{{i}}" alt="Idea Image">
+      </div>
     </div>
   </div>
 

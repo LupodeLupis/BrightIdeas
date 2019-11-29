@@ -52,9 +52,7 @@ export class ViewIdeaComponent implements OnInit {
     ngOnInit() {
         this.route.paramMap.subscribe(params => {
             this.ideaId = params.get("ideaId");
-            this.IdeaService.getIdeaById(this.ideaId).subscribe((idea) => {
-                this.idea = idea;
-            });
+            this.getIdea(this.ideaId);
         });
     }
 
