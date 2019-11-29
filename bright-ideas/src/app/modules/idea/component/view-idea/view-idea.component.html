@@ -5,7 +5,9 @@
   </div>
 
   <div class="row title">
-    <div class="col">{{displayIdea.ideaName}}</div>
+    <div class="col">{{displayIdea.ideaName}}
+      <span *ngIf="isLeader"><button type="button" (click)="editIdea(displayIdea.ideaID)" data-toggle="modal" data-target="#modalEditIdea" class="btn action-icon"><i class="fas fa-pencil-alt"></i></button> </span>
+    </div>
   </div>
   <div class="row date">
     <div class="col time">Posted on {{displayIdea.ideaDate}}</div>
@@ -28,8 +30,19 @@
   </div>
 
   <div class="row heading">Updates</div>
-  <div class="row updates">
-
+  <div class="row">
+    <div class="col mx-auto updates">
+      <div *ngFor= "let u of displayIdea.ideaUpdates">
+        <div class="update">
+          <div class="updateDate">
+            <b>{{u.date}}</b>
+          </div>
+          <div class="updateText">
+            {{u.description}}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="row heading">Positions</div>
@@ -37,7 +50,7 @@
   <div class="row heading">Contributors</div>
 
   <div class="row">
-    <div class="col">Inappropriate Content? <span class="reportButton">Report</span> this idea.</div>
+    <div class="col report">Inappropriate Content? <span class="reportButton">Report</span> this idea.</div>
   </div>
 </div>
 

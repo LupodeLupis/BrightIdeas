@@ -34,6 +34,19 @@ export class UpdateEndpointService {
          });
       });
    }
+
+   getUpdateByIdea(ideaId: String): Observable<any> {
+      return Observable.create((observer: Observer<any>) => {
+         this.http.get(`${this.url}/update/idea/${ideaId}`).subscribe((res: any) => {
+            observer.next(res);
+            observer.complete();
+         },
+         (error: HttpErrorResponse) => {
+            observer.error(error);
+         });
+      });
+   }
+
    createUpdateDescriptionIdea(body: object): Observable <any> {
       return Observable.create((observer: Observer<any>) => {
          this.http.post(`${this.url}/update/create`, body).subscribe((response: any) => {

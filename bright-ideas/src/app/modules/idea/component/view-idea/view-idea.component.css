@@ -41,3 +41,39 @@
     border-width: 1px;
     border-style: solid;
 }
+
+.updates
+{
+    height: 300px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.updates .update
+{
+    height: 250px;
+    width: 250px;
+    margin: 10px;
+    padding: 10px;
+
+    flex: 0 0 auto;
+
+    border-style: solid;
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: slategray;
+    
+    box-shadow: 2px 3px lightgrey;
+}
+
+.update .updateText
+{
+    padding-top: 10px;
+}
+
+.report
+{
+    text-align: center;
+}
