@@ -149,13 +149,11 @@ export class ViewIdeaComponent implements OnInit {
     this.IdeaService.getIdeaById(id).subscribe(async (i) => {
 
       var parsedDate = new Date(Date.parse(i[0].date)).toLocaleDateString('en-US', this.dateParseOptions);
-      console.log("DATE: " + parsedDate);
 
       var tempIdeaImgs = await this.getImageByIdea(i[0].ideaID);
       var tempIdeaUpdates = await this.getUpdatesByIdea(i[0].ideaID);
       var tempIdeaPostings = await this.getPostingsByIdea(i[0].ideaID);
       var tempIdeaMembers = await this.getMembersByIdea(i[0].ideaID);
-      console.log("No of members: " + tempIdeaMembers.length);
 
       var tempLeadImg = await this.getImageByProfile(i[0].ideaLeader);
       var tempLeadName = await this.getProfileName(i[0].ideaLeader);
@@ -175,6 +173,16 @@ export class ViewIdeaComponent implements OnInit {
           this.isLeader = true;
         }
       }
+  }
+
+  addUpdateClicked()
+  {
+    alert("Adding updates in progress...")
+  }
+
+  applyClicked(postingId)
+  {
+    alert("Application to posting " + postingId + " in progress...");
   }
 
   getImageByIdea(id): Promise<any> {

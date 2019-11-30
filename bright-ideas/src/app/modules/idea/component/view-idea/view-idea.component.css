@@ -63,6 +63,12 @@ a
     border-style: solid;
 }
 
+.addUpdate
+{
+    font-size: 14px;
+    margin-left: 50px;
+}
+
 .updates
 {
     height: 300px;
@@ -118,6 +124,16 @@ a
     border-color: slategray;
     
     box-shadow: 3px 4px 2px 2px lightgrey;
+}
+
+.posting .postingName
+{
+    font-size: 18px;
+}
+
+.posting .applyButton
+{
+
 }
 
 .members
