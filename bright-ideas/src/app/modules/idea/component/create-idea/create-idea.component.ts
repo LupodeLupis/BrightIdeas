@@ -1,17 +1,18 @@
 import { Component, OnInit, EventEmitter, Input, ElementRef, Output, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { IdeaEndpointService } from '../../../../services/idea-endpoint/idea-endpoint.service';
 import { PostingEndpointService } from '../../../../services/posting-endpoint/posting-endpoint.service';
+import { MediaEndpointService } from '../../../../services/media-endpoint/media-endpoint.service';
 import { Idea } from '../../../../models/idea';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CATEGORIES, FILE_SIZE } from '../../../../shared/models/global-constants';
 import { Posting } from '../../../../models/posting';
+import { Media } from '../../../../models/media';
 import { Subscription } from 'rxjs';
+import { saveAs } from 'file-saver'
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ModalNotificationService } from '../../../../shared/services/modal-notification/modal-notification.service';
 import * as _ from 'lodash';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service';
-import { MediaEndpointService } from 'src/app/services/media-endpoint/media-endpoint.service';
-import { Media } from '../../../../models/media';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { DeleteNotificationService } from '../../../../shared/services/modal-notification/delete-notification.service';
 
@@ -27,7 +28,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
   media: Media;
   isModalVisible: boolean;
   categoryList: string[] = [];
-  filesList: File[] = [];
+  imageQueue: File[] = [];
   keyIdPosting: string [] = [];
   ideaForm: FormGroup;
   private positionsListSub: Subscription;
@@ -53,20 +54,26 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
       this.categoryList = CATEGORIES;
       this.isModalVisible = true;
       this.idea = {
-        ideaID: '',
+        ideaID: 0,
         ideaName: '',
         ideaDescription: '',
         ideaCreator: currentUser.userID,
         ideaLeader: currentUser.userID,
         category: '',
-        toDoList: 1
+        toDoList: 1,
+        media: null,
+        posting: null,
+        date: null,
+        update: null
       };
       this.media = {
-        fileName: null,
+        mediaID: 0,
+        file: '',
         mediaFormat: '',
-        mediaURI: '',
+        ideaID: 0,
+        profileID: 0
       };
-     }
+  }
 
   ngOnInit() {
     this.positionsListSub = this.postingEndpointService.showPositionList.subscribe((position) => {
@@ -116,6 +123,12 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
   this.isModalVisible = true;
   }
 
+  public addFileToQueue(img : any) {
+    //console.log(img.name.split('.')[1].toLowerCase());
+    this.imageQueue.push(img);
+    console.log(this.imageQueue);
+  }
+  
   editPosition(indexPosition: number, positionId: any) {
     _.forEach(this.positionsList, (value, key) => {
       if (this.positionsList[key].postingID === positionId) {

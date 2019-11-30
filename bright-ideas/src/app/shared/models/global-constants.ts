@@ -9,4 +9,4 @@ export const CATEGORIES = [
     'Design & Creative',
     'Admin Support',
     'Data Science & Analytics'
-]
+];

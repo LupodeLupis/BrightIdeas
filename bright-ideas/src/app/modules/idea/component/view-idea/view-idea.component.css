@@ -1,0 +1,213 @@
+a
+{
+    text-decoration: none;
+    color : #000000;
+}
+
+.cat
+{
+    text-align: left;
+}
+
+.leader
+{
+    text-align: right;
+}
+
+.profImgSmall
+{
+    position: relative;
+    float: right;
+    width: 37.5px;
+    height: 37.5px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+
+    background-position:50% 50%;
+    background-repeat:no-repeat;  
+	background-size: 75px;
+}
+
+.title
+{
+    text-align: center;
+    font-size: 30px;
+}
+
+.time
+{
+    text-align: center;
+}
+
+.heading
+{
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.media
+{
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.media .ideaImg
+{
+    height: 250px;
+    margin: 10px;
+    display: inline-block;
+
+    border-width: 1px;
+    border-style: solid;
+}
+
+.addUpdate
+{
+    font-size: 14px;
+    margin-left: 50px;
+}
+
+.updates
+{
+    height: 300px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.updates .update
+{
+    height: 250px;
+    width: 250px;
+    margin: 10px;
+    padding: 10px;
+
+    flex: 0 0 auto;
+
+    border-style: solid;
+    border-radius: 15px;
+    border-width: 2px;
+    border-color: slategray;
+    
+    box-shadow: 3px 4px 2px 2px lightgrey;
+}
+
+.update .updateText
+{
+    padding-top: 10px;
+}
+
+.postings
+{
+    height: 300px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.postings .posting
+{
+    height: 250px;
+    width: 250px;
+    margin: 10px;
+    padding: 10px;
+
+    flex: 0 0 auto;
+
+    border-style: solid;
+    border-radius: 15px;
+    border-width: 2px;
+    border-color: slategray;
+    
+    box-shadow: 3px 4px 2px 2px lightgrey;
+}
+
+.posting .postingName
+{
+    font-size: 18px;
+}
+
+.posting .applyButton
+{
+
+}
+
+.members
+{
+    margin-top: 10px;
+}
+
+.member
+{
+    height: 75px;
+    width: 300px;
+
+    border-style: solid;
+    border-radius: 15px;
+    border-width: 2px;
+    border-color: slategray;
+    
+    box-shadow: 3px 4px lightgrey;
+
+    margin-bottom: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+
+    display: inline-block;
+}
+
+.member .preview
+{
+    margin-top: 20px;
+    position: relative;
+    float: left;
+    width: 37.5px;
+    height: 37.5px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+
+    background-position:50% 50%;
+    background-repeat:no-repeat;  
+	background-size: 75px;
+}
+
+.member .top
+{
+	margin-top: 15px;
+}
+
+.member .name
+{
+    text-align: left;
+	font-size: 16px;
+    font-weight:bold;
+}
+
+.member:hover .name
+{
+    text-decoration: underline;
+    font-weight: bold;
+    color: turquoise;
+}
+
+.member .role
+{
+    font-size: 16px;
+	margin-top: 5px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-height: 16px;
+    max-height: 16px;
+}
+
+.report
+{
+    text-align: center;
+}

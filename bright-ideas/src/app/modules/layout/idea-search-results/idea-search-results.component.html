@@ -1,13 +1,32 @@
-<p>
-  search-results works!
-</p>
-<div *ngIf = "hasResults; else noResults">
-  <div *ngFor = "let i of ideaResults">
-    <a routerLink="/idea/{{i.ideaID}}">Media:{{i.media}} Idea Name:{{i.ideaName}} Idea Description:{{i.ideaDescription}} Idea Leader:{{i.ideaLeader}}</a>
-    <br/>
-    <br/>
+<h1>Results</h1>
+<div *ngIf = "!isLoading; else loading">
+  <div *ngIf = "hasResults; else noResults">
+    <div *ngFor = "let i of searchResults">
+      
+      <div class="container">
+        <div class="result">
+          <a routerLink="/idea/{{i.ideaID}}">
+            <div class="preview" [ngStyle]="{'background-image':'url('+i.ideaImg+')'}"></div>
+            <div class="row top">
+              <div class="col-6 title">{{i.ideaName}}</div>
+              <div class="col-6 name"><span>Idea Leader: <a routerLink="/profile/{{i.leadID}}">{{i.leadName}}</a></span><a routerLink="/profile/{{i.leadID}}"><div class="d-none d-lg-block profImgSmall" [ngStyle]="{'background-image':'url('+i.leadImg+')'}"></div></a></div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col desc">{{i.ideaDesc}}</div>
+            </div>
+            <div class="row align-items-end">
+              <div class="col cat">Category > <b>{{i.ideaCat}}</b></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<ng-template #loading>
+  <div>Loading...</div>
+</ng-template>
 
 <ng-template #noResults>
   <div>No results found</div>

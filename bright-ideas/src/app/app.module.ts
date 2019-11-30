@@ -16,7 +16,7 @@ import { ViewIdeaComponent } from './modules/idea/component/view-idea/view-idea.
 import { LoginComponent } from './modules/auth/component/login/login.component';
 import { PageNotFoundComponent } from './modules/layout/page-not-found/page-not-found.component';
 import { ViewMessageComponent } from './modules/chat/component/view-message/view-message.component';
-import { UploadMediaComponent } from './modules/idea/component/create-idea/upload-media/upload-media.component';
+import { UploadMediaComponent } from './modules/media/upload-media/upload-media.component';
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
 import { CreatePositionComponent } from './modules/idea/component/create-idea/create-position/create-position.component';
 import { ModalNotificationComponent } from './shared/component/modal-notification/modal-notification.component';
@@ -29,6 +29,8 @@ import { ViewUserProfileComponent } from './modules/profile/user-profile/view-us
 import { EditIdeaComponent } from './modules/idea/component/edit-idea/edit-idea.component';
 import { ModalModule } from 'ngx-bootstrap';
 import { DeleteNotificationComponent } from './shared/component/delete-notification/delete-notification.component';
+import { ApplyPositionModalComponent } from './modules/idea/component/view-idea/Modals/apply-position-modal/apply-position-modal.component';
+import { AddUpdateModalComponent } from './modules/idea/component/view-idea/Modals/add-update-modal/add-update-modal.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { DeleteNotificationComponent } from './shared/component/delete-notificat
     ViewUserProfileComponent,
     EditIdeaComponent,
     DeleteNotificationComponent,
+    ApplyPositionModalComponent,
+    AddUpdateModalComponent,
   ],
   imports: [
     BrowserModule,
