@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Idea } from 'src/app/models/idea';
 import { IdeaEndpointService } from '../../../../services/idea-endpoint/idea-endpoint.service';
 import { ChatService } from 'src/app/services/chat/chat.service';
+import { MessageEndpointService } from 'src/app/services/message-endpoint/message-endpoint.service';
+import { ChatEndpointService } from 'src/app/services/chat/chat-endpoint-service.service';
 
 @Component({
   selector: 'app-view-message',
@@ -20,7 +22,9 @@ export class ViewMessageComponent implements OnInit {
 
   constructor(
     private ideaService: IdeaEndpointService,
-    private chatService: ChatService
+    // private chatService: ChatService,
+    private messageService: MessageEndpointService,
+    private chatService:  ChatEndpointService
     ) { }
 
   ngOnInit() {
@@ -32,15 +36,19 @@ export class ViewMessageComponent implements OnInit {
       }
     );
 
-    this.getMessagesSub = this.chatService.getMessages.subscribe((data) => {
-      this.messages.push(data);
-    });
-  }
+    this.getMessagesSub = this.messageService.getMessagebyId(1).subscribe((messages) => {
+      this.messages.push(messages);
+    })
 
-  sendMessage(){
-    this.chatService.sendMessage(this.currentMessage);
-    this.currentMessage = "";
-  }
+  //   this.getMessagesSub = this.chatService.getMessages.subscribe((data) => {
+  //     this.messages.push(data);
+  //   });
+  // }
+
+  // sendMessage(){
+  //   this.chatService.sendMessage(this.currentMessage);
+  //   this.currentMessage = "";
+  // }
 
   // nGOnDestroy(){
   //   if (this.getMessagesSub)
