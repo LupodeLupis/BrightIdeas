@@ -8,7 +8,7 @@ import { CATEGORIES, FILE_SIZE } from '../../../../shared/models/global-constant
 import { Posting } from '../../../../models/posting';
 import { Media } from '../../../../models/media';
 import { Subscription } from 'rxjs';
-import { saveAs } from 'file-saver'
+// import { saveAs } from 'file-saver'
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ModalNotificationService } from '../../../../shared/services/modal-notification/modal-notification.service';
 import * as _ from 'lodash';
