@@ -66,6 +66,7 @@ div.preview
 .name a:hover
 {
     color : aqua;
+    text-decoration: underline;
 }
 
 .name span
@@ -75,11 +76,10 @@ div.preview
 
 .profImgSmall
 {
-    /*position: relative;*/
+    position: relative;
     float: right;
     width: 37.5px;
     height: 37.5px;
-    /*overflow: hidden;*/
     border-radius: 50%;
     border-style: solid;
     border-width: 1px;
@@ -95,9 +95,9 @@ div.preview
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1; /* number of lines to show */
-    line-height: 16px;        /* fallback */
-    max-height: 16px;       /* fallback */
+    -webkit-line-clamp: 1;
+    line-height: 16px;
+    max-height: 16px;
 }
 
 .cat

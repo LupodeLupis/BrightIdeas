@@ -88,6 +88,18 @@ export class PostingEndpointService {
   });
  }
 
+ getPostingByIdea(ideaId): Observable<any> {
+    return Observable.create((observer: Observer<any>) => {
+      this.http.get(`${this.url}/posting/idea/${ideaId}`).subscribe((res: any) => {
+         observer.next(res);
+         observer.complete();
+      },
+      (error: HttpErrorResponse) => {
+         observer.error(error);
+      });
+   });
+  }
+
  updatePosting(body: object): Observable<any> {
    return Observable.create((observer: Observer<any>) => {
      this.http.put(`${this.url}/posting/update`, body).subscribe((res: any) => {

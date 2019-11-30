@@ -61,4 +61,10 @@ div.preview
 .desc
 {
 	margin-top: 20px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-height: 16px;
+    max-height: 16px;
 }

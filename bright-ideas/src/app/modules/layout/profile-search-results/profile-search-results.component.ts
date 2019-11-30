@@ -30,6 +30,7 @@ class SearchResult
 export class ProfileSearchResultsComponent implements OnInit {
 
   hasResults = false;
+  isLoading = true;
   profileQuery;
   searchResults: SearchResult[] = [];
 
@@ -54,7 +55,8 @@ export class ProfileSearchResultsComponent implements OnInit {
           var tempRes = new SearchResult(p[x].profileID, p[x].profileDisplayName, p[x].profileDescription, tempProfImg);
           this.searchResults.push(tempRes);
         }
-      }   
+      }
+      this.isLoading = false;   
     });
   }
 
