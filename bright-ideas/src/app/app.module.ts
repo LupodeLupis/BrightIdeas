@@ -29,6 +29,8 @@ import { ViewUserProfileComponent } from './modules/profile/user-profile/view-us
 import { EditIdeaComponent } from './modules/idea/component/edit-idea/edit-idea.component';
 import { ModalModule } from 'ngx-bootstrap';
 import { DeleteNotificationComponent } from './shared/component/delete-notification/delete-notification.component';
+import { ApplyPositionModalComponent } from './modules/idea/component/view-idea/Modals/apply-position-modal/apply-position-modal.component';
+import { AddUpdateModalComponent } from './modules/idea/component/view-idea/Modals/add-update-modal/add-update-modal.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { DeleteNotificationComponent } from './shared/component/delete-notificat
     ViewUserProfileComponent,
     EditIdeaComponent,
     DeleteNotificationComponent,
+    ApplyPositionModalComponent,
+    AddUpdateModalComponent,
   ],
   imports: [
     BrowserModule,
