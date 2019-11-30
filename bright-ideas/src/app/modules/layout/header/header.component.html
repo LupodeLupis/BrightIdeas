@@ -23,6 +23,10 @@
       </div>  
     </div>
     <ul class="navbar-nav ml-auto">
+      <span *ngIf="user">
+        <button class="bell-notification" *ngIf="{ notificationWebSocket: notificationWebSocket$ | async}">
+        <i class="far fa-bell"></i>  </button>
+      </span>
       <li *ngIf="user" class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse.show">
         <a class="nav-link" routerLink="/viewMessage">Messages</a>
       </li>

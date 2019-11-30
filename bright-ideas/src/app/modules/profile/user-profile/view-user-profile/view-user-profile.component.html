@@ -52,7 +52,7 @@
         <div class="form-group text-right">
             <button [disabled]="!profileForm.valid" (click)="deleteProfile()" type="button" class="bkg-col-element btn mr-3">Delete Profile</button>
             <button [disabled]="!profileForm.valid" (click)="editProfile()" type="submit" id="submit" class="bkg-col-element btn">Edit Profile</button>
-            <button  type="button" class="bkg-col-element btn ml-3" routerLink="/changePassword">Change Password</button>
+            <button  type="button" class="bkg-col-element btn ml-3" routerLink="/changePassword/{{user.emailAddress}}">Change Password</button>
         </div>
       </form>
     </div>

@@ -11,6 +11,7 @@ import { ModalNotificationService } from '../../../../shared/services/modal-noti
 import * as _ from 'lodash';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Profile } from '../../../../models/profile';
+import { DeleteNotificationService } from '../../../../shared/services/modal-notification/delete-notification.service';
 
 @Component({
   selector: 'app-view-user-profile',
@@ -32,6 +33,8 @@ export class ViewUserProfileComponent implements OnInit {
               private modalNotificationService: ModalNotificationService ,
               private spinnerService: Ng4LoadingSpinnerService,
               private router: Router,
+              private deleteNotificationService: DeleteNotificationService
+
               ) {
     this.user = sessionStorageService.getUser();
     this.isProfileDeleted = true;
@@ -87,18 +90,20 @@ export class ViewUserProfileComponent implements OnInit {
 
   deleteProfile() {
     if (this.profileId) {
-      this.modalNotificationService.openModalDeletenNotification({
+      this.deleteNotificationService.openModalDeletenNotification({
         type: 'profile',
         id: this.profileId,
+        list: this.listIdea
       });
     }
+    console.log(this.listIdea)
     this.profileForm.reset();
-    this.listIdea = [];
+    //this.listIdea = [];
   }
 
   deleteIdea(index: number, ideaId: any, ideaTitle: string) {
     if (index > -1 && ideaId !== 0) {
-      this.modalNotificationService.openModalDeletenNotification({
+      this.deleteNotificationService.openModalDeletenNotification({
         type: 'idea',
         id: ideaId,
         name: ideaTitle,

@@ -21,9 +21,9 @@ import { ViewUserProfileComponent } from './modules/profile/user-profile/view-us
 // NOTE THIS WILL ONLY CHECK TO SEE IF A VALID TOKEN IS FOUND IN LOCAL STORAGE
 // IF IT NEEDS TO BE ROLE PROTECTED, WE NEED TO ADD A NEW AUTH GUARD
 const routes: Routes = [
-    { path: 'changePassword',
-      component: ChangePasswordComponent,
-      canActivate: [AuthGuardService] },
+    // { path: 'changePassword',
+    //   component: ChangePasswordComponent,
+    //   canActivate: [AuthGuardService] },
     { path: 'createAccount',
       component: CreateAccountComponent },
     { path: 'viewMessage',
