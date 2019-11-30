@@ -11,10 +11,10 @@
           <button (click)="search(searchText, searchType1.checked ? searchType1.value : searchType2.checked ? searchType2.value : null)" id="searchButton" tabindex="-1" aria-label="Close">
             <i class="fa fa-search"></i>
           </button>
-          <input #searchText type="text" class="searchText" placeholder="Search..."/>
+          <input #searchText type="text" class="searchText" (keydown.enter)="search(searchText, searchType1.checked ? searchType1.value : searchType2.checked ? searchType2.value : null)" placeholder="Search..."/>
       </div>
       <div class="form-check form-check-inline">
-          <input #searchType1 value="ideas" type="radio" class="form-check-input" id="option-idea" name="searchType" >
+          <input #searchType1 value="ideas" type="radio" class="form-check-input" id="option-idea" name="searchType" checked>
           <label class="form-check-label nav-text-color" for="option-idea">Ideas</label>
       </div>
       <div class="form-check form-check-inline">

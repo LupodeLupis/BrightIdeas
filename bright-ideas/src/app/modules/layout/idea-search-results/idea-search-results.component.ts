@@ -38,6 +38,7 @@ class SearchResult
 })
 export class IdeaSearchResultsComponent implements OnInit {
 
+  isLoading = true;
   hasResults = false;
   ideaQuery;
   searchResults: SearchResult[] = [];
@@ -65,7 +66,8 @@ export class IdeaSearchResultsComponent implements OnInit {
           var tempRes = new SearchResult(i[x].ideaID, tempIdeaImg, i[x].ideaName, i[x].ideaDescription, i[x].category, i[x].ideaLeader, tempLeadName, tempLeadImg);
           this.searchResults.push(tempRes);
         }
-      }  
+      }
+      this.isLoading = false;  
     });
   }
 
@@ -114,4 +116,5 @@ export class IdeaSearchResultsComponent implements OnInit {
   {
     this.router.navigate([])
   }
+  
 }

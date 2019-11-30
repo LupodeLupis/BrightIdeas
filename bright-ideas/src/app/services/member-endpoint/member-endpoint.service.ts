@@ -35,7 +35,8 @@ export class MemberEndpointService {
    });
   }
 
-  getMemberByUserId(userId): Observable<any> {
+   //Not in BrightIdeasAPI
+  /*getMemberByUserId(userId): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.http.get(`${this.url}/member/userId=${userId}`).subscribe((res: any) => {
          observer.next(res);
@@ -45,9 +46,10 @@ export class MemberEndpointService {
          observer.error(error);
       });
    });
-  }
+  }*/
 
-  getMemberByRoleId(roleId): Observable<any> {
+   //Not in BrightIdeasAPI
+  /*getMemberByRoleId(roleId): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.http.get(`${this.url}/member/roleId=${roleId}`).subscribe((res: any) => {
          observer.next(res);
@@ -57,11 +59,11 @@ export class MemberEndpointService {
          observer.error(error);
       });
    });
-  }
+  }*/
 
   getMemberByIdeaId(ideaId): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
-      this.http.get(`${this.url}/member/ideaId=${ideaId}`).subscribe((res: any) => {
+      this.http.get(`${this.url}/member/idea/${ideaId}`).subscribe((res: any) => {
          observer.next(res);
          observer.complete();
       },
@@ -71,7 +73,8 @@ export class MemberEndpointService {
    });
   }
 
-  getMemberByLevel(memLvl): Observable<any> {
+   //Not in BrightIdeasAPI
+  /*getMemberByLevel(memLvl): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       this.http.get(`${this.url}/member/memberLevel=${memLvl}`).subscribe((res: any) => {
          observer.next(res);
@@ -81,7 +84,7 @@ export class MemberEndpointService {
          observer.error(error);
       });
    });
-  }
+  }*/
 
   createMember(body: object): Observable<any> {
    return Observable.create((observer: Observer<any>) => {

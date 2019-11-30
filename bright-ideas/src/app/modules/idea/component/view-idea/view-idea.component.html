@@ -46,8 +46,43 @@
   </div>
 
   <div class="row heading">Positions</div>
+  <div class="row">
+    <div class="col mx-auto postings">
+      <div *ngFor="let p of displayIdea.ideaPostings">
+        <div class="posting">
+          <div class="postingName">
+            <b>{{p.name}}</b>
+          </div>
+          <div class="postingDescription">
+            {{p.description}}
+          </div>
+          <div class="availability">
+            {{p.filled}}/{{p.availiable}} filled
+          </div>
+          <div *ngIf="!isLeader && !isMember && isLoggedIn">
+            <button class="applyButton" [disabled]="!p.isOpen" >Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="row heading">Contributors</div>
+  <div class="row">
+    <div class="col members">
+      <div class="col-4 member" *ngFor="let m of displayIdea.ideaMembers">
+        <a routerLink="/profile/{{m.profileId}}">
+          <div class="preview" [ngStyle]="{'background-image':'url('+m.profileImg+')'}"></div>
+          <div class="row top">
+            <div class="col name">{{m.profileName}}</div>
+          </div>
+          <div class="row align-items-center">
+              <div class="col role">{{m.roleTitle}}</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <div class="row">
     <div class="col report">Inappropriate Content? <span class="reportButton">Report</span> this idea.</div>
