@@ -13,6 +13,7 @@ import { SessionStorageService } from '../../../../shared/services/session-stora
 import { MediaEndpointService } from 'src/app/services/media-endpoint/media-endpoint.service';
 import { Media } from '../../../../models/media';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { DeleteNotificationService } from '../../../../shared/services/modal-notification/delete-notification.service';
 
 
 
@@ -41,6 +42,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
     private sessionStoargeService: SessionStorageService,
     private mediaEndpointService: MediaEndpointService,
     private spinnerService: Ng4LoadingSpinnerService,
+    private deleteNotificationService: DeleteNotificationService
     ) {
       this.ideaForm = new FormGroup({
         idea_title:       new FormControl('', Validators.required),
@@ -124,7 +126,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
 
   deletePosition(indexPosition: any, positionId: any, positionTitle: string) {
     if (indexPosition > -1 && positionId !== 0) {
-      this.modalNotificationService.openModalDeletenNotification({
+      this.deleteNotificationService.openModalDeletenNotification({
         type: 'position',
         id: positionId,
         name: positionTitle,

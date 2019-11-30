@@ -6,7 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { SessionStorageService } from '../../services/session-storage/session-storage.service';
 import { IdeaEndpointService } from '../../../services/idea-endpoint/idea-endpoint.service';
 import { ProfileEndpointService } from '../../../services/profile-endpoint/profile-endpoint.service';
-import { Idea } from 'src/app/models/idea';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-notification',
@@ -22,6 +22,7 @@ export class DeleteNotificationComponent implements OnInit {
               private sessionStoargeService: SessionStorageService,
               private ideaEndpointService: IdeaEndpointService,
               private profileEndpointService: ProfileEndpointService,
+              private router: Router,
 
     ) {
    }
@@ -69,6 +70,7 @@ export class DeleteNotificationComponent implements OnInit {
             });
           });
         this.activeModal.dismiss();
+        location.reload();
         break;
       default:
         this.activeModal.dismiss();
