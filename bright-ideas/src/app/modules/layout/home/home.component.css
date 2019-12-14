@@ -1,21 +1,106 @@
-.text-container h3 {
-    max-width: 600px;
-    margin: 0 auto;
-    font-weight: 400;
+.result a
+{
+    text-decoration: none;
+    color : #000000;
 }
-h3 a {
-    font-size: 20px;
+
+div.result
+{
+    width: 90%;
+    height: 150px;
+
+    border-style: solid;
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: slategray;
+    
+    box-shadow: 3px 4px lightgrey;
+
+    margin-bottom: 30px;
 }
-.carousel-caption p {
-    margin: 0;
-    font-size: 13px;
-    font-weight: 600;
+
+div.preview
+{
+	position: relative;
+	float: left;
+    width: 100px;
+    height: 100px;
+    /*overflow: hidden;*/
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+
+    background-position:50% 50%;
+    background-repeat:no-repeat;  
+	background-size: 200px;
+
+	margin-top: 24px;
+	margin-left: 20px;
+	margin-bottom: 24px;
 }
-.corousel-container{
-    max-width: 250px;
-    margin: 0 auto;;
+
+.top
+{
+	margin-top: 5px;
 }
-.carousel-control-next-icon, .carousel-control-prev-icon {
+
+.title
+{
+	font-size: 25px;
+    font-weight:bold;
+    overflow: visible;
+}
+
+.title:hover
+{
+    text-decoration: underline;
+    font-weight: bold;
+    color: turquoise;
+}
+
+.name
+{
+	text-align: right;
+}
+
+.name a:hover
+{
+    color : aqua;
+    text-decoration: underline;
+}
+
+.name span
+{
+    margin-right: 10px;
+}
+
+.profImgSmall
+{
     position: relative;
-    top: 28px;
+    float: right;
+    width: 37.5px;
+    height: 37.5px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+
+    background-position:50% 50%;
+    background-repeat:no-repeat;  
+	background-size: 75px;
+}
+
+.desc
+{
+	margin-top: 20px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-height: 16px;
+    max-height: 16px;
+}
+
+.cat
+{
+	margin-top: 30px;
 }
