@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, Observer } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Idea } from './../../models/idea';
+import { Idea_Detail } from './../../models/idea_detail';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +40,12 @@ export class IdeaEndpointService {
       });
    });;
   }
+
+  getIdeasWithDetail(): Observable<Idea_Detail[]> {
+      return this.http.get<Idea_Detail[]>(`${this.url}/idea/detail`);
+  };
+
+
 
   getIdeaById(ideaId): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
