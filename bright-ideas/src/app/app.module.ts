@@ -31,6 +31,7 @@ import { ModalModule } from 'ngx-bootstrap';
 import { DeleteNotificationComponent } from './shared/component/delete-notification/delete-notification.component';
 import { ApplyPositionModalComponent } from './modules/idea/component/view-idea/Modals/apply-position-modal/apply-position-modal.component';
 import { AddUpdateModalComponent } from './modules/idea/component/view-idea/Modals/add-update-modal/add-update-modal.component';
+import { SingleIdeaComponent } from './modules/layout/home/single-idea/single-idea.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AddUpdateModalComponent } from './modules/idea/component/view-idea/Moda
     DeleteNotificationComponent,
     ApplyPositionModalComponent,
     AddUpdateModalComponent,
+    SingleIdeaComponent,
   ],
   imports: [
     BrowserModule,
