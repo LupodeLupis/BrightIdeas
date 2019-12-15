@@ -62,6 +62,8 @@ export class IdeaSearchResultsComponent implements OnInit {
           var tempIdeaImg = await this.getImageByIdea(i[x].ideaID);
           var tempLeadImg = await this.getImageByProfile(i[x].ideaLeader);
           var tempLeadName = await this.getLeadName(i[x].ideaLeader);
+
+          console.log(tempIdeaImg);
           
           var tempRes = new SearchResult(i[x].ideaID, tempIdeaImg, i[x].ideaName, i[x].ideaDescription, i[x].category, i[x].ideaLeader, tempLeadName, tempLeadImg);
           this.searchResults.push(tempRes);

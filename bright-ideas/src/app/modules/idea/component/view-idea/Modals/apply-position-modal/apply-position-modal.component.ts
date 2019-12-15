@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApplicationEndpointService } from 'src/app/services/application-endpoint/application-endpoint.service'
 import { ApplyPositionModalService }  from '../apply-position-service/apply-position-modal.service'
 import { Application } from 'src/app/models/application';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-apply-position-modal',
@@ -10,6 +11,7 @@ import { Application } from 'src/app/models/application';
 })
 export class ApplyPositionModalComponent implements OnInit {
 
+  formIsValid = false;
   application: Application;
 
   ideaLeader: Number;
@@ -49,24 +51,22 @@ export class ApplyPositionModalComponent implements OnInit {
     this.leaderName = leadName;
     this.leaderImg = leadImg;
 
-    this.ApplyPositionModalService.open('Apply-Position-Modal');
   }
 
-  close()
+  submitMessage(applyMsg)
   {
-    this.ApplyPositionModalService.close('Apply-Position-Modal');
+    console.log(applyMsg);
   }
 
-  submit(message)
+  checkValid(applyMsg)
   {
-    this.message = message;
-
-  }
-
-  createApplication(app)
-  {
-    this.ApplicationService.createApplication(app).subscribe((response: any) => {
-      
-    })
+    if (applyMsg != '')
+    {
+      this.formIsValid = true;
+    }
+    else
+    {
+      this.formIsValid = false;
+    }
   }
 }
