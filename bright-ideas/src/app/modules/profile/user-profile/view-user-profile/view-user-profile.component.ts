@@ -12,143 +12,157 @@ import * as _ from 'lodash';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Profile } from '../../../../models/profile';
 import { DeleteNotificationService } from '../../../../shared/services/modal-notification/delete-notification.service';
+import { CATEGORIES, FILE_SIZE } from '../../../../shared/models/global-constants';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-view-user-profile',
-  templateUrl: './view-user-profile.component.html',
-  styleUrls: ['./view-user-profile.component.css']
+    selector: 'app-view-user-profile',
+    templateUrl: './view-user-profile.component.html',
+    styleUrls: ['./view-user-profile.component.css']
 })
+
 export class ViewUserProfileComponent implements OnInit {
-  selectedImage: File = null;
-  url: ArrayBuffer | string = '';
-  profileForm: FormGroup;
-  user: User;
-  profileId: any;
-  profile: Profile;
-  listIdea: Idea [] = [];
-  isProfileDeleted: boolean;
-  constructor(private sessionStorageService: SessionStorageService,
-              private profileEndpointService: ProfileEndpointService,
-              private ideaEndpointService: IdeaEndpointService,
-              private modalNotificationService: ModalNotificationService ,
-              private spinnerService: Ng4LoadingSpinnerService,
-              private router: Router,
-              private deleteNotificationService: DeleteNotificationService
-
+    selectedImage: File = null;
+    profilePicture: any;
+    profileForm: FormGroup;
+    user: User;
+    profileId: any;
+    profile: Profile;
+    listIdea: Idea [] = [];
+    isProfileDeleted: boolean;
+    constructor(private sessionStorageService: SessionStorageService,
+                private profileEndpointService: ProfileEndpointService,
+                private ideaEndpointService: IdeaEndpointService,
+                private modalNotificationService: ModalNotificationService ,
+                private spinnerService: Ng4LoadingSpinnerService,
+                private router: Router,
+                private deleteNotificationService: DeleteNotificationService,
+                private domSanitizer: DomSanitizer,
               ) {
-    this.user = sessionStorageService.getUser();
-    this.isProfileDeleted = true;
-    this.profileForm = new FormGroup({
-      // profile_img:   new FormControl('', Validators.required), // not in use at the moment
-      profile_name:  new FormControl('', Validators.required),
-      profile_about: new FormControl('', Validators.required)
-    });
-    this.profile = {
-      profileID: '',
-      profilePicture: '',
-      profileDescription: '',
-      profileDisplayName: '',
-      userID: this.user.userID
+        this.user = sessionStorageService.getUser();
+        this.isProfileDeleted = true;
+        this.profileForm = new FormGroup({
+            profile_img:   new FormControl(''),
+            profile_name:  new FormControl('', Validators.required),
+            profile_about: new FormControl('', Validators.required)
+        });
+        this.profile = {
+        profileID: '',
+        profilePicture: '',
+        profileDescription: '',
+        profileDisplayName: '',
+        userID: this.user.userID
+        };
+    }
+
+    ngOnInit() {
+        this.initilizationList();
     };
-  }
 
-  ngOnInit() {
-    this.initilizationList();
-  }
+    editIdea(ideaId: any) {
+        _.forEach(this.listIdea, (value, index) => {
+            if (value.ideaID === ideaId) {
+                this.profileEndpointService.currentIdea.next(value);
+            };
+        });
+    };
 
-  editIdea(ideaId: any) {
-    _.forEach(this.listIdea, (value, index) => {
-      if (value.ideaID === ideaId) {
-        this.profileEndpointService.currentIdea.next(value);
-      }
-    });
-  }
 
-  initilizationList() {
-    if (this.user) {
-      this.profileEndpointService.getProfileByUserId(this.user.userID).subscribe((response: any) => {
-        if (response.length !== 0) {
-          this.profileId = response[0].profileID;
-          this.url = response[0].profilePicture;
-          this.profileForm.get('profile_name').setValue(response[0].profileDisplayName);
-          this.profileForm.get('profile_about').setValue(response[0].profileDescription);
-          this.ideaEndpointService.getIdeaByUserId(this.user.userID).subscribe((res: any) => {
-            this.listIdea = res;
-          }, (error: HttpErrorResponse) => {
-            this.modalNotificationService.openModalNotification({
-              failureMessage: error.message
+    initilizationList() {
+        if (this.user) {
+            this.profileEndpointService.getProfileByUserId(this.user.userID).subscribe((response: any) => {
+                if (response.length !== 0) {
+                    this.profileId = response[0].profileID;
+                    this.profilePicture = this.getSafeImageURL(response[0].profilePicture);
+                    this.profileForm.get('profile_name').setValue(response[0].profileDisplayName);
+                    this.profileForm.get('profile_about').setValue(response[0].profileDescription);
+                    this.ideaEndpointService.getIdeaByUserId(this.user.userID).subscribe((res: any) => {
+                        this.listIdea = res;
+                    }, (error: HttpErrorResponse) => {
+                        this.modalNotificationService.openModalNotification({
+                            failureMessage: error.message
+                        });
+                    });
+                };
+            }, (error: HttpErrorResponse) => {
+                this.modalNotificationService.openModalNotification({
+                    failureMessage: error.message
+                });
             });
-          });
-        }
-      }, (error: HttpErrorResponse) => {
-        this.modalNotificationService.openModalNotification({
-          failureMessage: error.message
-        });
-      });
-    }
-  }
+        };
+    };
 
-  deleteProfile() {
-    if (this.profileId) {
-      this.deleteNotificationService.openModalDeletenNotification({
-        type: 'profile',
-        id: this.profileId,
-        list: this.listIdea
-      });
-    }
-    console.log(this.listIdea)
-    this.profileForm.reset();
-    //this.listIdea = [];
-  }
+    deleteProfile() {
+        if (this.profileId) {
+            this.deleteNotificationService.openModalDeletenNotification({
+                type: 'profile',
+                id: this.profileId,
+                list: this.listIdea
+            });
+        };
+        this.profileForm.reset();
+    };
 
-  deleteIdea(index: number, ideaId: any, ideaTitle: string) {
-    if (index > -1 && ideaId !== 0) {
-      this.deleteNotificationService.openModalDeletenNotification({
-        type: 'idea',
-        id: ideaId,
-        name: ideaTitle,
-        list: this.listIdea,
-        listIndex: index
-      });
-    }
-  }
+    deleteIdea(index: number, ideaId: any, ideaTitle: string) {
+        if (index > -1 && ideaId !== 0) {
+            this.deleteNotificationService.openModalDeletenNotification({
+                type: 'idea',
+                id: ideaId,
+                name: ideaTitle,
+                list: this.listIdea,
+                listIndex: index
+            });
+        };
+    };
 
-  editProfile() {
-    if (this.profileId) {
-     this.profile.profileID = this.profileId;
-     this.profile.profileDisplayName =  this.profileForm.get('profile_name').value;
-     this.profile.profileDescription = this.profileForm.get('profile_about').value;
-     this.profileEndpointService.updateProfile(this.profile).subscribe( (response: Profile) => {
-      this.modalNotificationService.openModalNotification({
-        successMessage: 'Profile edited succesfully'
-      });
-     }, (error: HttpErrorResponse) => {
-        this.modalNotificationService.openModalNotification({
-          failureMessage: error.message
-        });
-     });
-    }
-  }
+    editProfile() {
+        if (this.profileId) {
+            this.profile.profileID = this.profileId;
+            this.profile.profileDisplayName =  this.profileForm.get('profile_name').value;
+            this.profile.profileDescription = this.profileForm.get('profile_about').value;
+            this.profile.profilePicture = this.profilePicture;
+            this.profileEndpointService.updateProfile(this.profile).subscribe( (response: Profile) => {
+                this.modalNotificationService.openModalNotification({
+                    successMessage: 'Profile edited succesfully'
+                });
+            }, (error: HttpErrorResponse) => {
+                this.modalNotificationService.openModalNotification({
+                    failureMessage: error.message
+                });
+            });
+        };
+    };
 
-  showIdea(ideaId){
-    this.router.navigate(['idea/' + ideaId]);
-  }
+    showIdea(ideaId){
+        this.router.navigate(['idea/' + ideaId]);
+    };
 
-
-  // onFileChangeSelectedEvent(event) {
-  //   this.selectedImage = event.target.files[0] as File;
-  //   if (event.target.files && event.target.files[0]) {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(this.selectedImage);
-  //     reader.onload = (events) => {
-  //       this.url = reader.result ;
-  //     };
-  //   } else {
-  //     if (event.target.files[0].size > FILE_SIZE) {
-  //       this.modalNotificationService.openModalNotification({
-  //         messageFailure: 'The file is over the size limit'
-  //       });
-  //     }
-  //   }
-  // }
-}
+    onFileChangeSelectedEvent(event) {
+        this.selectedImage = event.target.files[0] as File;
+        if (event.target.files && event.target.files[0]) {
+            const reader = new FileReader();
+            reader.readAsDataURL(this.selectedImage);
+            reader.onloadend = (events) => {
+                this.profilePicture = reader.result;
+            };
+        } else {
+            if (event.target.files[0].size > FILE_SIZE) {
+                this.modalNotificationService.openModalNotification({
+                    messageFailure: 'The file is over the size limit'
+                });
+            };
+        };
+    };
+    
+    getSafeImageURL(image){
+        // Converts arraybuffer to typed array object
+        const TYPED_ARRAY = new Uint16Array(image.data);
+        // converts the typed array to string of characters
+        // const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY); // this way causes (ERROR RangeError: Maximum call stack size exceeded) error
+        const STRING_CHAR = TYPED_ARRAY.reduce((data, byte) => {
+            return data + String.fromCharCode(byte);
+        }, '');
+        //sanitize the url that is passed as a value to image src attrtibute
+        return this.domSanitizer.bypassSecurityTrustUrl(STRING_CHAR);
+    };
+};
