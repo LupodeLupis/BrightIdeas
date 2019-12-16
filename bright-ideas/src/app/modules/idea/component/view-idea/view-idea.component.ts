@@ -146,7 +146,7 @@ class postingData
 })
 export class ViewIdeaComponent implements OnInit {
 
-  ideaId;
+  ideaId = '0';
   displayIdea = new IdeaDisp('', '', '', '', '', '', '', '', '', '', '', '');
   listIdea: Idea [] = [];
 

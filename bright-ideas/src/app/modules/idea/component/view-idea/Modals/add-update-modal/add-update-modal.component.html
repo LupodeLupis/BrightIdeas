@@ -1,3 +1,16 @@
-<p>
-  add-update-modal works!
-</p>
+<div class="modal fade" id="modalAddUpdate" tabindex="-1" role="dialog" aria-labelledby="addUpdateTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header modalHeader">
+        New Update
+        <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <textarea #updateMsg (keyup)="checkValid(updateMsg.innerHTML)" class="form-control" id="messageForm" placeholder="Enter an update..."></textarea>
+      </div>
+      <div class="modal-footer">
+        <button [disabled]="!formIsValid" class="btn bkg-col-element" type="button" (click)="submitMessage(updateMsg.innerHTML)" data-dismiss="modal">Post Update</button>
+      </div>
+    </div>
+  </div>
+</div>
