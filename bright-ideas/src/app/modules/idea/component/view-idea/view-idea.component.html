@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <div class="row heading">Updates <span *ngIf="isLeader || isMember"><button class="addUpdate" (click)="addUpdateClicked()">Add An Update</button></span></div>
+  <div class="row heading">Updates<span *ngIf="isLeader || isMember"><button class="btn bkg-col-element updateButton" data-toggle="modal" data-target="#modalAddUpdate">Add An Update</button></span></div>
   <div class="row">
     <div class="col mx-auto updates">
       <div *ngFor= "let u of displayIdea.ideaUpdates">
@@ -60,7 +60,7 @@
             {{p.filled}}/{{p.availiable}} filled
           </div>
           <div class="buttonContainer" *ngIf="!isLeader && !isMember && isLoggedIn">
-            <button class="applyButton" data-toggle="modal" data-target="#modalApplyPosition" (click)="applyClicked(p)" [disabled]="!p.isOpen">Apply</button>
+            <button class="btn bkg-col-element applyButton" data-toggle="modal" data-target="#modalApplyPosition" (click)="applyClicked(p)" [disabled]="!p.isOpen">Apply</button>
             <!--<button class="applyButton" ng-click="applyPosition.open(p)" [disabled]="!p.isOpen">Apply</button>-->
           </div>
         </div>
@@ -92,3 +92,4 @@
 
 <app-edit-idea></app-edit-idea>
 <app-apply-position-modal [posInfo]="posInfo"></app-apply-position-modal>
+<app-add-update-modal [IdeaID]="ideaId"></app-add-update-modal>

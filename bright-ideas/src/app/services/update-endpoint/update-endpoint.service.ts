@@ -47,7 +47,7 @@ export class UpdateEndpointService {
       });
    }
 
-   createUpdateDescriptionIdea(body: object): Observable <any> {
+   createUpdate(body: object): Observable <any> {
       return Observable.create((observer: Observer<any>) => {
          this.http.post(`${this.url}/update/create`, body).subscribe((response: any) => {
             observer.next(response);
@@ -58,7 +58,7 @@ export class UpdateEndpointService {
          });
       });
    }
-   updateDescriptionIdea(body: object): Observable<any> {
+   updateUpdate(body: object): Observable<any> {
       return Observable.create((observer: Observer<any>) => {
          this.http.put(`${this.url}/update/update`, body).subscribe((res: any) => {
             observer.next(res);
@@ -69,7 +69,7 @@ export class UpdateEndpointService {
          });
       });
    }
-   deleteUpdateDescriptionIdea(updateId: string): Observable <any> {
+   deleteUpdate(updateId: string): Observable <any> {
       return Observable.create((observer: Observer<any>) =>{
          this.http.delete(`${this.url}/update/delete/${updateId}`).subscribe((response: any) => {
             observer.next(response);

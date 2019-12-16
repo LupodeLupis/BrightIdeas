@@ -1,4 +1,4 @@
 export interface Update {
-    date: Date;
-    description: string;
+    ideaID: Number;
+    description: String;
 }
