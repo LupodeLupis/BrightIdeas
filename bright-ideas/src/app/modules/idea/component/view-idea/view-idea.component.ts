@@ -11,6 +11,8 @@ import { UpdateEndpointService } from 'src/app/services/update-endpoint/update-e
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service'
 import * as _ from 'lodash';
 
+//import { ApplyPositionModalService } from 'src/app/modules/idea/component/view-idea/Modals/apply-position-service/apply-position-modal.service'
+
 const uploadPath = '../../../../assets/uploads/'
 
 class Member
@@ -118,6 +120,25 @@ class IdeaDisp
     }
 }
 
+class postingData
+{
+  leadID: Number;
+  ideaID: Number;
+  appID: Number;
+  posID: Number;
+
+  posName: String;
+
+  constructor(lID, iID, aID, pID, pNam)
+  {
+    this.leadID = lID;
+    this.ideaID = iID;
+    this.appID = aID;
+    this.posID = pID;
+    this.posName = pNam;
+  }
+}
+
 @Component({
   selector: 'app-view-idea',
   templateUrl: './view-idea.component.html',
@@ -135,6 +156,7 @@ export class ViewIdeaComponent implements OnInit {
 
   dateParseOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 
+  posInfo = new postingData('', '', '', '', '');
 
   constructor(private sessionStorageService: SessionStorageService, private IdeaService: IdeaEndpointService, private MediaService: MediaEndpointService, private ProfileService: ProfileEndpointService, private UpdateService: UpdateEndpointService, private PostingService: PostingEndpointService, private MemberService: MemberEndpointService, private route: ActivatedRoute) { }
 
@@ -143,6 +165,17 @@ export class ViewIdeaComponent implements OnInit {
           this.ideaId = params.get("ideaId");
           this.getIdea(this.ideaId);
       });
+  }
+
+  addUpdateClicked()
+  {
+    alert("Adding updates in progress...")
+  }
+
+  applyClicked(posting)
+  {
+    this.posInfo = new postingData(this.displayIdea.leadID, this.displayIdea.ideaID, this.sessionStorageService.getUser().userID, posting.id, posting.name);
+    //alert("Application to posting " + posting.postingId + " in progress...");
   }
 
   getIdea(id): void {
@@ -173,16 +206,6 @@ export class ViewIdeaComponent implements OnInit {
           this.isLeader = true;
         }
       }
-  }
-
-  addUpdateClicked()
-  {
-    alert("Adding updates in progress...")
-  }
-
-  applyClicked(postingId)
-  {
-    alert("Application to posting " + postingId + " in progress...");
   }
 
   getImageByIdea(id): Promise<any> {

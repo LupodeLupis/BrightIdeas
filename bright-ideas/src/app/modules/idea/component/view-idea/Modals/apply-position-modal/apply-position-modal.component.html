@@ -14,14 +14,14 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header modalHeader">
-        Applying to POSITION
+        Applying to {{posInfo.posName}}
         <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-times"></i></button>
       </div>
       <div class="modal-body">
-        <textarea #applyMsg (keyup)="checkValid(applyMsg.innerHTML)" class="form-control" placeholder="Enter a message to the idea leader..."></textarea>
+        <textarea #applyMsg (keyup)="checkValid(applyMsg.innerHTML)" class="form-control" id="messageForm" placeholder="Enter a message to the idea leader..."></textarea>
       </div>
       <div class="modal-footer">
-        <button [disabled]="!formIsValid" class="btn bkg-col-element" type="button" (click)="submitMessage(applyMsg.innerHTML)">Send Application</button>
+        <button [disabled]="!formIsValid" class="btn bkg-col-element" type="button" (click)="submitMessage(applyMsg.innerHTML)" data-dismiss="modal">Send Application</button>
       </div>
     </div>
   </div>

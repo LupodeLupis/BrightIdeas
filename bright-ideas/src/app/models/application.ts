@@ -2,7 +2,7 @@ export class Application
 {
 	applicationId: Number;
 	ideaLeaderId: Number;
-	ideaId: Number;
+	ideaID: Number;
 	applicantId: Number;
 	positionId: Number;
 	message: String;
