@@ -51,12 +51,14 @@ export class ApplicationEndpointService {
 
   createApplication(body: object): Observable<any> {
    return Observable.create((observer: Observer<any>) => {
+      console.log("In endpoint sevice...")
      this.http.post(`${this.url}/application/create`, body).subscribe((res: any) => {
         observer.next(res);
         observer.complete();
      },
      (error: HttpErrorResponse) => {
         observer.error(error);
+        console.log(error);
      });
   });
  }

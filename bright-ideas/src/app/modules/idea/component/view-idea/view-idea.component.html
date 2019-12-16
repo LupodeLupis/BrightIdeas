@@ -60,7 +60,8 @@
             {{p.filled}}/{{p.availiable}} filled
           </div>
           <div class="buttonContainer" *ngIf="!isLeader && !isMember && isLoggedIn">
-            <button class="applyButton" (click)="applyClicked(p.id)" [disabled]="!p.isOpen">Apply</button>
+            <button class="applyButton" data-toggle="modal" data-target="#modalApplyPosition" (click)="applyClicked(p)" [disabled]="!p.isOpen">Apply</button>
+            <!--<button class="applyButton" ng-click="applyPosition.open(p)" [disabled]="!p.isOpen">Apply</button>-->
           </div>
         </div>
       </div>
@@ -89,3 +90,5 @@
   </div>
 </div>
 
+<app-edit-idea></app-edit-idea>
+<app-apply-position-modal [posInfo]="posInfo"></app-apply-position-modal>

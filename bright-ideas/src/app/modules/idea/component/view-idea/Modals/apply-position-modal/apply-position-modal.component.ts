@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { ApplicationEndpointService } from 'src/app/services/application-endpoint/application-endpoint.service'
 import { ApplyPositionModalService }  from '../apply-position-service/apply-position-modal.service'
 import { Application } from 'src/app/models/application';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-apply-position-modal',
@@ -10,24 +11,17 @@ import { Application } from 'src/app/models/application';
 })
 export class ApplyPositionModalComponent implements OnInit {
 
+  formIsValid = false;
   application: Application;
 
-  ideaLeader: Number;
-  idea: Number;
-  applicant: Number;
-  position: Number;
-  message: String;
-
-  positionName: String;
-  leaderName: String;
-  leaderImg: String;
+  @Input() posInfo: any;
 
   constructor(private ApplicationService: ApplicationEndpointService, private ApplyPositionModalService: ApplyPositionModalService) 
   {
     this.application = {
       applicationId: 0,
       ideaLeaderId: 0,
-      ideaId: 0,
+      ideaID: 0,
       applicantId: 0,
       positionId: 0,
       message: ''
@@ -38,35 +32,47 @@ export class ApplyPositionModalComponent implements OnInit {
 
   }
 
-  openModal(leadId, ideaId, applicantId, positionId, posName, leadName, leadImg)
+  openModal()
   {
-    this.ideaLeader = leadId;
-    this.idea = ideaId;
-    this.applicant = applicantId;
-    this.position = positionId;
-
-    this.positionName = posName;
-    this.leaderName = leadName;
-    this.leaderImg = leadImg;
-
-    this.ApplyPositionModalService.open('Apply-Position-Modal');
+ 
   }
 
-  close()
+  submitMessage(applyMsg)
   {
-    this.ApplyPositionModalService.close('Apply-Position-Modal');
+    this.application.ideaID = this.posInfo.ideaID;
+    this.application.applicantId = this.posInfo.appID;
+    this.application.positionId = this.posInfo.posID;
+    this.application.ideaLeaderId = this.posInfo.leadID;
+    this.application.message = applyMsg;
+
+    this.ApplicationService.createApplication(this.application).subscribe((response: any ) => {
+        //console.log(response);
+    });
+
+    alert("Application sent");
+
+    this.application = {
+      applicationId: 0,
+      ideaLeaderId: 0,
+      ideaID: 0,
+      applicantId: 0,
+      positionId: 0,
+      message: ''
+    }
+
+    document.getElementById("messageForm").innerHTML = '';
+    this.checkValid;
   }
 
-  submit(message)
+  checkValid(applyMsg)
   {
-    this.message = message;
-
-  }
-
-  createApplication(app)
-  {
-    this.ApplicationService.createApplication(app).subscribe((response: any) => {
-      
-    })
+    if (applyMsg != '')
+    {
+      this.formIsValid = true;
+    }
+    else
+    {
+      this.formIsValid = false;
+    }
   }
 }
