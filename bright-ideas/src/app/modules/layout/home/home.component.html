@@ -2,6 +2,67 @@
     <div class="row">
         <div class="col">
             <div class="text-container text-center pt-5">
+                <h3> Welcome to <strong class="bkg-col-text"> BrightIdeas! </strong>
+                    A community of talented individuals who want to help others let their ideas shine! <a href="#"> Learn More </a>
+                </h3>
+            </div>
+            <div>
+                <h3 class="pt-4"> Featured Ideas </h3>
+                <div class="row">
+                    <!--------------------------------------------------------------------------------------------------->
+                    <div class="scrolling-wrapper">
+                        <div class="col-6 col-md-4 card" *ngFor="let idea of ideas" routerLink="/idea/{{ idea.ideaID }}">
+                            <app-single-idea [idea]="idea"></app-single-idea>
+                        </div>
+                        <!--
+                        <div class="col-6 col-md-4 card" *ngFor="let idea of ideas">
+                            <div id="carousel-featured-idea" class="corousel-container carousel slide pt-4" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active text-center">
+                                        <h5 class="bkg-col-text">{{ idea.category }}</h5>
+                                        <img class="d-block w-100" src="https://ptetutorials.com/images/user-profile.png" alt="First slide">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h6>{{ idea.ideaDescription }}</h6>
+                                            <p><span class="bkg-col-text">{{ idea.numberOfAvailablePositions }}</span> &nbsp; positions avalaible</p>
+                                            <p><span class="bkg-col-text">{{ idea.numberOfFollowers }}</span> &nbsp; followers</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    <!--------------------------------------------------------------------------------------------------->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<div class="container main-wrapper">
+    <div class="row">
+        <div class="col">
+            <div class="text-container text-center pt-5">
                 <h3>Welcome to <strong class="bkg-col-text">BrightIdeas!</strong> A community of talented individuals who want to help others let their
                 ideas shine!<a href="#"> Learn More </a>
                 </h3>
@@ -40,4 +101,4 @@
     </div>
             
 </div>
-
+-->

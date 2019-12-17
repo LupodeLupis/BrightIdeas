@@ -1,4 +1,4 @@
-/* .text-container h3 {
+.text-container h3 {
     max-width: 600px;
     margin: 0 auto;
     font-weight: 400;
@@ -18,13 +18,4 @@ h3 a {
 .carousel-control-next-icon, .carousel-control-prev-icon {
     position: relative;
     top: 28px;
-} */
-
-.scrolling-wrapper {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-}
-.card {
-    display: inline-block;
 }
