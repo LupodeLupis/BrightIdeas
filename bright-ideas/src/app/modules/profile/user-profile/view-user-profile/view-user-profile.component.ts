@@ -68,12 +68,6 @@ export class ViewUserProfileComponent implements OnInit {
         });
     };
 
-    /*editIdea(ideaID: any) {
-        console.log("View profile edit idea")
-        this.selectedIdea = ideaID;
-    }*/
-
-
     initilizationList() {
         if (this.user) {
             this.profileEndpointService.getProfileByUserId(this.user.userID).subscribe((response: any) => {
