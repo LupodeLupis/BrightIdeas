@@ -19,6 +19,7 @@ export class EditIdeaComponent implements OnInit , OnDestroy{
   idea: Idea;
   formEditIdea: FormGroup;
   @Input() ideas: Idea [];
+  //@Input() ideaID: Number;
   categoryList: string [];
   ideaSubscription: Subscription;
   ideaId: any;
@@ -36,6 +37,7 @@ export class EditIdeaComponent implements OnInit , OnDestroy{
    }
 
   ngOnInit() {
+    console.log("On init");
     this.initializeIdea();
   }
 
@@ -49,6 +51,19 @@ export class EditIdeaComponent implements OnInit , OnDestroy{
       }
     });
   }
+
+  /*initializeIdea() {
+    this.ideaSubscription =  this.ideaEndPointService.getIdeaById(this.ideaID).subscribe( (response: any) => {
+      console.log("RESPONSE " + response);
+      if (response) {
+        //this.idea = response;
+        this.ideaId = response.ideaID;
+        this.formEditIdea.get('idea_category').setValue(response.category);
+        this.formEditIdea.get('idea_title').setValue(response.ideaName);
+        this.formEditIdea.get('idea_description').setValue(response.ideaDescription);
+      }
+    });
+  }*/
 
   editIdea() {
     if (this.ideas !== undefined) {
@@ -74,6 +89,26 @@ export class EditIdeaComponent implements OnInit , OnDestroy{
     }
     this.spinnerService.hide();
   }
+
+  /*editIdea() {
+    this.idea.ideaID = this.ideaId;
+    this.idea.category = this.formEditIdea.get('idea_category').value;
+    this.idea.ideaName  = this.formEditIdea.get('idea_title').value;
+    this.idea.ideaDescription = this.formEditIdea.get('idea_description').value;
+    console.log(this.idea)
+    this.ideaEndPointService.updateIdea(this.idea).subscribe( (res: any) => {
+      this.modalNotificationService.openModalNotification({
+        successMessage: 'Position updated successfully'
+      });
+      this.spinnerService.show();
+    }, (error: HttpErrorResponse) => {
+      this.modalNotificationService.openModalNotification({
+        failureMessage: error.message
+      });
+    });
+
+    this.spinnerService.hide();
+  }*/
 
   ngOnDestroy() {
     this.ideaSubscription.unsubscribe();
