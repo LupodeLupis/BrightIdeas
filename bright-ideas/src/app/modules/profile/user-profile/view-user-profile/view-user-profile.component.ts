@@ -29,6 +29,7 @@ export class ViewUserProfileComponent implements OnInit {
     profileId: any;
     profile: Profile;
     listIdea: Idea [] = [];
+    selectedIdea: Number;
     isProfileDeleted: boolean;
     constructor(private sessionStorageService: SessionStorageService,
                 private profileEndpointService: ProfileEndpointService,
@@ -66,7 +67,6 @@ export class ViewUserProfileComponent implements OnInit {
             };
         });
     };
-
 
     initilizationList() {
         if (this.user) {

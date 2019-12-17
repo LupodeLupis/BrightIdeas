@@ -36,6 +36,7 @@ export class EditIdeaComponent implements OnInit , OnDestroy{
    }
 
   ngOnInit() {
+    console.log("On init");
     this.initializeIdea();
   }
 

@@ -178,8 +178,18 @@ export class ViewIdeaComponent implements OnInit {
     //alert("Application to posting " + posting.postingId + " in progress...");
   }
 
+  editIdea(ideaId: any) {
+      _.forEach(this.listIdea, (value, index) => {
+          if (value.ideaID === ideaId) {
+              this.ProfileService.currentIdea.next(value);
+          };
+      });
+  }
+
   getIdea(id): void {
     this.IdeaService.getIdeaById(id).subscribe(async (i) => {
+
+      this.listIdea = i;
 
       var parsedDate = new Date(Date.parse(i[0].date)).toLocaleDateString('en-US', this.dateParseOptions);
 
@@ -333,11 +343,4 @@ export class ViewIdeaComponent implements OnInit {
     })
   }
 
-  editIdea(ideaId: any) {
-    _.forEach(this.listIdea, (value, index) => {
-      if (value.ideaID === ideaId) {
-        this.ProfileService.currentIdea.next(value);
-      }
-    });
-  }
 }
