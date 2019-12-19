@@ -1,7 +1,7 @@
 export interface Media {
     mediaID: number;
     file: String;
-    mediaFormat: string;
+    mediaFormat: string | ArrayBuffer;
     ideaID: number;
     profileID: number;
 }

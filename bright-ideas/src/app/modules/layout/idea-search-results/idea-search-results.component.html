@@ -1,3 +1,4 @@
+<!--Jordan Hui's code-->
 <h1>Results</h1>
 <div *ngIf = "!isLoading; else loading">
   <div *ngIf = "hasResults; else noResults">
@@ -6,10 +7,10 @@
       <div class="container">
         <div class="result">
           <a routerLink="/idea/{{i.ideaID}}">
-            <div class="preview" [ngStyle]="{'background-image':'url('+i.ideaImg+')'}"></div>
+            <div class="preview" [style.background-image]="i.ideaImg"></div>
             <div class="row top">
               <div class="col-6 title">{{i.ideaName}}</div>
-              <div class="col-6 name"><span>Idea Leader: <a routerLink="/profile/{{i.leadID}}">{{i.leadName}}</a></span><a routerLink="/profile/{{i.leadID}}"><div class="d-none d-lg-block profImgSmall" [ngStyle]="{'background-image':'url('+i.leadImg+')'}"></div></a></div>
+              <div class="col-6 name"><span>Idea Leader: <a routerLink="/profile/{{i.leadID}}">{{i.leadName}}</a></span><a routerLink="/profile/{{i.leadID}}"><div class="d-none d-lg-block profImgSmall" [style.background-image]="i.leadImg"></div></a></div>
             </div>
             <div class="row align-items-center">
               <div class="col desc">{{i.ideaDesc}}</div>

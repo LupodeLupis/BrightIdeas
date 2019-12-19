@@ -1,8 +1,10 @@
+//Jordan Hui's code
 import { Component, OnInit, Directive } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
 import { IdeaEndpointService } from 'src/app/services/idea-endpoint/idea-endpoint.service'
 import { MediaEndpointService } from 'src/app/services/media-endpoint/media-endpoint.service'
 import { ProfileEndpointService } from 'src/app/services/profile-endpoint/profile-endpoint.service'
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 const uploadPath = '../../../../assets/uploads/'
@@ -10,13 +12,13 @@ const uploadPath = '../../../../assets/uploads/'
 class SearchResult
   {
       ideaID: Number;
-      ideaImg: String;
+      ideaImg: any;
       ideaName: String;
       ideaDesc: String;
       ideaCat: String;
       leadID: Number;
       leadName: String;
-      leadImg: String;
+      leadImg: any;
 
       constructor( ideaID, ideaImg, ideaName, ideaDesc, ideaCat, leadID, leadName, leadImg)
       {
@@ -43,13 +45,38 @@ export class IdeaSearchResultsComponent implements OnInit {
   ideaQuery;
   searchResults: SearchResult[] = [];
 
-  constructor(private router: Router, private IdeaService: IdeaEndpointService, private MediaService: MediaEndpointService, private ProfileService: ProfileEndpointService, private route: ActivatedRoute) { }
+  constructor(private domSanitizer: DomSanitizer, private router: Router, private IdeaService: IdeaEndpointService, private MediaService: MediaEndpointService, private ProfileService: ProfileEndpointService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
+      this.searchResults = [];
       this.ideaQuery = params.get("query");
       this.getIdeasWildcard(this.ideaQuery);
     });
+  }
+
+  getSafeImageURL(image){
+      // Converts arraybuffer to typed array object
+      const TYPED_ARRAY = new Uint16Array(image.data);
+      // converts the typed array to string of characters
+      // const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY); // this way causes (ERROR RangeError: Maximum call stack size exceeded) error
+      const STRING_CHAR = TYPED_ARRAY.reduce((data, byte) => {
+          return data + String.fromCharCode(byte);
+      }, '');
+      //sanitize the url that is passed as a value to image src attrtibute
+      return this.domSanitizer.bypassSecurityTrustUrl(STRING_CHAR);
+  };
+
+  getSafeBackgroundImageURL(image){
+    // Converts arraybuffer to typed array object
+    const TYPED_ARRAY = new Uint16Array(image.data);
+    // converts the typed array to string of characters
+    // const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY); // this way causes (ERROR RangeError: Maximum call stack size exceeded) error
+    const STRING_CHAR = TYPED_ARRAY.reduce((data, byte) => {
+        return data + String.fromCharCode(byte);
+    }, '');
+    //sanitize the url that is passed as a value to image src attrtibute
+    return this.domSanitizer.bypassSecurityTrustStyle("url("+STRING_CHAR+")");
   }
 
   getIdeasWildcard(query) {
@@ -63,7 +90,7 @@ export class IdeaSearchResultsComponent implements OnInit {
           var tempLeadImg = await this.getImageByProfile(i[x].ideaLeader);
           var tempLeadName = await this.getLeadName(i[x].ideaLeader);
 
-          console.log(tempIdeaImg);
+          //console.log("IDEA IMG " + tempIdeaImg);
           
           var tempRes = new SearchResult(i[x].ideaID, tempIdeaImg, i[x].ideaName, i[x].ideaDescription, i[x].category, i[x].ideaLeader, tempLeadName, tempLeadImg);
           this.searchResults.push(tempRes);
@@ -73,29 +100,31 @@ export class IdeaSearchResultsComponent implements OnInit {
     });
   }
 
-  getImageByIdea(id): Promise<String> {
+  getImageByIdea(id): Promise<any> {
     //console.log(this.MediaService)
-    var imgPath = "";
+    var img = this.getSafeBackgroundImageURL("");
+    console.log(id);
     return this.MediaService.getMediaByIdeaId(id).toPromise().then(result => {
+      console.log(result.length);
       if (result[0] != null)
       {
-        imgPath = uploadPath + result[0].file;
+        img = this.getSafeBackgroundImageURL(result[0].file);
       }
       //console.log(imgPath);
-      return imgPath;
+      return img;
     }).catch(error => {
       return Promise.reject(error)
     }) 
   }
 
-  getImageByProfile(id): Promise<String> {
-    var imgPath = "";
-    return this.MediaService.getMediaByProfileId(id).toPromise().then(result => {
+  getImageByProfile(id): Promise<any> {
+    var img = this.getSafeBackgroundImageURL("");
+    return this.ProfileService.getProfileByUserId(id).toPromise().then(result => {
       if (result[0] != null)
       {
-        imgPath = uploadPath + result[0].file;
+        img = this.getSafeBackgroundImageURL(result[0].profilePicture)
       }
-      return imgPath;
+      return img;
     }).catch(error => {
       return Promise.reject(error)
     }) 
@@ -103,7 +132,7 @@ export class IdeaSearchResultsComponent implements OnInit {
 
   getLeadName(id): Promise<String> {
     var dispName = "";
-    return this.ProfileService.getProfileById(id).toPromise().then(result => {
+    return this.ProfileService.getProfileByUserId(id).toPromise().then(result => {
       if (result[0] != null)
       {
         dispName = result[0].profileDisplayName;

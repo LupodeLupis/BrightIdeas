@@ -1,3 +1,4 @@
+//Jordan Hui's code
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
 import { Idea } from 'src/app/models/idea'
@@ -8,6 +9,7 @@ import { TodoEndpointService } from 'src/app/services/todo-endpoint/todo-endpoin
 import { PostingEndpointService } from 'src/app/services/posting-endpoint/posting-endpoint.service'
 import { MemberEndpointService } from 'src/app/services/member-endpoint/member-endpoint.service'
 import { UpdateEndpointService } from 'src/app/services/update-endpoint/update-endpoint.service'
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { SessionStorageService } from '../../../../shared/services/session-storage/session-storage.service'
 import * as _ from 'lodash';
 
@@ -21,7 +23,7 @@ class Member
   userId: Number;
   profileId: Number;
   profileName: String;
-  profileImg: String;
+  profileImg: any;
   ideaId: Number;
   roleId: Number;
   roleTitle: String;
@@ -92,14 +94,14 @@ class IdeaDisp
     ideaDesc: String;
     ideaCat: String;
     ideaDate: String;
-    ideaImgs: String[];
+    ideaImgs: any[];
     ideaUpdates: Update[];
     ideaPostings: Posting[];
     ideaMembers: Member[];
 
     leadID: Number;
     leadName: String;
-    leadImg: String;
+    leadImg: any;
 
     constructor( ideaID, ideaName, ideaDesc, ideaCat, ideaDate, ideaImgs, ideaUp, ideaPost, ideaMem, leadID, leadName, leadImg)
     {
@@ -158,7 +160,7 @@ export class ViewIdeaComponent implements OnInit {
 
   posInfo = new postingData('', '', '', '', '');
 
-  constructor(private sessionStorageService: SessionStorageService, private IdeaService: IdeaEndpointService, private MediaService: MediaEndpointService, private ProfileService: ProfileEndpointService, private UpdateService: UpdateEndpointService, private PostingService: PostingEndpointService, private MemberService: MemberEndpointService, private route: ActivatedRoute) { }
+  constructor(private domSanitizer: DomSanitizer, private sessionStorageService: SessionStorageService, private IdeaService: IdeaEndpointService, private MediaService: MediaEndpointService, private ProfileService: ProfileEndpointService, private UpdateService: UpdateEndpointService, private PostingService: PostingEndpointService, private MemberService: MemberEndpointService, private route: ActivatedRoute) { }
 
   ngOnInit() {
       this.route.paramMap.subscribe(params => {
@@ -184,6 +186,30 @@ export class ViewIdeaComponent implements OnInit {
               this.ProfileService.currentIdea.next(value);
           };
       });
+  }
+
+  getSafeImageURL(image){
+      // Converts arraybuffer to typed array object
+      const TYPED_ARRAY = new Uint16Array(image.data);
+      // converts the typed array to string of characters
+      // const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY); // this way causes (ERROR RangeError: Maximum call stack size exceeded) error
+      const STRING_CHAR = TYPED_ARRAY.reduce((data, byte) => {
+          return data + String.fromCharCode(byte);
+      }, '');
+      //sanitize the url that is passed as a value to image src attrtibute
+      return this.domSanitizer.bypassSecurityTrustUrl(STRING_CHAR);
+  };
+
+  getSafeBackgroundImageURL(image){
+    // Converts arraybuffer to typed array object
+    const TYPED_ARRAY = new Uint16Array(image.data);
+    // converts the typed array to string of characters
+    // const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY); // this way causes (ERROR RangeError: Maximum call stack size exceeded) error
+    const STRING_CHAR = TYPED_ARRAY.reduce((data, byte) => {
+        return data + String.fromCharCode(byte);
+    }, '');
+    //sanitize the url that is passed as a value to image src attrtibute
+    return this.domSanitizer.bypassSecurityTrustStyle("url("+STRING_CHAR+")");
   }
 
   getIdea(id): void {
@@ -225,7 +251,7 @@ export class ViewIdeaComponent implements OnInit {
       {
         for (var x = 0; x < result.length; x++)
         {
-          resPath.push(uploadPath + result[x].file);
+          resPath.push(this.getSafeImageURL(result[x].file));
           //console.log(result[x].file);
         }
       }
@@ -235,14 +261,16 @@ export class ViewIdeaComponent implements OnInit {
     }) 
   }
 
-  getImageByProfile(id): Promise<String> {
-    var imgPath = "";
-    return this.MediaService.getMediaByProfileId(id).toPromise().then(result => {
-      if (result[0] != null)
+  getImageByProfile(id): Promise<any> {
+    var img = this.getSafeBackgroundImageURL("");
+    return this.ProfileService.getProfileByUserId(id).toPromise().then(result => {
+      //console.log("id:" + id + " result:" + result[0].profileDisplayName);
+      if (result.length != 0)
       {
-        imgPath = uploadPath + result[0].file;
+        img = this.getSafeBackgroundImageURL(result[0].profilePicture);
+        //console.log("IMG: " + img);
       }
-      return imgPath;
+      return img;
     }).catch(error => {
       return Promise.reject(error)
     }) 
@@ -250,7 +278,7 @@ export class ViewIdeaComponent implements OnInit {
 
   getProfileName(id): Promise<String> {
     var dispName = "";
-    return this.ProfileService.getProfileById(id).toPromise().then(result => {
+    return this.ProfileService.getProfileByUserId(id).toPromise().then(result => {
       if (result[0] != null)
       {
         dispName = result[0].profileDisplayName;
@@ -304,7 +332,7 @@ export class ViewIdeaComponent implements OnInit {
           console.log(result[x].memberID);
           var tmpProfileId = await this.getProfileByUserId(result[x].userID);
           var tmpProfileName = await this.getProfileName(tmpProfileId);
-          var tmpProfileImg = await this.getImageByProfile(tmpProfileId);
+          var tmpProfileImg = await this.getImageByProfile(result[x].userID);
 
           var tmpRoleName = await this.getPostingNameById(result[x].roleID);
 

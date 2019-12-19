@@ -28,7 +28,9 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
   media: Media;
   isModalVisible: boolean;
   categoryList: string[] = [];
-  imageQueue: File[] = [];
+  imageQueue: any[] = [];
+  uploadedImg: any;
+  tempMedia: Media;
   keyIdPosting: string [] = [];
   ideaForm: FormGroup;
   private positionsListSub: Subscription;
@@ -88,6 +90,7 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
       this.idea.category = this.ideaForm.get('idea_category').value;
       this.ideaEndpointService.createIdea(this.idea).subscribe((response: any ) => {
         ideaId = response.insertId;
+        this.persistMedia(ideaId);
         _.forEach(this.positionsList, (value, index) => {
           this.positionsList[index].ideaID = ideaId;
           this.postingEndpointService.updatePosting(value).subscribe((res: Posting) => {
@@ -122,12 +125,6 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
   addPosition() {
   this.isModalVisible = true;
   }
-
-  public addFileToQueue(img : any) {
-    //console.log(img.name.split('.')[1].toLowerCase());
-    this.imageQueue.push(img);
-    console.log(this.imageQueue);
-  }
   
   editPosition(indexPosition: number, positionId: any) {
     _.forEach(this.positionsList, (value, key) => {
@@ -148,6 +145,48 @@ export class CreateIdeaComponent implements OnInit, OnDestroy {
       });
     }
   }
+
+  //Jordan Hui's code
+  public addFileToQueue(event) {
+    console.log(event);
+    this.uploadedImg = event as File;
+    if (event) {
+        const reader = new FileReader();
+        reader.readAsDataURL(this.uploadedImg);
+        reader.onloadend = (events) => {
+            this.imageQueue.push(reader.result);
+            //console.log(this.imageQueue);
+        };
+    } else {
+        if (event.target.files[0].size > FILE_SIZE) {
+            this.modalNotificationService.openModalNotification({
+                messageFailure: 'The file is over the size limit'
+            });
+        };
+    };
+  };
+
+  persistMedia(ideaID)
+  {
+    this.imageQueue.forEach(img => {
+      this.tempMedia = {
+        mediaID: null,
+        file: img,
+        mediaFormat: null,
+        ideaID: ideaID,
+        profileID: null
+      };
+      this.mediaEndpointService.createMedia(this.tempMedia).subscribe((response: any) => {
+        console.log(response);
+      });
+    });
+  }
+
+  removeFromQueue(index)
+  {
+    this.imageQueue.splice(index, 1);
+  }
+  //End of Jordan Hui's code
   // NOT WORKING 
   // uploadFile(): void {
   //   const file: File = this.mediaInput.nativeElement.files;

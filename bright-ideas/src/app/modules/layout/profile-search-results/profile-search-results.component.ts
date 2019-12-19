@@ -1,6 +1,8 @@
+//Jordan Hui's code
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profile } from 'src/app/models/profile';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ProfileEndpointService } from 'src/app/services/profile-endpoint/profile-endpoint.service'
 import { MediaEndpointService } from 'src/app/services/media-endpoint/media-endpoint.service'
 
@@ -11,7 +13,7 @@ class SearchResult
   profileID: Number;
   profileName: String;
   profileDesc: String;
-  profileImg: String;
+  profileImg: any;
 
   constructor(profID, profNam, profDes, profImg)
   {
@@ -34,13 +36,26 @@ export class ProfileSearchResultsComponent implements OnInit {
   profileQuery;
   searchResults: SearchResult[] = [];
 
-  constructor(private ProfileService: ProfileEndpointService, private MediaService: MediaEndpointService, private route: ActivatedRoute) { }
+  constructor(private domSanitizer: DomSanitizer, private ProfileService: ProfileEndpointService, private MediaService: MediaEndpointService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
+      this.searchResults = [];
       this.profileQuery = params.get("query");
       this.getProfilesWildcard(this.profileQuery);
     }); 
+  }
+
+  getSafeBackgroundImageURL(image){
+    // Converts arraybuffer to typed array object
+    const TYPED_ARRAY = new Uint16Array(image.data);
+    // converts the typed array to string of characters
+    // const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY); // this way causes (ERROR RangeError: Maximum call stack size exceeded) error
+    const STRING_CHAR = TYPED_ARRAY.reduce((data, byte) => {
+        return data + String.fromCharCode(byte);
+    }, '');
+    //sanitize the url that is passed as a value to image src attrtibute
+    return this.domSanitizer.bypassSecurityTrustStyle("url("+STRING_CHAR+")");
   }
 
   getProfilesWildcard(query): void {
@@ -51,7 +66,7 @@ export class ProfileSearchResultsComponent implements OnInit {
         for (var x = 0; x < p.length; x++)
         {
           var tempProfImg = await this.getImageByProfile(p[x].profileID);
-          console.log(p[x].profileID + " " + tempProfImg)
+          //console.log(p[x].profileID + " " + tempProfImg)
           var tempRes = new SearchResult(p[x].profileID, p[x].profileDisplayName, p[x].profileDescription, tempProfImg);
           this.searchResults.push(tempRes);
         }
@@ -60,14 +75,14 @@ export class ProfileSearchResultsComponent implements OnInit {
     });
   }
 
-  getImageByProfile(id): Promise<String> {
-    var imgPath = "";
-    return this.MediaService.getMediaByProfileId(id).toPromise().then(result => {
-      if (result[0] != null)
+  getImageByProfile(id): Promise<any> {
+    var img = this.getSafeBackgroundImageURL("");
+    return this.ProfileService.getProfileById(id).toPromise().then(result => {
+      if (result.length != 0)
       {
-        imgPath = uploadPath + result[0].file;
+        img = this.getSafeBackgroundImageURL(result[0].profilePicture);
       }
-      return imgPath;
+      return img;
     }).catch(error => {
       return Promise.reject(error)
     }) 
