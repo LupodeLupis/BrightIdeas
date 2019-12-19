@@ -1,3 +1,4 @@
+//Jordan Hui's code
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Media } from 'src/app/models/media';
 import { NgForm } from "@angular/forms"
@@ -31,7 +32,8 @@ export class UploadMediaComponent implements OnInit {
   onSubmit(): void {
     var fileField = (<HTMLInputElement>document.getElementById('mediaInput'));
     var file = fileField.files[0];
-    //console.log(file);
+    console.log(file);
     this.uploadedFile.emit(file);
   }
 }
+//End of Jordan Hui's code

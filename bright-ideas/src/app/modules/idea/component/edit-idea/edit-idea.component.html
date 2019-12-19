@@ -28,6 +28,20 @@
                   class="alert alert-danger">The field is required.
             </div>
           </div>
+          <!--Jordan Hui's code-->
+          <div class="form-group">
+            <label for="edit-media" class="col-form-label bkg-col-text"><strong>Media</strong></label>
+            <div class="edit-media">
+              <div class="media">
+                <div *ngFor= "let i of imageQueue; let ind = index" class="mediaPreview">
+                  <div class="deleteimg" (click)="addToDeleteQueue(ind, i.mediaID)"><i class="fa fa-times-circle"></i></div>
+                  <img class="ideaImg" [src]="i.mediaFile" alt="Idea Image">
+                </div>
+              </div>
+              <app-upload-media (uploadedFile)="addFileToQueue($event)"></app-upload-media>
+            </div>
+          </div>
+          <!--End of Jordan Hui's code-->
         </form>
       </div>
       <div class="modal-footer">

@@ -1,3 +1,4 @@
+<!--Jordan Hui's code-->
 <h1>Results</h1>
 <div *ngIf = "!isLoading; else loading">
   <div *ngIf = "hasResults; else noResults">
@@ -7,7 +8,7 @@
         
         <a routerLink="/profile/{{p.profileID}}">
           <div class="result">
-            <div class="preview" [ngStyle]="{'background-image':'url('+p.profileImg+')'}"></div>
+            <div class="preview" [style.background-image]="p.profileImg"></div>
             <div class="row top">
               <div class="col name">{{p.profileName}}</div>
             </div>

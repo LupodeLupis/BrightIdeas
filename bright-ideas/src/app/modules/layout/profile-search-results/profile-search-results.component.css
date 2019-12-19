@@ -1,3 +1,4 @@
+/*Jordan Hui's code*/
 .container a
 {
     text-decoration: none;
@@ -37,7 +38,7 @@ div.preview
     border-style: solid;
     border-width: 1px;
 
-    background-position:50% 50%;
+    background-position:45% 25%;
     background-repeat:no-repeat;  
 	background-size: 200px;
 

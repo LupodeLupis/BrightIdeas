@@ -1,3 +1,10 @@
+/*Jordan Hui's code*/
+
+button
+{
+    margin: 10px;
+}
+
 a
 {
     text-decoration: none;
@@ -24,7 +31,7 @@ a
     border-style: solid;
     border-width: 1px;
 
-    background-position:50% 50%;
+    background-position:45% 25%;
     background-repeat:no-repeat;  
 	background-size: 75px;
 }
@@ -171,7 +178,7 @@ a
     border-style: solid;
     border-width: 1px;
 
-    background-position:50% 50%;
+    background-position:45% 25%;
     background-repeat:no-repeat;  
 	background-size: 75px;
 }

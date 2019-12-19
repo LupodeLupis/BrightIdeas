@@ -18,3 +18,36 @@
     margin-left: 87px;
 }
 
+/*Jordan Hui's code*/
+.media
+{
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin: 10px;
+}
+
+.media .ideaImg
+{
+    height: 250px;
+    margin: 10px;
+    display: inline-block;
+
+    border-width: 1px;
+    border-style: solid;
+}
+
+.mediaPreview
+{
+	display: inline-block;
+  	position: relative;
+}
+
+.deleteimg
+{
+	cursor: pointer;
+	position: absolute;
+  	top: 7px;
+  	right: 12px;
+}
+/*End of Jordan Hui's code*/
