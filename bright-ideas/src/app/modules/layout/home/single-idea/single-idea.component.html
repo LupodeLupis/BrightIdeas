@@ -1,13 +1,16 @@
-<div class="col-6 col-md-4">
-    <div id="carousel-featured-idea" class="corousel-container carousel slide pt-4" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active text-center">
-                <h5 class="bkg-col-text">{{ idea.category }}</h5>
-                <img class="d-block w-100" src="https://ptetutorials.com/images/user-profile.png" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h6>{{ idea.ideaDescription }}</h6>
-                    <p><span class="bkg-col-text">{{ idea.numberOfAvailablePositions }}</span> &nbsp; positions avalaible</p>
-                    <p><span class="bkg-col-text">{{ idea.numberOfFollowers }}</span> &nbsp; followers</p>
+<div class="container main-wrapper">
+    <div class="row">
+        <div class="col-6 col-md-4">
+            <div id="carousel-featured-idea" class="corousel-container carousel slide pt-4" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active text-center">
+                        <h5 class="bkg-col-text">{{ idea.category }}</h5>
+                        <img class="d-block w-100" [src]="backgroundImage" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block"></div>
+                        <h6>{{ idea.ideaDescription }}</h6>
+                        <p><span class="bkg-col-text">{{ idea.numberOfAvailablePositions }}</span> &nbsp; positions avalaible</p>
+                        <p><span class="bkg-col-text">{{ idea.numberOfFollowers }}</span> &nbsp; followers</p>
+                    </div>
                 </div>
             </div>
         </div>
