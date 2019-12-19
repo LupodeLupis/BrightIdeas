@@ -13,7 +13,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Profile } from '../../../../models/profile';
 import { DeleteNotificationService } from '../../../../shared/services/modal-notification/delete-notification.service';
 import { CATEGORIES, FILE_SIZE } from '../../../../shared/models/global-constants';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-view-user-profile',
@@ -23,7 +23,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 export class ViewUserProfileComponent implements OnInit {
     selectedImage: File = null;
-    profilePicture: any;
+    profilePicture: any = "https://www.computerhope.com/jargon/g/guest-user.jpg";
     profileForm: FormGroup;
     user: User;
     profileId: any;

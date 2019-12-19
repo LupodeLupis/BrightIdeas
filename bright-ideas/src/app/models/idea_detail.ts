@@ -4,5 +4,6 @@ export interface Idea_Detail {
     ideaDescription: String;
     category: String;
     numberOfFollowers: Number;
-    numberOfAvailablePositions: Number;  
+    numberOfAvailablePositions: Number;
+    backgroundImage: any;
 };
