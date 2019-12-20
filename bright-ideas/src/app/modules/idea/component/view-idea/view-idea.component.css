@@ -140,7 +140,16 @@ a
 
 .posting .applyButton
 {
+    position: absolute;
+    bottom: 50px;
+}
 
+.availability
+{
+    font-weight: bold;
+    position: absolute;
+    bottom: 100px;
+    margin-left: 10px;
 }
 
 .members

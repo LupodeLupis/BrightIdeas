@@ -17,7 +17,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 })
 export class UserProfileComponent implements OnInit {
   selectedImage: File = null;
-  url: ArrayBuffer | string = '';
+  profilePicture: ArrayBuffer | string = '';
   profile: Profile;
   profileForm: FormGroup;
   user: User;
@@ -56,7 +56,7 @@ export class UserProfileComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(this.selectedImage);
       reader.onload = (events) => {
-        this.url = reader.result ;
+        this.profilePicture = reader.result ;
       };
     } else {
       if (event.target.files[0].size > FILE_SIZE) {
@@ -71,7 +71,7 @@ export class UserProfileComponent implements OnInit {
 
   onSubmit() {
     if (this.profileForm.valid && this.isImgUploaded) {
-        this.profile.profilePicture = this.selectedImage.name;
+        this.profile.profilePicture = this.profilePicture;
         this.profile.profileDisplayName = this.profileForm.get('display_name').value;
         this.profile.profileDescription = this.profileForm.get('about_me').value;
         this.profileEndpointService.getProfileByUserId(this.user.userID).subscribe( (resp: any [] ) => {

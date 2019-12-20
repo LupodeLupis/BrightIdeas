@@ -278,7 +278,9 @@ export class ViewIdeaComponent implements OnInit {
 
   getProfileName(id): Promise<String> {
     var dispName = "";
-    return this.ProfileService.getProfileByUserId(id).toPromise().then(result => {
+    console.log(id);
+    return this.ProfileService.getProfileById(id).toPromise().then(result => {
+      console.log(result[0]);
       if (result[0] != null)
       {
         dispName = result[0].profileDisplayName;

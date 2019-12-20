@@ -32,6 +32,7 @@ import { DeleteNotificationComponent } from './shared/component/delete-notificat
 import { ApplyPositionModalComponent } from './modules/idea/component/view-idea/Modals/apply-position-modal/apply-position-modal.component';
 import { AddUpdateModalComponent } from './modules/idea/component/view-idea/Modals/add-update-modal/add-update-modal.component';
 import { SingleIdeaComponent } from './modules/layout/home/single-idea/single-idea.component';
+import { ViewApplicationsComponent } from './modules/layout/view-applications/view-applications.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { SingleIdeaComponent } from './modules/layout/home/single-idea/single-id
     ApplyPositionModalComponent,
     AddUpdateModalComponent,
     SingleIdeaComponent,
+    ViewApplicationsComponent,
   ],
   imports: [
     BrowserModule,

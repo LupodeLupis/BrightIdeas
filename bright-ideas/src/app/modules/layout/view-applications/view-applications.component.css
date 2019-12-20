@@ -1,0 +1,42 @@
+/*Jordan Hui's code*/
+div.result
+{
+    width: 90%;
+    height: 150px;
+
+    border-style: solid;
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: slategray;
+    
+    box-shadow: 3px 4px lightgrey;
+
+    margin-top: 30px;
+}
+
+.title
+{
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.but
+{
+	font-size: 28dp;
+	font-weight: bold;
+	padding: 2px 10px 2px 10px;
+	margin-left: 5px;
+}
+
+div.message
+{
+	word-break: break-all; 
+	overflow-y: auto;
+
+	margin-left: 100px;
+	margin-right: 100px;
+
+	height: 100px;
+}

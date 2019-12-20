@@ -39,29 +39,36 @@ export class ApplyPositionModalComponent implements OnInit {
 
   submitMessage(applyMsg)
   {
-    this.application.ideaID = this.posInfo.ideaID;
-    this.application.applicantId = this.posInfo.appID;
-    this.application.positionId = this.posInfo.posID;
-    this.application.ideaLeaderId = this.posInfo.leadID;
-    this.application.message = applyMsg;
+    if (applyMsg.length > 500)
+    {
+      this.application.ideaID = this.posInfo.ideaID;
+      this.application.applicantId = this.posInfo.appID;
+      this.application.positionId = this.posInfo.posID;
+      this.application.ideaLeaderId = this.posInfo.leadID;
+      this.application.message = applyMsg;
 
-    this.ApplicationService.createApplication(this.application).subscribe((response: any ) => {
-        //console.log(response);
-    });
+      this.ApplicationService.createApplication(this.application).subscribe((response: any ) => {
+          //console.log(response);
+      });
 
-    alert("Application sent");
+      alert("Application sent");
 
-    this.application = {
-      applicationId: 0,
-      ideaLeaderId: 0,
-      ideaID: 0,
-      applicantId: 0,
-      positionId: 0,
-      message: ''
+      this.application = {
+        applicationId: 0,
+        ideaLeaderId: 0,
+        ideaID: 0,
+        applicantId: 0,
+        positionId: 0,
+        message: ''
+      }
+
+      document.getElementById("messageForm").innerHTML = '';
+      this.checkValid;
     }
-
-    document.getElementById("messageForm").innerHTML = '';
-    this.checkValid;
+    else
+    {
+      alert("Message too long, maximum of 500 characters");
+    }
   }
 
   checkValid(applyMsg)
