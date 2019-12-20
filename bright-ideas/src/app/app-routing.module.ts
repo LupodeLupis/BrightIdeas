@@ -15,6 +15,7 @@ import { UploadMediaComponent } from './modules/media/upload-media/upload-media.
 import { CreateAccountComponent } from './modules/auth/component/create-account/create-account.component';
 import { UserProfileComponent} from './modules/profile/user-profile/user-profile.component';
 import { ViewUserProfileComponent } from './modules/profile/user-profile/view-user-profile/view-user-profile.component';
+import { ViewApplicationsComponent } from './modules/layout/view-applications/view-applications.component'
 
 
 // If you need any route protected add this code to the route you need --->    canActivate: [AuthGuardService]  <--
@@ -55,6 +56,7 @@ const routes: Routes = [
       component: IdeaSearchResultsComponent },
     { path: 'searchResults/Profiles/:query',
       component: ProfileSearchResultsComponent},
+    { path: 'applications', component: ViewApplicationsComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
