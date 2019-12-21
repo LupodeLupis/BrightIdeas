@@ -16,6 +16,7 @@ import { CreateAccountComponent } from './modules/auth/component/create-account/
 import { UserProfileComponent} from './modules/profile/user-profile/user-profile.component';
 import { ViewUserProfileComponent } from './modules/profile/user-profile/view-user-profile/view-user-profile.component';
 import { ViewApplicationsComponent } from './modules/layout/view-applications/view-applications.component'
+import { IdeasFromMemberComponent } from './modules/layout/ideas-from-member/ideas-from-member.component'
 
 
 // If you need any route protected add this code to the route you need --->    canActivate: [AuthGuardService]  <--
@@ -57,6 +58,7 @@ const routes: Routes = [
     { path: 'searchResults/Profiles/:query',
       component: ProfileSearchResultsComponent},
     { path: 'applications', component: ViewApplicationsComponent },
+    { path: 'joinedIdeas', component: IdeasFromMemberComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];

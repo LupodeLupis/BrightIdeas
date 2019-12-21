@@ -35,10 +35,9 @@ export class MemberEndpointService {
    });
   }
 
-   //Not in BrightIdeasAPI
-  /*getMemberByUserId(userId): Observable<any> {
+  getMemberByUserId(userId): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
-      this.http.get(`${this.url}/member/userId=${userId}`).subscribe((res: any) => {
+      this.http.get(`${this.url}/member/user/${userId}`).subscribe((res: any) => {
          observer.next(res);
          observer.complete();
       },
@@ -46,7 +45,7 @@ export class MemberEndpointService {
          observer.error(error);
       });
    });
-  }*/
+  }
 
    //Not in BrightIdeasAPI
   /*getMemberByRoleId(roleId): Observable<any> {
