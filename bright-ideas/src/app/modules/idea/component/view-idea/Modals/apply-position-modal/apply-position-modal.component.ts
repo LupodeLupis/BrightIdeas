@@ -1,3 +1,4 @@
+//Jordan Hui's code
 import { Component, OnInit, Input} from '@angular/core';
 import { ApplicationEndpointService } from 'src/app/services/application-endpoint/application-endpoint.service'
 import { ApplyPositionModalService }  from '../apply-position-service/apply-position-modal.service'
