@@ -33,6 +33,7 @@ import { ApplyPositionModalComponent } from './modules/idea/component/view-idea/
 import { AddUpdateModalComponent } from './modules/idea/component/view-idea/Modals/add-update-modal/add-update-modal.component';
 import { SingleIdeaComponent } from './modules/layout/home/single-idea/single-idea.component';
 import { ViewApplicationsComponent } from './modules/layout/view-applications/view-applications.component';
+import { IdeasFromMemberComponent } from './modules/layout/ideas-from-member/ideas-from-member.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ViewApplicationsComponent } from './modules/layout/view-applications/vi
     AddUpdateModalComponent,
     SingleIdeaComponent,
     ViewApplicationsComponent,
+    IdeasFromMemberComponent,
   ],
   imports: [
     BrowserModule,
