@@ -148,6 +148,8 @@ class postingData
 })
 export class ViewIdeaComponent implements OnInit {
 
+  currentUserId: Number;
+
   ideaId = '0';
   displayIdea = new IdeaDisp('', '', '', '', '', '', '', '', '', '', '', '');
   listIdea: Idea [] = [];
@@ -160,10 +162,11 @@ export class ViewIdeaComponent implements OnInit {
 
   posInfo = new postingData('', '', '', '', '');
 
-  constructor(private domSanitizer: DomSanitizer, private sessionStorageService: SessionStorageService, private IdeaService: IdeaEndpointService, private MediaService: MediaEndpointService, private ProfileService: ProfileEndpointService, private UpdateService: UpdateEndpointService, private PostingService: PostingEndpointService, private MemberService: MemberEndpointService, private route: ActivatedRoute) { }
+  constructor(private domSanitizer: DomSanitizer, public sessionStorageService: SessionStorageService, private IdeaService: IdeaEndpointService, private MediaService: MediaEndpointService, private ProfileService: ProfileEndpointService, private UpdateService: UpdateEndpointService, private PostingService: PostingEndpointService, private MemberService: MemberEndpointService, private route: ActivatedRoute) { }
 
   ngOnInit() {
       this.route.paramMap.subscribe(params => {
+          this.currentUserId = this.sessionStorageService.getUser().userID;
           this.ideaId = params.get("ideaId");
           this.getIdea(this.ideaId);
       });
@@ -210,6 +213,14 @@ export class ViewIdeaComponent implements OnInit {
     }, '');
     //sanitize the url that is passed as a value to image src attrtibute
     return this.domSanitizer.bypassSecurityTrustStyle("url("+STRING_CHAR+")");
+  }
+
+  memberLeaveIdea(id, index)
+  {
+    this.MemberService.deleteMember(id).subscribe((response) => {
+      console.log(response);
+    });
+    this.displayIdea.ideaMembers.splice(index, 1)
   }
 
   getIdea(id): void {
@@ -279,7 +290,7 @@ export class ViewIdeaComponent implements OnInit {
   getProfileName(id): Promise<String> {
     var dispName = "";
     console.log(id);
-    return this.ProfileService.getProfileById(id).toPromise().then(result => {
+    return this.ProfileService.getProfileByUserId(id).toPromise().then(result => {
       console.log(result[0]);
       if (result[0] != null)
       {
@@ -298,7 +309,7 @@ export class ViewIdeaComponent implements OnInit {
       {
         for (var x = 0; x < result.length; x++)
         {
-          updates.push(new Update(result[x].updateID, new Date(Date.parse(result[x].date)).toLocaleDateString('en-US', this.dateParseOptions), result[x].description, result[x].ideaID));
+          updates.unshift(new Update(result[x].updateID, new Date(Date.parse(result[x].date)).toLocaleDateString('en-US', this.dateParseOptions), result[x].description, result[x].ideaID));
         }
         return updates;
       }
@@ -333,7 +344,7 @@ export class ViewIdeaComponent implements OnInit {
         {
           console.log(result[x].memberID);
           var tmpProfileId = await this.getProfileByUserId(result[x].userID);
-          var tmpProfileName = await this.getProfileName(tmpProfileId);
+          var tmpProfileName = await this.getProfileName(result[x].userID);
           var tmpProfileImg = await this.getImageByProfile(result[x].userID);
 
           var tmpRoleName = await this.getPostingNameById(result[x].roleID);
