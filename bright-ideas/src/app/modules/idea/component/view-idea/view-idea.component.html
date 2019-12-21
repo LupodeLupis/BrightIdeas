@@ -72,16 +72,20 @@
   <div class="row heading">Contributors</div>
   <div class="row">
     <div class="col members">
-      <div class="col-4 member" *ngFor="let m of displayIdea.ideaMembers">
-        <a routerLink="/profile/{{m.profileId}}">
+      <div class="col-4 member" *ngFor="let m of displayIdea.ideaMembers; let ind = index">
+        
           <div class="preview" [style.background-image]="m.profileImg"></div>
           <div class="row top">
-            <div class="col name">{{m.profileName}}</div>
+            <a routerLink="/profile/{{m.profileId}}">
+              <div class="col name">{{m.profileName}}</div>
+            </a>
+            <div *ngIf="isLeader" class="col remove"><button class="btn bkg-col-element removeBut" (click)="memberLeaveIdea(m.id, ind)">Remove</button></div>
+            <div *ngIf="this.currentUserId == m.userId" class="col remove"><button class="btn bkg-col-element removeBut" (click)="memberLeaveIdea(m.id, ind)">Leave</button></div>
           </div>
           <div class="row align-items-center">
               <div class="col role">{{m.roleTitle}}</div>
           </div>
-        </a>
+
       </div>
     </div>
   </div>
