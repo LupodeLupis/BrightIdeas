@@ -145,6 +145,7 @@ a
 {
     position: absolute;
     bottom: 50px;
+    margin-left: 0px;
 }
 
 .availability
@@ -152,7 +153,6 @@ a
     font-weight: bold;
     position: absolute;
     bottom: 100px;
-    margin-left: 10px;
 }
 
 .members

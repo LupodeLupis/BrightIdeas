@@ -309,7 +309,7 @@ export class ViewIdeaComponent implements OnInit {
       {
         for (var x = 0; x < result.length; x++)
         {
-          updates.push(new Update(result[x].updateID, new Date(Date.parse(result[x].date)).toLocaleDateString('en-US', this.dateParseOptions), result[x].description, result[x].ideaID));
+          updates.unshift(new Update(result[x].updateID, new Date(Date.parse(result[x].date)).toLocaleDateString('en-US', this.dateParseOptions), result[x].description, result[x].ideaID));
         }
         return updates;
       }
