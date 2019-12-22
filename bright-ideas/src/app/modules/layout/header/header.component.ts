@@ -84,7 +84,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
-
+  //Jordan Hui's code
   search(searchText, searchType): void {
     if (searchText != null)
     {

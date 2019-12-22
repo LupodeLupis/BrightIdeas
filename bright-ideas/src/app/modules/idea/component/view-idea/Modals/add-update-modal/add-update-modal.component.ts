@@ -1,3 +1,4 @@
+//Jordan Hui's code
 import { Component, OnInit, Input } from '@angular/core';
 import { UpdateEndpointService } from 'src/app/services/update-endpoint/update-endpoint.service';
 import { Update } from 'src/app/models/update';
